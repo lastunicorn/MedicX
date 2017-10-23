@@ -5,6 +5,10 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedicX", "MedicX\MedicX.csproj", "{2C4CF850-4EFF-47B4-8598-1813FAAA21E6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedicX.Persistence.Json", "MedicX.Persistence.Json\MedicX.Persistence.Json.csproj", "{9684B41D-C429-4B04-8CF0-0612785B398A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedicX.Common", "MedicX.Common\MedicX.Common.csproj", "{854C77F6-22F9-48A9-AE73-43E19AB9B258}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{2C4CF850-4EFF-47B4-8598-1813FAAA21E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2C4CF850-4EFF-47B4-8598-1813FAAA21E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2C4CF850-4EFF-47B4-8598-1813FAAA21E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9684B41D-C429-4B04-8CF0-0612785B398A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9684B41D-C429-4B04-8CF0-0612785B398A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9684B41D-C429-4B04-8CF0-0612785B398A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9684B41D-C429-4B04-8CF0-0612785B398A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{854C77F6-22F9-48A9-AE73-43E19AB9B258}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{854C77F6-22F9-48A9-AE73-43E19AB9B258}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{854C77F6-22F9-48A9-AE73-43E19AB9B258}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{854C77F6-22F9-48A9-AE73-43E19AB9B258}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

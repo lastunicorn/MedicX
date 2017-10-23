@@ -15,25 +15,11 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System.Collections.Generic;
-using Newtonsoft.Json;
 
-namespace DustInTheWind.MedicX.DataAccess
+namespace DustInTheWind.MedicX.Common.Entities
 {
-    internal class MedicXDatabase
+    public class Consultation : Event
     {
-        [JsonProperty("medics")]
-        public List<Medic> Medics { get; set; }
-
-        [JsonProperty("clinics")]
-        public List<Clinic> Clinics { get; set; }
-
-        [JsonProperty("consultations")]
-        public List<Consultation> Consultations { get; set; }
-
-        [JsonProperty("investigationTypes")]
-        public List<InvestigationType> InvestigationTypes { get; set; }
-
-        [JsonProperty("investigations")]
-        public List<Investigation> Investigations { get; set; }
+        public List<Prescription> Prescriptions { get; set; }
     }
 }

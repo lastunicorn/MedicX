@@ -4,14 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{2C4CF850-4EFF-47B4-8598-1813FAAA21E6}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{9684B41D-C429-4B04-8CF0-0612785B398A}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DustInTheWind.MedicX</RootNamespace>
-    <AssemblyName>DustInTheWind.MedicX</AssemblyName>
+    <RootNamespace>DustInTheWind.MedicX.Persistence.Json</RootNamespace>
+    <AssemblyName>DustInTheWind.MedicX.Persistence.Json</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -30,10 +29,11 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject />
-  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -44,22 +44,31 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="Entities\Address.cs" />
+    <Compile Include="Entities\Clinic.cs" />
+    <Compile Include="Entities\ClinicLocation.cs" />
+    <Compile Include="Entities\Consultation.cs" />
+    <Compile Include="Entities\Event.cs" />
+    <Compile Include="Entities\Investigation.cs" />
+    <Compile Include="Entities\InvestigationResult.cs" />
+    <Compile Include="Entities\InvestigationType.cs" />
+    <Compile Include="Entities\Medic.cs" />
+    <Compile Include="Entities\MedicxDatabase.cs" />
+    <Compile Include="Entities\Person.cs" />
+    <Compile Include="Entities\PersonName.cs" />
+    <Compile Include="Entities\Prescription.cs" />
+    <Compile Include="Translators\MedicExtensions.cs" />
+    <Compile Include="MedicRepository.cs" />
+    <Compile Include="Translators\NameExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="medicx.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MedicX.Common\MedicX.Common.csproj">
       <Project>{854c77f6-22f9-48a9-ae73-43e19ab9b258}</Project>
       <Name>MedicX.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MedicX.Persistence.Json\MedicX.Persistence.Json.csproj">
-      <Project>{9684b41d-c429-4b04-8cf0-0612785b398a}</Project>
-      <Name>MedicX.Persistence.Json</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

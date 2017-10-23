@@ -14,37 +14,25 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using DustInTheWind.MedicX.Common.Entities;
-using DustInTheWind.MedicX.Persistence.Json;
 
-namespace DustInTheWind.MedicX
+namespace DustInTheWind.MedicX.Persistence.Json.Translators
 {
-    public class Program
+    internal static class MedicExtensions
     {
-        public static void Main(string[] args)
+        public static List<Medic> Translate(this IEnumerable<Entities.Medic> medics)
         {
-            MedicRepository medicRepository = new MedicRepository();
-
-            List<Medic> medics = medicRepository.GetAll();
-
-            if (medics != null && medics.Any())
-                foreach (Medic medic in medics)
-                    Console.WriteLine(medic.Name);
-            else
-                Console.WriteLine("No medics exist.");
-
-            medicRepository.Save();
-
-            Pause();
-        }
-
-        private static void Pause()
-        {
-            Console.Write("Press any key to continue...");
-            Console.ReadKey(true);
+            return medics
+                .Select(x => new Medic
+                {
+                    Id = x.Id,
+                    Name = x.Name.Translate(),
+                    Comments = x.Comments,
+                    Specializations = x.Specializations.ToList()
+                })
+                .ToList();
         }
     }
 }

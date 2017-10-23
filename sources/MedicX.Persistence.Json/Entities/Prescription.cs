@@ -16,17 +16,14 @@
 
 using Newtonsoft.Json;
 
-namespace DustInTheWind.MedicX.DataAccess
+namespace DustInTheWind.MedicX.Persistence.Json.Entities
 {
-    internal class Person
+    internal class Prescription
     {
-        [JsonProperty("id", Order = 1)]
-        public int Id { get; set; }
+        [JsonProperty("description")]
+        public string Description { get; set; }
 
-        [JsonProperty("name", Order = 1)]
-        public PersonName Name { get; set; }
-
-        [JsonProperty("comments", Order = 1)]
-        public string Comments { get; set; }
+        [JsonProperty("result")]
+        public object Result { get; set; }
     }
 }

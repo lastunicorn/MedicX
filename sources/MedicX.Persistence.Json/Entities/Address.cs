@@ -16,7 +16,7 @@
 
 using Newtonsoft.Json;
 
-namespace DustInTheWind.MedicX.DataAccess
+namespace DustInTheWind.MedicX.Persistence.Json.Entities
 {
     internal class Address
     {

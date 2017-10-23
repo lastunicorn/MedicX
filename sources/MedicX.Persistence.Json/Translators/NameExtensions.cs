@@ -14,16 +14,23 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using Newtonsoft.Json;
+using DustInTheWind.MedicX.Common.Entities;
 
-namespace DustInTheWind.MedicX.DataAccess
+namespace DustInTheWind.MedicX.Persistence.Json.Translators
 {
-    internal class Prescription
+    internal static class NameExtensions
     {
-        [JsonProperty("description")]
-        public string Description { get; set; }
+        public static PersonName Translate(this Entities.PersonName personName)
+        {
+            if (personName == null)
+                return null;
 
-        [JsonProperty("result")]
-        public object Result { get; set; }
+            return new PersonName
+            {
+                FirstName = personName.FirstName,
+                MiddleName = personName.MiddleName,
+                LastName = personName.LastName,
+            };
+        }
     }
 }

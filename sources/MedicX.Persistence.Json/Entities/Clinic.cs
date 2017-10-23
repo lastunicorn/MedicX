@@ -17,11 +17,17 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace DustInTheWind.MedicX.DataAccess
+namespace DustInTheWind.MedicX.Persistence.Json.Entities
 {
-    internal class Consultation : Event
+    internal class Clinic
     {
-        [JsonProperty("prescriptions", Order = 2)]
-        public List<Prescription> Prescriptions { get; set; }
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("locations")]
+        public List<ClinicLocation> Locations { get; set; }
+
+        [JsonProperty("comments")]
+        public string Comments { get; set; }
     }
 }

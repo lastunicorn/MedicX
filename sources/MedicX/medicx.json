@@ -1,11 +1,6 @@
 ﻿{
   "medics": [
     {
-      "id": 0,
-      "name": null,
-      "specializations": [ ]
-    },
-    {
       "id": 1,
       "name": {
         "first": "Nicoleta",

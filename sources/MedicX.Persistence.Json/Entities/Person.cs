@@ -14,14 +14,19 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace DustInTheWind.MedicX.DataAccess
+namespace DustInTheWind.MedicX.Persistence.Json.Entities
 {
-    internal class Medic : Person
+    internal class Person
     {
-        [JsonProperty("specializations", Order = 2)]
-        public List<string> Specializations { get; set; }
+        [JsonProperty("id", Order = 1)]
+        public int Id { get; set; }
+
+        [JsonProperty("name", Order = 1)]
+        public PersonName Name { get; set; }
+
+        [JsonProperty("comments", Order = 1)]
+        public string Comments { get; set; }
     }
 }
