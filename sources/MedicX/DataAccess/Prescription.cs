@@ -14,25 +14,16 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using System.IO;
-using DustInTheWind.MedicX.DataAccess;
 using Newtonsoft.Json;
 
-namespace DustInTheWind.MedicX
+namespace DustInTheWind.MedicX.DataAccess
 {
-    public class Program
+    internal class Prescription
     {
-        public static void Main(string[] args)
-        {
-            var json = File.ReadAllText("medicx.json");
-            var medicx = JsonConvert.DeserializeObject(json, typeof(MedicXDatabase));
+        [JsonProperty("description")]
+        public string Description { get; set; }
 
-            var jsonSerializerSettings = new JsonSerializerSettings
-            {
-                NullValueHandling = NullValueHandling.Ignore
-            };
-            var json2 = JsonConvert.SerializeObject(medicx, Formatting.Indented, jsonSerializerSettings);
-            File.WriteAllText("medicx2.json", json2);
-        }
+        [JsonProperty("result")]
+        public object Result { get; set; }
     }
 }

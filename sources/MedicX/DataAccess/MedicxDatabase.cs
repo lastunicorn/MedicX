@@ -1,5 +1,20 @@
-﻿using System.Collections.Generic;
-using System.Net.Sockets;
+﻿// MedicX
+// Copyright (C) 2017 Dust in the Wind
+// 
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+// 
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+// 
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace DustInTheWind.MedicX.DataAccess
@@ -11,71 +26,11 @@ namespace DustInTheWind.MedicX.DataAccess
 
         [JsonProperty("clinics")]
         public List<Clinic> Clinics { get; set; }
-    }
 
-    internal class Clinic
-    {
-        [JsonProperty("name")]
-        public string Name { get; set; }
-        
-        [JsonProperty("locations")]
-        public List<ClinicLocation> Locations { get; set; }
+        [JsonProperty("consultations")]
+        public List<Consultation> Consultations { get; set; }
 
-        [JsonProperty("comments")]
-        public string Comments { get; set; }
-    }
-
-    internal class ClinicLocation
-    {
-        [JsonProperty("id")]
-        public int Id { get; set; }
-
-        [JsonProperty("address")]
-        public Address Address { get; set; }
-    }
-
-    internal class Address
-    {
-        [JsonProperty("street")]
-        public string Street { get; set; }
-
-        [JsonProperty("city")]
-        public string City { get; set; }
-
-        [JsonProperty("county")]
-        public string County { get; set; }
-
-        [JsonProperty("country")]
-        public string Country { get; set; }
-    }
-
-    internal class Person
-    {
-        [JsonProperty("id", Order = 1)]
-        public int Id { get; set; }
-
-        [JsonProperty("name", Order = 1)]
-        public PersonName Name { get; set; }
-
-        [JsonProperty("comments", Order = 1)]
-        public string Comments { get; set; }
-    }
-
-    internal class PersonName
-    {
-        [JsonProperty("first")]
-        public string FirstName { get; set; }
-
-        [JsonProperty("middle")]
-        public string MiddleName { get; set; }
-
-        [JsonProperty("last")]
-        public string LastName { get; set; }
-    }
-
-    internal class Medic : Person
-    {
-        [JsonProperty("specializations", Order = 2)]
-        public List<string> Specializations { get; set; }
+        [JsonProperty("investigations")]
+        public List<Investigation> Investigations { get; set; }
     }
 }

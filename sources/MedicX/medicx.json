@@ -1,7 +1,12 @@
 ﻿{
   "medics": [
     {
-      "id": "1",
+      "id": 0,
+      "name": null,
+      "specializations": [ ]
+    },
+    {
+      "id": 1,
       "name": {
         "first": "Nicoleta",
         "last": "Coca"
@@ -11,7 +16,7 @@
       ]
     },
     {
-      "id": "2",
+      "id": 2,
       "name": {
         "first": "Ioana",
         "last": "Varga"
@@ -121,9 +126,10 @@
       "labels": [
         "paraziți"
       ],
+      "comments": "Per ansamblu, all ok.",
       "prescriptions": [
         {
-          "descriptions": "sugestie: apă de gură cu clorhexidină"
+          "description": "sugestie: apă de gură cu clorhexidină"
         },
         {
           "description": "sugestie: badijonare cu glicerină boraxată"
@@ -134,8 +140,7 @@
         {
           "description": "pentru la nevoie: trimitere exsudat lingual"
         }
-      ],
-      "comment": "Per ansamblu, all ok."
+      ]
     },
     {
       "date": "2017 10 19",
@@ -146,7 +151,7 @@
       ],
       "prescriptions": [
         {
-          "descriptions": "ecografie",
+          "description": "ecografie",
           "result": null
         },
         {
@@ -164,16 +169,33 @@
       ]
     }
   ],
+  "investigationTypes": [
+    {
+      "id": 1,
+      "name": "sânge",
+      "measurementUnit": "percentage"
+    },
+    {
+      "id": 2,
+      "name": "magneziu",
+      "measurementUnit": "grams"
+    }
+  ],
   "investigations": [
     {
       "date": "2017 06 30",
-      "medic": null,
+      "medic": 0,
       "location": 2,
       "labels": [
         "demielinizare"
       ],
       "sentBy": 2,
-      "result": null
+      "result": [
+        {
+          "investigationTypeId": 2,
+          "value": 10
+        }
+      ]
     }
   ]
 }

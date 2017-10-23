@@ -48,7 +48,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataAccess\Address.cs" />
+    <Compile Include="DataAccess\Clinic.cs" />
+    <Compile Include="DataAccess\ClinicLocation.cs" />
+    <Compile Include="DataAccess\Consultation.cs" />
+    <Compile Include="DataAccess\Event.cs" />
+    <Compile Include="DataAccess\Investigation.cs" />
+    <Compile Include="DataAccess\Medic.cs" />
     <Compile Include="DataAccess\MedicXDatabase.cs" />
+    <Compile Include="DataAccess\Person.cs" />
+    <Compile Include="DataAccess\PersonName.cs" />
+    <Compile Include="DataAccess\Prescription.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
