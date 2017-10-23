@@ -14,17 +14,16 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace DustInTheWind.MedicX.DataAccess
 {
-    internal class Investigation : Event
+    internal class InvestigationResult
     {
-        [JsonProperty("sentBy", Order = 2)]
-        public int SentById { get; set; }
+        [JsonProperty("investigationTypeId")]
+        public int InvestigationTypeId { get; set; }
 
-        [JsonProperty("result", Order = 2)]
-        public List<InvestigationResult> Result { get; set; }
+        [JsonProperty("value")]
+        public int Value { get; set; }
     }
 }

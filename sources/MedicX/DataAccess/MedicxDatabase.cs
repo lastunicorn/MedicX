@@ -30,6 +30,9 @@ namespace DustInTheWind.MedicX.DataAccess
         [JsonProperty("consultations")]
         public List<Consultation> Consultations { get; set; }
 
+        [JsonProperty("investigationTypes")]
+        public List<InvestigationType> InvestigationTypes { get; set; }
+
         [JsonProperty("investigations")]
         public List<Investigation> Investigations { get; set; }
     }

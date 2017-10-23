@@ -31,6 +31,7 @@ namespace DustInTheWind.MedicX
             {
                 NullValueHandling = NullValueHandling.Ignore
             };
+
             var json2 = JsonConvert.SerializeObject(medicx, Formatting.Indented, jsonSerializerSettings);
             File.WriteAllText("medicx2.json", json2);
         }
