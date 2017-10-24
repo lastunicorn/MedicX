@@ -57,10 +57,13 @@
     <Compile Include="Entities\Person.cs" />
     <Compile Include="Entities\PersonName.cs" />
     <Compile Include="Entities\Prescription.cs" />
+    <Compile Include="IMedicRepository.cs" />
+    <Compile Include="JsonDatabase.cs" />
     <Compile Include="Translators\MedicExtensions.cs" />
     <Compile Include="MedicRepository.cs" />
     <Compile Include="Translators\NameExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

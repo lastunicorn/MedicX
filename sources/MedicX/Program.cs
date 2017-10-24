@@ -26,19 +26,41 @@ namespace DustInTheWind.MedicX
     {
         public static void Main(string[] args)
         {
-            MedicRepository medicRepository = new MedicRepository();
+            try
+            {
+                using (UnitOfWork unitOfWork = new UnitOfWork())
+                {
+                    IMedicRepository medicRepository = unitOfWork.MedicRepository;
 
-            List<Medic> medics = medicRepository.GetAll();
+                    List<Medic> medics = medicRepository.GetAll();
 
-            if (medics != null && medics.Any())
-                foreach (Medic medic in medics)
-                    Console.WriteLine(medic.Name);
-            else
-                Console.WriteLine("No medics exist.");
+                    if (medics != null && medics.Any())
+                    {
+                        foreach (Medic medic in medics)
+                            Console.WriteLine(medic.Name);
+                    }
+                    else
+                    {
+                        Console.WriteLine("No medics exist.");
+                    }
 
-            medicRepository.Save();
+                    unitOfWork.Save();
+                }
+            }
+            catch (Exception ex)
+            {
+                DisplayError(ex);
+            }
 
             Pause();
+        }
+
+        private static void DisplayError(Exception ex)
+        {
+            ConsoleColor oldColor = Console.ForegroundColor;
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine(ex);
+            Console.ForegroundColor = oldColor;
         }
 
         private static void Pause()

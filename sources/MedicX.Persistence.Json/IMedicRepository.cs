@@ -14,26 +14,13 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using System;
 using System.Collections.Generic;
-using DustInTheWind.MedicX.Persistence.Json.Translators;
-using Medic = DustInTheWind.MedicX.Common.Entities.Medic;
+using DustInTheWind.MedicX.Common.Entities;
 
 namespace DustInTheWind.MedicX.Persistence.Json
 {
-    internal class MedicRepository : IMedicRepository
+    public interface IMedicRepository
     {
-        private readonly JsonDatabase database;
-
-        public MedicRepository(JsonDatabase database)
-        {
-            if (database == null) throw new ArgumentNullException(nameof(database));
-            this.database = database;
-        }
-
-        public List<Medic> GetAll()
-        {
-            return database.Data.Medics.Translate();
-        }
+        List<Medic> GetAll();
     }
 }
