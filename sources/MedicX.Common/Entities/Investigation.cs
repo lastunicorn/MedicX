@@ -20,7 +20,7 @@ namespace DustInTheWind.MedicX.Common.Entities
 {
     public class Investigation : Event
     {
-        public int SentById { get; set; }
+        public Medic SentBy { get; set; }
         public List<InvestigationResult> Result { get; set; }
     }
 }

@@ -21,6 +21,7 @@ namespace DustInTheWind.MedicX.Common.Entities
     public class ClinicLocation
     {
         public int Id { get; set; }
+        public Clinic Clinic { get; set; }
         public Address Address { get; set; }
         public List<string> Phones { get; set; }
         public string Program { get; set; }

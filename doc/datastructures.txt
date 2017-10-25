@@ -38,7 +38,7 @@ Event
 Date:            DateTime
 Medic:           Medic
 Location:        ClinicLocation
-Comments:         string
+Comments:        string
 Labels:          List<string>
 
 
@@ -61,5 +61,5 @@ Result:          LaboratoryTestResult
 
 LaboratoryTestResult
 ---------------------------------------------------
-Investigation: InvestigationType
-Value:         int, string
+Investigation:   InvestigationType
+Value:           int, string
