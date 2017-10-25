@@ -170,161 +170,163 @@
       "name": "Hemoleucograma completă",
       "substance": "sânge EDTA",
       "method": "metoda spectrofotometrică",
-      "comment": "spectrometrie de impedanță și citometrie în flux / microscopie"
-    },
-    {
-      "id": 1,
-      "name": "Nr. eritrocite",
-      "measurementUnit": "*10^6/μl",
-      "minValue": 4.5,
-      "maxValue": 5.5
-    },
-    {
-      "id": 2,
-      "name": "Hemoglobina",
-      "measurementUnit": "g/dl",
-      "minValue": 13.0,
-      "maxValue": 17.0
-    },
-    {
-      "id": 3,
-      "name": "Hematocrit",
-      "measurementUnit": "%",
-      "minValue": 40,
-      "maxValue": 50
-    },
-    {
-      "id": 4,
-      "name": "VEM",
-      "measurementUnit": "fL",
-      "minValue": 80,
-      "maxValue": 110
-    },
-    {
-      "id": 5,
-      "name": "HEM",
-      "measurementUnit": "pg",
-      "minValue": 28,
-      "maxValue": 34
-    },
-    {
-      "id": 6,
-      "name": "CHEM",
-      "measurementUnit": "g/dl",
-      "minValue": 32,
-      "maxValue": 35
-    },
-    {
-      "id": 7,
-      "name": "RDW-CV",
-      "measurementUnit": "%",
-      "minValue": 11.5,
-      "maxValue": 14.5
-    },
-    {
-      "id": 8,
-      "name": "Nr. leucocite",
-      "measurementUnit": "*10^3/μl",
-      "minValue": 4.8,
-      "maxValue": 11.0
-    },
-    {
-      "id": 9,
-      "name": "% Neutrofile",
-      "measurementUnit": "%",
-      "minValue": 53,
-      "maxValue": 68
-    },
-    {
-      "id": 10,
-      "name": "Nr. neutrofile",
-      "measurementUnit": "*10^3/μl",
-      "minValue": 1.8,
-      "maxValue": 7.7
-    },
-    {
-      "id": 11,
-      "name": "% Eozinofile",
-      "measurementUnit": "%",
-      "minValue": 2,
-      "maxValue": 4
-    },
-    {
-      "id": 12,
-      "name": "Nr. eozinofile",
-      "measurementUnit": "*10^3/μl",
-      "minValue": 0.09,
-      "maxValue": 0.44
-    },
-    {
-      "id": 13,
-      "name": "% Bazofile",
-      "measurementUnit": "%",
-      "minValue": 0,
-      "maxValue": 2.0
-    },
-    {
-      "id": 14,
-      "name": "Nr. basofile",
-      "measurementUnit": "*10^3/μl",
-      "minValue": 0.0,
-      "maxValue": 0.2
-    },
-    {
-      "id": 15,
-      "name": "% Limfocite",
-      "measurementUnit": "%",
-      "minValue": 25,
-      "maxValue": 45
-    },
-    {
-      "id": 16,
-      "name": "Nr. limfocite",
-      "measurementUnit": "*10^3/μl",
-      "minValue": 1.00,
-      "maxValue": 4.95
-    },
-    {
-      "id": 17,
-      "name": "% Monocite",
-      "measurementUnit": "%",
-      "minValue": 2,
-      "maxValue": 8
-    },
-    {
-      "id": 18,
-      "name": "Nr. monocite",
-      "measurementUnit": "*10^3/μl",
-      "minValue": 0.0,
-      "maxValue": 1.0
-    },
-    {
-      "id": 19,
-      "name": "Nr. trombocite",
-      "measurementUnit": "*10^3/μl",
-      "minValue": 150,
-      "maxValue": 450
-    },
-    {
-      "id": 20,
-      "name": "VTM",
-      "measurementUnit": "fL",
-      "minValue": 7.4,
-      "maxValue": 12
-    },
-    {
-      "id": 21,
-      "name": "PCT",
-      "measurementUnit": "%",
-      "minValue": 0.16,
-      "maxValue": 0.48
-    },
-    {
-      "id": 22,
-      "name": "PDW",
-      "measurementUnit": "%",
-      "minValue": 12.0,
-      "maxValue": 16.5
+      "comments": "spectrometrie de impedanță și citometrie în flux / microscopie",
+      "items": [
+        {
+          "id": 1,
+          "name": "Nr. eritrocite",
+          "measurementUnit": "*10^6/μl",
+          "minValue": 4.5,
+          "maxValue": 5.5
+        },
+        {
+          "id": 2,
+          "name": "Hemoglobina",
+          "measurementUnit": "g/dl",
+          "minValue": 13.0,
+          "maxValue": 17.0
+        },
+        {
+          "id": 3,
+          "name": "Hematocrit",
+          "measurementUnit": "%",
+          "minValue": 40,
+          "maxValue": 50
+        },
+        {
+          "id": 4,
+          "name": "VEM",
+          "measurementUnit": "fL",
+          "minValue": 80,
+          "maxValue": 110
+        },
+        {
+          "id": 5,
+          "name": "HEM",
+          "measurementUnit": "pg",
+          "minValue": 28,
+          "maxValue": 34
+        },
+        {
+          "id": 6,
+          "name": "CHEM",
+          "measurementUnit": "g/dl",
+          "minValue": 32,
+          "maxValue": 35
+        },
+        {
+          "id": 7,
+          "name": "RDW-CV",
+          "measurementUnit": "%",
+          "minValue": 11.5,
+          "maxValue": 14.5
+        },
+        {
+          "id": 8,
+          "name": "Nr. leucocite",
+          "measurementUnit": "*10^3/μl",
+          "minValue": 4.8,
+          "maxValue": 11.0
+        },
+        {
+          "id": 9,
+          "name": "% Neutrofile",
+          "measurementUnit": "%",
+          "minValue": 53,
+          "maxValue": 68
+        },
+        {
+          "id": 10,
+          "name": "Nr. neutrofile",
+          "measurementUnit": "*10^3/μl",
+          "minValue": 1.8,
+          "maxValue": 7.7
+        },
+        {
+          "id": 11,
+          "name": "% Eozinofile",
+          "measurementUnit": "%",
+          "minValue": 2,
+          "maxValue": 4
+        },
+        {
+          "id": 12,
+          "name": "Nr. eozinofile",
+          "measurementUnit": "*10^3/μl",
+          "minValue": 0.09,
+          "maxValue": 0.44
+        },
+        {
+          "id": 13,
+          "name": "% Bazofile",
+          "measurementUnit": "%",
+          "minValue": 0,
+          "maxValue": 2.0
+        },
+        {
+          "id": 14,
+          "name": "Nr. basofile",
+          "measurementUnit": "*10^3/μl",
+          "minValue": 0.0,
+          "maxValue": 0.2
+        },
+        {
+          "id": 15,
+          "name": "% Limfocite",
+          "measurementUnit": "%",
+          "minValue": 25,
+          "maxValue": 45
+        },
+        {
+          "id": 16,
+          "name": "Nr. limfocite",
+          "measurementUnit": "*10^3/μl",
+          "minValue": 1.00,
+          "maxValue": 4.95
+        },
+        {
+          "id": 17,
+          "name": "% Monocite",
+          "measurementUnit": "%",
+          "minValue": 2,
+          "maxValue": 8
+        },
+        {
+          "id": 18,
+          "name": "Nr. monocite",
+          "measurementUnit": "*10^3/μl",
+          "minValue": 0.0,
+          "maxValue": 1.0
+        },
+        {
+          "id": 19,
+          "name": "Nr. trombocite",
+          "measurementUnit": "*10^3/μl",
+          "minValue": 150,
+          "maxValue": 450
+        },
+        {
+          "id": 20,
+          "name": "VTM",
+          "measurementUnit": "fL",
+          "minValue": 7.4,
+          "maxValue": 12
+        },
+        {
+          "id": 21,
+          "name": "PCT",
+          "measurementUnit": "%",
+          "minValue": 0.16,
+          "maxValue": 0.48
+        },
+        {
+          "id": 22,
+          "name": "PDW",
+          "measurementUnit": "%",
+          "minValue": 12.0,
+          "maxValue": 16.5
+        }
+      ]
     },
     {
       "id": 23,
@@ -332,9 +334,15 @@
       "substance": null,
       "method": "Analiza Cinetica a Fluxului Capilar ROLLER 20",
       "comment": null,
-      "measurementUnit": "mm/h",
-      "minValue": 2,
-      "maxValue": 10
+      "items": [
+        {
+          "id": 230,
+          "name": "VSH",
+          "measurementUnit": "mm/h",
+          "minValue": 2,
+          "maxValue": 10
+        }
+      ]
     },
     {
       "id": 24,
