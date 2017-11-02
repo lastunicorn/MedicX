@@ -14,14 +14,25 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+using System;
 using System.Collections.Generic;
 using DustInTheWind.MedicX.Common.Entities;
 
 namespace DustInTheWind.MedicX.Persistence.Json
 {
-    public interface IMedicRepository
+    internal class ConsultationsRepository : IConsultationsRepository
     {
-        List<Medic> GetAll();
-        Medic GetById(int id);
+        private readonly MedicXData medicXData;
+
+        public ConsultationsRepository(MedicXData medicXData)
+        {
+            if (medicXData == null) throw new ArgumentNullException(nameof(medicXData));
+            this.medicXData = medicXData;
+        }
+
+        public List<Consultation> GetAll()
+        {
+            return medicXData.Consultations;
+        }
     }
 }

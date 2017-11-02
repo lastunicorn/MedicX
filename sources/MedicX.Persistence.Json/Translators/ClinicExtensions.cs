@@ -1,4 +1,4 @@
-﻿// MedicX
+// MedicX
 // Copyright (C) 2017 Dust in the Wind
 // 
 // This program is free software: you can redistribute it and/or modify
@@ -16,51 +16,52 @@
 
 using System.Collections.Generic;
 using System.Linq;
-using Medic = DustInTheWind.MedicX.Common.Entities.Medic;
+using DustInTheWind.MedicX.Common.Entities;
 
 namespace DustInTheWind.MedicX.Persistence.Json.Translators
 {
-    internal static class MedicExtensions
+    internal static class ClinicExtensions
     {
-        public static List<Medic> Translate(this IEnumerable<Entities.Medic> medics)
+        public static List<Clinic> Translate(this IEnumerable<Entities.Clinic> clinics)
         {
-            return medics
+            return clinics
                 .Select(Translate)
                 .ToList();
         }
 
-        public static Medic Translate(this Entities.Medic medic)
+        public static Clinic Translate(this Entities.Clinic clinic)
         {
-            if (medic == null)
+            if (clinic == null)
                 return null;
 
-            return new Medic
+            Clinic clinicBl = new Clinic
             {
-                Id = medic.Id,
-                Name = medic.Name.Translate(),
-                Comments = medic.Comments,
-                Specializations = medic.Specializations.ToList()
+                Name = clinic.Name,
+                Comments = clinic.Comments
             };
+
+            clinicBl.Locations = clinic.Locations.Translate(clinicBl);
+
+            return clinicBl;
         }
 
-        public static List<Entities.Medic> Translate(this IEnumerable<Medic> medics)
+        public static List<Entities.Clinic> Translate(this IEnumerable<Clinic> clinics)
         {
-            return medics
+            return clinics
                 .Select(Translate)
                 .ToList();
         }
 
-        public static Entities.Medic Translate(this Medic medic)
+        public static Entities.Clinic Translate(this Clinic clinic)
         {
-            if (medic == null)
+            if (clinic == null)
                 return null;
 
-            return new Entities.Medic
+            return new Entities.Clinic
             {
-                Id = medic.Id,
-                Name = medic.Name.Translate(),
-                Comments = medic.Comments,
-                Specializations = medic.Specializations.ToList()
+                Name = clinic.Name,
+                Comments = clinic.Comments,
+                Locations = clinic.Locations.Translate()
             };
         }
     }

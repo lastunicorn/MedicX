@@ -49,6 +49,7 @@
     <Compile Include="Entities\InvestigationResult.cs" />
     <Compile Include="Entities\InvestigationType.cs" />
     <Compile Include="Entities\Medic.cs" />
+    <Compile Include="Entities\MedicXData.cs" />
     <Compile Include="Entities\Person.cs" />
     <Compile Include="Entities\PersonName.cs" />
     <Compile Include="Entities\Prescription.cs" />

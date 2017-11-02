@@ -20,25 +20,23 @@ using Newtonsoft.Json;
 
 namespace DustInTheWind.MedicX.Persistence.Json
 {
+    /// <summary>
+    /// Responsability: Reads and writes the 
+    /// </summary>
     internal class JsonDatabase
     {
         private const string JsonFileName = "medicx.json";
-
-        public MedicXDatabase Data { get; private set; }
         
-        public void Open()
+        public MedicXData Open()
         {
             if (!File.Exists(JsonFileName))
-            {
-                Data = new MedicXDatabase();
-                return;
-            }
+                return new MedicXData();
 
             string json = File.ReadAllText(JsonFileName);
-            Data = JsonConvert.DeserializeObject(json, typeof(MedicXDatabase)) as MedicXDatabase;
+            return JsonConvert.DeserializeObject(json, typeof(MedicXData)) as MedicXData;
         }
 
-        public void Save()
+        public void Save(MedicXData medicXData)
         {
             using (StreamWriter streamWriter = new StreamWriter("medicx2.json"))
             using (JsonTextWriter jsonTextWriter = new JsonTextWriter(streamWriter))
@@ -52,7 +50,7 @@ namespace DustInTheWind.MedicX.Persistence.Json
                 };
 
                 JsonSerializer jsonSerializer = JsonSerializer.Create(jsonSerializerSettings);
-                jsonSerializer.Serialize(jsonTextWriter, Data);
+                jsonSerializer.Serialize(jsonTextWriter, medicXData);
             }
         }
     }

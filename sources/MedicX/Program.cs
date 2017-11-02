@@ -30,18 +30,17 @@ namespace DustInTheWind.MedicX
             {
                 using (UnitOfWork unitOfWork = new UnitOfWork())
                 {
-                    IMedicRepository medicRepository = unitOfWork.MedicRepository;
+                    DisplayMedics(unitOfWork);
 
-                    List<Medic> medics = medicRepository.GetAll();
+                    IConsultationsRepository consultationsRepository = unitOfWork.ConsultationsRepository;
 
-                    if (medics != null && medics.Any())
+                    List<Consultation> consultations = consultationsRepository.GetAll();
+
+                    foreach (Consultation consultation in consultations)
                     {
-                        foreach (Medic medic in medics)
-                            Console.WriteLine(medic.Name);
-                    }
-                    else
-                    {
-                        Console.WriteLine("No medics exist.");
+                        Console.WriteLine();
+                        Console.WriteLine("{0:yyyy-MM-dd} - {1}", consultation.Date, consultation.Medic.Name);
+                        Console.WriteLine("Comments: {0}", consultation.Comments);
                     }
 
                     unitOfWork.Save();
@@ -53,6 +52,25 @@ namespace DustInTheWind.MedicX
             }
 
             Pause();
+        }
+
+        private static void DisplayMedics(UnitOfWork unitOfWork)
+        {
+            IMedicRepository medicRepository = unitOfWork.MedicRepository;
+
+            List<Medic> medics = medicRepository.GetAll();
+
+            if (medics != null && medics.Any())
+            {
+                Console.WriteLine("The list of medics:");
+
+                foreach (Medic medic in medics)
+                    Console.WriteLine($"- {medic.Name}");
+            }
+            else
+            {
+                Console.WriteLine("No medics exist.");
+            }
         }
 
         private static void DisplayError(Exception ex)

@@ -15,13 +15,14 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System.Collections.Generic;
-using DustInTheWind.MedicX.Common.Entities;
 
-namespace DustInTheWind.MedicX.Persistence.Json
+namespace DustInTheWind.MedicX.Common.Entities
 {
-    public interface IMedicRepository
+    public class MedicXData
     {
-        List<Medic> GetAll();
-        Medic GetById(int id);
+        public List<Medic> Medics { get; set; }
+        public List<Clinic> Clinics { get; set; }
+        public List<ClinicLocation> ClinicLocations { get; set; }
+        public List<Consultation> Consultations { get; set; }
     }
 }

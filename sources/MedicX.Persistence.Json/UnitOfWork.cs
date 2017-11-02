@@ -15,6 +15,8 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
+using DustInTheWind.MedicX.Common.Entities;
+using DustInTheWind.MedicX.Persistence.Json.Translators;
 
 namespace DustInTheWind.MedicX.Persistence.Json
 {
@@ -23,22 +25,46 @@ namespace DustInTheWind.MedicX.Persistence.Json
         private static int instanceCount;
         private static readonly object syncObject = new object();
 
+        private bool isDisposed;
+
         private readonly JsonDatabase jsonDatabase;
         private IMedicRepository medicRepository;
+        private IConsultationsRepository consultationsRepository;
+        private readonly MedicXData medicXData;
 
         public IMedicRepository MedicRepository
         {
             get
             {
+                if (isDisposed)
+                    throw new ObjectDisposedException(GetType().Name);
+
                 if (medicRepository == null)
-                    medicRepository = new MedicRepository(jsonDatabase);
+                    medicRepository = new MedicRepository(medicXData);
 
                 return medicRepository;
             }
         }
 
+        public IConsultationsRepository ConsultationsRepository
+        {
+            get
+            {
+                if (isDisposed)
+                    throw new ObjectDisposedException(GetType().Name);
+
+                if (consultationsRepository == null)
+                    consultationsRepository = new ConsultationsRepository(medicXData);
+
+                return consultationsRepository;
+            }
+        }
+
         public UnitOfWork()
         {
+            if (isDisposed)
+                throw new ObjectDisposedException(GetType().Name);
+
             if (instanceCount > 0)
                 throw new Exception("Another instance of the UnitOfWork already exists.");
 
@@ -48,7 +74,9 @@ namespace DustInTheWind.MedicX.Persistence.Json
                     throw new Exception("Another instance of the UnitOfWork already exists.");
 
                 jsonDatabase = new JsonDatabase();
-                jsonDatabase.Open();
+
+                Entities.MedicXData data = jsonDatabase.Open();
+                medicXData = data.Translate();
 
                 instanceCount++;
             }
@@ -56,7 +84,11 @@ namespace DustInTheWind.MedicX.Persistence.Json
 
         public void Save()
         {
-            jsonDatabase.Save();
+            if (isDisposed)
+                throw new ObjectDisposedException(GetType().Name);
+
+            Entities.MedicXData data = medicXData.Translate();
+            jsonDatabase.Save(data);
         }
 
         public void Dispose()

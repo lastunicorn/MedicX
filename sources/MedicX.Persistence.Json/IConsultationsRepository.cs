@@ -19,9 +19,8 @@ using DustInTheWind.MedicX.Common.Entities;
 
 namespace DustInTheWind.MedicX.Persistence.Json
 {
-    public interface IMedicRepository
+    public interface IConsultationsRepository
     {
-        List<Medic> GetAll();
-        Medic GetById(int id);
+        List<Consultation> GetAll();
     }
 }

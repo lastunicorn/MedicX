@@ -1,4 +1,4 @@
-﻿// MedicX
+// MedicX
 // Copyright (C) 2017 Dust in the Wind
 // 
 // This program is free software: you can redistribute it and/or modify
@@ -18,31 +18,33 @@ using DustInTheWind.MedicX.Common.Entities;
 
 namespace DustInTheWind.MedicX.Persistence.Json.Translators
 {
-    internal static class NameExtensions
+    internal static class AddressExtensions
     {
-        public static PersonName Translate(this Entities.PersonName personName)
+        public static Address Translate(this Entities.Address address)
         {
-            if (personName == null)
+            if (address == null)
                 return null;
 
-            return new PersonName
+            return new Address
             {
-                FirstName = personName.FirstName,
-                MiddleName = personName.MiddleName,
-                LastName = personName.LastName,
+                Street = address.Street,
+                City = address.City,
+                County = address.County,
+                Country = address.Country
             };
         }
 
-        public static Entities.PersonName Translate(this PersonName personName)
+        public static Entities.Address Translate(this Address address)
         {
-            if (personName == null)
+            if (address == null)
                 return null;
 
-            return new Entities.PersonName
+            return new Entities.Address
             {
-                FirstName = personName.FirstName,
-                MiddleName = personName.MiddleName,
-                LastName = personName.LastName,
+                Street = address.Street,
+                City = address.City,
+                County = address.County,
+                Country = address.Country
             };
         }
     }

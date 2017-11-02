@@ -16,51 +16,41 @@
 
 using System.Collections.Generic;
 using System.Linq;
-using Medic = DustInTheWind.MedicX.Common.Entities.Medic;
+using DustInTheWind.MedicX.Common.Entities;
 
 namespace DustInTheWind.MedicX.Persistence.Json.Translators
 {
-    internal static class MedicExtensions
+    internal static class PrescriptionsExtensions
     {
-        public static List<Medic> Translate(this IEnumerable<Entities.Medic> medics)
+        public static List<Prescription> Translate(this IEnumerable<Entities.Prescription> prescriptions)
         {
-            return medics
+            return prescriptions
                 .Select(Translate)
                 .ToList();
         }
 
-        public static Medic Translate(this Entities.Medic medic)
+        private static Prescription Translate(this Entities.Prescription prescription)
         {
-            if (medic == null)
-                return null;
-
-            return new Medic
+            return new Prescription
             {
-                Id = medic.Id,
-                Name = medic.Name.Translate(),
-                Comments = medic.Comments,
-                Specializations = medic.Specializations.ToList()
+                Description = prescription.Description,
+                Result = prescription.Result
             };
         }
 
-        public static List<Entities.Medic> Translate(this IEnumerable<Medic> medics)
+        public static List<Entities.Prescription> Translate(this IEnumerable<Prescription> prescriptions)
         {
-            return medics
+            return prescriptions
                 .Select(Translate)
                 .ToList();
         }
 
-        public static Entities.Medic Translate(this Medic medic)
+        private static Entities.Prescription Translate(this Prescription prescription)
         {
-            if (medic == null)
-                return null;
-
-            return new Entities.Medic
+            return new Entities.Prescription
             {
-                Id = medic.Id,
-                Name = medic.Name.Translate(),
-                Comments = medic.Comments,
-                Specializations = medic.Specializations.ToList()
+                Description = prescription.Description,
+                Result = prescription.Result
             };
         }
     }

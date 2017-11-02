@@ -16,24 +16,30 @@
 
 using System;
 using System.Collections.Generic;
-using DustInTheWind.MedicX.Persistence.Json.Translators;
-using Medic = DustInTheWind.MedicX.Common.Entities.Medic;
+using System.Linq;
+using DustInTheWind.MedicX.Common.Entities;
 
 namespace DustInTheWind.MedicX.Persistence.Json
 {
     internal class MedicRepository : IMedicRepository
     {
-        private readonly JsonDatabase database;
+        private readonly MedicXData medicXData;
 
-        public MedicRepository(JsonDatabase database)
+        public MedicRepository(MedicXData medicXData)
         {
-            if (database == null) throw new ArgumentNullException(nameof(database));
-            this.database = database;
+            if (medicXData == null) throw new ArgumentNullException(nameof(medicXData));
+            this.medicXData = medicXData;
         }
 
         public List<Medic> GetAll()
         {
-            return database.Data.Medics.Translate();
+            return medicXData.Medics;
+        }
+
+        public Medic GetById(int id)
+        {
+            return medicXData.Medics
+                .FirstOrDefault(x => x.Id == id);
         }
     }
 }
