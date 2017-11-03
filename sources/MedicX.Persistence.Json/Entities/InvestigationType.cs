@@ -26,7 +26,22 @@ namespace DustInTheWind.MedicX.Persistence.Json.Entities
         [JsonProperty("name")]
         public string Name { get; set; }
 
+        [JsonProperty("substance")]
+        public string Substance { get; set; }
+
+        [JsonProperty("method")]
+        public string Method { get; set; }
+
+        [JsonProperty("comments")]
+        public string Comments { get; set; }
+
         [JsonProperty("measurementUnit")]
         public string MeasurementUnit { get; set; }
+
+        [JsonProperty("minValue")]
+        public float? MinValue { get; set; }
+
+        [JsonProperty("maxValue")]
+        public float? MaxValue { get; set; }
     }
 }

@@ -19,6 +19,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DustInTheWind.MedicX.Common.Entities;
 using DustInTheWind.MedicX.Persistence.Json;
+using DustInTheWind.MedicX.Utils;
 
 namespace DustInTheWind.MedicX
 {
@@ -31,27 +32,17 @@ namespace DustInTheWind.MedicX
                 using (UnitOfWork unitOfWork = new UnitOfWork())
                 {
                     DisplayMedics(unitOfWork);
-
-                    IConsultationsRepository consultationsRepository = unitOfWork.ConsultationsRepository;
-
-                    List<Consultation> consultations = consultationsRepository.GetAll();
-
-                    foreach (Consultation consultation in consultations)
-                    {
-                        Console.WriteLine();
-                        Console.WriteLine("{0:yyyy-MM-dd} - {1}", consultation.Date, consultation.Medic.Name);
-                        Console.WriteLine("Comments: {0}", consultation.Comments);
-                    }
+                    DisplayConsultations(unitOfWork);
 
                     unitOfWork.Save();
                 }
             }
             catch (Exception ex)
             {
-                DisplayError(ex);
+               CustomConsole.WriteError(ex);
             }
 
-            Pause();
+            CustomConsole.Pause();
         }
 
         private static void DisplayMedics(UnitOfWork unitOfWork)
@@ -73,18 +64,22 @@ namespace DustInTheWind.MedicX
             }
         }
 
-        private static void DisplayError(Exception ex)
+        private static void DisplayConsultations(UnitOfWork unitOfWork)
         {
-            ConsoleColor oldColor = Console.ForegroundColor;
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine(ex);
-            Console.ForegroundColor = oldColor;
-        }
+            IConsultationsRepository consultationsRepository = unitOfWork.ConsultationsRepository;
 
-        private static void Pause()
-        {
-            Console.Write("Press any key to continue...");
-            Console.ReadKey(true);
+            List<Consultation> consultations = consultationsRepository.GetAll();
+
+            foreach (Consultation consultation in consultations)
+            {
+                CustomConsole.WriteLine();
+                CustomConsole.WriteLineEmphasies("{0:yyyy-MM-dd} - {1}", consultation.Date, consultation.Medic.Name);
+                CustomConsole.WriteLine("Comments: {0}", consultation.Comments);
+                CustomConsole.WriteLine("Prescriptions:");
+
+                foreach (Prescription prescription in consultation.Prescriptions)
+                    CustomConsole.WriteLine("- {0}", prescription.Description);
+            }
         }
     }
 }

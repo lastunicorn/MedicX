@@ -69,6 +69,7 @@
     <Compile Include="Translators\ClinicExtensions.cs" />
     <Compile Include="Translators\ClinicLocationExtensions.cs" />
     <Compile Include="Translators\ConsultationExtensions.cs" />
+    <Compile Include="Translators\InvestigationTypesExtensions.cs" />
     <Compile Include="Translators\MedicExtensions.cs" />
     <Compile Include="Translators\MedicXData.cs" />
     <Compile Include="Translators\NameExtensions.cs" />

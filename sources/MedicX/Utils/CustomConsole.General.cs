@@ -14,16 +14,23 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using System.Collections.Generic;
+using System;
 
-namespace DustInTheWind.MedicX.Common.Entities
+namespace DustInTheWind.MedicX.Utils
 {
-    public class MedicXData
+    internal static partial class CustomConsole
     {
-        public List<Medic> Medics { get; set; }
-        public List<Clinic> Clinics { get; set; }
-        public List<ClinicLocation> ClinicLocations { get; set; }
-        public List<Consultation> Consultations { get; set; }
-        public List<InvestigationType> InvestigationTypes { get; set; }
+        private const ConsoleColor SuccessColor = ConsoleColor.Green;
+        private const ConsoleColor WarningColor = ConsoleColor.Yellow;
+        private const ConsoleColor ErrorColor = ConsoleColor.Red;
+        private const ConsoleColor EmphasiesColor = ConsoleColor.White;
+
+        public static void Pause()
+        {
+            Console.WriteLine();
+            Console.Write("Press any key to continue...");
+            Console.ReadKey(true);
+            Console.WriteLine();
+        }
     }
 }

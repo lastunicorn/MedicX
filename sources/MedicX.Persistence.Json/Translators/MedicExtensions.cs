@@ -16,7 +16,7 @@
 
 using System.Collections.Generic;
 using System.Linq;
-using Medic = DustInTheWind.MedicX.Common.Entities.Medic;
+using DustInTheWind.MedicX.Common.Entities;
 
 namespace DustInTheWind.MedicX.Persistence.Json.Translators
 {

@@ -333,7 +333,7 @@
       "name": "VSH",
       "substance": null,
       "method": "Analiza Cinetica a Fluxului Capilar ROLLER 20",
-      "comment": null,
+      "comments": null,
       "items": [
         {
           "id": 230,
@@ -349,7 +349,7 @@
       "name": "Fosfataza alcalina",
       "substance": "ser",
       "method": "metoda fotometrică",
-      "comment": "Architect ABBOTT",
+      "comments": "Architect ABBOTT",
       "measurementUnit": "U/L",
       "minValue": 40,
       "maxValue": 150
@@ -359,7 +359,7 @@
       "name": "Gama GT",
       "substance": "ser",
       "method": "metoda fotometrică",
-      "comment": "Architect ABBOTT",
+      "comments": "Architect ABBOTT",
       "measurementUnit": "U/L",
       "minValue": 12,
       "maxValue": 64
@@ -369,7 +369,7 @@
       "name": "TGO/AST",
       "substance": "ser",
       "method": "metoda fotometrică",
-      "comment": "Architect ABBOTT",
+      "comments": "Architect ABBOTT",
       "measurementUnit": "U/L",
       "minValue": 5,
       "maxValue": 34
@@ -379,7 +379,7 @@
       "name": "TGP/ALT",
       "substance": "ser",
       "method": "metoda fotometrică",
-      "comment": "Architect ABBOTT",
+      "comments": "Architect ABBOTT",
       "measurementUnit": "U/L",
       "minValue": null,
       "maxValue": 55
@@ -389,7 +389,7 @@
       "name": "CRP cantitativ",
       "substance": "ser",
       "method": "metoda imunoturbidimetrică",
-      "comment": "Architect ABBOTT",
+      "comments": "Architect ABBOTT",
       "measurementUnit": "mg/l",
       "minValue": 0,
       "maxValue": 5

@@ -20,6 +20,11 @@ namespace DustInTheWind.MedicX.Common.Entities
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public string Substance { get; set; }
+        public string Method { get; set; }
         public string MeasurementUnit { get; set; }
+        public string Comments { get; set; }
+        public float? MinValue { get; set; }
+        public float? MaxValue { get; set; }
     }
 }
