@@ -17,32 +17,81 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
+using System.Threading;
 using DustInTheWind.MedicX.Common.Entities;
 using DustInTheWind.MedicX.Persistence.Json;
 using DustInTheWind.MedicX.Utils;
 
 namespace DustInTheWind.MedicX
 {
-    public class Program
+    public static class Program
     {
         public static void Main(string[] args)
         {
             try
             {
+                DisplayAppHeader();
+
                 using (UnitOfWork unitOfWork = new UnitOfWork())
                 {
-                    DisplayMedics(unitOfWork);
-                    DisplayConsultations(unitOfWork);
+                    bool exitRequested = false;
 
-                    unitOfWork.Save();
+                    while (!exitRequested)
+                    {
+                        Console.WriteLine();
+                        Console.Write("> ");
+                        string command = Console.ReadLine();
+
+                        switch (command)
+                        {
+                            case "medic":
+                                CustomConsole.WriteLine();
+                                DisplayMedics(unitOfWork);
+                                break;
+
+                            case "consult":
+                            case "consultation":
+                                CustomConsole.WriteLine();
+                                DisplayConsultations(unitOfWork);
+                                break;
+
+                            case "save":
+                                unitOfWork.Save();
+                                CustomConsole.WriteLineSuccess("Changes were successfully saved.");
+                                break;
+
+                            case "exit":
+                            case "quit":
+                                exitRequested = true;
+                                CustomConsole.WriteLine();
+                                CustomConsole.WriteLine("Bye!");
+                                break;
+
+                            case "help":
+                                CustomConsole.WriteLine();
+                                CustomConsole.WriteEmphasies("Commands: ");
+                                CustomConsole.WriteLine("medic, consultation, save, exit, help");
+                                break;
+
+                            default:
+                                CustomConsole.WriteLineError("Unknown command");
+                                break;
+                        }
+                    }
                 }
             }
             catch (Exception ex)
             {
-               CustomConsole.WriteError(ex);
+                CustomConsole.WriteError(ex);
             }
 
-            CustomConsole.Pause();
+            Thread.Sleep(300);
+        }
+
+        private static void DisplayAppHeader()
+        {
+            CustomConsole.WriteLine("MedicX " + Assembly.GetEntryAssembly().GetName().Version.ToString(3));
         }
 
         private static void DisplayMedics(UnitOfWork unitOfWork)
@@ -53,14 +102,20 @@ namespace DustInTheWind.MedicX
 
             if (medics != null && medics.Any())
             {
-                Console.WriteLine("The list of medics:");
-
                 foreach (Medic medic in medics)
-                    Console.WriteLine($"- {medic.Name}");
+                {
+                    PersonName medicName = medic.Name;
+                    string specializations = string.Join(", ", medic.Specializations);
+
+                    CustomConsole.Write("- ");
+                    CustomConsole.WriteEmphasies(medicName);
+                    CustomConsole.Write(" - ");
+                    CustomConsole.WriteLine(specializations);
+                }
             }
             else
             {
-                Console.WriteLine("No medics exist.");
+                Console.WriteLine("No medics exist in the database.");
             }
         }
 
@@ -70,15 +125,21 @@ namespace DustInTheWind.MedicX
 
             List<Consultation> consultations = consultationsRepository.GetAll();
 
+            bool isFirstItem = true;
+
             foreach (Consultation consultation in consultations)
             {
-                CustomConsole.WriteLine();
+                if (!isFirstItem)
+                    CustomConsole.WriteLine();
+
                 CustomConsole.WriteLineEmphasies("{0:yyyy-MM-dd} - {1}", consultation.Date, consultation.Medic.Name);
                 CustomConsole.WriteLine("Comments: {0}", consultation.Comments);
                 CustomConsole.WriteLine("Prescriptions:");
 
                 foreach (Prescription prescription in consultation.Prescriptions)
                     CustomConsole.WriteLine("- {0}", prescription.Description);
+
+                isFirstItem = false;
             }
         }
     }

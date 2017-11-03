@@ -23,7 +23,7 @@ namespace DustInTheWind.MedicX.Persistence.Json
     public class UnitOfWork : IDisposable
     {
         private static int instanceCount;
-        private static readonly object syncObject = new object();
+        private static readonly object SyncObject = new object();
 
         private bool isDisposed;
 
@@ -62,13 +62,10 @@ namespace DustInTheWind.MedicX.Persistence.Json
 
         public UnitOfWork()
         {
-            if (isDisposed)
-                throw new ObjectDisposedException(GetType().Name);
-
             if (instanceCount > 0)
                 throw new Exception("Another instance of the UnitOfWork already exists.");
 
-            lock (syncObject)
+            lock (SyncObject)
             {
                 if (instanceCount > 0)
                     throw new Exception("Another instance of the UnitOfWork already exists.");
@@ -93,8 +90,10 @@ namespace DustInTheWind.MedicX.Persistence.Json
 
         public void Dispose()
         {
-            lock (syncObject)
+            lock (SyncObject)
                 instanceCount--;
+
+            isDisposed = true;
         }
     }
 }

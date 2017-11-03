@@ -26,13 +26,13 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="DustInTheWind.MedicX.Common.Entities.Consultation">
-    <Position X="10.25" Y="3.75" Width="1.5" />
+    <Position X="10.5" Y="3.75" Width="1.5" />
     <InheritanceLine Type="DustInTheWind.MedicX.Common.Entities.Event" FixedFromPoint="true">
       <Path>
         <Point X="3.812" Y="1.988" />
         <Point X="3.812" Y="3.375" />
-        <Point X="11" Y="3.375" />
-        <Point X="11" Y="3.75" />
+        <Point X="11.25" Y="3.375" />
+        <Point X="11.25" Y="3.75" />
       </Path>
     </InheritanceLine>
     <TypeIdentifier>
@@ -42,6 +42,14 @@
   </Class>
   <Class Name="DustInTheWind.MedicX.Common.Entities.Event">
     <Position X="3" Y="0.5" Width="1.5" />
+    <AssociationLine Name="Medic" Type="DustInTheWind.MedicX.Common.Entities.Medic" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="3" Y="1.562" />
+        <Point X="1.293" Y="1.562" />
+        <Point X="1.293" Y="8.688" />
+        <Point X="3.5" Y="8.688" />
+      </Path>
+    </AssociationLine>
     <AssociationLine Name="ClinicLocation" Type="DustInTheWind.MedicX.Common.Entities.ClinicLocation" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
       <Path>
         <Point X="4.156" Y="1.988" />
@@ -50,21 +58,13 @@
         <Point X="9.5" Y="2.43" />
       </Path>
     </AssociationLine>
-    <AssociationLine Name="Medic" Type="DustInTheWind.MedicX.Common.Entities.Medic" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
-      <Path>
-        <Point X="3" Y="1.562" />
-        <Point X="1.293" Y="1.562" />
-        <Point X="1.293" Y="8.688" />
-        <Point X="4" Y="8.688" />
-      </Path>
-    </AssociationLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAEQAAAAAAACAAAAAAAAAAAAABAAAAAAAAIAA=</HashCode>
       <FileName>Entities\Event.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Property Name="ClinicLocation" />
       <Property Name="Medic" />
+      <Property Name="ClinicLocation" />
     </ShowAsAssociation>
   </Class>
   <Class Name="DustInTheWind.MedicX.Common.Entities.Investigation">
@@ -81,7 +81,7 @@
       <Path>
         <Point X="2.5" Y="4.983" />
         <Point X="2.5" Y="8.125" />
-        <Point X="4" Y="8.125" />
+        <Point X="3.5" Y="8.125" />
       </Path>
     </AssociationLine>
     <TypeIdentifier>
@@ -93,7 +93,7 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="DustInTheWind.MedicX.Common.Entities.InvestigationResult">
-    <Position X="4" Y="3.75" Width="1.75" />
+    <Position X="4.25" Y="3.75" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAgAAA=</HashCode>
       <FileName>Entities\InvestigationResult.cs</FileName>
@@ -103,21 +103,21 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="DustInTheWind.MedicX.Common.Entities.InvestigationType">
-    <Position X="7.5" Y="3.75" Width="1.75" />
+    <Position X="8" Y="3.75" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAACAAAAAAAAAAAAAACAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AEACAAAAAAAACAAAAAAgAAQAAAAAAAAAAAAAAAAAIAA=</HashCode>
       <FileName>Entities\InvestigationType.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="DustInTheWind.MedicX.Common.Entities.Medic">
-    <Position X="4" Y="7.75" Width="1.5" />
+    <Position X="3.5" Y="7.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
       <FileName>Entities\Medic.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="DustInTheWind.MedicX.Common.Entities.Person">
-    <Position X="4" Y="5.75" Width="1.5" />
+    <Position X="3.5" Y="5.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAACAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAIAA=</HashCode>
       <FileName>Entities\Person.cs</FileName>
@@ -127,7 +127,7 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="DustInTheWind.MedicX.Common.Entities.PersonName">
-    <Position X="6.5" Y="5.75" Width="1.5" />
+    <Position X="6" Y="5.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAEAAAAAAAAAEAAAQAAAAAAAAAAAAAAAAAAAAAAg=</HashCode>
       <FileName>Entities\PersonName.cs</FileName>
