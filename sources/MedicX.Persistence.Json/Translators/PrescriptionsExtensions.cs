@@ -24,13 +24,16 @@ namespace DustInTheWind.MedicX.Persistence.Json.Translators
     {
         public static List<Prescription> Translate(this IEnumerable<Entities.Prescription> prescriptions)
         {
-            return prescriptions
+            return prescriptions?
                 .Select(Translate)
                 .ToList();
         }
 
         private static Prescription Translate(this Entities.Prescription prescription)
         {
+            if (prescription == null)
+                return null;
+
             return new Prescription
             {
                 Description = prescription.Description,
@@ -40,13 +43,16 @@ namespace DustInTheWind.MedicX.Persistence.Json.Translators
 
         public static List<Entities.Prescription> Translate(this IEnumerable<Prescription> prescriptions)
         {
-            return prescriptions
+            return prescriptions?
                 .Select(Translate)
                 .ToList();
         }
 
         private static Entities.Prescription Translate(this Prescription prescription)
         {
+            if (prescription == null)
+                return null;
+
             return new Entities.Prescription
             {
                 Description = prescription.Description,

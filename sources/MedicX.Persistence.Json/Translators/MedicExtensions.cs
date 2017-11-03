@@ -24,7 +24,7 @@ namespace DustInTheWind.MedicX.Persistence.Json.Translators
     {
         public static List<Medic> Translate(this IEnumerable<Entities.Medic> medics)
         {
-            return medics
+            return medics?
                 .Select(Translate)
                 .ToList();
         }
@@ -45,7 +45,7 @@ namespace DustInTheWind.MedicX.Persistence.Json.Translators
 
         public static List<Entities.Medic> Translate(this IEnumerable<Medic> medics)
         {
-            return medics
+            return medics?
                 .Select(Translate)
                 .ToList();
         }

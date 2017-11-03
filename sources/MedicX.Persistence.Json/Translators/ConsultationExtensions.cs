@@ -24,13 +24,16 @@ namespace DustInTheWind.MedicX.Persistence.Json.Translators
     {
         public static List<Consultation> Translate(this IEnumerable<Entities.Consultation> consultations, List<Medic> medics, IEnumerable<ClinicLocation> clinicLocations)
         {
-            return consultations
+            return consultations?
                 .Select(x => x.Translate(medics, clinicLocations))
                 .ToList();
         }
 
         private static Consultation Translate(this Entities.Consultation consultation, IEnumerable<Medic> medics, IEnumerable<ClinicLocation> clinicLocations)
         {
+            if (consultation == null)
+                return null;
+
             return new Consultation
             {
                 Date = consultation.Date,
@@ -44,13 +47,16 @@ namespace DustInTheWind.MedicX.Persistence.Json.Translators
 
         public static List<Entities.Consultation> Translate(this IEnumerable<Consultation> consultations)
         {
-            return consultations
+            return consultations?
                 .Select(x => x.Translate())
                 .ToList();
         }
 
         private static Entities.Consultation Translate(this Consultation consultation)
         {
+            if (consultation == null)
+                return null;
+
             return new Entities.Consultation
             {
                 Date = consultation.Date,

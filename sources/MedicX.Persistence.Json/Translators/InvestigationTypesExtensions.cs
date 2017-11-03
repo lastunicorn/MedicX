@@ -24,7 +24,7 @@ namespace DustInTheWind.MedicX.Persistence.Json.Translators
     {
         public static List<InvestigationType> Translate(this IEnumerable<Entities.InvestigationType> investigationTypes)
         {
-            return investigationTypes
+            return investigationTypes?
                 .Select(Translate)
                 .ToList();
         }
@@ -41,15 +41,13 @@ namespace DustInTheWind.MedicX.Persistence.Json.Translators
                 Substance = investigationType.Substance,
                 Method = investigationType.Method,
                 Comments = investigationType.Comments,
-                MeasurementUnit = investigationType.MeasurementUnit,
-                MinValue = investigationType.MinValue,
-                MaxValue = investigationType.MaxValue
+                Items = investigationType.Items.Translate()
             };
         }
 
         public static List<Entities.InvestigationType> Translate(this IEnumerable<InvestigationType> investigationTypes)
         {
-            return investigationTypes
+            return investigationTypes?
                 .Select(Translate)
                 .ToList();
         }
@@ -66,9 +64,7 @@ namespace DustInTheWind.MedicX.Persistence.Json.Translators
                 Substance = investigationType.Substance,
                 Method = investigationType.Method,
                 Comments = investigationType.Comments,
-                MeasurementUnit = investigationType.MeasurementUnit,
-                MinValue = investigationType.MinValue,
-                MaxValue = investigationType.MaxValue
+                Items = investigationType.Items.Translate()
             };
         }
     }

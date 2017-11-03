@@ -14,6 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace DustInTheWind.MedicX.Persistence.Json.Entities
@@ -35,13 +36,7 @@ namespace DustInTheWind.MedicX.Persistence.Json.Entities
         [JsonProperty("comments")]
         public string Comments { get; set; }
 
-        [JsonProperty("measurementUnit")]
-        public string MeasurementUnit { get; set; }
-
-        [JsonProperty("minValue")]
-        public float? MinValue { get; set; }
-
-        [JsonProperty("maxValue")]
-        public float? MaxValue { get; set; }
+        [JsonProperty("items")]
+        public List<InvestigationTypeItem> Items { get; set; }
     }
 }

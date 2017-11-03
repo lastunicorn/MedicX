@@ -350,9 +350,15 @@
       "substance": "ser",
       "method": "metoda fotometrică",
       "comments": "Architect ABBOTT",
-      "measurementUnit": "U/L",
-      "minValue": 40,
-      "maxValue": 150
+      "items": [
+        {
+          "id": 240,
+          "name": "Fosfataza alcalina",
+          "measurementUnit": "U/L",
+          "minValue": 40,
+          "maxValue": 150
+        }
+      ]
     },
     {
       "id": 25,
@@ -360,9 +366,15 @@
       "substance": "ser",
       "method": "metoda fotometrică",
       "comments": "Architect ABBOTT",
-      "measurementUnit": "U/L",
-      "minValue": 12,
-      "maxValue": 64
+      "items": [
+        {
+          "id": 25,
+          "name": "Gama GT",
+          "measurementUnit": "U/L",
+          "minValue": 12,
+          "maxValue": 64
+        }
+      ]
     },
     {
       "id": 26,
@@ -370,9 +382,15 @@
       "substance": "ser",
       "method": "metoda fotometrică",
       "comments": "Architect ABBOTT",
-      "measurementUnit": "U/L",
-      "minValue": 5,
-      "maxValue": 34
+      "items": [
+        {
+          "id": 26,
+          "name": "TGO/AST",
+          "measurementUnit": "U/L",
+          "minValue": 5,
+          "maxValue": 34
+        }
+      ]
     },
     {
       "id": 27,
@@ -380,9 +398,15 @@
       "substance": "ser",
       "method": "metoda fotometrică",
       "comments": "Architect ABBOTT",
-      "measurementUnit": "U/L",
-      "minValue": null,
-      "maxValue": 55
+      "items": [
+        {
+          "id": 27,
+          "name": "TGP/ALT",
+          "measurementUnit": "U/L",
+          "minValue": null,
+          "maxValue": 55
+        }
+      ]
     },
     {
       "id": 28,
@@ -390,9 +414,15 @@
       "substance": "ser",
       "method": "metoda imunoturbidimetrică",
       "comments": "Architect ABBOTT",
-      "measurementUnit": "mg/l",
-      "minValue": 0,
-      "maxValue": 5
+      "items": [
+        {
+          "id": 28,
+          "name": "CRP cantitativ",
+          "measurementUnit": "mg/l",
+          "minValue": 0,
+          "maxValue": 5
+        }
+      ]
     }
   ],
   "investigations": [
