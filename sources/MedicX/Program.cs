@@ -15,13 +15,10 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
 using System.Threading;
-using DustInTheWind.MedicX.Common.Entities;
+using DustInTheWind.MedicX.Flows;
 using DustInTheWind.MedicX.Persistence.Json;
-using DustInTheWind.MedicX.TableDisplay;
 using DustInTheWind.MedicX.Utils;
 
 namespace DustInTheWind.MedicX
@@ -34,6 +31,13 @@ namespace DustInTheWind.MedicX
             {
                 DisplayAppHeader();
 
+                //Dictionary<string, Type> flows = new Dictionary<string, Type>
+                //{
+                //    { "medic", typeof(MedicsFlow) },
+                //    { "consult", typeof(ConsultationsFlow) },
+                //    { "consultation", typeof(ConsultationsFlow) }
+                //};
+
                 using (UnitOfWork unitOfWork = new UnitOfWork())
                 {
                     bool exitRequested = false;
@@ -44,22 +48,23 @@ namespace DustInTheWind.MedicX
                         Console.Write("> ");
                         string command = Console.ReadLine();
 
+                        IFlow flow = null;
+
                         switch (command)
                         {
                             case "medic":
                                 CustomConsole.WriteLine();
-                                DisplayMedics(unitOfWork);
+                                flow = new MedicsFlow(unitOfWork);
                                 break;
 
                             case "consult":
                             case "consultation":
                                 CustomConsole.WriteLine();
-                                DisplayConsultations(unitOfWork);
+                                flow = new ConsultationsFlow(unitOfWork);
                                 break;
 
                             case "save":
-                                unitOfWork.Save();
-                                CustomConsole.WriteLineSuccess("Changes were successfully saved.");
+                                flow = new SaveFlow(unitOfWork);
                                 break;
 
                             case "exit":
@@ -79,6 +84,8 @@ namespace DustInTheWind.MedicX
                                 CustomConsole.WriteLineError("Unknown command");
                                 break;
                         }
+
+                        flow?.Run();
                     }
                 }
             }
@@ -94,79 +101,6 @@ namespace DustInTheWind.MedicX
         private static void DisplayAppHeader()
         {
             CustomConsole.WriteLine("MedicX " + Assembly.GetEntryAssembly().GetName().Version.ToString(3));
-        }
-
-        private static void DisplayMedics(UnitOfWork unitOfWork)
-        {
-            IMedicRepository medicRepository = unitOfWork.MedicRepository;
-
-            List<Medic> medics = medicRepository.GetAll();
-
-            if (medics != null && medics.Any())
-            {
-                Table medicsTable = CreateMedicsTable(medics);
-                Console.WriteLine(medicsTable);
-            }
-            else
-            {
-                Console.WriteLine("No medics exist in the database.");
-            }
-        }
-
-        private static Table CreateMedicsTable(IEnumerable<Medic> medics)
-        {
-            Table medicsTable = new Table
-            {
-                DrawLinesBetweenRows = true,
-                DisplayColumnHeaders = true
-            };
-
-            medicsTable.Columns.Add(new Column("Name")
-            {
-                HorizontalAlignment = HorizontalAlignment.Left,
-                Title = new MultilineText("Name")
-            });
-
-            medicsTable.Columns.Add(new Column("Specializations")
-            {
-                HorizontalAlignment = HorizontalAlignment.Left,
-                Title = new MultilineText("Specializations")
-            });
-
-            foreach (Medic medic in medics)
-            {
-                medicsTable.AddRow(new[]
-                {
-                    new Cell(medic.Name),
-                    new Cell(new MultilineText(medic.Specializations))
-                });
-            }
-
-            return medicsTable;
-        }
-
-        private static void DisplayConsultations(UnitOfWork unitOfWork)
-        {
-            IConsultationsRepository consultationsRepository = unitOfWork.ConsultationsRepository;
-
-            List<Consultation> consultations = consultationsRepository.GetAll();
-
-            bool isFirstItem = true;
-
-            foreach (Consultation consultation in consultations)
-            {
-                if (!isFirstItem)
-                    CustomConsole.WriteLine();
-
-                CustomConsole.WriteLineEmphasies("{0:yyyy-MM-dd} - {1}", consultation.Date, consultation.Medic.Name);
-                CustomConsole.WriteLine("Comments: {0}", consultation.Comments);
-                CustomConsole.WriteLine("Prescriptions:");
-
-                foreach (Prescription prescription in consultation.Prescriptions)
-                    CustomConsole.WriteLine("- {0}", prescription.Description);
-
-                isFirstItem = false;
-            }
         }
     }
 }

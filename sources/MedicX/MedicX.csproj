@@ -44,8 +44,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Flows\ConsultationsFlow.cs" />
+    <Compile Include="IFlow.cs" />
+    <Compile Include="Flows\MedicsFlow.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Flows\SaveFlow.cs" />
     <Compile Include="TableDisplay\Cell.cs" />
     <Compile Include="TableDisplay\Column.cs" />
     <Compile Include="TableDisplay\HorizontalAlignment.cs" />
