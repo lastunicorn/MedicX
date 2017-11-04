@@ -21,6 +21,7 @@ using System.Reflection;
 using System.Threading;
 using DustInTheWind.MedicX.Common.Entities;
 using DustInTheWind.MedicX.Persistence.Json;
+using DustInTheWind.MedicX.TableDisplay;
 using DustInTheWind.MedicX.Utils;
 
 namespace DustInTheWind.MedicX
@@ -84,6 +85,7 @@ namespace DustInTheWind.MedicX
             catch (Exception ex)
             {
                 CustomConsole.WriteError(ex);
+                CustomConsole.Pause();
             }
 
             Thread.Sleep(300);
@@ -102,21 +104,45 @@ namespace DustInTheWind.MedicX
 
             if (medics != null && medics.Any())
             {
-                foreach (Medic medic in medics)
-                {
-                    PersonName medicName = medic.Name;
-                    string specializations = string.Join(", ", medic.Specializations);
-
-                    CustomConsole.Write("- ");
-                    CustomConsole.WriteEmphasies(medicName);
-                    CustomConsole.Write(" - ");
-                    CustomConsole.WriteLine(specializations);
-                }
+                Table medicsTable = CreateMedicsTable(medics);
+                Console.WriteLine(medicsTable);
             }
             else
             {
                 Console.WriteLine("No medics exist in the database.");
             }
+        }
+
+        private static Table CreateMedicsTable(IEnumerable<Medic> medics)
+        {
+            Table medicsTable = new Table
+            {
+                DrawLinesBetweenRows = true,
+                DisplayColumnHeaders = true
+            };
+
+            medicsTable.Columns.Add(new Column("Name")
+            {
+                HorizontalAlignment = HorizontalAlignment.Left,
+                Title = new MultilineText("Name")
+            });
+
+            medicsTable.Columns.Add(new Column("Specializations")
+            {
+                HorizontalAlignment = HorizontalAlignment.Left,
+                Title = new MultilineText("Specializations")
+            });
+
+            foreach (Medic medic in medics)
+            {
+                medicsTable.AddRow(new[]
+                {
+                    new Cell(medic.Name),
+                    new Cell(new MultilineText(medic.Specializations))
+                });
+            }
+
+            return medicsTable;
         }
 
         private static void DisplayConsultations(UnitOfWork unitOfWork)
