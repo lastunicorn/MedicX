@@ -47,7 +47,9 @@ namespace DustInTheWind.MedicX.Flows
             if (medics != null && medics.Any())
             {
                 Table medicsTable = CreateMedicsTable(medics);
-                Console.WriteLine(medicsTable);
+
+                ConsoleTablePrinter tablePrinter = new ConsoleTablePrinter();
+                medicsTable.Render(tablePrinter);
             }
             else
             {
@@ -66,13 +68,13 @@ namespace DustInTheWind.MedicX.Flows
             medicsTable.Columns.Add(new Column("Name")
             {
                 HorizontalAlignment = HorizontalAlignment.Left,
-                Title = new MultilineText("Name")
+                Header = new MultilineText("Name")
             });
 
             medicsTable.Columns.Add(new Column("Specializations")
             {
                 HorizontalAlignment = HorizontalAlignment.Left,
-                Title = new MultilineText("Specializations")
+                Header = new MultilineText("Specializations")
             });
 
             foreach (Medic medic in medics)

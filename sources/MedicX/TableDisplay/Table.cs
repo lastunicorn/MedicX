@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace DustInTheWind.MedicX.TableDisplay
@@ -195,10 +196,10 @@ namespace DustInTheWind.MedicX.TableDisplay
                     int cellWidth = 0;
                     int cellHeight = 0;
 
-                    if (column.Title != null)
+                    if (column.Header != null)
                     {
-                        cellWidth = PaddingLeft + column.Title.Size.Width + PaddingRight;
-                        cellHeight = column.Title.Size.Height;
+                        cellWidth = PaddingLeft + column.Header.Size.Width + PaddingRight;
+                        cellHeight = column.Header.Size.Height;
                     }
                     else
                     {
@@ -302,149 +303,104 @@ namespace DustInTheWind.MedicX.TableDisplay
         /// <returns>The string representation of the current instance.</returns>
         public override string ToString()
         {
-            StringBuilder sb = new StringBuilder();
+            StringTablePrinter tablePrinter = new StringTablePrinter();
+            Render(tablePrinter);
+
+            return tablePrinter.ToString();
+        }
+
+        public void Render(ITablePrinter tablePrinter)
+        {
             TableDimensions dimensions = CalculateTableDimensions();
             string rowSeparator = GetHorizontalRowBorder(dimensions);
 
-            DrawTableTitle(sb, dimensions, rowSeparator);
-            DrawColumnHeaders(sb, dimensions, rowSeparator);
-            DrawRows(sb, dimensions, rowSeparator);
-
-            return sb.ToString();
+            DrawTableTitle(tablePrinter, dimensions, rowSeparator);
+            DrawColumnHeaders(tablePrinter, dimensions, rowSeparator);
+            DrawRows(tablePrinter, dimensions, rowSeparator);
         }
 
-        private void DrawTableTitle(StringBuilder sb, TableDimensions dimensions, string rowSeparator)
+        private void DrawTableTitle(ITablePrinter tablePrinter, TableDimensions dimensions, string rowSeparator)
         {
             if (Title.Size.Height > 0)
             {
-                sb.AppendLine("+" + string.Empty.PadRight(dimensions.Width - 2, '-') + "+");
+                // Write top border
+                tablePrinter.WriteLineBorder("+" + string.Empty.PadRight(dimensions.Width - 2, '-') + "+");
 
+                // Write title
                 for (int i = 0; i < Title.Size.Height; i++)
-                    sb.AppendLine("| " + Title.Lines[i].PadRight(dimensions.Width - 4, ' ') + " |");
+                {
+                    tablePrinter.WriteBorder("| ");
+                    tablePrinter.WriteTitle(Title.Lines[i].PadRight(dimensions.Width - 4, ' '));
+                    tablePrinter.WriteLineBorder(" |");
+                }
             }
 
-            sb.AppendLine(rowSeparator);
+            // Write bottom border <=> header top border
+            tablePrinter.WriteLineBorder(rowSeparator);
         }
 
-        private void DrawColumnHeaders(StringBuilder sb, TableDimensions dimensions, string rowSeparator)
+        private void DrawColumnHeaders(ITablePrinter tablePrinter, TableDimensions dimensions, string rowSeparator)
         {
             if (!DisplayColumnHeaders || dimensions.HeaderHeight == 0)
                 return;
 
-            for (int k = 0; k < dimensions.HeaderHeight; k++)
+            // Write header cells
+            for (int headerLineIndex = 0; headerLineIndex < dimensions.HeaderHeight; headerLineIndex++)
             {
-                sb.Append("|");
+                tablePrinter.WriteBorder("|");
 
-                for (int i = 0; i < Columns.Count; i++)
+                for (int columnIndex = 0; columnIndex < Columns.Count; columnIndex++)
                 {
-                    Column column = Columns[i];
+                    string content = BuildHeaderContent(dimensions, columnIndex, headerLineIndex);
 
-                    if (k < column.Title.Size.Height)
-                    {
-                        string leftPadding = string.Empty.PadRight(PaddingLeft, ' ');
-                        string rightPadding = string.Empty.PadRight(PaddingRight, ' ');
-                        int cellInnerWidth = dimensions.ColumnsWidth[i] - PaddingLeft - PaddingRight;
-                        string content;
-
-                        HorizontalAlignment alignment = ColumnHeaderHorizontalAlignment(i);
-                        switch (alignment)
-                        {
-                            default:
-                            case HorizontalAlignment.Default:
-                            case HorizontalAlignment.Left:
-                                content = column.Title.Lines[k].PadRight(cellInnerWidth, ' ');
-                                break;
-
-                            case HorizontalAlignment.Right:
-                                content = column.Title.Lines[k].PadLeft(cellInnerWidth, ' ');
-                                break;
-
-                            case HorizontalAlignment.Center:
-                                int totalSpaces = cellInnerWidth - column.Title.Size.Width;
-                                int rightSpaces = (int)Math.Ceiling((double)totalSpaces / 2);
-                                content = column.Title.Lines[k].PadLeft(cellInnerWidth - rightSpaces, ' ').PadRight(cellInnerWidth, ' ');
-                                break;
-                        }
-
-                        sb.Append(leftPadding + content + rightPadding + "|");
-                    }
-                    else
-                    {
-                        sb.Append(" " + string.Empty.PadRight(dimensions.ColumnsWidth[i] - 2, ' ') + " |");
-                    }
+                    tablePrinter.WriteHeader(content);
+                    tablePrinter.WriteBorder("|");
                 }
 
-                sb.AppendLine();
+                tablePrinter.WriteLine();
             }
 
-            sb.AppendLine(rowSeparator);
+            // Write bottom border <=> first row top border
+            tablePrinter.WriteLineBorder(rowSeparator);
         }
 
-        private void DrawRows(StringBuilder sb, TableDimensions dimensions, string rowSeparator)
+        private string BuildHeaderContent(TableDimensions dimensions, int columnIndex, int headerLineIndex)
         {
-            for (int i = 0; i < rows.Count; i++)
+            Column column = Columns[columnIndex];
+
+            bool headerHasContent = headerLineIndex < column.Header.Size.Height;
+
+            if (!headerHasContent)
+                return string.Empty.PadRight(dimensions.ColumnsWidth[columnIndex], ' ');
+
+            int cellInnerWidth = dimensions.ColumnsWidth[columnIndex] - PaddingLeft - PaddingRight;
+            string innerContent;
+
+            HorizontalAlignment alignment = ColumnHeaderHorizontalAlignment(columnIndex);
+
+            switch (alignment)
             {
-                Row row = rows[i];
+                default:
+                case HorizontalAlignment.Default:
+                case HorizontalAlignment.Left:
+                    innerContent = column.Header.Lines[headerLineIndex].PadRight(cellInnerWidth, ' ');
+                    break;
 
-                if (i > 0) sb.AppendLine();
+                case HorizontalAlignment.Right:
+                    innerContent = column.Header.Lines[headerLineIndex].PadLeft(cellInnerWidth, ' ');
+                    break;
 
-                for (int k = 0; k < dimensions.RowsHeight[i]; k++)
-                {
-                    if (k > 0) sb.AppendLine();
-
-                    sb.Append("|");
-                    for (int j = 0; j < row.Cells.Count; j++)
-                    {
-                        Cell cell = row.Cells[j];
-                        if (k < cell.Content.Size.Height)
-                        {
-                            string leftPadding = string.Empty.PadRight(PaddingLeft, ' ');
-                            string rightPadding = string.Empty.PadRight(PaddingRight, ' ');
-                            int cellInnerWidth = dimensions.ColumnsWidth[j] - PaddingLeft - PaddingRight;
-                            string content;
-
-                            HorizontalAlignment alignment = CellHorizontalAlignment(i, j);
-                            switch (alignment)
-                            {
-                                default:
-                                case HorizontalAlignment.Default:
-                                case HorizontalAlignment.Left:
-                                    content = cell.Content.Lines[k].PadRight(cellInnerWidth, ' ');
-                                    break;
-
-                                case HorizontalAlignment.Right:
-                                    content = cell.Content.Lines[k].PadLeft(cellInnerWidth, ' ');
-                                    break;
-
-                                case HorizontalAlignment.Center:
-                                    int totalSpaces = cellInnerWidth - cell.Content.Size.Width;
-                                    //int leftSpaces = (int)Math.Floor(totalSpaces / 2);
-                                    int rightSpaces = (int)Math.Ceiling((double)totalSpaces / 2);
-                                    content = cell.Content.Lines[k].PadLeft(cellInnerWidth - rightSpaces, ' ').PadRight(cellInnerWidth, ' ');
-                                    break;
-                            }
-
-                            sb.Append(leftPadding + content + rightPadding + "|");
-                        }
-                        else
-                        {
-                            sb.Append(" " + string.Empty.PadRight(dimensions.ColumnsWidth[j] - 2, ' ') + " |");
-                        }
-                    }
-                }
-
-                if (DrawLinesBetweenRows)
-                {
-                    sb.AppendLine();
-                    sb.Append(rowSeparator);
-                }
+                case HorizontalAlignment.Center:
+                    int totalSpaces = cellInnerWidth - column.Header.Size.Width;
+                    int rightSpaces = (int)Math.Ceiling((double)totalSpaces / 2);
+                    innerContent = column.Header.Lines[headerLineIndex].PadLeft(cellInnerWidth - rightSpaces, ' ').PadRight(cellInnerWidth, ' ');
+                    break;
             }
 
-            if (!DrawLinesBetweenRows)
-            {
-                sb.AppendLine();
-                sb.Append(rowSeparator);
-            }
+            string leftPadding = string.Empty.PadRight(PaddingLeft, ' ');
+            string rightPadding = string.Empty.PadRight(PaddingRight, ' ');
+
+            return leftPadding + innerContent + rightPadding;
         }
 
         private HorizontalAlignment ColumnHeaderHorizontalAlignment(int columnIndex)
@@ -462,6 +418,79 @@ namespace DustInTheWind.MedicX.TableDisplay
             }
 
             return alignment;
+        }
+
+        private void DrawRows(ITablePrinter tablePrinter, TableDimensions dimensions, string rowSeparator)
+        {
+            for (int rowIndex = 0; rowIndex < rows.Count; rowIndex++)
+            {
+                Row row = rows[rowIndex];
+
+                for (int rowLineIndex = 0; rowLineIndex < dimensions.RowsHeight[rowIndex]; rowLineIndex++)
+                {
+                    if (rowLineIndex > 0) tablePrinter.WriteLine();
+
+                    tablePrinter.WriteBorder("|");
+
+                    for (int columnIndex = 0; columnIndex < row.Cells.Count; columnIndex++)
+                    {
+                        Cell cell = row.Cells[columnIndex];
+                        string content = BuildCellContent(dimensions, rowIndex, columnIndex, cell, rowLineIndex);
+
+                        tablePrinter.WriteNormal(content);
+                        tablePrinter.WriteBorder("|");
+                    }
+                }
+
+                if (DrawLinesBetweenRows)
+                {
+                    tablePrinter.WriteLine();
+                    tablePrinter.WriteLineBorder(rowSeparator);
+                }
+            }
+
+            if (!DrawLinesBetweenRows)
+            {
+                tablePrinter.WriteLine();
+                tablePrinter.WriteLineBorder(rowSeparator);
+            }
+        }
+
+        private string BuildCellContent(TableDimensions dimensions, int rowIndex, int columnIndex, Cell cell, int rowLineIndex)
+        {
+            if (rowLineIndex >= cell.Content.Size.Height)
+                return string.Empty.PadRight(dimensions.ColumnsWidth[columnIndex], ' ');
+
+            int cellInnerWidth = dimensions.ColumnsWidth[columnIndex] - PaddingLeft - PaddingRight;
+            string innerContent;
+
+            HorizontalAlignment alignment = CellHorizontalAlignment(rowIndex, columnIndex);
+            switch (alignment)
+            {
+                default:
+                case HorizontalAlignment.Default:
+                case HorizontalAlignment.Left:
+                    innerContent = cell.Content.Lines[rowLineIndex].PadRight(cellInnerWidth, ' ');
+                    break;
+
+                case HorizontalAlignment.Right:
+                    innerContent = cell.Content.Lines[rowLineIndex].PadLeft(cellInnerWidth, ' ');
+                    break;
+
+                case HorizontalAlignment.Center:
+                    int totalSpaces = cellInnerWidth - cell.Content.Size.Width;
+                    //int leftSpaces = (int)Math.Floor(totalSpaces / 2);
+                    int rightSpaces = (int) Math.Ceiling((double) totalSpaces / 2);
+                    innerContent = cell.Content.Lines[rowLineIndex]
+                        .PadLeft(cellInnerWidth - rightSpaces, ' ')
+                        .PadRight(cellInnerWidth, ' ');
+                    break;
+            }
+
+            string leftPadding = string.Empty.PadRight(PaddingLeft, ' ');
+            string rightPadding = string.Empty.PadRight(PaddingRight, ' ');
+
+            return leftPadding + innerContent + rightPadding;
         }
 
         /// <summary>
@@ -507,8 +536,8 @@ namespace DustInTheWind.MedicX.TableDisplay
 
             foreach (int columnWidth in tableDimensions.ColumnsWidth)
             {
-                string horizontalCellBorder = string.Empty.PadRight(columnWidth, '-');
-                value.Append(horizontalCellBorder + "+");
+                value.Append(string.Empty.PadRight(columnWidth, '-'));
+                value.Append("+");
             }
 
             return value.ToString();

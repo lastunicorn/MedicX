@@ -19,6 +19,17 @@
       "specializations": [
         "Medic primar neurolog"
       ]
+    },
+    {
+      "id": 3,
+      "name": {
+        "first": "Ecaterina",
+        "middle": "Alexandrina",
+        "last": "Fanciali"
+      },
+      "specializations": [
+        "Medic primar"
+      ]
     }
   ],
   "clinics": [

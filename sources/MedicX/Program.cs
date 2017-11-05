@@ -103,4 +103,42 @@ namespace DustInTheWind.MedicX
             CustomConsole.WriteLine("MedicX " + Assembly.GetEntryAssembly().GetName().Version.ToString(3));
         }
     }
+
+    //internal class Command
+    //{
+    //    public string Name { get; set; }
+    //    public List<CommandParameter> Parameters { get; set; }
+    //}
+
+    //internal class CommandParameter
+    //{
+    //    public string Name { get; set; }
+    //    public string Value { get; set; }
+    //}
+
+    //internal class MedicCommand
+    //{
+    //    private readonly UnitOfWork unitOfWork;
+
+    //    public string Name => "medic";
+
+    //    public MedicCommand(UnitOfWork unitOfWork)
+    //    {
+    //        if (unitOfWork == null) throw new ArgumentNullException(nameof(unitOfWork));
+    //        this.unitOfWork = unitOfWork;
+    //    }
+
+    //    public bool TryRun(string command)
+    //    {
+    //        string[] elements = command.Split(' ');
+
+    //        if(elements.Length== 0 || elements[0] != "medic")
+    //            return false;
+
+    //        MedicsFlow flow = new MedicsFlow(unitOfWork);
+    //        flow.Run();
+
+    //        return true;
+    //    }
+    //}
 }

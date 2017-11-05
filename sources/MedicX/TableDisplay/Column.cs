@@ -10,7 +10,7 @@
         /// </summary>
         public string Name { get; }
 
-        public MultilineText Title { get; set; }
+        public MultilineText Header { get; set; }
 
         /// <summary>
         /// Gets or sets the horizontal alignment for the content of the cells represented by the current instance of the <see cref="Column"/>.
@@ -31,8 +31,8 @@
         /// Initializes a new instance of the <see cref="Column"/> class.
         /// </summary>
         /// <param name="name">The name of the column.</param>
-        public Column(string name, MultilineText title)
-            : this(name, title, HorizontalAlignment.Default)
+        public Column(string name, MultilineText header)
+            : this(name, header, HorizontalAlignment.Default)
         {
         }
 
@@ -50,10 +50,10 @@
         /// Initializes a new instance of the <see cref="Column"/> class.
         /// </summary>
         /// <param name="name">The name of the column.</param>
-        public Column(string name, MultilineText title, HorizontalAlignment horizontalAlignment)
+        public Column(string name, MultilineText header, HorizontalAlignment horizontalAlignment)
         {
             Name = name;
-            Title = title;
+            Header = header;
             HorizontalAlignment = horizontalAlignment;
         }
     }
