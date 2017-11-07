@@ -100,7 +100,12 @@ namespace DustInTheWind.MedicX
 
         private static void DisplayAppHeader()
         {
-            CustomConsole.WriteLine("MedicX " + Assembly.GetEntryAssembly().GetName().Version.ToString(3));
+            Assembly assembly = Assembly.GetEntryAssembly();
+            AssemblyName assemblyName = assembly.GetName();
+            Version version = assemblyName.Version;
+            string versionAsString = version.ToString(3);
+
+            CustomConsole.WriteLine("MedicX " + versionAsString);
         }
     }
 
