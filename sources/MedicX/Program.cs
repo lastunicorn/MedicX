@@ -17,7 +17,6 @@
 using System;
 using System.Reflection;
 using System.Threading;
-using DustInTheWind.MedicX.Flows;
 using DustInTheWind.MedicX.Persistence.Json;
 using DustInTheWind.MedicX.Utils;
 
@@ -30,63 +29,11 @@ namespace DustInTheWind.MedicX
             try
             {
                 DisplayAppHeader();
-
-                //Dictionary<string, Type> flows = new Dictionary<string, Type>
-                //{
-                //    { "medic", typeof(MedicsFlow) },
-                //    { "consult", typeof(ConsultationsFlow) },
-                //    { "consultation", typeof(ConsultationsFlow) }
-                //};
-
+                
                 using (UnitOfWork unitOfWork = new UnitOfWork())
                 {
-                    bool exitRequested = false;
-
-                    while (!exitRequested)
-                    {
-                        Console.WriteLine();
-                        Console.Write("> ");
-                        string command = Console.ReadLine();
-
-                        IFlow flow = null;
-
-                        switch (command)
-                        {
-                            case "medic":
-                                CustomConsole.WriteLine();
-                                flow = new MedicsFlow(unitOfWork);
-                                break;
-
-                            case "consult":
-                            case "consultation":
-                                CustomConsole.WriteLine();
-                                flow = new ConsultationsFlow(unitOfWork);
-                                break;
-
-                            case "save":
-                                flow = new SaveFlow(unitOfWork);
-                                break;
-
-                            case "exit":
-                            case "quit":
-                                exitRequested = true;
-                                CustomConsole.WriteLine();
-                                CustomConsole.WriteLine("Bye!");
-                                break;
-
-                            case "help":
-                                CustomConsole.WriteLine();
-                                CustomConsole.WriteEmphasies("Commands: ");
-                                CustomConsole.WriteLine("medic, consultation, save, exit, help");
-                                break;
-
-                            default:
-                                CustomConsole.WriteLineError("Unknown command");
-                                break;
-                        }
-
-                        flow?.Run();
-                    }
+                    MedicXApplication medicXApplication = new MedicXApplication(unitOfWork);
+                    medicXApplication.Run();
                 }
             }
             catch (Exception ex)
@@ -108,42 +55,4 @@ namespace DustInTheWind.MedicX
             CustomConsole.WriteLine("MedicX " + versionAsString);
         }
     }
-
-    //internal class Command
-    //{
-    //    public string Name { get; set; }
-    //    public List<CommandParameter> Parameters { get; set; }
-    //}
-
-    //internal class CommandParameter
-    //{
-    //    public string Name { get; set; }
-    //    public string Value { get; set; }
-    //}
-
-    //internal class MedicCommand
-    //{
-    //    private readonly UnitOfWork unitOfWork;
-
-    //    public string Name => "medic";
-
-    //    public MedicCommand(UnitOfWork unitOfWork)
-    //    {
-    //        if (unitOfWork == null) throw new ArgumentNullException(nameof(unitOfWork));
-    //        this.unitOfWork = unitOfWork;
-    //    }
-
-    //    public bool TryRun(string command)
-    //    {
-    //        string[] elements = command.Split(' ');
-
-    //        if(elements.Length== 0 || elements[0] != "medic")
-    //            return false;
-
-    //        MedicsFlow flow = new MedicsFlow(unitOfWork);
-    //        flow.Run();
-
-    //        return true;
-    //    }
-    //}
 }
