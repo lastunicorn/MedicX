@@ -18,9 +18,13 @@ using System.Collections.Generic;
 
 namespace DustInTheWind.MedicX.Common.Entities
 {
-    public class Investigation : Event
+    public class Investigation
     {
-        public Medic SentBy { get; set; }
-        public List<InvestigationResult> Result { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Substance { get; set; }
+        public string Method { get; set; }
+        public string Comments { get; set; }
+        public List<InvestigationItem> Items { get; set; }
     }
 }

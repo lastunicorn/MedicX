@@ -18,7 +18,7 @@ namespace DustInTheWind.MedicX.Common.Entities
 {
     public class InvestigationResult
     {
-        public InvestigationType InvestigationType { get; set; }
+        public Investigation Investigation { get; set; }
         public int Value { get; set; }
     }
 }

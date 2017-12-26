@@ -22,49 +22,49 @@ namespace DustInTheWind.MedicX.Persistence.Json.Translators
 {
     internal static class InvestigationTypesExtensions
     {
-        public static List<InvestigationType> Translate(this IEnumerable<Entities.InvestigationType> investigationTypes)
+        public static List<Investigation> Translate(this IEnumerable<Entities.Investigation> investigationTypes)
         {
             return investigationTypes?
                 .Select(Translate)
                 .ToList();
         }
 
-        public static InvestigationType Translate(this Entities.InvestigationType investigationType)
+        public static Investigation Translate(this Entities.Investigation investigation)
         {
-            if (investigationType == null)
+            if (investigation == null)
                 return null;
 
-            return new InvestigationType
+            return new Investigation
             {
-                Id = investigationType.Id,
-                Name = investigationType.Name,
-                Substance = investigationType.Substance,
-                Method = investigationType.Method,
-                Comments = investigationType.Comments,
-                Items = investigationType.Items.Translate()
+                Id = investigation.Id,
+                Name = investigation.Name,
+                Substance = investigation.Substance,
+                Method = investigation.Method,
+                Comments = investigation.Comments,
+                Items = investigation.Items.Translate()
             };
         }
 
-        public static List<Entities.InvestigationType> Translate(this IEnumerable<InvestigationType> investigationTypes)
+        public static List<Entities.Investigation> Translate(this IEnumerable<Investigation> investigationTypes)
         {
             return investigationTypes?
                 .Select(Translate)
                 .ToList();
         }
 
-        public static Entities.InvestigationType Translate(this InvestigationType investigationType)
+        public static Entities.Investigation Translate(this Investigation investigation)
         {
-            if (investigationType == null)
+            if (investigation == null)
                 return null;
 
-            return new Entities.InvestigationType
+            return new Entities.Investigation
             {
-                Id = investigationType.Id,
-                Name = investigationType.Name,
-                Substance = investigationType.Substance,
-                Method = investigationType.Method,
-                Comments = investigationType.Comments,
-                Items = investigationType.Items.Translate()
+                Id = investigation.Id,
+                Name = investigation.Name,
+                Substance = investigation.Substance,
+                Method = investigation.Method,
+                Comments = investigation.Comments,
+                Items = investigation.Items.Translate()
             };
         }
     }

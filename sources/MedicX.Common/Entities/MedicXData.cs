@@ -23,6 +23,6 @@ namespace DustInTheWind.MedicX.Common.Entities
         public List<Medic> Medics { get; set; }
         public List<Clinic> Clinics { get; set; }
         public List<Consultation> Consultations { get; set; }
-        public List<InvestigationType> InvestigationTypes { get; set; }
+        public List<Investigation> InvestigationTypes { get; set; }
     }
 }

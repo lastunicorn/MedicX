@@ -25,9 +25,6 @@ namespace DustInTheWind.MedicX.Persistence.Json.Entities
         [JsonProperty("date", Order = 1)]
         public DateTime Date { get; set; }
 
-        [JsonProperty("medic", Order = 1)]
-        public int MedicId { get; set; }
-
         [JsonProperty("location", Order = 1)]
         public int ClinicLocationId { get; set; }
 

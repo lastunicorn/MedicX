@@ -127,13 +127,13 @@
   ],
   "consultations": [
     {
-      "date": "2017 07 03",
-      "medic": 1,
+      "date": "2017-07-03T00:00:00",
       "location": 1,
       "labels": [
         "paraziți"
       ],
       "comments": "Per ansamblu, all ok.",
+      "medic": 1,
       "prescriptions": [
         {
           "description": "sugestie: apă de gură cu clorhexidină"
@@ -150,12 +150,12 @@
       ]
     },
     {
-      "date": "2017 10 19",
-      "medic": 1,
+      "date": "2017-10-19T00:00:00",
       "location": 1,
       "labels": [
         "pancreas"
       ],
+      "medic": 1,
       "prescriptions": [
         {
           "description": "ecografie",
@@ -176,7 +176,7 @@
       ]
     }
   ],
-  "investigationTypes": [
+  "investigations": [
     {
       "id": 0,
       "name": "Hemoleucograma completă",
@@ -202,29 +202,29 @@
           "id": 3,
           "name": "Hematocrit",
           "measurementUnit": "%",
-          "minValue": 40,
-          "maxValue": 50
+          "minValue": 40.0,
+          "maxValue": 50.0
         },
         {
           "id": 4,
           "name": "VEM",
           "measurementUnit": "fL",
-          "minValue": 80,
-          "maxValue": 110
+          "minValue": 80.0,
+          "maxValue": 110.0
         },
         {
           "id": 5,
           "name": "HEM",
           "measurementUnit": "pg",
-          "minValue": 28,
-          "maxValue": 34
+          "minValue": 28.0,
+          "maxValue": 34.0
         },
         {
           "id": 6,
           "name": "CHEM",
           "measurementUnit": "g/dl",
-          "minValue": 32,
-          "maxValue": 35
+          "minValue": 32.0,
+          "maxValue": 35.0
         },
         {
           "id": 7,
@@ -244,8 +244,8 @@
           "id": 9,
           "name": "% Neutrofile",
           "measurementUnit": "%",
-          "minValue": 53,
-          "maxValue": 68
+          "minValue": 53.0,
+          "maxValue": 68.0
         },
         {
           "id": 10,
@@ -258,8 +258,8 @@
           "id": 11,
           "name": "% Eozinofile",
           "measurementUnit": "%",
-          "minValue": 2,
-          "maxValue": 4
+          "minValue": 2.0,
+          "maxValue": 4.0
         },
         {
           "id": 12,
@@ -272,7 +272,7 @@
           "id": 13,
           "name": "% Bazofile",
           "measurementUnit": "%",
-          "minValue": 0,
+          "minValue": 0.0,
           "maxValue": 2.0
         },
         {
@@ -286,22 +286,22 @@
           "id": 15,
           "name": "% Limfocite",
           "measurementUnit": "%",
-          "minValue": 25,
-          "maxValue": 45
+          "minValue": 25.0,
+          "maxValue": 45.0
         },
         {
           "id": 16,
           "name": "Nr. limfocite",
           "measurementUnit": "*10^3/μl",
-          "minValue": 1.00,
+          "minValue": 1.0,
           "maxValue": 4.95
         },
         {
           "id": 17,
           "name": "% Monocite",
           "measurementUnit": "%",
-          "minValue": 2,
-          "maxValue": 8
+          "minValue": 2.0,
+          "maxValue": 8.0
         },
         {
           "id": 18,
@@ -314,15 +314,15 @@
           "id": 19,
           "name": "Nr. trombocite",
           "measurementUnit": "*10^3/μl",
-          "minValue": 150,
-          "maxValue": 450
+          "minValue": 150.0,
+          "maxValue": 450.0
         },
         {
           "id": 20,
           "name": "VTM",
           "measurementUnit": "fL",
           "minValue": 7.4,
-          "maxValue": 12
+          "maxValue": 12.0
         },
         {
           "id": 21,
@@ -351,8 +351,8 @@
           "id": 230,
           "name": "VSH",
           "measurementUnit": "mm/h",
-          "minValue": 2,
-          "maxValue": 10
+          "minValue": 2.0,
+          "maxValue": 10.0
         }
       ]
     },
@@ -367,8 +367,8 @@
           "id": 240,
           "name": "Fosfataza alcalina",
           "measurementUnit": "U/L",
-          "minValue": 40,
-          "maxValue": 150
+          "minValue": 40.0,
+          "maxValue": 150.0
         }
       ]
     },
@@ -383,8 +383,8 @@
           "id": 25,
           "name": "Gama GT",
           "measurementUnit": "U/L",
-          "minValue": 12,
-          "maxValue": 64
+          "minValue": 12.0,
+          "maxValue": 64.0
         }
       ]
     },
@@ -399,8 +399,8 @@
           "id": 26,
           "name": "TGO/AST",
           "measurementUnit": "U/L",
-          "minValue": 5,
-          "maxValue": 34
+          "minValue": 5.0,
+          "maxValue": 34.0
         }
       ]
     },
@@ -416,7 +416,7 @@
           "name": "TGP/ALT",
           "measurementUnit": "U/L",
           "minValue": null,
-          "maxValue": 55
+          "maxValue": 55.0
         }
       ]
     },
@@ -431,13 +431,13 @@
           "id": 28,
           "name": "CRP cantitativ",
           "measurementUnit": "mg/l",
-          "minValue": 0,
-          "maxValue": 5
+          "minValue": 0.0,
+          "maxValue": 5.0
         }
       ]
     }
   ],
-  "investigations": [
+  "investigationInstances": [
     {
       "date": "2017 06 30",
       "medic": 0,

@@ -22,47 +22,47 @@ namespace DustInTheWind.MedicX.Persistence.Json.Translators
 {
     internal static class InvestigationTypesItemExtensions
     {
-        public static List<InvestigationTypeItem> Translate(this IEnumerable<Entities.InvestigationTypeItem> investigationTypeItems)
+        public static List<InvestigationItem> Translate(this IEnumerable<Entities.InvestigationItem> investigationTypeItems)
         {
             return investigationTypeItems?
                 .Select(Translate)
                 .ToList();
         }
 
-        public static InvestigationTypeItem Translate(this Entities.InvestigationTypeItem investigationTypeItem)
+        public static InvestigationItem Translate(this Entities.InvestigationItem investigationItem)
         {
-            if (investigationTypeItem == null)
+            if (investigationItem == null)
                 return null;
 
-            return new InvestigationTypeItem
+            return new InvestigationItem
             {
-                Id = investigationTypeItem.Id,
-                Name = investigationTypeItem.Name,
-                MeasurementUnit = investigationTypeItem.MeasurementUnit,
-                MinValue = investigationTypeItem.MinValue,
-                MaxValue = investigationTypeItem.MaxValue
+                Id = investigationItem.Id,
+                Name = investigationItem.Name,
+                MeasurementUnit = investigationItem.MeasurementUnit,
+                MinValue = investigationItem.MinValue,
+                MaxValue = investigationItem.MaxValue
             };
         }
 
-        public static List<Entities.InvestigationTypeItem> Translate(this IEnumerable<InvestigationTypeItem> investigationTypeItems)
+        public static List<Entities.InvestigationItem> Translate(this IEnumerable<InvestigationItem> investigationTypeItems)
         {
             return investigationTypeItems?
                 .Select(Translate)
                 .ToList();
         }
 
-        public static Entities.InvestigationTypeItem Translate(this InvestigationTypeItem investigationTypeItem)
+        public static Entities.InvestigationItem Translate(this InvestigationItem investigationItem)
         {
-            if (investigationTypeItem == null)
+            if (investigationItem == null)
                 return null;
 
-            return new Entities.InvestigationTypeItem
+            return new Entities.InvestigationItem
             {
-                Id = investigationTypeItem.Id,
-                Name = investigationTypeItem.Name,
-                MeasurementUnit = investigationTypeItem.MeasurementUnit,
-                MinValue = investigationTypeItem.MinValue,
-                MaxValue = investigationTypeItem.MaxValue
+                Id = investigationItem.Id,
+                Name = investigationItem.Name,
+                MeasurementUnit = investigationItem.MeasurementUnit,
+                MinValue = investigationItem.MinValue,
+                MaxValue = investigationItem.MaxValue
             };
         }
     }

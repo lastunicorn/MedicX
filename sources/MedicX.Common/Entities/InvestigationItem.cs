@@ -14,17 +14,14 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using System.Collections.Generic;
-
 namespace DustInTheWind.MedicX.Common.Entities
 {
-    public class InvestigationType
+    public class InvestigationItem
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public string Substance { get; set; }
-        public string Method { get; set; }
-        public string Comments { get; set; }
-        public List<InvestigationTypeItem> Items { get; set; }
+        public string MeasurementUnit { get; set; }
+        public float? MinValue { get; set; }
+        public float? MaxValue { get; set; }
     }
 }

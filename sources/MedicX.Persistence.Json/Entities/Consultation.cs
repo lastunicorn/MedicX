@@ -21,6 +21,9 @@ namespace DustInTheWind.MedicX.Persistence.Json.Entities
 {
     internal class Consultation : Event
     {
+        [JsonProperty("medic", Order = 2)]
+        public int MedicId { get; set; }
+
         [JsonProperty("prescriptions", Order = 2)]
         public List<Prescription> Prescriptions { get; set; }
     }

@@ -20,8 +20,8 @@ namespace DustInTheWind.MedicX.Persistence.Json.Entities
 {
     internal class InvestigationResult
     {
-        [JsonProperty("investigationTypeId")]
-        public int InvestigationTypeId { get; set; }
+        [JsonProperty("investigationId")]
+        public int InvestigationId { get; set; }
 
         [JsonProperty("value")]
         public int Value { get; set; }

@@ -22,7 +22,6 @@ namespace DustInTheWind.MedicX.Common.Entities
     public class Event
     {
         public DateTime Date { get; set; }
-        public Medic Medic { get; set; }
         public Clinic Clinic { get; set; }
         public List<string> Labels { get; set; }
         public string Comments { get; set; }

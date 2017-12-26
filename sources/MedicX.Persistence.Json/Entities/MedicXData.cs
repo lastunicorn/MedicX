@@ -30,10 +30,10 @@ namespace DustInTheWind.MedicX.Persistence.Json.Entities
         [JsonProperty("consultations")]
         public List<Consultation> Consultations { get; set; }
 
-        [JsonProperty("investigationTypes")]
-        public List<InvestigationType> InvestigationTypes { get; set; }
-
         [JsonProperty("investigations")]
-        public List<Investigation> Investigations { get; set; }
+        public List<Investigation> InvestigationTypes { get; set; }
+
+        [JsonProperty("investigationInstances")]
+        public List<InvestigationInstance> Investigations { get; set; }
     }
 }
