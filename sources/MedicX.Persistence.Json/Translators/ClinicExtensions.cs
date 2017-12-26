@@ -22,9 +22,9 @@ namespace DustInTheWind.MedicX.Persistence.Json.Translators
 {
     internal static class ClinicExtensions
     {
-        public static List<Clinic> Translate(this IEnumerable<Entities.Clinic> clinics)
+        public static List<Clinic> Translate(this IEnumerable<Entities.Clinic> clinicLocations)
         {
-            return clinics?
+            return clinicLocations?
                 .Select(Translate)
                 .ToList();
         }
@@ -34,21 +34,21 @@ namespace DustInTheWind.MedicX.Persistence.Json.Translators
             if (clinic == null)
                 return null;
 
-            Clinic clinicBl = new Clinic
+            return new Clinic
             {
+                Id = clinic.Id,
                 Name = clinic.Name,
+                Address = clinic.Address.Translate(),
+                Phones = clinic.Phones.ToList(),
+                Program = clinic.Program,
                 Comments = clinic.Comments
             };
-
-            clinicBl.Locations = clinic.Locations.Translate(clinicBl);
-
-            return clinicBl;
         }
 
-        public static List<Entities.Clinic> Translate(this IEnumerable<Clinic> clinics)
+        public static List<Entities.Clinic> Translate(this IEnumerable<Clinic> clinicLocations)
         {
-            return clinics?
-                .Select(Translate)
+            return clinicLocations?
+                .Select(x => x.Translate())
                 .ToList();
         }
 
@@ -59,9 +59,12 @@ namespace DustInTheWind.MedicX.Persistence.Json.Translators
 
             return new Entities.Clinic
             {
+                Id = clinic.Id,
                 Name = clinic.Name,
-                Comments = clinic.Comments,
-                Locations = clinic.Locations.Translate()
+                Address = clinic.Address.Translate(),
+                Phones = clinic.Phones.ToList(),
+                Program = clinic.Program,
+                Comments = clinic.Comments
             };
         }
     }

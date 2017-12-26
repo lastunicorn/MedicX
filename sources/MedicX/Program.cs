@@ -54,6 +54,7 @@ namespace DustInTheWind.MedicX
 
             CustomConsole.WriteLine("MedicX " + versionAsString);
             CustomConsole.WriteLine("===============================================================================");
+            CustomConsole.WriteLine();
         }
     }
 }

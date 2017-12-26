@@ -23,42 +23,45 @@ namespace DustInTheWind.MedicX
     internal class MedicXApplication
     {
         private readonly FlowPool flowPool;
-        private volatile bool exitRequested;
+        private readonly Prompter prompter;
 
         public MedicXApplication(UnitOfWork unitOfWork)
         {
             if (unitOfWork == null) throw new ArgumentNullException(nameof(unitOfWork));
 
             flowPool = new FlowPool(unitOfWork, this);
+            prompter = new Prompter();
         }
 
         public void Run()
         {
-            while (!exitRequested)
-            {
-                Command command = ReadCommand();
-                IFlow flow = flowPool.Get(command);
+            prompter.NewCommand += HandleNewCommand;
 
-                if (flow == null)
-                    CustomConsole.WriteLineError("Unknown command");
-                else
-                    flow.Run();
+            try
+            {
+                prompter.WaitForUserCommand();
+            }
+            finally
+            {
+                prompter.NewCommand -= HandleNewCommand;
             }
         }
 
-        private static Command ReadCommand()
+        private void HandleNewCommand(object sender, NewCommandEventArgs e)
         {
-            Console.WriteLine();
-            Console.Write("> ");
-            string command = Console.ReadLine();
-            CustomConsole.WriteLine();
+            IFlow flow = flowPool.Get(e.Command);
 
-            return new Command(command);
+            if (flow == null)
+                CustomConsole.WriteLineError("Unknown command");
+            else
+                flow.Run();
+
+            CustomConsole.WriteLine();
         }
 
         public void Exit()
         {
-            exitRequested = true;
+            prompter.RequestExit();
         }
     }
 }

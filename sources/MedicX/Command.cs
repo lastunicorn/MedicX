@@ -21,7 +21,7 @@ namespace DustInTheWind.MedicX
     internal class Command
     {
         public string Name { get; }
-        public List<CommandParameter> Parameters { get; set; }
+        public List<CommandParameter> Parameters { get; }
 
         public Command(string command)
         {

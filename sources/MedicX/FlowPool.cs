@@ -15,6 +15,8 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
+using System.Linq;
+using DustInTheWind.ConsoleTools;
 using DustInTheWind.MedicX.Flows;
 using DustInTheWind.MedicX.Persistence.Json;
 
@@ -34,12 +36,23 @@ namespace DustInTheWind.MedicX
             this.medicXApplication = medicXApplication;
         }
 
-        public IFlow Get(Command command)
+        public IFlow Get(UserCommand command)
         {
             switch (command.Name)
             {
                 case "medic":
-                    return new MedicsFlow(unitOfWork);
+                case "medics":
+                    if (command.Parameters.Count > 0)
+                    {
+                        if (command.Parameters.ElementAt(0).Name?.ToLower() == "add")
+                            return new AddMedicFlow(unitOfWork);
+
+                        throw new Exception("Invalid medic command.");
+                    }
+                    else
+                    {
+                        return new MedicsFlow(unitOfWork);
+                    }
 
                 case "consult":
                 case "consultation":

@@ -41,5 +41,25 @@ namespace DustInTheWind.MedicX.Persistence.Json
             return medicXData.Medics
                 .FirstOrDefault(x => x.Id == id);
         }
+
+        public void Add(Medic medic)
+        {
+            int id = 0;
+
+            while (true)
+            {
+                id++;
+
+                bool idExists = medicXData.Medics
+                    .Any(x => x.Id == id);
+
+                if(!idExists)
+                    break;
+            }
+
+            medic.Id = id;
+
+            medicXData.Medics.Add(medic);
+        }
     }
 }

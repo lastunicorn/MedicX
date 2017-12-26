@@ -31,7 +31,7 @@ namespace DustInTheWind.MedicX.Persistence.Json.Translators
             List<Clinic> clinics = medicXData.Clinics.Translate();
             List<Consultation> consultations = medicXData.Consultations.Translate(medics, clinics);
             List<InvestigationType> investigationTypes = medicXData.InvestigationTypes.Translate();
-            //List<Investigation> investigations = medicXData.Investigations.Translate();
+            //List<InvestigationInstance> investigations = medicXData.Investigations.Translate();
 
             return new MedicXData
             {
