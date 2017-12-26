@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 
 namespace DustInTheWind.MedicX.TableDisplay
@@ -77,7 +76,6 @@ namespace DustInTheWind.MedicX.TableDisplay
         public Table()
             : this(MultilineText.Empty)
         {
-
         }
 
         /// <summary>
@@ -480,7 +478,7 @@ namespace DustInTheWind.MedicX.TableDisplay
                 case HorizontalAlignment.Center:
                     int totalSpaces = cellInnerWidth - cell.Content.Size.Width;
                     //int leftSpaces = (int)Math.Floor(totalSpaces / 2);
-                    int rightSpaces = (int) Math.Ceiling((double) totalSpaces / 2);
+                    int rightSpaces = (int)Math.Ceiling((double)totalSpaces / 2);
                     innerContent = cell.Content.Lines[rowLineIndex]
                         .PadLeft(cellInnerWidth - rightSpaces, ' ')
                         .PadRight(cellInnerWidth, ' ');

@@ -53,6 +53,7 @@ namespace DustInTheWind.MedicX
                         switch (command)
                         {
                             case "medic":
+                            case "medics":
                                 CustomConsole.WriteLine();
                                 flow = new MedicsFlow(unitOfWork);
                                 break;
@@ -101,6 +102,7 @@ namespace DustInTheWind.MedicX
         private static void DisplayAppHeader()
         {
             CustomConsole.WriteLine("MedicX " + Assembly.GetEntryAssembly().GetName().Version.ToString(3));
+            CustomConsole.WriteLine("===============================================================================");
         }
     }
 
