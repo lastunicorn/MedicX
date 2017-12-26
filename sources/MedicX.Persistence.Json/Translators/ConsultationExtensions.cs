@@ -22,14 +22,14 @@ namespace DustInTheWind.MedicX.Persistence.Json.Translators
 {
     internal static class ConsultationExtensions
     {
-        public static List<Consultation> Translate(this IEnumerable<Entities.Consultation> consultations, List<Medic> medics, IEnumerable<ClinicLocation> clinicLocations)
+        public static List<Consultation> Translate(this IEnumerable<Entities.Consultation> consultations, List<Medic> medics, IEnumerable<Clinic> clinicLocations)
         {
             return consultations?
                 .Select(x => x.Translate(medics, clinicLocations))
                 .ToList();
         }
 
-        private static Consultation Translate(this Entities.Consultation consultation, IEnumerable<Medic> medics, IEnumerable<ClinicLocation> clinicLocations)
+        private static Consultation Translate(this Entities.Consultation consultation, IEnumerable<Medic> medics, IEnumerable<Clinic> clinicLocations)
         {
             if (consultation == null)
                 return null;
@@ -38,7 +38,7 @@ namespace DustInTheWind.MedicX.Persistence.Json.Translators
             {
                 Date = consultation.Date,
                 Medic = medics.FirstOrDefault(x => x.Id == consultation.MedicId),
-                ClinicLocation = clinicLocations.FirstOrDefault(x => x.Id == consultation.ClinicLocationId),
+                Clinic = clinicLocations.FirstOrDefault(x => x.Id == consultation.ClinicLocationId),
                 Labels = consultation.Labels.ToList(),
                 Comments = consultation.Comments,
                 Prescriptions = consultation.Prescriptions.Translate()
@@ -61,7 +61,7 @@ namespace DustInTheWind.MedicX.Persistence.Json.Translators
             {
                 Date = consultation.Date,
                 MedicId = consultation.Medic.Id,
-                ClinicLocationId = consultation.ClinicLocation.Id,
+                ClinicLocationId = consultation.Clinic.Id,
                 Labels = consultation.Labels.ToList(),
                 Comments = consultation.Comments,
                 Prescriptions = consultation.Prescriptions.Translate()

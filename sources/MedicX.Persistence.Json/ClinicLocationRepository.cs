@@ -36,10 +36,9 @@ namespace DustInTheWind.MedicX.Persistence.Json
             return medicXData.Medics;
         }
 
-        public ClinicLocation GetById(int id)
+        public Clinic GetById(int id)
         {
             return medicXData.Clinics
-                .SelectMany(x => x.Locations)
                 .FirstOrDefault(x => x.Id == id);
         }
     }

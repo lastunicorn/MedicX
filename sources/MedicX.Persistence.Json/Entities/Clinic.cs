@@ -21,11 +21,20 @@ namespace DustInTheWind.MedicX.Persistence.Json.Entities
 {
     internal class Clinic
     {
+        [JsonProperty("id")]
+        public int Id { get; set; }
+
         [JsonProperty("name")]
         public string Name { get; set; }
 
-        [JsonProperty("locations")]
-        public List<ClinicLocation> Locations { get; set; }
+        [JsonProperty("address")]
+        public Address Address { get; set; }
+
+        [JsonProperty("phones")]
+        public List<string> Phones { get; set; }
+
+        [JsonProperty("program")]
+        public string Program { get; set; }
 
         [JsonProperty("comments")]
         public string Comments { get; set; }

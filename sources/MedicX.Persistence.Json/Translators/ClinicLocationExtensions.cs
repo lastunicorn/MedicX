@@ -22,48 +22,48 @@ namespace DustInTheWind.MedicX.Persistence.Json.Translators
 {
     internal static class ClinicLocationExtensions
     {
-        public static List<ClinicLocation> Translate(this IEnumerable<Entities.ClinicLocation> clinicLocations, Clinic clinic)
+        public static List<Clinic> Translate(this IEnumerable<Entities.Clinic> clinicLocations)
         {
             return clinicLocations?
-                .Select(x => x.Translate(clinic))
+                .Select(Translate)
                 .ToList();
         }
 
-        public static ClinicLocation Translate(this Entities.ClinicLocation clinicLocation, Clinic clinic)
+        public static Clinic Translate(this Entities.Clinic clinic)
         {
-            if (clinicLocation == null)
+            if (clinic == null)
                 return null;
 
-            return new ClinicLocation
+            return new Clinic
             {
-                Id = clinicLocation.Id,
-                Clinic = clinic,
-                Address = clinicLocation.Address.Translate(),
-                Phones = clinicLocation.Phones.ToList(),
-                Program = clinicLocation.Program,
-                Comments = clinicLocation.Comments
+                Id = clinic.Id,
+                Name = clinic.Name,
+                Address = clinic.Address.Translate(),
+                Phones = clinic.Phones.ToList(),
+                Program = clinic.Program,
+                Comments = clinic.Comments
             };
         }
 
-        public static List<Entities.ClinicLocation> Translate(this IEnumerable<ClinicLocation> clinicLocations)
+        public static List<Entities.Clinic> Translate(this IEnumerable<Clinic> clinicLocations)
         {
             return clinicLocations?
                 .Select(x => x.Translate())
                 .ToList();
         }
 
-        public static Entities.ClinicLocation Translate(this ClinicLocation clinicLocation)
+        public static Entities.Clinic Translate(this Clinic clinic)
         {
-            if (clinicLocation == null)
+            if (clinic == null)
                 return null;
 
-            return new Entities.ClinicLocation
+            return new Entities.Clinic
             {
-                Id = clinicLocation.Id,
-                Address = clinicLocation.Address.Translate(),
-                Phones = clinicLocation.Phones.ToList(),
-                Program = clinicLocation.Program,
-                Comments = clinicLocation.Comments
+                Id = clinic.Id,
+                Address = clinic.Address.Translate(),
+                Phones = clinic.Phones.ToList(),
+                Program = clinic.Program,
+                Comments = clinic.Comments
             };
         }
     }

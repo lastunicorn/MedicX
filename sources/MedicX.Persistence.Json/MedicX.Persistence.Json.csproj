@@ -42,7 +42,6 @@
     <Compile Include="ConsultationsRepository.cs" />
     <Compile Include="Entities\Address.cs" />
     <Compile Include="Entities\Clinic.cs" />
-    <Compile Include="Entities\ClinicLocation.cs" />
     <Compile Include="Entities\Consultation.cs" />
     <Compile Include="Entities\Event.cs" />
     <Compile Include="Entities\Investigation.cs" />
@@ -61,7 +60,6 @@
     <Compile Include="MedicRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Translators\AddressExtensions.cs" />
-    <Compile Include="Translators\ClinicExtensions.cs" />
     <Compile Include="Translators\ClinicLocationExtensions.cs" />
     <Compile Include="Translators\ConsultationExtensions.cs" />
     <Compile Include="Translators\InvestigationTypesExtensions.cs" />

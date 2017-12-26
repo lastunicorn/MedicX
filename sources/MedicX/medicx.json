@@ -34,94 +34,95 @@
   ],
   "clinics": [
     {
-      "name": "MedLife",
-      "locations": [
-        {
-          "id": 1,
-          "address": {
-            "street": "Livada Vulturului nr.10",
-            "city": "Brașov",
-            "county": "Brașov",
-            "country": "Romania"
-          },
-          "phones": [
-            "0268 960",
-            "(037) 287 5745"
-          ],
-          "program": "Luni-Vineri: 07:00 – 21:00; Sambata: 08:00 – 13:00",
-          "comments": "Laborator clinic - Policlinică de Diagnostic Rapid"
-        },
-        {
-          "id": 2,
-          "address": {
-            "street": "13 Decembrie",
-            "city": "Brașov",
-            "county": "Brașov",
-            "country": "Romania"
-          },
-          "phones": [
-            "0268 960"
-          ],
-          "comments": "Nu există pe site la MedLife."
-        },
-        {
-          "id": 3,
-          "address": {
-            "street": "Turnului nr.5",
-            "city": "Brașov",
-            "county": "Brașov",
-            "country": "Romania"
-          },
-          "phones": [
-            "0268 960"
-          ],
-          "program": "Luni-Vineri: 07:00 – 21:00; Sambata: 08:00 – 13:00",
-          "comments": "Hyperclinică"
-        },
-        {
-          "id": 4,
-          "address": {
-            "street": "Turnului nr.5A",
-            "city": "Brașov",
-            "county": "Brașov",
-            "country": "Romania"
-          },
-          "phones": [
-            "0268 960"
-          ],
-          "comments": "Spital"
-        },
-        {
-          "id": 5,
-          "address": {
-            "street": "Nicopole nr.65",
-            "city": "Brașov",
-            "county": "Brașov",
-            "country": "Romania"
-          },
-          "phones": [
-            "0268 960"
-          ],
-          "program": "Luni-Vineri: 07:00 – 24:00; Sambata: 08:00 – 22:00",
-          "comments": "Centru de Pediatrie"
-        },
-        {
-          "id": 6,
-          "address": {
-            "street": "Păltiniș nr.15",
-            "city": "Brașov",
-            "county": "Brașov",
-            "country": "Romania"
-          },
-          "phones": [
-            "0268 960",
-            "0733 007 343",
-            "0729 075 567"
-          ],
-          "program": "Luni-Vineri: 07:00 – 22:00; Sambata: 08:00 – 13:00",
-          "comments": "Maternitatea Eva"
-        }
-      ]
+      "id": 1,
+      "name": "MedLife Livada Vulturului",
+      "address": {
+        "street": "Livada Vulturului nr.10",
+        "city": "Brașov",
+        "county": "Brașov",
+        "country": "Romania"
+      },
+      "phones": [
+        "0268 960",
+        "(037) 287 5745"
+      ],
+      "program": "Luni-Vineri: 07:00 – 21:00; Sambata: 08:00 – 13:00",
+      "comments": "Laborator clinic - Policlinică de Diagnostic Rapid"
+    },
+    {
+      "id": 2,
+      "name": "MedLife 13 Decembrie",
+      "address": {
+        "street": "13 Decembrie",
+        "city": "Brașov",
+        "county": "Brașov",
+        "country": "Romania"
+      },
+      "phones": [
+        "0268 960"
+      ],
+      "comments": "Nu există pe site la MedLife."
+    },
+    {
+      "id": 3,
+      "name": "MedLife Turnului Hyperclinică",
+      "address": {
+        "street": "Turnului nr.5",
+        "city": "Brașov",
+        "county": "Brașov",
+        "country": "Romania"
+      },
+      "phones": [
+        "0268 960"
+      ],
+      "program": "Luni-Vineri: 07:00 – 21:00; Sambata: 08:00 – 13:00",
+      "comments": "Hyperclinică"
+    },
+    {
+      "id": 4,
+      "name": "MedLife Turnului Spital",
+      "address": {
+        "street": "Turnului nr.5A",
+        "city": "Brașov",
+        "county": "Brașov",
+        "country": "Romania"
+      },
+      "phones": [
+        "0268 960"
+      ],
+      "comments": "Spital"
+    },
+    {
+      "id": 5,
+      "name": "MedLife Pediatrie",
+      "address": {
+        "street": "Nicopole nr.65",
+        "city": "Brașov",
+        "county": "Brașov",
+        "country": "Romania"
+      },
+      "phones": [
+        "0268 960"
+      ],
+      "program": "Luni-Vineri: 07:00 – 24:00; Sambata: 08:00 – 22:00",
+      "comments": "Centru de Pediatrie"
+    },
+    {
+      "id": 6,
+      "name": "MedLife Eva",
+      "address": {
+        "street": "Păltiniș nr.15",
+        "city": "Brașov",
+        "county": "Brașov",
+        "country": "Romania"
+      },
+      "phones": [
+        "0268 960",
+        "0733 007 343",
+        "0729 075 567"
+      ],
+      "program": "Luni-Vineri: 07:00 – 22:00; Sambata: 08:00 – 13:00",
+      "comments": "Maternitatea Eva"
     }
   ],
   "consultations": [

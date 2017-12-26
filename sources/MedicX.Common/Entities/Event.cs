@@ -23,7 +23,7 @@ namespace DustInTheWind.MedicX.Common.Entities
     {
         public DateTime Date { get; set; }
         public Medic Medic { get; set; }
-        public ClinicLocation ClinicLocation { get; set; }
+        public Clinic Clinic { get; set; }
         public List<string> Labels { get; set; }
         public string Comments { get; set; }
     }

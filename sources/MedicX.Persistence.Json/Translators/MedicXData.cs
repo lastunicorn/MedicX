@@ -29,10 +29,7 @@ namespace DustInTheWind.MedicX.Persistence.Json.Translators
 
             List<Medic> medics = medicXData.Medics.Translate();
             List<Clinic> clinics = medicXData.Clinics.Translate();
-            List<ClinicLocation> clinicLocations = clinics
-                .SelectMany(x => x.Locations)
-                .ToList();
-            List<Consultation> consultations = medicXData.Consultations.Translate(medics, clinicLocations);
+            List<Consultation> consultations = medicXData.Consultations.Translate(medics, clinics);
             List<InvestigationType> investigationTypes = medicXData.InvestigationTypes.Translate();
             //List<Investigation> investigations = medicXData.Investigations.Translate();
 
@@ -40,7 +37,6 @@ namespace DustInTheWind.MedicX.Persistence.Json.Translators
             {
                 Medics = medics,
                 Clinics = clinics,
-                ClinicLocations = clinicLocations,
                 Consultations = consultations,
                 InvestigationTypes = investigationTypes
             };

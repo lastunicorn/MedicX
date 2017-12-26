@@ -36,7 +36,6 @@
   <ItemGroup>
     <Compile Include="Entities\Address.cs" />
     <Compile Include="Entities\Clinic.cs" />
-    <Compile Include="Entities\ClinicLocation.cs" />
     <Compile Include="Entities\Consultation.cs" />
     <Compile Include="Entities\Event.cs" />
     <Compile Include="Entities\Investigation.cs" />

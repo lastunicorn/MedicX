@@ -20,6 +20,6 @@ namespace DustInTheWind.MedicX.Persistence.Json
 {
     public interface IClinicLocationRepository
     {
-        ClinicLocation GetById(int id);
+        Clinic GetById(int id);
     }
 }
