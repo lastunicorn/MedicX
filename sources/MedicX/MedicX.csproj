@@ -48,10 +48,12 @@
     <Compile Include="Flows\HelpFlow.cs" />
     <Compile Include="IFlow.cs" />
     <Compile Include="Flows\MedicsFlow.cs" />
+    <Compile Include="ListInputControl.cs" />
     <Compile Include="MedicXApplication.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Flows\SaveFlow.cs" />
+    <Compile Include="TextInputControl.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="medicx.json">

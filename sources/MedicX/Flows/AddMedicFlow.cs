@@ -33,19 +33,28 @@ namespace DustInTheWind.MedicX.Flows
 
         public void Run()
         {
+            TextInputControl textInputControl = new TextInputControl();
+            ListInputControl listInputControl = new ListInputControl();
+
+            string firstName = textInputControl.Read("First Name");
+            string middleName = textInputControl.Read("Middle Name");
+            string lastName = textInputControl.Read("Last Name");
+
+            List<string> specializations = listInputControl.Read("Specializations");
+
+            string comments = textInputControl.Read("Comments");
+
             Medic medic = new Medic
             {
                 Id = 0,
                 Name = new PersonName
                 {
-                    FirstName = "Vasile",
-                    LastName = "Castravete"
+                    FirstName = firstName,
+                    MiddleName = middleName,
+                    LastName = lastName
                 },
-                Specializations = new List<string>
-                {
-                    "murături",
-                    "varză"
-                }
+                Specializations = specializations,
+                Comments = comments
             };
 
             unitOfWork.MedicRepository.Add(medic);
