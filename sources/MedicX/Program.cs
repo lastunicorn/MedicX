@@ -29,7 +29,7 @@ namespace DustInTheWind.MedicX
             try
             {
                 DisplayAppHeader();
-                
+
                 using (UnitOfWork unitOfWork = new UnitOfWork())
                 {
                     MedicXApplication medicXApplication = new MedicXApplication(unitOfWork);

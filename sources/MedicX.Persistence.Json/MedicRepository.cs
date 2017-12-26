@@ -61,5 +61,12 @@ namespace DustInTheWind.MedicX.Persistence.Json
 
             medicXData.Medics.Add(medic);
         }
+
+        public List<Medic> GetByName(string medicName)
+        {
+            return medicXData.Medics
+                .Where(x => x.Name.Contains(medicName))
+                .ToList();
+        }
     }
 }

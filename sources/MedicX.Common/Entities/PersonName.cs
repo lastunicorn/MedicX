@@ -14,6 +14,8 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+using System;
+using System.Linq;
 using System.Text;
 
 namespace DustInTheWind.MedicX.Common.Entities
@@ -48,6 +50,71 @@ namespace DustInTheWind.MedicX.Common.Entities
             }
 
             return sb.ToString();
+        }
+
+        public bool Contains(string text)
+        {
+            bool contains = ContainsChunk(text);
+
+            if (contains)
+                return true;
+
+            return text.Split(' ')
+                .All(ContainsChunk);
+        }
+
+        private bool ContainsChunk(string text)
+        {
+            return (FirstName != null && FirstName.IndexOf(text, StringComparison.OrdinalIgnoreCase) >= 0) ||
+                (MiddleName != null && MiddleName.IndexOf(text, StringComparison.OrdinalIgnoreCase) >= 0) ||
+                (LastName != null && LastName.IndexOf(text, StringComparison.OrdinalIgnoreCase) >= 0);
+        }
+
+        public static implicit operator PersonName(string text)
+        {
+            return Parse(text);
+        }
+
+        private static PersonName Parse(string text)
+        {
+            if (text == null)
+                return null;
+
+            string[] chunks = text.Split(new[] {' '}, StringSplitOptions.RemoveEmptyEntries);
+
+            string firstName = chunks.Length >= 1
+                ? chunks[0]
+                : null;
+
+            string middleName;
+            if (chunks.Length >= 3)
+            {
+                string[] middleNames = chunks
+                    .Where((x, i) => i != 0 && i != chunks.Length)
+                    .ToArray();
+
+                middleName = string.Join(" ", middleNames);
+            }
+            else
+            {
+                middleName = null;
+            }
+
+            string lastName = chunks.Length >= 2
+                ? chunks[chunks.Length - 1]
+                : null;
+
+            return new PersonName
+            {
+                FirstName = firstName,
+                MiddleName = middleName,
+                LastName = lastName
+            };
+        }
+
+        public static implicit operator string(PersonName personName)
+        {
+            return personName?.ToString();
         }
     }
 }

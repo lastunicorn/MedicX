@@ -34,13 +34,16 @@ namespace DustInTheWind.MedicX.Persistence.Json.Translators
             if (medic == null)
                 return null;
 
-            return new Medic
+            Medic translatedMedic = new Medic
             {
                 Id = medic.Id,
                 Name = medic.Name.Translate(),
-                Comments = medic.Comments,
-                Specializations = medic.Specializations.ToList()
+                Comments = medic.Comments
             };
+
+            translatedMedic.Specializations.AddRange(medic.Specializations);
+
+            return translatedMedic;
         }
 
         public static List<Entities.Medic> Translate(this IEnumerable<Medic> medics)

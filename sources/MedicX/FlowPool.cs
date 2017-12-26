@@ -47,11 +47,13 @@ namespace DustInTheWind.MedicX
                         if (command.Parameters.ElementAt(0).Name?.ToLower() == "add")
                             return new AddMedicFlow(unitOfWork);
 
-                        throw new Exception("Invalid medic command.");
+                        string medicName = command.Parameters.ElementAt(0).Name;
+
+                        return new DisplayMedicsFlow(unitOfWork, medicName);
                     }
                     else
                     {
-                        return new MedicsFlow(unitOfWork);
+                        return new DisplayMedicsFlow(unitOfWork);
                     }
 
                 case "consult":

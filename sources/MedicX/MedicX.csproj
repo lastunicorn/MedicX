@@ -47,7 +47,7 @@
     <Compile Include="Flows\ConsultationsFlow.cs" />
     <Compile Include="Flows\HelpFlow.cs" />
     <Compile Include="IFlow.cs" />
-    <Compile Include="Flows\MedicsFlow.cs" />
+    <Compile Include="Flows\DisplayMedicsFlow.cs" />
     <Compile Include="ListInputControl.cs" />
     <Compile Include="MedicXApplication.cs" />
     <Compile Include="Program.cs" />

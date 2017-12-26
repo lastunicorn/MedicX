@@ -53,9 +53,10 @@ namespace DustInTheWind.MedicX.Flows
                     MiddleName = middleName,
                     LastName = lastName
                 },
-                Specializations = specializations,
                 Comments = comments
             };
+
+            medic.Specializations.AddRange(specializations);
 
             unitOfWork.MedicRepository.Add(medic);
         }
