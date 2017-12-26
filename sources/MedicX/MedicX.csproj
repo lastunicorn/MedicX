@@ -41,6 +41,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Flows\DisplayClinicsFlow.cs" />
     <Compile Include="Flows\AddMedicFlow.cs" />
     <Compile Include="Flows\ExitFlow.cs" />
     <Compile Include="FlowPool.cs" />

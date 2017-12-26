@@ -38,19 +38,75 @@ namespace DustInTheWind.MedicX.Flows
 
         public void Run()
         {
-            DisplayMedics();
+            if (string.IsNullOrEmpty(medicName))
+                DisplayAllMedics();
+            else
+                SearchMedic();
         }
 
-        private void DisplayMedics()
+        private void DisplayAllMedics()
         {
             IMedicRepository medicRepository = unitOfWork.MedicRepository;
 
-            List<Medic> medics = string.IsNullOrEmpty(medicName)
-                ? medicRepository.GetAll()
-                : medicRepository.GetByName(medicName);
+            List<Medic> medics = medicRepository.GetAll();
 
             if (medics == null || medics.Count == 0)
                 Console.WriteLine("No medics exist in the database.");
+            else
+                DisplayMedicList(medics);
+        }
+
+        private static void DisplayMedicList(IEnumerable<Medic> medics)
+        {
+            Table medicsTable = CreateMedicsTable(medics);
+
+            CustomConsole.WriteLine("Medics found: " + medicsTable.RowCount);
+
+            ConsoleTablePrinter tablePrinter = new ConsoleTablePrinter();
+            medicsTable.Render(tablePrinter);
+        }
+
+        private static Table CreateMedicsTable(IEnumerable<Medic> medics)
+        {
+            Table medicsTable = new Table
+            {
+                Border = TableBorder.SingleLineBorder,
+                DrawLinesBetweenRows = true,
+                DisplayColumnHeaders = true
+            };
+
+            medicsTable.Columns.Add(new Column("Name")
+            {
+                HorizontalAlignment = HorizontalAlignment.Left,
+                Header = new MultilineText("Name")
+            });
+
+            medicsTable.Columns.Add(new Column("Specializations")
+            {
+                HorizontalAlignment = HorizontalAlignment.Left,
+                Header = new MultilineText("Specializations")
+            });
+
+            foreach (Medic medic in medics)
+            {
+                medicsTable.AddRow(new[]
+                {
+                    new Cell(medic.Name),
+                    new Cell(new MultilineText(medic.Specializations))
+                });
+            }
+
+            return medicsTable;
+        }
+
+        private void SearchMedic()
+        {
+            IMedicRepository medicRepository = unitOfWork.MedicRepository;
+
+            List<Medic> medics = medicRepository.Search(medicName);
+
+            if (medics == null || medics.Count == 0)
+                Console.WriteLine("No medics exist in the database contining the searched text.");
             else if (medics.Count == 1)
                 DisplayMedicDetails(medics[0]);
             else
@@ -103,49 +159,6 @@ namespace DustInTheWind.MedicX.Flows
                     new Cell("Comments"),
                     new Cell(medic.Comments)
                 });
-
-            return medicsTable;
-        }
-
-        private static void DisplayMedicList(IEnumerable<Medic> medics)
-        {
-            Table medicsTable = CreateMedicsTable(medics);
-
-            CustomConsole.WriteLine("Medics found: " + medicsTable.RowCount);
-
-            ConsoleTablePrinter tablePrinter = new ConsoleTablePrinter();
-            medicsTable.Render(tablePrinter);
-        }
-
-        private static Table CreateMedicsTable(IEnumerable<Medic> medics)
-        {
-            Table medicsTable = new Table
-            {
-                Border = TableBorder.SingleLineBorder,
-                DrawLinesBetweenRows = true,
-                DisplayColumnHeaders = true
-            };
-
-            medicsTable.Columns.Add(new Column("Name")
-            {
-                HorizontalAlignment = HorizontalAlignment.Left,
-                Header = new MultilineText("Name")
-            });
-
-            medicsTable.Columns.Add(new Column("Specializations")
-            {
-                HorizontalAlignment = HorizontalAlignment.Left,
-                Header = new MultilineText("Specializations")
-            });
-
-            foreach (Medic medic in medics)
-            {
-                medicsTable.AddRow(new[]
-                {
-                    new Cell(medic.Name),
-                    new Cell(new MultilineText(medic.Specializations))
-                });
-            }
 
             return medicsTable;
         }

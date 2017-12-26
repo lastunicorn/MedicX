@@ -39,6 +39,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClinicLocationRepository.cs" />
+    <Compile Include="ClinicRepository.cs" />
     <Compile Include="ConsultationsRepository.cs" />
     <Compile Include="Entities\Address.cs" />
     <Compile Include="Entities\Clinic.cs" />
@@ -54,6 +55,7 @@
     <Compile Include="Entities\PersonName.cs" />
     <Compile Include="Entities\Prescription.cs" />
     <Compile Include="IClinicLocationRepository.cs" />
+    <Compile Include="IClinicRepository.cs" />
     <Compile Include="IConsultationsRepository.cs" />
     <Compile Include="IMedicRepository.cs" />
     <Compile Include="JsonDatabase.cs" />

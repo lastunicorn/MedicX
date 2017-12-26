@@ -56,6 +56,19 @@ namespace DustInTheWind.MedicX
                         return new DisplayMedicsFlow(unitOfWork);
                     }
 
+                case "clinic":
+                case "clinics":
+                    if (command.Parameters.Count > 0)
+                    {
+                        string clinicName = command.Parameters.ElementAt(0).Name;
+
+                        return new DisplayClinicsFlow(unitOfWork, clinicName);
+                    }
+                    else
+                    {
+                        return new DisplayClinicsFlow(unitOfWork);
+                    }
+
                 case "consult":
                 case "consultation":
                     return new ConsultationsFlow(unitOfWork);

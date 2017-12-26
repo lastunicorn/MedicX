@@ -23,7 +23,7 @@ namespace DustInTheWind.MedicX.Flows
         public void Run()
         {
             CustomConsole.WriteEmphasies("Commands: ");
-            CustomConsole.WriteLine("medic, consultation, save, exit, help");
+            CustomConsole.WriteLine("medic, clinic, consultation, save, exit, help");
         }
     }
 }

@@ -30,6 +30,7 @@ namespace DustInTheWind.MedicX.Persistence.Json
         private readonly JsonDatabase jsonDatabase;
         private IMedicRepository medicRepository;
         private IConsultationsRepository consultationsRepository;
+        private IClinicRepository clinicRepository;
         private readonly MedicXData medicXData;
 
         public IMedicRepository MedicRepository
@@ -57,6 +58,20 @@ namespace DustInTheWind.MedicX.Persistence.Json
                     consultationsRepository = new ConsultationsRepository(medicXData);
 
                 return consultationsRepository;
+            }
+        }
+
+        public IClinicRepository ClinicRepository
+        {
+            get
+            {
+                if (isDisposed)
+                    throw new ObjectDisposedException(GetType().Name);
+
+                if (clinicRepository == null)
+                    clinicRepository = new ClinicRepository(medicXData);
+
+                return clinicRepository;
             }
         }
 

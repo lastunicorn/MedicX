@@ -19,12 +19,11 @@ using DustInTheWind.MedicX.Common.Entities;
 
 namespace DustInTheWind.MedicX.Persistence.Json
 {
-    public interface IMedicRepository
+    public interface IClinicRepository
     {
-        List<Medic> GetAll();
-        Medic GetById(int id);
-        void Add(Medic medic);
-        List<Medic> GetByName(string medicName);
-        List<Medic> Search(string text);
+        List<Clinic> GetAll();
+        Clinic GetById(int id);
+        List<Clinic> GetByName(string clinicName);
+        List<Clinic> Search(string text);
     }
 }

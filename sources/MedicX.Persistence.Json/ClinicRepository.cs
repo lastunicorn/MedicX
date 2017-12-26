@@ -21,59 +21,40 @@ using DustInTheWind.MedicX.Common.Entities;
 
 namespace DustInTheWind.MedicX.Persistence.Json
 {
-    internal class MedicRepository : IMedicRepository
+    internal class ClinicRepository : IClinicRepository
     {
         private readonly MedicXData medicXData;
 
-        public MedicRepository(MedicXData medicXData)
+        public ClinicRepository(MedicXData medicXData)
         {
             if (medicXData == null) throw new ArgumentNullException(nameof(medicXData));
             this.medicXData = medicXData;
         }
 
-        public List<Medic> GetAll()
+        public List<Clinic> GetAll()
         {
-            return medicXData.Medics;
+            return medicXData.Clinics;
         }
 
-        public Medic GetById(int id)
+        public Clinic GetById(int id)
         {
-            return medicXData.Medics
+            return medicXData.Clinics
                 .FirstOrDefault(x => x.Id == id);
         }
 
-        public void Add(Medic medic)
+        public List<Clinic> GetByName(string clinicName)
         {
-            int id = 0;
-
-            while (true)
-            {
-                id++;
-
-                bool idExists = medicXData.Medics
-                    .Any(x => x.Id == id);
-
-                if (!idExists)
-                    break;
-            }
-
-            medic.Id = id;
-
-            medicXData.Medics.Add(medic);
-        }
-
-        public List<Medic> GetByName(string medicName)
-        {
-            return medicXData.Medics
-                .Where(x => x.Name != null && x.Name.Contains(medicName))
+            return medicXData.Clinics
+                .Where(x => x.Name != null && x.Name.IndexOf(clinicName, StringComparison.OrdinalIgnoreCase) >= 0)
                 .ToList();
         }
 
-        public List<Medic> Search(string text)
+        public List<Clinic> Search(string text)
         {
-            return medicXData.Medics
-                .Where(x => (x.Name != null && x.Name.Contains(text)) ||
-                    (x.Specializations.Any(z => z != null && z.IndexOf(text, StringComparison.OrdinalIgnoreCase) >= 0)) ||
+            return medicXData.Clinics
+                .Where(x => (x.Name != null && x.Name.IndexOf(text, StringComparison.OrdinalIgnoreCase) >= 0) ||
+                    (x.Phones != null && x.Phones.Any(z => z != null && z.IndexOf(text, StringComparison.OrdinalIgnoreCase) >= 0)) ||
+                    (x.Address != null && x.Address.Contains(text)) ||
                     (x.Comments != null && x.Comments.IndexOf(text, StringComparison.InvariantCultureIgnoreCase) >= 0))
                 .ToList();
         }
