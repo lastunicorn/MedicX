@@ -16,9 +16,9 @@
 
 using System;
 using System.Collections.Generic;
+using DustInTheWind.ConsoleTools;
 using DustInTheWind.MedicX.Common.Entities;
 using DustInTheWind.MedicX.Persistence.Json;
-using DustInTheWind.MedicX.Utils;
 
 namespace DustInTheWind.MedicX.Flows
 {

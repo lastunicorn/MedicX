@@ -17,9 +17,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using DustInTheWind.ConsoleTools.TabularData;
 using DustInTheWind.MedicX.Common.Entities;
 using DustInTheWind.MedicX.Persistence.Json;
-using DustInTheWind.MedicX.TableDisplay;
 
 namespace DustInTheWind.MedicX.Flows
 {

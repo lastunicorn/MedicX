@@ -15,7 +15,7 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using DustInTheWind.MedicX.Utils;
+using DustInTheWind.ConsoleTools;
 
 namespace DustInTheWind.MedicX.Flows
 {
