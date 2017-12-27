@@ -26,19 +26,19 @@ namespace DustInTheWind.MedicX.Flows
     internal class DisplayMedicsFlow : IFlow
     {
         private readonly UnitOfWork unitOfWork;
-        private readonly string medicName;
+        private readonly string searchText;
 
-        public DisplayMedicsFlow(UnitOfWork unitOfWork, string medicName = null)
+        public DisplayMedicsFlow(UnitOfWork unitOfWork, string searchText = null)
         {
             if (unitOfWork == null) throw new ArgumentNullException(nameof(unitOfWork));
 
             this.unitOfWork = unitOfWork;
-            this.medicName = medicName;
+            this.searchText = searchText;
         }
 
         public void Run()
         {
-            if (string.IsNullOrEmpty(medicName))
+            if (string.IsNullOrEmpty(searchText))
                 DisplayAllMedics();
             else
                 SearchMedic();
@@ -51,7 +51,7 @@ namespace DustInTheWind.MedicX.Flows
             List<Medic> medics = medicRepository.GetAll();
 
             if (medics == null || medics.Count == 0)
-                Console.WriteLine("No medics exist in the database.");
+                CustomConsole.WriteLineError("No medics exist in the database.");
             else
                 DisplayMedicList(medics);
         }
@@ -103,10 +103,10 @@ namespace DustInTheWind.MedicX.Flows
         {
             IMedicRepository medicRepository = unitOfWork.MedicRepository;
 
-            List<Medic> medics = medicRepository.Search(medicName);
+            List<Medic> medics = medicRepository.Search(searchText);
 
             if (medics == null || medics.Count == 0)
-                Console.WriteLine("No medics exist in the database contining the searched text.");
+                CustomConsole.WriteLineError("No medics exist in the database contining the searched text.");
             else if (medics.Count == 1)
                 DisplayMedicDetails(medics[0]);
             else

@@ -22,5 +22,6 @@ namespace DustInTheWind.MedicX.Persistence.Json
     public interface IConsultationsRepository
     {
         List<Consultation> GetAll();
+        List<Consultation> Search(string text);
     }
 }

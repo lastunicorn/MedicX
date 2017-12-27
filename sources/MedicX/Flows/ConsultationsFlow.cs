@@ -16,7 +16,9 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using DustInTheWind.ConsoleTools;
+using DustInTheWind.ConsoleTools.InputControls;
 using DustInTheWind.MedicX.Common.Entities;
 using DustInTheWind.MedicX.Persistence.Json;
 
@@ -25,40 +27,90 @@ namespace DustInTheWind.MedicX.Flows
     internal class ConsultationsFlow : IFlow
     {
         private readonly UnitOfWork unitOfWork;
+        private readonly string searchText;
+        private readonly TextOutputControl textOutputControl;
+        private readonly ListOutputControl listOutputControl;
 
-        public ConsultationsFlow(UnitOfWork unitOfWork)
+        public ConsultationsFlow(UnitOfWork unitOfWork, string searchText = null)
         {
             if (unitOfWork == null) throw new ArgumentNullException(nameof(unitOfWork));
+
             this.unitOfWork = unitOfWork;
+            this.searchText = searchText;
+
+            textOutputControl = new TextOutputControl();
+            listOutputControl = new ListOutputControl
+            {
+                ItemsIndentation = 4
+            };
         }
 
         public void Run()
         {
-            DisplayConsultations();
+            if (string.IsNullOrEmpty(searchText))
+                DisplayAllConsultations();
+            else
+                SearchConsultation();
         }
 
-        private void DisplayConsultations()
+        private void DisplayAllConsultations()
         {
             IConsultationsRepository consultationsRepository = unitOfWork.ConsultationsRepository;
 
             List<Consultation> consultations = consultationsRepository.GetAll();
 
+            if (consultations == null || consultations.Count == 0)
+                CustomConsole.WriteLineError("No consultations exist in the database.");
+            else
+                DisplayConsultations(consultations);
+        }
+
+        private void SearchConsultation()
+        {
+            IConsultationsRepository consultationsRepository = unitOfWork.ConsultationsRepository;
+
+            List<Consultation> consultations = consultationsRepository.Search(searchText);
+
+            if (consultations == null || consultations.Count == 0)
+                CustomConsole.WriteLineError("No consultations exist in the database contining the searched text.");
+            else
+                DisplayConsultations(consultations);
+        }
+
+        private void DisplayConsultations(IEnumerable<Consultation> consultations)
+        {
             bool isFirstItem = true;
 
             foreach (Consultation consultation in consultations)
             {
                 if (!isFirstItem)
+                {
                     CustomConsole.WriteLine();
+                    CustomConsole.WriteLine("-------------------------------------------------------------------------------");
+                    CustomConsole.WriteLine();
+                }
 
-                CustomConsole.WriteLineEmphasies("{0:yyyy-MM-dd} - {1}", consultation.Date, consultation.Medic.Name);
-                CustomConsole.WriteLine("Comments: {0}", consultation.Comments);
-                CustomConsole.WriteLine("Prescriptions:");
-
-                foreach (Prescription prescription in consultation.Prescriptions)
-                    CustomConsole.WriteLine("- {0}", prescription.Description);
+                DisplayConsultation(consultation);
 
                 isFirstItem = false;
             }
+        }
+
+        private void DisplayConsultation(Consultation consultation)
+        {
+            CustomConsole.WriteLineEmphasies("{0:yyyy MM dd} > {1}", consultation.Date, consultation.Medic.Name);
+
+            if (consultation.Clinic != null)
+                textOutputControl.Write("Clinic", consultation.Clinic.Name);
+
+            if (consultation.Labels != null && consultation.Labels.Count > 0)
+                listOutputControl.Write("Labels", consultation.Labels);
+
+            if (consultation.Comments != null)
+                textOutputControl.Write("Comments", consultation.Comments);
+
+            if (consultation.Prescriptions != null && consultation.Prescriptions.Count > 0)
+                listOutputControl.Write("Prescriptions", consultation.Prescriptions.Select(x => x.Description));
         }
     }
 }

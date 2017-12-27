@@ -16,6 +16,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using DustInTheWind.MedicX.Common.Entities;
 
 namespace DustInTheWind.MedicX.Persistence.Json
@@ -32,7 +33,19 @@ namespace DustInTheWind.MedicX.Persistence.Json
 
         public List<Consultation> GetAll()
         {
-            return medicXData.Consultations;
+            return medicXData.Consultations
+                .OrderByDescending(x => x.Date)
+                .ToList();
+        }
+
+        public List<Consultation> Search(string text)
+        {
+            return medicXData.Consultations
+                .Where(x => (x.Medic?.Name != null && x.Medic.Name.Contains(text)) ||
+                            (x.Clinic?.Name != null && x.Clinic.Name.IndexOf(text, StringComparison.OrdinalIgnoreCase) >= 0) ||
+                            (x.Labels != null && x.Labels.Any(z => z != null && z.IndexOf(text, StringComparison.OrdinalIgnoreCase) >= 0)) ||
+                            (x.Comments != null && x.Comments.IndexOf(text, StringComparison.InvariantCultureIgnoreCase) >= 0))
+                .ToList();
         }
     }
 }

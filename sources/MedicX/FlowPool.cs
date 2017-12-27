@@ -47,9 +47,8 @@ namespace DustInTheWind.MedicX
                         if (command.Parameters.ElementAt(0).Name?.ToLower() == "add")
                             return new AddMedicFlow(unitOfWork);
 
-                        string medicName = command.Parameters.ElementAt(0).Name;
-
-                        return new DisplayMedicsFlow(unitOfWork, medicName);
+                        string searchText = command.Parameters.ElementAt(0).Name;
+                        return new DisplayMedicsFlow(unitOfWork, searchText);
                     }
                     else
                     {
@@ -60,9 +59,8 @@ namespace DustInTheWind.MedicX
                 case "clinics":
                     if (command.Parameters.Count > 0)
                     {
-                        string clinicName = command.Parameters.ElementAt(0).Name;
-
-                        return new DisplayClinicsFlow(unitOfWork, clinicName);
+                        string searchText = command.Parameters.ElementAt(0).Name;
+                        return new DisplayClinicsFlow(unitOfWork, searchText);
                     }
                     else
                     {
@@ -70,8 +68,18 @@ namespace DustInTheWind.MedicX
                     }
 
                 case "consult":
+                case "consults":
                 case "consultation":
-                    return new ConsultationsFlow(unitOfWork);
+                case "consultations":
+                    if (command.Parameters.Count > 0)
+                    {
+                        string searchText = command.Parameters.ElementAt(0).Name;
+                        return new ConsultationsFlow(unitOfWork, searchText);
+                    }
+                    else
+                    {
+                        return new ConsultationsFlow(unitOfWork);
+                    }
 
                 case "save":
                     return new SaveFlow(unitOfWork);

@@ -10,19 +10,19 @@ namespace DustInTheWind.MedicX.Flows
     internal class DisplayClinicsFlow : IFlow
     {
         private readonly UnitOfWork unitOfWork;
-        private readonly string clinicName;
+        private readonly string searchText;
 
-        public DisplayClinicsFlow(UnitOfWork unitOfWork, string clinicName = null)
+        public DisplayClinicsFlow(UnitOfWork unitOfWork, string searchText = null)
         {
             if (unitOfWork == null) throw new ArgumentNullException(nameof(unitOfWork));
 
             this.unitOfWork = unitOfWork;
-            this.clinicName = clinicName;
+            this.searchText = searchText;
         }
 
         public void Run()
         {
-            if (string.IsNullOrEmpty(clinicName))
+            if (string.IsNullOrEmpty(searchText))
                 DisplayAllClinics();
             else
                 SearchClinic();
@@ -35,7 +35,7 @@ namespace DustInTheWind.MedicX.Flows
             List<Clinic> clinics = clinicRepository.GetAll();
 
             if (clinics == null || clinics.Count == 0)
-                Console.WriteLine("No clinics exist in the database.");
+                CustomConsole.WriteLineError("No clinics exist in the database.");
             else
                 DisplayClinicList(clinics);
         }
@@ -89,10 +89,10 @@ namespace DustInTheWind.MedicX.Flows
         {
             IClinicRepository clinicRepository = unitOfWork.ClinicRepository;
 
-            List<Clinic> clinics = clinicRepository.Search(clinicName);
+            List<Clinic> clinics = clinicRepository.Search(searchText);
 
             if (clinics == null || clinics.Count == 0)
-                Console.WriteLine("No clinics exist in the database contining the searched text.");
+                CustomConsole.WriteLineError("No clinics exist in the database contining the searched text.");
             else if (clinics.Count == 1)
                 DisplayClinicDetails(clinics[0]);
             else
