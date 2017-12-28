@@ -14,20 +14,16 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using System.Windows;
+using DustInTheWind.ConsoleTools;
 
-namespace DustInTheWind.MedicX.Wpf
+namespace DustInTheWind.MedicX.Cli.Controllers
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    internal partial class MainWindow : Window
+    internal class HelpController : IController
     {
-        public MainWindow()
+        public void Run()
         {
-            InitializeComponent();
-
-            DataContext = new MainViewModel();
+            CustomConsole.WriteEmphasies("Commands: ");
+            CustomConsole.WriteLine("medic, clinic, consultation, save, exit, help");
         }
     }
 }

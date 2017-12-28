@@ -14,26 +14,18 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using System;
-using DustInTheWind.ConsoleTools;
-using DustInTheWind.MedicX.Persistence.Json;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
-namespace DustInTheWind.MedicX.Flows
+namespace DustInTheWind.MedicX.Wpf
 {
-    public class SaveFlow : IFlow
+    internal abstract class MainViewModelBase : INotifyPropertyChanged
     {
-        private readonly UnitOfWork unitOfWork;
+        public event PropertyChangedEventHandler PropertyChanged;
 
-        public SaveFlow(UnitOfWork unitOfWork)
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            if (unitOfWork == null) throw new ArgumentNullException(nameof(unitOfWork));
-            this.unitOfWork = unitOfWork;
-        }
-
-        public void Run()
-        {
-            unitOfWork.Save();
-            CustomConsole.WriteLineSuccess("Changes were successfully saved.");
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

@@ -17,13 +17,13 @@
 using System;
 using DustInTheWind.ConsoleTools;
 
-namespace DustInTheWind.MedicX.Flows
+namespace DustInTheWind.MedicX.Cli.Controllers
 {
-    internal class ExitFlow : IFlow
+    internal class ExitController : IController
     {
         private readonly MedicXApplication medicXApplication;
 
-        public ExitFlow(MedicXApplication medicXApplication)
+        public ExitController(MedicXApplication medicXApplication)
         {
             if (medicXApplication == null) throw new ArgumentNullException(nameof(medicXApplication));
             this.medicXApplication = medicXApplication;

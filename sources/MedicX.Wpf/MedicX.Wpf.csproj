@@ -7,8 +7,8 @@
     <ProjectGuid>{CB9D60EF-EB3F-4E46-B7E6-B72635B30D0D}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MedicX.Wpf</RootNamespace>
-    <AssemblyName>MedicX.Wpf</AssemblyName>
+    <RootNamespace>DustInTheWind.MedicX.Wpf</RootNamespace>
+    <AssemblyName>DustInTheWind.MedicX.Wpf</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -66,6 +66,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="MainViewModel.cs" />
+    <Compile Include="MainViewModelBase.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -89,6 +91,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="medicx.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -102,6 +107,10 @@
     <ProjectReference Include="..\MedicX.Common\MedicX.Common.csproj">
       <Project>{854c77f6-22f9-48a9-ae73-43e19ab9b258}</Project>
       <Name>MedicX.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MedicX.Persistence.Json\MedicX.Persistence.Json.csproj">
+      <Project>{9684B41D-C429-4B04-8CF0-0612785B398A}</Project>
+      <Name>MedicX.Persistence.Json</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

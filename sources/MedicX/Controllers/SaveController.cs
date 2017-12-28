@@ -14,20 +14,26 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using System.Windows;
+using System;
+using DustInTheWind.ConsoleTools;
+using DustInTheWind.MedicX.Persistence.Json;
 
-namespace DustInTheWind.MedicX.Wpf
+namespace DustInTheWind.MedicX.Cli.Controllers
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    internal partial class MainWindow : Window
+    public class SaveController : IController
     {
-        public MainWindow()
-        {
-            InitializeComponent();
+        private readonly UnitOfWork unitOfWork;
 
-            DataContext = new MainViewModel();
+        public SaveController(UnitOfWork unitOfWork)
+        {
+            if (unitOfWork == null) throw new ArgumentNullException(nameof(unitOfWork));
+            this.unitOfWork = unitOfWork;
+        }
+
+        public void Run()
+        {
+            unitOfWork.Save();
+            CustomConsole.WriteLineSuccess("Changes were successfully saved.");
         }
     }
 }

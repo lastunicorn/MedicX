@@ -22,16 +22,16 @@ using DustInTheWind.ConsoleTools.InputControls;
 using DustInTheWind.MedicX.Common.Entities;
 using DustInTheWind.MedicX.Persistence.Json;
 
-namespace DustInTheWind.MedicX.Flows
+namespace DustInTheWind.MedicX.Cli.Controllers
 {
-    internal class ConsultationsFlow : IFlow
+    internal class ConsultationsController : IController
     {
         private readonly UnitOfWork unitOfWork;
         private readonly string searchText;
         private readonly TextOutputControl textOutputControl;
         private readonly ListOutputControl listOutputControl;
 
-        public ConsultationsFlow(UnitOfWork unitOfWork, string searchText = null)
+        public ConsultationsController(UnitOfWork unitOfWork, string searchText = null)
         {
             if (unitOfWork == null) throw new ArgumentNullException(nameof(unitOfWork));
 

@@ -5,14 +5,14 @@ using DustInTheWind.ConsoleTools.TabularData;
 using DustInTheWind.MedicX.Common.Entities;
 using DustInTheWind.MedicX.Persistence.Json;
 
-namespace DustInTheWind.MedicX.Flows
+namespace DustInTheWind.MedicX.Cli.Controllers
 {
-    internal class DisplayClinicsFlow : IFlow
+    internal class DisplayClinicsController : IController
     {
         private readonly UnitOfWork unitOfWork;
         private readonly string searchText;
 
-        public DisplayClinicsFlow(UnitOfWork unitOfWork, string searchText = null)
+        public DisplayClinicsController(UnitOfWork unitOfWork, string searchText = null)
         {
             if (unitOfWork == null) throw new ArgumentNullException(nameof(unitOfWork));
 

@@ -14,16 +14,10 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using DustInTheWind.ConsoleTools;
-
-namespace DustInTheWind.MedicX.Flows
+namespace DustInTheWind.MedicX.Cli
 {
-    internal class HelpFlow : IFlow
+    internal interface IController
     {
-        public void Run()
-        {
-            CustomConsole.WriteEmphasies("Commands: ");
-            CustomConsole.WriteLine("medic, clinic, consultation, save, exit, help");
-        }
+        void Run();
     }
 }
