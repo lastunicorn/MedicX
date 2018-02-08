@@ -20,7 +20,7 @@ using System.Threading;
 using DustInTheWind.ConsoleTools;
 using DustInTheWind.MedicX.Persistence.Json;
 
-namespace DustInTheWind.MedicX
+namespace DustInTheWind.MedicX.Cli
 {
     public static class Program
     {

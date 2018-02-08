@@ -1,0 +1,457 @@
+﻿{
+  "medics": [
+    {
+      "id": 1,
+      "name": {
+        "first": "Nicoleta",
+        "last": "Coca"
+      },
+      "specializations": [
+        "Medic specialist medicină internă"
+      ]
+    },
+    {
+      "id": 2,
+      "name": {
+        "first": "Ioana",
+        "last": "Varga"
+      },
+      "specializations": [
+        "Medic primar neurolog"
+      ]
+    },
+    {
+      "id": 3,
+      "name": {
+        "first": "Ecaterina",
+        "middle": "Alexandrina",
+        "last": "Fanciali"
+      },
+      "specializations": [
+        "Medic primar"
+      ]
+    }
+  ],
+  "clinics": [
+    {
+      "id": 1,
+      "name": "MedLife Livada Vulturului",
+      "address": {
+        "street": "Livada Vulturului nr.10",
+        "city": "Brașov",
+        "county": "Brașov",
+        "country": "Romania"
+      },
+      "phones": [
+        "0268 960",
+        "(037) 287 5745"
+      ],
+      "program": "Luni-Vineri: 07:00 – 21:00; Sâmbătă: 08:00 – 13:00",
+      "comments": "Laborator clinic - Policlinică de Diagnostic Rapid"
+    },
+    {
+      "id": 2,
+      "name": "MedLife 13 Decembrie",
+      "address": {
+        "street": "13 Decembrie",
+        "city": "Brașov",
+        "county": "Brașov",
+        "country": "Romania"
+      },
+      "phones": [
+        "0268 960"
+      ],
+      "comments": "Nu există pe site la MedLife."
+    },
+    {
+      "id": 3,
+      "name": "MedLife Turnului Hyperclinică",
+      "address": {
+        "street": "Turnului nr.5",
+        "city": "Brașov",
+        "county": "Brașov",
+        "country": "Romania"
+      },
+      "phones": [
+        "0268 960"
+      ],
+      "program": "Luni-Vineri: 07:00 – 21:00; Sâmbătă: 08:00 – 13:00",
+      "comments": "Hyperclinică"
+    },
+    {
+      "id": 4,
+      "name": "MedLife Turnului Spital",
+      "address": {
+        "street": "Turnului nr.5A",
+        "city": "Brașov",
+        "county": "Brașov",
+        "country": "Romania"
+      },
+      "phones": [
+        "0268 960"
+      ],
+      "comments": "Spital"
+    },
+    {
+      "id": 5,
+      "name": "MedLife Pediatrie",
+      "address": {
+        "street": "Nicopole nr.65",
+        "city": "Brașov",
+        "county": "Brașov",
+        "country": "Romania"
+      },
+      "phones": [
+        "0268 960"
+      ],
+      "program": "Luni-Vineri: 07:00 – 24:00; Sâmbătă: 08:00 – 22:00",
+      "comments": "Centru de Pediatrie"
+    },
+    {
+      "id": 6,
+      "name": "MedLife Eva",
+      "address": {
+        "street": "Păltiniș nr.15",
+        "city": "Brașov",
+        "county": "Brașov",
+        "country": "Romania"
+      },
+      "phones": [
+        "0268 960",
+        "0733 007 343",
+        "0729 075 567"
+      ],
+      "program": "Luni-Vineri: 07:00 – 22:00; Sâmbătă: 08:00 – 13:00",
+      "comments": "Maternitatea Eva"
+    }
+  ],
+  "consultations": [
+    {
+      "date": "2017-07-03T00:00:00",
+      "location": 1,
+      "labels": [
+        "paraziți"
+      ],
+      "comments": "Per ansamblu, all ok.",
+      "medic": 1,
+      "prescriptions": [
+        {
+          "description": "sugestie: apă de gură cu clorhexidină"
+        },
+        {
+          "description": "sugestie: badijonare cu glicerină boraxată"
+        },
+        {
+          "description": "sugestie: badijonare cu violet de gențiană"
+        },
+        {
+          "description": "pentru la nevoie: trimitere exsudat lingual"
+        }
+      ]
+    },
+    {
+      "date": "2017-10-19T00:00:00",
+      "location": 1,
+      "labels": [
+        "pancreas"
+      ],
+      "medic": 1,
+      "prescriptions": [
+        {
+          "description": "ecografie",
+          "result": null
+        },
+        {
+          "description": "endoscopie",
+          "result": null
+        },
+        {
+          "description": "medicament 1",
+          "result": null
+        },
+        {
+          "description": "medicament 2",
+          "result": null
+        }
+      ]
+    }
+  ],
+  "investigations": [
+    {
+      "id": 0,
+      "name": "Hemoleucograma completă",
+      "substance": "sânge EDTA",
+      "method": "metoda spectrofotometrică",
+      "comments": "spectrometrie de impedanță și citometrie în flux / microscopie",
+      "items": [
+        {
+          "id": 1,
+          "name": "Nr. eritrocite",
+          "measurementUnit": "*10^6/μl",
+          "minValue": 4.5,
+          "maxValue": 5.5
+        },
+        {
+          "id": 2,
+          "name": "Hemoglobina",
+          "measurementUnit": "g/dl",
+          "minValue": 13.0,
+          "maxValue": 17.0
+        },
+        {
+          "id": 3,
+          "name": "Hematocrit",
+          "measurementUnit": "%",
+          "minValue": 40.0,
+          "maxValue": 50.0
+        },
+        {
+          "id": 4,
+          "name": "VEM",
+          "measurementUnit": "fL",
+          "minValue": 80.0,
+          "maxValue": 110.0
+        },
+        {
+          "id": 5,
+          "name": "HEM",
+          "measurementUnit": "pg",
+          "minValue": 28.0,
+          "maxValue": 34.0
+        },
+        {
+          "id": 6,
+          "name": "CHEM",
+          "measurementUnit": "g/dl",
+          "minValue": 32.0,
+          "maxValue": 35.0
+        },
+        {
+          "id": 7,
+          "name": "RDW-CV",
+          "measurementUnit": "%",
+          "minValue": 11.5,
+          "maxValue": 14.5
+        },
+        {
+          "id": 8,
+          "name": "Nr. leucocite",
+          "measurementUnit": "*10^3/μl",
+          "minValue": 4.8,
+          "maxValue": 11.0
+        },
+        {
+          "id": 9,
+          "name": "% Neutrofile",
+          "measurementUnit": "%",
+          "minValue": 53.0,
+          "maxValue": 68.0
+        },
+        {
+          "id": 10,
+          "name": "Nr. neutrofile",
+          "measurementUnit": "*10^3/μl",
+          "minValue": 1.8,
+          "maxValue": 7.7
+        },
+        {
+          "id": 11,
+          "name": "% Eozinofile",
+          "measurementUnit": "%",
+          "minValue": 2.0,
+          "maxValue": 4.0
+        },
+        {
+          "id": 12,
+          "name": "Nr. eozinofile",
+          "measurementUnit": "*10^3/μl",
+          "minValue": 0.09,
+          "maxValue": 0.44
+        },
+        {
+          "id": 13,
+          "name": "% Bazofile",
+          "measurementUnit": "%",
+          "minValue": 0.0,
+          "maxValue": 2.0
+        },
+        {
+          "id": 14,
+          "name": "Nr. basofile",
+          "measurementUnit": "*10^3/μl",
+          "minValue": 0.0,
+          "maxValue": 0.2
+        },
+        {
+          "id": 15,
+          "name": "% Limfocite",
+          "measurementUnit": "%",
+          "minValue": 25.0,
+          "maxValue": 45.0
+        },
+        {
+          "id": 16,
+          "name": "Nr. limfocite",
+          "measurementUnit": "*10^3/μl",
+          "minValue": 1.0,
+          "maxValue": 4.95
+        },
+        {
+          "id": 17,
+          "name": "% Monocite",
+          "measurementUnit": "%",
+          "minValue": 2.0,
+          "maxValue": 8.0
+        },
+        {
+          "id": 18,
+          "name": "Nr. monocite",
+          "measurementUnit": "*10^3/μl",
+          "minValue": 0.0,
+          "maxValue": 1.0
+        },
+        {
+          "id": 19,
+          "name": "Nr. trombocite",
+          "measurementUnit": "*10^3/μl",
+          "minValue": 150.0,
+          "maxValue": 450.0
+        },
+        {
+          "id": 20,
+          "name": "VTM",
+          "measurementUnit": "fL",
+          "minValue": 7.4,
+          "maxValue": 12.0
+        },
+        {
+          "id": 21,
+          "name": "PCT",
+          "measurementUnit": "%",
+          "minValue": 0.16,
+          "maxValue": 0.48
+        },
+        {
+          "id": 22,
+          "name": "PDW",
+          "measurementUnit": "%",
+          "minValue": 12.0,
+          "maxValue": 16.5
+        }
+      ]
+    },
+    {
+      "id": 23,
+      "name": "VSH",
+      "substance": null,
+      "method": "Analiza Cinetica a Fluxului Capilar ROLLER 20",
+      "comments": null,
+      "items": [
+        {
+          "id": 230,
+          "name": "VSH",
+          "measurementUnit": "mm/h",
+          "minValue": 2.0,
+          "maxValue": 10.0
+        }
+      ]
+    },
+    {
+      "id": 24,
+      "name": "Fosfataza alcalina",
+      "substance": "ser",
+      "method": "metoda fotometrică",
+      "comments": "Architect ABBOTT",
+      "items": [
+        {
+          "id": 240,
+          "name": "Fosfataza alcalina",
+          "measurementUnit": "U/L",
+          "minValue": 40.0,
+          "maxValue": 150.0
+        }
+      ]
+    },
+    {
+      "id": 25,
+      "name": "Gama GT",
+      "substance": "ser",
+      "method": "metoda fotometrică",
+      "comments": "Architect ABBOTT",
+      "items": [
+        {
+          "id": 25,
+          "name": "Gama GT",
+          "measurementUnit": "U/L",
+          "minValue": 12.0,
+          "maxValue": 64.0
+        }
+      ]
+    },
+    {
+      "id": 26,
+      "name": "TGO/AST",
+      "substance": "ser",
+      "method": "metoda fotometrică",
+      "comments": "Architect ABBOTT",
+      "items": [
+        {
+          "id": 26,
+          "name": "TGO/AST",
+          "measurementUnit": "U/L",
+          "minValue": 5.0,
+          "maxValue": 34.0
+        }
+      ]
+    },
+    {
+      "id": 27,
+      "name": "TGP/ALT",
+      "substance": "ser",
+      "method": "metoda fotometrică",
+      "comments": "Architect ABBOTT",
+      "items": [
+        {
+          "id": 27,
+          "name": "TGP/ALT",
+          "measurementUnit": "U/L",
+          "minValue": null,
+          "maxValue": 55.0
+        }
+      ]
+    },
+    {
+      "id": 28,
+      "name": "CRP cantitativ",
+      "substance": "ser",
+      "method": "metoda imunoturbidimetrică",
+      "comments": "Architect ABBOTT",
+      "items": [
+        {
+          "id": 28,
+          "name": "CRP cantitativ",
+          "measurementUnit": "mg/l",
+          "minValue": 0.0,
+          "maxValue": 5.0
+        }
+      ]
+    }
+  ],
+  "investigationInstances": [
+    {
+      "date": "2017 06 30",
+      "medic": 0,
+      "location": 2,
+      "labels": [
+        "demielinizare"
+      ],
+      "sentBy": 2,
+      "result": [
+        {
+          "investigationTypeId": 2,
+          "value": 10
+        }
+      ]
+    }
+  ]
+}

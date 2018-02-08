@@ -21,14 +21,14 @@ using DustInTheWind.ConsoleTools.TabularData;
 using DustInTheWind.MedicX.Common.Entities;
 using DustInTheWind.MedicX.Persistence.Json;
 
-namespace DustInTheWind.MedicX.Flows
+namespace DustInTheWind.MedicX.Cli.Controllers
 {
-    internal class DisplayMedicsFlow : IFlow
+    internal class DisplayMedicsController : IController
     {
         private readonly UnitOfWork unitOfWork;
         private readonly string searchText;
 
-        public DisplayMedicsFlow(UnitOfWork unitOfWork, string searchText = null)
+        public DisplayMedicsController(UnitOfWork unitOfWork, string searchText = null)
         {
             if (unitOfWork == null) throw new ArgumentNullException(nameof(unitOfWork));
 

@@ -20,13 +20,13 @@ using DustInTheWind.ConsoleTools.InputControls;
 using DustInTheWind.MedicX.Common.Entities;
 using DustInTheWind.MedicX.Persistence.Json;
 
-namespace DustInTheWind.MedicX.Flows
+namespace DustInTheWind.MedicX.Cli.Controllers
 {
-    internal class AddMedicFlow : IFlow
+    internal class AddMedicController : IController
     {
         private readonly UnitOfWork unitOfWork;
 
-        public AddMedicFlow(UnitOfWork unitOfWork)
+        public AddMedicController(UnitOfWork unitOfWork)
         {
             if (unitOfWork == null) throw new ArgumentNullException(nameof(unitOfWork));
             this.unitOfWork = unitOfWork;

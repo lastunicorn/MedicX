@@ -18,18 +18,18 @@ using System;
 using DustInTheWind.ConsoleTools;
 using DustInTheWind.MedicX.Persistence.Json;
 
-namespace DustInTheWind.MedicX
+namespace DustInTheWind.MedicX.Cli
 {
     internal class MedicXApplication
     {
-        private readonly FlowPool flowPool;
+        private readonly ControllerPool controllerPool;
         private readonly Prompter prompter;
 
         public MedicXApplication(UnitOfWork unitOfWork)
         {
             if (unitOfWork == null) throw new ArgumentNullException(nameof(unitOfWork));
 
-            flowPool = new FlowPool(unitOfWork, this);
+            controllerPool = new ControllerPool(unitOfWork, this);
             prompter = new Prompter();
         }
 
@@ -49,12 +49,12 @@ namespace DustInTheWind.MedicX
 
         private void HandleNewCommand(object sender, NewCommandEventArgs e)
         {
-            IFlow flow = flowPool.Get(e.Command);
+            IController controller = controllerPool.Get(e.Command);
 
-            if (flow == null)
+            if (controller == null)
                 CustomConsole.WriteLineError("Unknown command");
             else
-                flow.Run();
+                controller.Run();
 
             CustomConsole.WriteLine();
         }

@@ -17,17 +17,17 @@
 using System;
 using System.Linq;
 using DustInTheWind.ConsoleTools;
-using DustInTheWind.MedicX.Flows;
+using DustInTheWind.MedicX.Cli.Controllers;
 using DustInTheWind.MedicX.Persistence.Json;
 
-namespace DustInTheWind.MedicX
+namespace DustInTheWind.MedicX.Cli
 {
-    internal class FlowPool
+    internal class ControllerPool
     {
         private readonly UnitOfWork unitOfWork;
         private readonly MedicXApplication medicXApplication;
 
-        public FlowPool(UnitOfWork unitOfWork, MedicXApplication medicXApplication)
+        public ControllerPool(UnitOfWork unitOfWork, MedicXApplication medicXApplication)
         {
             if (unitOfWork == null) throw new ArgumentNullException(nameof(unitOfWork));
             if (medicXApplication == null) throw new ArgumentNullException(nameof(medicXApplication));
@@ -36,7 +36,7 @@ namespace DustInTheWind.MedicX
             this.medicXApplication = medicXApplication;
         }
 
-        public IFlow Get(UserCommand command)
+        public IController Get(UserCommand command)
         {
             switch (command.Name)
             {
@@ -45,14 +45,14 @@ namespace DustInTheWind.MedicX
                     if (command.Parameters.Count > 0)
                     {
                         if (command.Parameters.ElementAt(0).Name?.ToLower() == "add")
-                            return new AddMedicFlow(unitOfWork);
+                            return new AddMedicController(unitOfWork);
 
                         string searchText = command.Parameters.ElementAt(0).Name;
-                        return new DisplayMedicsFlow(unitOfWork, searchText);
+                        return new DisplayMedicsController(unitOfWork, searchText);
                     }
                     else
                     {
-                        return new DisplayMedicsFlow(unitOfWork);
+                        return new DisplayMedicsController(unitOfWork);
                     }
 
                 case "clinic":
@@ -60,11 +60,11 @@ namespace DustInTheWind.MedicX
                     if (command.Parameters.Count > 0)
                     {
                         string searchText = command.Parameters.ElementAt(0).Name;
-                        return new DisplayClinicsFlow(unitOfWork, searchText);
+                        return new DisplayClinicsController(unitOfWork, searchText);
                     }
                     else
                     {
-                        return new DisplayClinicsFlow(unitOfWork);
+                        return new DisplayClinicsController(unitOfWork);
                     }
 
                 case "consult":
@@ -74,22 +74,22 @@ namespace DustInTheWind.MedicX
                     if (command.Parameters.Count > 0)
                     {
                         string searchText = command.Parameters.ElementAt(0).Name;
-                        return new ConsultationsFlow(unitOfWork, searchText);
+                        return new ConsultationsController(unitOfWork, searchText);
                     }
                     else
                     {
-                        return new ConsultationsFlow(unitOfWork);
+                        return new ConsultationsController(unitOfWork);
                     }
 
                 case "save":
-                    return new SaveFlow(unitOfWork);
+                    return new SaveController(unitOfWork);
 
                 case "exit":
                 case "quit":
-                    return new ExitFlow(medicXApplication);
+                    return new ExitController(medicXApplication);
 
                 case "help":
-                    return new HelpFlow();
+                    return new HelpController();
 
                 default:
                     return null;
