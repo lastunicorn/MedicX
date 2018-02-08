@@ -63,7 +63,7 @@
       <SubType>Designer</SubType>
     </Page>
     <Compile Include="..\AssemblyInfo.Shared.cs">
-      <Link>AssemblyInfo.Shared.cs</Link>
+      <Link>Properties\AssemblyInfo.Shared.cs</Link>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
@@ -76,6 +76,8 @@
     <Compile Include="EventViewModel.cs" />
     <Compile Include="EventType.cs" />
     <Compile Include="MainViewModel.cs" />
+    <Compile Include="MainViewModel2.cs" />
+    <Compile Include="MainViewModelBase.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -100,6 +102,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="medicx.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -112,6 +117,10 @@
     <ProjectReference Include="..\MedicX.Common\MedicX.Common.csproj">
       <Project>{854c77f6-22f9-48a9-ae73-43e19ab9b258}</Project>
       <Name>MedicX.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MedicX.Persistence.Json\MedicX.Persistence.Json.csproj">
+      <Project>{9684B41D-C429-4B04-8CF0-0612785B398A}</Project>
+      <Name>MedicX.Persistence.Json</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
