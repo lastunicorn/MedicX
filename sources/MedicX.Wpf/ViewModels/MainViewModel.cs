@@ -21,9 +21,9 @@ using System.Reflection;
 using DustInTheWind.MedicX.Common.Entities;
 using DustInTheWind.MedicX.Persistence.Json;
 
-namespace DustInTheWind.MedicX.Wpf
+namespace DustInTheWind.MedicX.Wpf.ViewModels
 {
-    internal class MainViewModel : MainViewModelBase
+    internal class MainViewModel : ViewModelBase
     {
         private string title;
         private ObservableCollection<Medic> medics = new ObservableCollection<Medic>();

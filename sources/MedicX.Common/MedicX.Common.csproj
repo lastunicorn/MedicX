@@ -40,7 +40,7 @@
     <Compile Include="Entities\Address.cs" />
     <Compile Include="Entities\Clinic.cs" />
     <Compile Include="Entities\Consultation.cs" />
-    <Compile Include="Entities\Event.cs" />
+    <Compile Include="Entities\MedicalEvent.cs" />
     <Compile Include="Entities\InvestigationInstance.cs" />
     <Compile Include="Entities\InvestigationResult.cs" />
     <Compile Include="Entities\Investigation.cs" />

@@ -18,7 +18,7 @@ using System.Collections.Generic;
 
 namespace DustInTheWind.MedicX.Common.Entities
 {
-    public class InvestigationInstance : Event
+    public class InvestigationInstance : MedicalEvent
     {
         public Medic SentBy { get; set; }
         public List<InvestigationResult> Result { get; set; }

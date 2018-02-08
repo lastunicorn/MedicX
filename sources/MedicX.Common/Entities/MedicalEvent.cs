@@ -15,17 +15,15 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
+using System.Collections.Generic;
 
-namespace DustInTheWind.MedicX.Wpf
+namespace DustInTheWind.MedicX.Common.Entities
 {
-    public class EventViewModel
+    public class MedicalEvent
     {
         public DateTime Date { get; set; }
-
-        public EventType Type { get; set; }
-
-        public string Medic { get; set; }
-
-        public string Description { get; set; }
+        public Clinic Clinic { get; set; }
+        public List<string> Labels { get; set; }
+        public string Comments { get; set; }
     }
 }

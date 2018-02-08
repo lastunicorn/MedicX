@@ -1,4 +1,5 @@
-﻿// MedicX
+﻿
+// MedicX
 // Copyright (C) 2017-2018 Dust in the Wind
 // 
 // This program is free software: you can redistribute it and/or modify
@@ -14,20 +15,24 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using System.Windows;
+using DustInTheWind.MedicX.Common.Entities;
 
-namespace DustInTheWind.MedicX.Wpf
+namespace DustInTheWind.MedicX.Wpf.ViewModels
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    internal partial class MainWindow : Window
+    internal static class ConsultationExtensions
     {
-        public MainWindow()
+        public static EventViewModel ToViewModel(this Consultation consultation)
         {
-            InitializeComponent();
+            if (consultation == null)
+                return null;
 
-            DataContext = new MainViewModel();
+            return new EventViewModel
+            {
+                Date = consultation.Date,
+                Type = EventType.Consult,
+                Medic = consultation.Medic?.Name?.ToString(),
+                Description = consultation.Comments
+            };
         }
     }
 }

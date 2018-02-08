@@ -54,11 +54,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="EventItem.xaml">
+    <Compile Include="Commands\AddCommand.cs" />
+    <Compile Include="Commands\ClearCommand.cs" />
+    <Compile Include="ViewModels\ConsultationExtensions.cs" />
+    <Compile Include="ViewModels\EventExtensions.cs" />
+    <Compile Include="ViewModels\EventsViewModel.cs" />
+    <Compile Include="Commands\MoveCommand.cs" />
+    <Compile Include="Commands\RemoveCommand.cs" />
+    <Compile Include="Commands\ReplaceCommand.cs" />
+    <Compile Include="ViewModels\InvestigationInstanceExcensions.cs" />
+    <Compile Include="Views\Window2.xaml.cs">
+      <DependentUpon>Window2.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Views\EventItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MainWindow.xaml">
+    <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -70,18 +82,22 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DateTimeConverter.cs" />
-    <Compile Include="EventItem.xaml.cs">
+    <Compile Include="Views\EventItem.xaml.cs">
       <DependentUpon>EventItem.xaml</DependentUpon>
     </Compile>
-    <Compile Include="EventViewModel.cs" />
+    <Compile Include="ViewModels\EventViewModel.cs" />
     <Compile Include="EventType.cs" />
-    <Compile Include="MainViewModel.cs" />
-    <Compile Include="MainViewModel2.cs" />
-    <Compile Include="MainViewModelBase.cs" />
-    <Compile Include="MainWindow.xaml.cs">
+    <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\MainViewModel2.cs" />
+    <Compile Include="ViewModelBase.cs" />
+    <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\Window2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Project.cs" />

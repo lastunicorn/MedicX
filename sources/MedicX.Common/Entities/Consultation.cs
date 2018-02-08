@@ -18,7 +18,7 @@ using System.Collections.Generic;
 
 namespace DustInTheWind.MedicX.Common.Entities
 {
-    public class Consultation : Event
+    public class Consultation : MedicalEvent
     {
         public Medic Medic { get; set; }
         public List<Prescription> Prescriptions { get; set; }
