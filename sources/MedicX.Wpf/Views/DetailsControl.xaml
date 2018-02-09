@@ -22,10 +22,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-    xmlns:local="clr-namespace:DustInTheWind.MedicX.Wpf.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:viewModels="clr-namespace:DustInTheWind.MedicX.Wpf.ViewModels"
+    xmlns:entities="clr-namespace:DustInTheWind.MedicX.Common.Entities;assembly=DustInTheWind.MedicX.Common"
 
     mc:Ignorable="d" 
     d:DesignHeight="300"
@@ -33,10 +33,79 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     d:DataContext="{d:DesignInstance viewModels:DetailsViewModel}">
 
     <Grid>
+        
         <TextBlock
-            Text="{Binding Text}"
+            Text="Nothing"
             HorizontalAlignment="Center"
-            VerticalAlignment="Center"/>
+            VerticalAlignment="Center"
+            FontSize="25"/>
+
+        <ContentControl Content="{Binding Item}">
+
+            <ContentControl.Resources>
+
+                <DataTemplate DataType="{x:Type entities:Medic}">
+                    <StackPanel Margin="8">
+                        <TextBlock
+                            Text="{Binding Name}"
+                            Padding="5 6"
+                            Background="Bisque"
+                            FontSize="18"/>
+                    </StackPanel>
+                </DataTemplate>
+
+                <DataTemplate DataType="{x:Type entities:Clinic}">
+                    <StackPanel Margin="8">
+                        <TextBlock
+                            Text="{Binding Name}"
+                            Padding="5 6"
+                            Background="Bisque"
+                            FontSize="18"/>
+                    </StackPanel>
+                </DataTemplate>
+
+                <DataTemplate DataType="{x:Type entities:Consultation}">
+                    <StackPanel Margin="8">
+                        <Grid Background="Bisque">
+
+                            <StackPanel
+                                FlowDirection="LeftToRight"
+                                Orientation="Horizontal"
+                                Margin="8">
+
+                                <StackPanel.Resources>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="FontSize" Value="18"/>
+                                    </Style>
+                                </StackPanel.Resources>
+
+                                <TextBlock Text="{Binding Date, StringFormat={}{0:yyyy MM dd}}" />
+
+                                <TextBlock
+                                    Text="-"
+                                    Margin="8 0"/>
+
+                                <TextBlock Text="{Binding Medic.Name}" />
+                            </StackPanel>
+                        </Grid>
+
+                        <TextBlock Text="{Binding Comments}" />
+
+                        <ItemsControl ItemsSource="{Binding Prescriptions}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Description}"/>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+
+                    </StackPanel>
+                </DataTemplate>
+
+            </ContentControl.Resources>
+
+        </ContentControl>
+
     </Grid>
 
 </UserControl>

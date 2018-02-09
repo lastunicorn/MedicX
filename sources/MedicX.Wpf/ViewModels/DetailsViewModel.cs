@@ -22,14 +22,14 @@ namespace DustInTheWind.MedicX.Wpf.ViewModels
     internal class DetailsViewModel : ViewModelBase
     {
         private readonly ApplicationState applicationState;
-        private string text;
-
-        public string Text
+        private object item;
+        
+        public object Item
         {
-            get => text;
+            get => item;
             set
             {
-                text = value;
+                item = value;
                 OnPropertyChanged();
             }
         }
@@ -37,31 +37,13 @@ namespace DustInTheWind.MedicX.Wpf.ViewModels
         public DetailsViewModel(ApplicationState applicationState)
         {
             this.applicationState = applicationState ?? throw new ArgumentNullException(nameof(applicationState));
-
-            Text = "<empty>";
+            
             applicationState.CurrentItemChanged += HandleCurrentItemChanged;
         }
 
         private void HandleCurrentItemChanged(object sender, EventArgs e)
         {
-            switch (applicationState.CurrentItem)
-            {
-                case Medic medic:
-                    Text = medic.Name;
-                    break;
-
-                case Clinic clinic:
-                    Text = clinic.Name;
-                    break;
-
-                case Consultation consultation:
-                    Text = string.Format("{0}{1}", consultation.Date, consultation.Medic.Name);
-                    break;
-
-                default:
-                    Text = "<empty>";
-                    break;
-            }
+            Item = applicationState.CurrentItem;
         }
     }
 }
