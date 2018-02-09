@@ -24,104 +24,33 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:local="clr-namespace:DustInTheWind.MedicX.Wpf"
-    
+    xmlns:viewModels="clr-namespace:DustInTheWind.MedicX.Wpf.ViewModels"
+    xmlns:views="clr-namespace:DustInTheWind.MedicX.Wpf.Views"
+
     mc:Ignorable="d"
     Title="{Binding Title}"
-    Height="350"
-    Width="525"
+    Height="540"
+    Width="960"
     ResizeMode="CanResizeWithGrip"
-    d:DataContext="{d:DesignInstance local:MainViewModel}"
+    d:DataContext="{d:DesignInstance viewModels:MainViewModel}"
     Background="LightGray">
 
-    <ScrollViewer>
-        <Grid>
+    <Grid>
 
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="4*" />
+            <ColumnDefinition Width="5" />
+            <ColumnDefinition Width="8*" />
+        </Grid.ColumnDefinitions>
 
-            <TextBlock
-                Grid.Row="0"
-                Text="Medics"
-                Padding="10"
-                Background="LightGray"/>
+        <views:SelectionControl Grid.Column="0"/>
 
-            <ListView
-                Grid.Row="1"
-                ItemsSource="{Binding Medics}">
+        <GridSplitter
+            Grid.Column="1"
+            Width="5"
+            HorizontalAlignment="Stretch" />
 
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel>
-                            <TextBlock
-                                Text="{Binding Name}"
-                                Padding="5 6"/>
-                        </StackPanel>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
+        <views:DetailsControl Grid.Column="2" />
 
-            </ListView>
-
-            <TextBlock
-                Grid.Row="2"
-                Text="Clinics"
-                Padding="10"
-                Background="LightGray"/>
-
-            <ListView
-                Grid.Row="3"
-                ItemsSource="{Binding Clinics}">
-
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel>
-                            <TextBlock
-                                Text="{Binding Name}"
-                                Padding="5 6"/>
-                        </StackPanel>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-
-            </ListView>
-
-            <TextBlock
-                Grid.Row="4"
-                Text="Consultations"
-                Padding="10"
-                Background="LightGray"/>
-
-            <ListView
-                Grid.Row="5"
-                ItemsSource="{Binding Consultations}">
-
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel>
-                            <StackPanel Margin="5 6">
-                                <TextBlock Text="{Binding Date}" />
-                                <TextBlock Text="{Binding Medic}" />
-                                <TextBlock Text="{Binding Comments}" />
-                                <ItemsControl ItemsSource="{Binding Prescriptions}">
-                                    <ItemsControl.ItemTemplate>
-                                        <DataTemplate>
-                                            <TextBlock Text="{Binding Description}"/>
-                                        </DataTemplate>
-                                    </ItemsControl.ItemTemplate>
-                                </ItemsControl>
-                            </StackPanel>
-                        </StackPanel>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-
-            </ListView>
-
-        </Grid>
-    </ScrollViewer>
-
+    </Grid>
 </Window>
