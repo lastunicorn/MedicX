@@ -22,7 +22,7 @@ namespace DustInTheWind.MedicX.Wpf.Views
     /// <summary>
     /// Interaction logic for Window2.xaml
     /// </summary>
-    public partial class Window2 : Window
+    internal partial class Window2 : Window
     {
         public Window2()
         {

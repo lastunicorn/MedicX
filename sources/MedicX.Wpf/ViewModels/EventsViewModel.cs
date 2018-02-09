@@ -20,6 +20,7 @@ using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
 using DustInTheWind.MedicX.Common.Entities;
+using DustInTheWind.MedicX.Wpf.Translators;
 
 namespace DustInTheWind.MedicX.Wpf.ViewModels
 {

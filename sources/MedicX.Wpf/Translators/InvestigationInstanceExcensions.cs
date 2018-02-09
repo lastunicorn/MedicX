@@ -1,5 +1,4 @@
-﻿
-// MedicX
+﻿// MedicX
 // Copyright (C) 2017-2018 Dust in the Wind
 // 
 // This program is free software: you can redistribute it and/or modify
@@ -16,22 +15,23 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using DustInTheWind.MedicX.Common.Entities;
+using DustInTheWind.MedicX.Wpf.ViewModels;
 
-namespace DustInTheWind.MedicX.Wpf.ViewModels
+namespace DustInTheWind.MedicX.Wpf.Translators
 {
-    internal static class ConsultationExtensions
+    internal static class InvestigationInstanceExcensions
     {
-        public static EventViewModel ToViewModel(this Consultation consultation)
+        public static EventViewModel ToViewModel(this InvestigationInstance investigationInstance)
         {
-            if (consultation == null)
+            if (investigationInstance == null)
                 return null;
 
             return new EventViewModel
             {
-                Date = consultation.Date,
-                Type = EventType.Consult,
-                Medic = consultation.Medic?.Name?.ToString(),
-                Description = consultation.Comments
+                Date = investigationInstance.Date,
+                Type = EventType.Investigation,
+                Medic = investigationInstance.SentBy?.Name?.ToString(),
+                Description = investigationInstance.Comments
             };
         }
     }

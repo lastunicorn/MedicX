@@ -15,10 +15,8 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using DustInTheWind.MedicX.Common.Entities;
-using DustInTheWind.MedicX.Persistence.Json;
 
 namespace DustInTheWind.MedicX.Wpf.ViewModels
 {
@@ -28,6 +26,9 @@ namespace DustInTheWind.MedicX.Wpf.ViewModels
         private ObservableCollection<Medic> medics;
         private ObservableCollection<Clinic> clinics;
         private ObservableCollection<Consultation> consultations;
+        private Medic selectedMedic;
+        private Clinic selectedClinic;
+        private Consultation selectedConsultation;
 
         public ObservableCollection<Medic> Medics
         {
@@ -36,6 +37,21 @@ namespace DustInTheWind.MedicX.Wpf.ViewModels
             {
                 medics = value;
                 OnPropertyChanged();
+            }
+        }
+
+        public Medic SelectedMedic
+        {
+            get => selectedMedic;
+            set
+            {
+                if (selectedMedic == value)
+                    return;
+
+                selectedMedic = value;
+                OnPropertyChanged();
+
+                applicationState.CurrentItem = selectedMedic;
             }
         }
 
@@ -49,6 +65,21 @@ namespace DustInTheWind.MedicX.Wpf.ViewModels
             }
         }
 
+        public Clinic SelectedClinic
+        {
+            get => selectedClinic;
+            set
+            {
+                if (selectedClinic == value)
+                    return;
+
+                selectedClinic = value;
+                OnPropertyChanged();
+
+                applicationState.CurrentItem = selectedClinic;
+            }
+        }
+
         public ObservableCollection<Consultation> Consultations
         {
             get { return consultations; }
@@ -56,6 +87,21 @@ namespace DustInTheWind.MedicX.Wpf.ViewModels
             {
                 consultations = value;
                 OnPropertyChanged();
+            }
+        }
+
+        public Consultation SelectedConsultation
+        {
+            get => selectedConsultation;
+            set
+            {
+                if (selectedConsultation == value)
+                    return;
+
+                selectedConsultation = value;
+                OnPropertyChanged();
+
+                applicationState.CurrentItem = selectedConsultation;
             }
         }
 

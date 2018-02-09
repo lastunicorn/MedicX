@@ -18,7 +18,7 @@ using System;
 
 namespace DustInTheWind.MedicX.Wpf.ViewModels
 {
-    public class EventViewModel
+    internal class EventViewModel
     {
         public DateTime Date { get; set; }
 

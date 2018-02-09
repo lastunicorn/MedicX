@@ -52,7 +52,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             HorizontalAlignment="Stretch" />
 
         <views:DetailsControl
-            Grid.Column="2" />
+            Grid.Column="2"
+            DataContext="{Binding DetailsViewModel}"/>
 
     </Grid>
 </Window>

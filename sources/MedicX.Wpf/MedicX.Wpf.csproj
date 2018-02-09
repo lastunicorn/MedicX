@@ -57,13 +57,14 @@
     <Compile Include="ApplicationState.cs" />
     <Compile Include="Commands\AddCommand.cs" />
     <Compile Include="Commands\ClearCommand.cs" />
-    <Compile Include="ViewModels\ConsultationExtensions.cs" />
-    <Compile Include="ViewModels\EventExtensions.cs" />
+    <Compile Include="Translators\ConsultationExtensions.cs" />
+    <Compile Include="ViewModels\DetailsViewModel.cs" />
+    <Compile Include="Translators\EventExtensions.cs" />
     <Compile Include="ViewModels\EventsViewModel.cs" />
     <Compile Include="Commands\MoveCommand.cs" />
     <Compile Include="Commands\RemoveCommand.cs" />
     <Compile Include="Commands\ReplaceCommand.cs" />
-    <Compile Include="ViewModels\InvestigationInstanceExcensions.cs" />
+    <Compile Include="Translators\InvestigationInstanceExcensions.cs" />
     <Compile Include="ViewModels\SelectionViewModel.cs" />
     <Compile Include="Views\DetailsControl.xaml.cs">
       <DependentUpon>DetailsControl.xaml</DependentUpon>

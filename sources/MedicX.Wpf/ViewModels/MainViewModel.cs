@@ -35,12 +35,16 @@ namespace DustInTheWind.MedicX.Wpf.ViewModels
 
         public SelectionViewModel SelectionViewModel { get; }
 
+        public DetailsViewModel DetailsViewModel { get; }
+
         public MainViewModel()
         {
             UpdateWindowTitle();
 
             ApplicationState applicationState = new ApplicationState();
+
             SelectionViewModel = new SelectionViewModel(applicationState);
+            DetailsViewModel = new DetailsViewModel(applicationState);
         }
 
         private void UpdateWindowTitle()

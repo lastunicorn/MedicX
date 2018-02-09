@@ -15,8 +15,9 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using DustInTheWind.MedicX.Common.Entities;
+using DustInTheWind.MedicX.Wpf.ViewModels;
 
-namespace DustInTheWind.MedicX.Wpf.ViewModels
+namespace DustInTheWind.MedicX.Wpf.Translators
 {
     internal static class EventExtensions
     {
