@@ -31,9 +31,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     d:DesignWidth="300"
     d:DataContext="{d:DesignInstance viewModels:SelectionViewModel}">
 
-    <TabControl>
+    <TabControl
+        SelectionChanged="Selector_OnSelectionChanged">
 
-        <TabItem Header="Medics">
+        <TabItem Tag="Medics" Header="Medics">
             <ListView
                 ItemsSource="{Binding Medics}"
                 SelectedItem="{Binding SelectedMedic}">
@@ -51,7 +52,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             </ListView>
         </TabItem>
 
-        <TabItem Header="Clinics">
+        <TabItem Tag="Clinics" Header="Clinics">
             <ListView
                 ItemsSource="{Binding Clinics}"
                 SelectedItem="{Binding SelectedClinic}">
@@ -69,7 +70,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             </ListView>
         </TabItem>
 
-        <TabItem Header="Consultations">
+        <TabItem Tag="Consultations" Header="Consultations">
             <ListView
                 ItemsSource="{Binding Consultations}"
                 SelectedItem="{Binding SelectedConsultation}">
@@ -87,93 +88,5 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         </TabItem>
 
     </TabControl>
-
-    <!--<Grid>
-
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-
-        <TextBlock
-                Grid.Row="0"
-                Text="Medics"
-                Padding="10"
-                Background="LightGray"/>
-
-        <ListView
-                Grid.Row="1"
-                ItemsSource="{Binding Medics}">
-
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel>
-                        <TextBlock
-                                Text="{Binding Name}"
-                                Padding="5 6"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-
-        </ListView>
-
-        <TextBlock
-                Grid.Row="2"
-                Text="Clinics"
-                Padding="10"
-                Background="LightGray"/>
-
-        <ListView
-                Grid.Row="3"
-                ItemsSource="{Binding Clinics}">
-
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel>
-                        <TextBlock
-                                Text="{Binding Name}"
-                                Padding="5 6"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-
-        </ListView>
-
-        <TextBlock
-                Grid.Row="4"
-                Text="Consultations"
-                Padding="10"
-                Background="LightGray"/>
-
-        <ListView
-                Grid.Row="5"
-                ItemsSource="{Binding Consultations}">
-
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel>
-                        <StackPanel Margin="5 6">
-                            <TextBlock Text="{Binding Date}" />
-                            <TextBlock Text="{Binding Medic}" />
-                            <TextBlock Text="{Binding Comments}" />
-                            <ItemsControl ItemsSource="{Binding Prescriptions}">
-                                <ItemsControl.ItemTemplate>
-                                    <DataTemplate>
-                                        <TextBlock Text="{Binding Description}"/>
-                                    </DataTemplate>
-                                </ItemsControl.ItemTemplate>
-                            </ItemsControl>
-                        </StackPanel>
-                    </StackPanel>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-
-        </ListView>
-
-    </Grid>-->
 
 </UserControl>

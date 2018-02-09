@@ -15,6 +15,7 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System.Windows.Controls;
+using DustInTheWind.MedicX.Wpf.ViewModels;
 
 namespace DustInTheWind.MedicX.Wpf.Views
 {
@@ -26,6 +27,40 @@ namespace DustInTheWind.MedicX.Wpf.Views
         public SelectionControl()
         {
             InitializeComponent();
+        }
+
+        private void Selector_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            TabControl tabControl = sender as TabControl;
+            if (tabControl == null) return;
+
+            TabItem selectedTabItem = tabControl.SelectedItem as TabItem;
+            if (selectedTabItem == null) return;
+
+            string tag = selectedTabItem.Tag as string;
+            if (tag == null) return;
+
+            SelectionViewModel viewModel = DataContext as SelectionViewModel;
+            if (viewModel == null) return;
+
+            switch (tag)
+            {
+                case "Medics":
+                    viewModel.SelectedTab = Tab.Medics;
+                    break;
+
+                case "Clinics":
+                    viewModel.SelectedTab = Tab.Clinics;
+                    break;
+
+                case "Consultations":
+                    viewModel.SelectedTab = Tab.Consultations;
+                    break;
+
+                default:
+                    viewModel.SelectedTab = Tab.None;
+                    break;
+            }
         }
     }
 }

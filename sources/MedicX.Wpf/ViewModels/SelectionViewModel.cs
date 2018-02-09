@@ -17,6 +17,7 @@
 using System;
 using System.Collections.ObjectModel;
 using DustInTheWind.MedicX.Common.Entities;
+using DustInTheWind.MedicX.Wpf.Views;
 
 namespace DustInTheWind.MedicX.Wpf.ViewModels
 {
@@ -29,6 +30,7 @@ namespace DustInTheWind.MedicX.Wpf.ViewModels
         private Medic selectedMedic;
         private Clinic selectedClinic;
         private Consultation selectedConsultation;
+        private Tab selectedTab;
 
         public ObservableCollection<Medic> Medics
         {
@@ -102,6 +104,34 @@ namespace DustInTheWind.MedicX.Wpf.ViewModels
                 OnPropertyChanged();
 
                 applicationState.CurrentItem = selectedConsultation;
+            }
+        }
+
+        public Tab SelectedTab
+        {
+            get => selectedTab;
+            set
+            {
+                selectedTab = value;
+
+                switch (selectedTab)
+                {
+                    case Tab.Medics:
+                        applicationState.CurrentItem = selectedMedic;
+                        break;
+
+                    case Tab.Clinics:
+                        applicationState.CurrentItem = selectedClinic;
+                        break;
+
+                    case Tab.Consultations:
+                        applicationState.CurrentItem = selectedConsultation;
+                        break;
+
+                    default:
+                        applicationState.CurrentItem = null;
+                        break;
+                }
             }
         }
 
