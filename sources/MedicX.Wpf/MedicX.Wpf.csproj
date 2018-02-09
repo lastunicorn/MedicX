@@ -54,6 +54,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ApplicationState.cs" />
     <Compile Include="Commands\AddCommand.cs" />
     <Compile Include="Commands\ClearCommand.cs" />
     <Compile Include="ViewModels\ConsultationExtensions.cs" />
@@ -63,6 +64,7 @@
     <Compile Include="Commands\RemoveCommand.cs" />
     <Compile Include="Commands\ReplaceCommand.cs" />
     <Compile Include="ViewModels\InvestigationInstanceExcensions.cs" />
+    <Compile Include="ViewModels\SelectionViewModel.cs" />
     <Compile Include="Views\DetailsControl.xaml.cs">
       <DependentUpon>DetailsControl.xaml</DependentUpon>
     </Compile>

@@ -39,18 +39,20 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="4*" />
-            <ColumnDefinition Width="5" />
+            <ColumnDefinition Width="8" />
             <ColumnDefinition Width="8*" />
         </Grid.ColumnDefinitions>
 
-        <views:SelectionControl Grid.Column="0"/>
+        <views:SelectionControl
+            Grid.Column="0"
+            DataContext="{Binding SelectionViewModel}"/>
 
         <GridSplitter
             Grid.Column="1"
-            Width="5"
             HorizontalAlignment="Stretch" />
 
-        <views:DetailsControl Grid.Column="2" />
+        <views:DetailsControl
+            Grid.Column="2" />
 
     </Grid>
 </Window>
