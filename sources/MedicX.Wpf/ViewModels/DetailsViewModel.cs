@@ -15,7 +15,6 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using DustInTheWind.MedicX.Common.Entities;
 
 namespace DustInTheWind.MedicX.Wpf.ViewModels
 {
@@ -23,7 +22,9 @@ namespace DustInTheWind.MedicX.Wpf.ViewModels
     {
         private readonly ApplicationState applicationState;
         private object item;
-        
+        private bool isNoItemPanelVisible;
+
+
         public object Item
         {
             get => item;
@@ -31,13 +32,26 @@ namespace DustInTheWind.MedicX.Wpf.ViewModels
             {
                 item = value;
                 OnPropertyChanged();
+
+                IsNoItemPanelVisible = item == null;
+            }
+        }
+
+        public bool IsNoItemPanelVisible
+        {
+            get => isNoItemPanelVisible;
+            set
+            {
+                isNoItemPanelVisible = value;
+                OnPropertyChanged();
             }
         }
 
         public DetailsViewModel(ApplicationState applicationState)
         {
             this.applicationState = applicationState ?? throw new ArgumentNullException(nameof(applicationState));
-            
+
+            isNoItemPanelVisible = true;
             applicationState.CurrentItemChanged += HandleCurrentItemChanged;
         }
 

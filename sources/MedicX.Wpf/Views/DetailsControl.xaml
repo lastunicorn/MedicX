@@ -32,13 +32,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     d:DesignWidth="300"
     d:DataContext="{d:DesignInstance viewModels:DetailsViewModel}">
 
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
+
     <Grid>
-        
+
         <TextBlock
             Text="Nothing"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
-            FontSize="25"/>
+            FontSize="25"
+            Visibility="{Binding IsNoItemPanelVisible, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
         <ContentControl Content="{Binding Item}">
 
@@ -46,21 +51,171 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
                 <DataTemplate DataType="{x:Type entities:Medic}">
                     <StackPanel Margin="8">
+
                         <TextBlock
                             Text="{Binding Name}"
                             Padding="5 6"
                             Background="Bisque"
                             FontSize="18"/>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+
+                            <TextBlock
+                                Grid.Column="0"
+                                Grid.Row="0"
+                                Text="First Name:"/>
+
+                            <TextBlock
+                                Grid.Column="1"
+                                Grid.Row="0"
+                                Text="{Binding Name.FirstName}"/>
+
+                            <TextBlock
+                                Grid.Column="0"
+                                Grid.Row="1"
+                                Text="Middle Name:"/>
+
+                            <TextBlock
+                                Grid.Column="1"
+                                Grid.Row="1"
+                                Text="{Binding Name.MiddleName}"/>
+
+                            <TextBlock
+                                Grid.Column="0"
+                                Grid.Row="2"
+                                Text="Last Name:"/>
+
+                            <TextBlock
+                                Grid.Column="1"
+                                Grid.Row="2"
+                                Text="{Binding Name.LastName}"/>
+
+                            <TextBlock
+                                Grid.Column="0"
+                                Grid.Row="3"
+                                Text="Prescriptions:" />
+
+                            <ItemsControl
+                                Grid.Column="1"
+                                Grid.Row="3"
+                                ItemsSource="{Binding Specializations}">
+
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding}"/>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+
+                            </ItemsControl>
+
+                            <TextBlock
+                                Grid.Column="0"
+                                Grid.Row="4"
+                                Text="Comments:" />
+
+                            <TextBlock
+                                Grid.Column="1"
+                                Grid.Row="4"
+                                Text="{Binding Comments}" />
+                        </Grid>
+
                     </StackPanel>
                 </DataTemplate>
 
                 <DataTemplate DataType="{x:Type entities:Clinic}">
                     <StackPanel Margin="8">
+
                         <TextBlock
                             Text="{Binding Name}"
                             Padding="5 6"
                             Background="Bisque"
                             FontSize="18"/>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+
+                            <TextBlock
+                                Grid.Column="0"
+                                Grid.Row="0"
+                                Text="Name:"/>
+
+                            <TextBlock
+                                Grid.Column="1"
+                                Grid.Row="0"
+                                Text="{Binding Name}"/>
+
+                            <TextBlock
+                                Grid.Column="0"
+                                Grid.Row="1"
+                                Text="Address:"/>
+
+                            <TextBlock
+                                Grid.Column="1"
+                                Grid.Row="1"
+                                Text="{Binding Address}"/>
+
+                            <TextBlock
+                                Grid.Column="0"
+                                Grid.Row="2"
+                                Text="Phones:" />
+
+                            <ItemsControl
+                                Grid.Column="1"
+                                Grid.Row="2"
+                                ItemsSource="{Binding Phones}">
+
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding}"/>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+
+                            </ItemsControl>
+
+                            <TextBlock
+                                Grid.Column="0"
+                                Grid.Row="3"
+                                Text="Program:"/>
+
+                            <TextBlock
+                                Grid.Column="1"
+                                Grid.Row="3"
+                                Text="{Binding Program}"/>
+
+                            <TextBlock
+                                Grid.Column="0"
+                                Grid.Row="4"
+                                Text="Comments:" />
+
+                            <TextBlock
+                                Grid.Column="1"
+                                Grid.Row="4"
+                                Text="{Binding Comments}" />
+                        </Grid>
+
                     </StackPanel>
                 </DataTemplate>
 
@@ -71,7 +226,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                             <StackPanel
                                 FlowDirection="LeftToRight"
                                 Orientation="Horizontal"
-                                Margin="8">
+                                Margin="5 6">
 
                                 <StackPanel.Resources>
                                     <Style TargetType="TextBlock">
@@ -89,15 +244,56 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                             </StackPanel>
                         </Grid>
 
-                        <TextBlock Text="{Binding Comments}" />
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
 
-                        <ItemsControl ItemsSource="{Binding Prescriptions}">
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding Description}"/>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+
+                            <TextBlock
+                                Grid.Column="0"
+                                Grid.Row="0"
+                                Text="Medic:"/>
+
+                            <TextBlock
+                                Grid.Column="1"
+                                Grid.Row="0"
+                                Text="{Binding Medic.Name}"/>
+
+                            <TextBlock
+                                Grid.Column="0"
+                                Grid.Row="1"
+                                Text="Comments:" />
+
+                            <TextBlock
+                                Grid.Column="1"
+                                Grid.Row="1"
+                                Text="{Binding Comments}" />
+
+                            <TextBlock
+                                Grid.Column="0"
+                                Grid.Row="2"
+                                Text="Prescriptions:" />
+
+                            <ItemsControl
+                                Grid.Column="1"
+                                Grid.Row="2"
+                                ItemsSource="{Binding Prescriptions}">
+
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Description}"/>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+
+                            </ItemsControl>
+                        </Grid>
 
                     </StackPanel>
                 </DataTemplate>
