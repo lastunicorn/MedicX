@@ -66,6 +66,9 @@
     <Compile Include="Commands\ReplaceCommand.cs" />
     <Compile Include="Translators\InvestigationInstanceExcensions.cs" />
     <Compile Include="ViewModels\SelectionViewModel.cs" />
+    <Compile Include="Views\AddressView.xaml.cs">
+      <DependentUpon>AddressView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ClinicView.xaml.cs">
       <DependentUpon>ClinicView.xaml</DependentUpon>
     </Compile>
@@ -78,13 +81,24 @@
     <Compile Include="Views\MedicView.xaml.cs">
       <DependentUpon>MedicView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\StringListView.xaml.cs">
+      <DependentUpon>StringListView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SelectionControl.xaml.cs">
       <DependentUpon>SelectionControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\StringListViewModel.cs" />
     <Compile Include="Views\Tab.cs" />
+    <Compile Include="Views\StringListBox.xaml.cs">
+      <DependentUpon>StringListBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Window2.xaml.cs">
       <DependentUpon>Window2.xaml</DependentUpon>
     </Compile>
+    <Page Include="Views\AddressView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ClinicView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -129,7 +143,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\StringListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\SelectionControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\StringListBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

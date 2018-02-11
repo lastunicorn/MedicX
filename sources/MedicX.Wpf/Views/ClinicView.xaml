@@ -24,11 +24,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:entities="clr-namespace:DustInTheWind.MedicX.Common.Entities;assembly=DustInTheWind.MedicX.Common"
+    xmlns:views="clr-namespace:DustInTheWind.MedicX.Wpf.Views"
 
     mc:Ignorable="d" 
     d:DesignHeight="300"
     d:DesignWidth="300"
     d:DataContext="{d:DesignInstance entities:Clinic}">
+
+    <UserControl.Resources>
+        <views:StringListViewModelConverter x:Key="StringListViewModelConverter"/>
+    </UserControl.Resources>
 
     <StackPanel Margin="8">
 
@@ -60,7 +65,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 Margin="0 4 10 4"
                 FontWeight="Bold"/>
 
-            <TextBlock
+            <TextBox
                 Grid.Column="1"
                 Grid.Row="0"
                 Text="{Binding Name}"
@@ -73,10 +78,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 Margin="0 4 10 4"
                 FontWeight="Bold"/>
 
-            <TextBlock
+            <views:AddressView
                 Grid.Column="1"
                 Grid.Row="1"
-                Text="{Binding Address}"
+                DataContext="{Binding Address}"
                 Margin="0 4"/>
 
             <TextBlock
@@ -86,19 +91,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 Margin="0 4 10 4"
                 FontWeight="Bold"/>
 
-            <ItemsControl
+            <views:StringListView
                 Grid.Column="1"
                 Grid.Row="2"
-                ItemsSource="{Binding Phones}"
-                Margin="0 4">
+                DataContext="{Binding Phones, Converter={StaticResource StringListViewModelConverter}}"/>
 
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding}"/>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-
-            </ItemsControl>
+            <!--<views:UserControl1
+                Grid.Column="1"
+                Grid.Row="2"
+                ItemsSource="{Binding Phones}"  />-->
 
             <TextBlock
                 Grid.Column="0"
@@ -107,7 +108,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 Margin="0 4 10 4"
                 FontWeight="Bold"/>
 
-            <TextBlock
+            <TextBox
                 Grid.Column="1"
                 Grid.Row="3"
                 Text="{Binding Program}"
@@ -120,11 +121,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 Margin="0 4 10 4"
                 FontWeight="Bold"/>
 
-            <TextBlock
+            <TextBox
                 Grid.Column="1"
                 Grid.Row="4"
                 Text="{Binding Comments}"
-                Margin="0 4"/>
+                Margin="0 4"
+                Height="100"
+                AcceptsReturn="True"/>
         </Grid>
 
     </StackPanel>
