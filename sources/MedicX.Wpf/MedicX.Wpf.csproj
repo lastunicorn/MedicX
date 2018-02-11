@@ -66,8 +66,17 @@
     <Compile Include="Commands\ReplaceCommand.cs" />
     <Compile Include="Translators\InvestigationInstanceExcensions.cs" />
     <Compile Include="ViewModels\SelectionViewModel.cs" />
+    <Compile Include="Views\ClinicView.xaml.cs">
+      <DependentUpon>ClinicView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ConsultationView.xaml.cs">
+      <DependentUpon>ConsultationView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\DetailsControl.xaml.cs">
       <DependentUpon>DetailsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MedicView.xaml.cs">
+      <DependentUpon>MedicView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SelectionControl.xaml.cs">
       <DependentUpon>SelectionControl.xaml</DependentUpon>
@@ -76,6 +85,14 @@
     <Compile Include="Views\Window2.xaml.cs">
       <DependentUpon>Window2.xaml</DependentUpon>
     </Compile>
+    <Page Include="Views\ClinicView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ConsultationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\DetailsControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -108,6 +125,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\MedicView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\SelectionControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
