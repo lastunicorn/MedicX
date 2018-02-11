@@ -87,8 +87,8 @@
     <Compile Include="Views\SelectionControl.xaml.cs">
       <DependentUpon>SelectionControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\StringListViewModel.cs" />
-    <Compile Include="Views\Tab.cs" />
+    <Compile Include="ViewModels\StringListViewModel.cs" />
+    <Compile Include="ViewModels\Tab.cs" />
     <Compile Include="Views\StringListBox.xaml.cs">
       <DependentUpon>StringListBox.xaml</DependentUpon>
     </Compile>

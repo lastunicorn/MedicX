@@ -24,11 +24,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:entities="clr-namespace:DustInTheWind.MedicX.Common.Entities;assembly=DustInTheWind.MedicX.Common"
-    
+    xmlns:views="clr-namespace:DustInTheWind.MedicX.Wpf.Views"
+    xmlns:viewModels="clr-namespace:DustInTheWind.MedicX.Wpf.ViewModels"
+
     mc:Ignorable="d" 
     d:DesignHeight="300"
     d:DesignWidth="300"
     d:DataContext="{d:DesignInstance entities:Medic}">
+
+    <UserControl.Resources>
+        <viewModels:StringListViewModelConverter x:Key="StringListViewModelConverter"/>
+    </UserControl.Resources>
 
     <StackPanel Margin="8">
 
@@ -60,7 +66,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 Margin="0 4 10 4"
                 FontWeight="Bold"/>
 
-            <TextBlock
+            <TextBox
                 Grid.Column="1"
                 Grid.Row="0"
                 Text="{Binding Name.FirstName}"
@@ -73,7 +79,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 Margin="0 4 10 4"
                 FontWeight="Bold"/>
 
-            <TextBlock
+            <TextBox
                 Grid.Column="1"
                 Grid.Row="1"
                 Text="{Binding Name.MiddleName}"
@@ -86,7 +92,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 Margin="0 4 10 4"
                 FontWeight="Bold"/>
 
-            <TextBlock
+            <TextBox
                 Grid.Column="1"
                 Grid.Row="2"
                 Text="{Binding Name.LastName}"
@@ -99,19 +105,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 Margin="0 4 10 4"
                 FontWeight="Bold"/>
 
-            <ItemsControl
+            <views:StringListView
                 Grid.Column="1"
                 Grid.Row="3"
-                ItemsSource="{Binding Specializations}"
-                Margin="0 4">
-
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding}"/>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-
-            </ItemsControl>
+                DataContext="{Binding Specializations, Converter={StaticResource StringListViewModelConverter}}"/>
 
             <TextBlock
                 Grid.Column="0"
@@ -120,7 +117,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 Margin="0 4 10 4"
                 FontWeight="Bold"/>
 
-            <TextBlock
+            <TextBox
                 Grid.Column="1"
                 Grid.Row="4"
                 Text="{Binding Comments}"

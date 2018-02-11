@@ -25,6 +25,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:entities="clr-namespace:DustInTheWind.MedicX.Common.Entities;assembly=DustInTheWind.MedicX.Common"
     xmlns:views="clr-namespace:DustInTheWind.MedicX.Wpf.Views"
+    xmlns:viewModels="clr-namespace:DustInTheWind.MedicX.Wpf.ViewModels"
 
     mc:Ignorable="d" 
     d:DesignHeight="300"
@@ -32,7 +33,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     d:DataContext="{d:DesignInstance entities:Clinic}">
 
     <UserControl.Resources>
-        <views:StringListViewModelConverter x:Key="StringListViewModelConverter"/>
+        <viewModels:StringListViewModelConverter x:Key="StringListViewModelConverter"/>
     </UserControl.Resources>
 
     <StackPanel Margin="8">
