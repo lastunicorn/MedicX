@@ -87,11 +87,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 Margin="0 4 10 4"
                 FontWeight="Bold"/>
 
-            <TextBlock
+            <TextBox
                 Grid.Column="1"
                 Grid.Row="1"
                 Text="{Binding Comments}"
-                Margin="0 4"/>
+                Margin="0 4"
+                Height="100"
+                AcceptsReturn="True"/>
 
             <TextBlock
                 Grid.Column="0"
@@ -113,6 +115,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 </ItemsControl.ItemTemplate>
 
             </ItemsControl>
+
         </Grid>
 
     </StackPanel>

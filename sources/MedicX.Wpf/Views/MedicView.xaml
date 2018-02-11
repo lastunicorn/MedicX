@@ -121,7 +121,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 Grid.Column="1"
                 Grid.Row="4"
                 Text="{Binding Comments}"
-                Margin="0 4"/>
+                Margin="0 4"
+                Height="100"
+                AcceptsReturn="True"/>
         </Grid>
 
     </StackPanel>
