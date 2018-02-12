@@ -14,25 +14,29 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using DustInTheWind.MedicX.Common.Entities;
-using DustInTheWind.MedicX.Wpf.ViewModels;
+using System.Collections.Generic;
+using Newtonsoft.Json;
 
-namespace DustInTheWind.MedicX.Wpf.Translators
+namespace DustInTheWind.MedicX.Persistence.Json.Entities
 {
-    internal static class InvestigationInstanceExcensions
+    internal class InvestigationDescription
     {
-        public static EventViewModel ToViewModel(this Investigation investigation)
-        {
-            if (investigation == null)
-                return null;
+        [JsonProperty("id")]
+        public int Id { get; set; }
 
-            return new EventViewModel
-            {
-                Date = investigation.Date,
-                Type = EventType.Investigation,
-                Medic = investigation.SentBy?.Name?.ToString(),
-                Description = investigation.Comments
-            };
-        }
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("substance")]
+        public string Substance { get; set; }
+
+        [JsonProperty("method")]
+        public string Method { get; set; }
+
+        [JsonProperty("comments")]
+        public string Comments { get; set; }
+
+        [JsonProperty("items")]
+        public List<InvestigationItem> Items { get; set; }
     }
 }

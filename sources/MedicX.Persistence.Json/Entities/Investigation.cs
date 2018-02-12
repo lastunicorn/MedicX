@@ -19,24 +19,12 @@ using Newtonsoft.Json;
 
 namespace DustInTheWind.MedicX.Persistence.Json.Entities
 {
-    internal class Investigation
+    internal class Investigation : Event
     {
-        [JsonProperty("id")]
-        public int Id { get; set; }
+        [JsonProperty("sentBy", Order = 2)]
+        public int SentById { get; set; }
 
-        [JsonProperty("name")]
-        public string Name { get; set; }
-
-        [JsonProperty("substance")]
-        public string Substance { get; set; }
-
-        [JsonProperty("method")]
-        public string Method { get; set; }
-
-        [JsonProperty("comments")]
-        public string Comments { get; set; }
-
-        [JsonProperty("items")]
-        public List<InvestigationItem> Items { get; set; }
+        [JsonProperty("result", Order = 2)]
+        public List<InvestigationResult> Result { get; set; }
     }
 }

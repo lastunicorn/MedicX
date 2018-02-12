@@ -28,7 +28,7 @@ namespace DustInTheWind.MedicX.Wpf.Translators
                 case Consultation consultation:
                     return consultation.ToViewModel();
 
-                case InvestigationInstance investigationInstance:
+                case Investigation investigationInstance:
                     return investigationInstance.ToViewModel();
 
                 default:

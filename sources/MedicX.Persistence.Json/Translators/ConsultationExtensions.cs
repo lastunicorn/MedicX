@@ -39,7 +39,7 @@ namespace DustInTheWind.MedicX.Persistence.Json.Translators
                 Date = consultation.Date,
                 Medic = medics.FirstOrDefault(x => x.Id == consultation.MedicId),
                 Clinic = clinicLocations.FirstOrDefault(x => x.Id == consultation.ClinicLocationId),
-                Labels = consultation.Labels.ToList(),
+                Labels = consultation.Labels?.ToList(),
                 Comments = consultation.Comments,
                 Prescriptions = consultation.Prescriptions.Translate()
             };
@@ -62,7 +62,7 @@ namespace DustInTheWind.MedicX.Persistence.Json.Translators
                 Date = consultation.Date,
                 MedicId = consultation.Medic.Id,
                 ClinicLocationId = consultation.Clinic.Id,
-                Labels = consultation.Labels.ToList(),
+                Labels = consultation.Labels?.ToList(),
                 Comments = consultation.Comments,
                 Prescriptions = consultation.Prescriptions.Translate()
             };

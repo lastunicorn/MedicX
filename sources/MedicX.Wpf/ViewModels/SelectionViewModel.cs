@@ -26,10 +26,10 @@ namespace DustInTheWind.MedicX.Wpf.ViewModels
         private readonly ApplicationState applicationState;
         private ObservableCollection<Medic> medics;
         private ObservableCollection<Clinic> clinics;
-        private ObservableCollection<Consultation> consultations;
+        private ObservableCollection<MedicalEvent> consultations;
         private Medic selectedMedic;
         private Clinic selectedClinic;
-        private Consultation selectedConsultation;
+        private MedicalEvent selectedConsultation;
         private Tab selectedTab;
 
         public ObservableCollection<Medic> Medics
@@ -82,7 +82,7 @@ namespace DustInTheWind.MedicX.Wpf.ViewModels
             }
         }
 
-        public ObservableCollection<Consultation> Consultations
+        public ObservableCollection<MedicalEvent> Consultations
         {
             get { return consultations; }
             set
@@ -92,7 +92,7 @@ namespace DustInTheWind.MedicX.Wpf.ViewModels
             }
         }
 
-        public Consultation SelectedConsultation
+        public MedicalEvent SelectedConsultation
         {
             get => selectedConsultation;
             set
@@ -141,7 +141,7 @@ namespace DustInTheWind.MedicX.Wpf.ViewModels
 
             medics = applicationState.Medics;
             clinics = applicationState.Clinics;
-            consultations = applicationState.Consultations;
+            consultations = applicationState.MedicalEvents;
         }
     }
 }

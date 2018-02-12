@@ -43,14 +43,14 @@
     </Compile>
     <Compile Include="ClinicLocationRepository.cs" />
     <Compile Include="ClinicRepository.cs" />
-    <Compile Include="ConsultationsRepository.cs" />
+    <Compile Include="ConsultationRepository.cs" />
     <Compile Include="Entities\Address.cs" />
     <Compile Include="Entities\Clinic.cs" />
     <Compile Include="Entities\Consultation.cs" />
     <Compile Include="Entities\Event.cs" />
-    <Compile Include="Entities\InvestigationInstance.cs" />
-    <Compile Include="Entities\InvestigationResult.cs" />
     <Compile Include="Entities\Investigation.cs" />
+    <Compile Include="Entities\InvestigationResult.cs" />
+    <Compile Include="Entities\InvestigationDescription.cs" />
     <Compile Include="Entities\InvestigationItem.cs" />
     <Compile Include="Entities\Medic.cs" />
     <Compile Include="Entities\MedicXData.cs" />
@@ -59,14 +59,17 @@
     <Compile Include="Entities\Prescription.cs" />
     <Compile Include="IClinicLocationRepository.cs" />
     <Compile Include="IClinicRepository.cs" />
-    <Compile Include="IConsultationsRepository.cs" />
+    <Compile Include="IConsultationRepository.cs" />
+    <Compile Include="IInvestigationRepository.cs" />
     <Compile Include="IMedicRepository.cs" />
+    <Compile Include="InvestigationRepository.cs" />
     <Compile Include="JsonDatabase.cs" />
     <Compile Include="MedicRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Translators\AddressExtensions.cs" />
     <Compile Include="Translators\ClinicExtensions.cs" />
     <Compile Include="Translators\ConsultationExtensions.cs" />
+    <Compile Include="Translators\InvestigationExtensions.cs" />
     <Compile Include="Translators\InvestigationTypesExtensions.cs" />
     <Compile Include="Translators\InvestigationTypesItemExtensions.cs" />
     <Compile Include="Translators\MedicExtensions.cs" />

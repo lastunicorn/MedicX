@@ -14,25 +14,17 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using DustInTheWind.MedicX.Common.Entities;
-using DustInTheWind.MedicX.Wpf.ViewModels;
+using System.Collections.Generic;
 
-namespace DustInTheWind.MedicX.Wpf.Translators
+namespace DustInTheWind.MedicX.Common.Entities
 {
-    internal static class InvestigationInstanceExcensions
+    public class InvestigationDescription
     {
-        public static EventViewModel ToViewModel(this Investigation investigation)
-        {
-            if (investigation == null)
-                return null;
-
-            return new EventViewModel
-            {
-                Date = investigation.Date,
-                Type = EventType.Investigation,
-                Medic = investigation.SentBy?.Name?.ToString(),
-                Description = investigation.Comments
-            };
-        }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Substance { get; set; }
+        public string Method { get; set; }
+        public string Comments { get; set; }
+        public List<InvestigationItem> Items { get; set; }
     }
 }

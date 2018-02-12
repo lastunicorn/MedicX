@@ -51,7 +51,7 @@ namespace DustInTheWind.MedicX.Wpf
                     },
                     Comments = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.\nSed vehicula dolor et facilisis ullamcorper.\nIn eu faucibus lacus.\nSed et purus convallis, pulvinar neque eget, ultricies quam.\nVivamus faucibus metus ligula, non sagittis turpis elementum at.\nSuspendisse porta egestas felis quis facilisis.\nSed euismod vitae augue vel placerat.\nVivamus mollis nibh quis lectus imperdiet, ut maximus velit tempor.\nNullam eros mauris, ullamcorper vel ultrices et, tincidunt viverra elit.\nMauris tristique sem eu justo malesuada maximus id a nibh."
                 },
-                new InvestigationInstance
+                new Investigation
                 {
                     Date = DateTime.Today,
                     SentBy = new Medic

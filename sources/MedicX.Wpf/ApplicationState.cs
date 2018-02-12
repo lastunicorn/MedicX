@@ -30,7 +30,7 @@ namespace DustInTheWind.MedicX.Wpf
 
         public ObservableCollection<Clinic> Clinics { get; } = new ObservableCollection<Clinic>();
 
-        public ObservableCollection<Consultation> Consultations { get; } = new ObservableCollection<Consultation>();
+        public ObservableCollection<MedicalEvent> MedicalEvents { get; } = new ObservableCollection<MedicalEvent>();
 
         public object CurrentItem
         {
@@ -62,12 +62,19 @@ namespace DustInTheWind.MedicX.Wpf
                 foreach (Clinic clinic in clinicsFromRepository)
                     Clinics.Add(clinic);
 
-                IConsultationsRepository consultationsRepository = unitOfWork.ConsultationsRepository;
+                IConsultationRepository consultationRepository = unitOfWork.ConsultationRepository;
 
-                List<Consultation> consultationFromRepository = consultationsRepository.GetAll();
+                List<Consultation> consultationsFromRepository = consultationRepository.GetAll();
 
-                foreach (Consultation consultation in consultationFromRepository)
-                    Consultations.Add(consultation);
+                foreach (Consultation consultation in consultationsFromRepository)
+                    MedicalEvents.Add(consultation);
+
+                IInvestigationRepository investigationsRepository = unitOfWork.InvestigationRepository;
+
+                List<Investigation> investigationsFromRepository = investigationsRepository.GetAll();
+
+                foreach (Investigation investigation in investigationsFromRepository)
+                    MedicalEvents.Add(investigation);
             }
         }
 

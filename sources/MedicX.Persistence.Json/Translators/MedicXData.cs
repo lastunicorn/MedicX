@@ -15,7 +15,6 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System.Collections.Generic;
-using System.Linq;
 using DustInTheWind.MedicX.Common.Entities;
 
 namespace DustInTheWind.MedicX.Persistence.Json.Translators
@@ -30,15 +29,14 @@ namespace DustInTheWind.MedicX.Persistence.Json.Translators
             List<Medic> medics = medicXData.Medics.Translate();
             List<Clinic> clinics = medicXData.Clinics.Translate();
             List<Consultation> consultations = medicXData.Consultations.Translate(medics, clinics);
-            List<Investigation> investigationTypes = medicXData.InvestigationTypes.Translate();
-            //List<InvestigationInstance> investigations = medicXData.Investigations.Translate();
+            List<Investigation> investigations = medicXData.Investigations.Translate(medics, clinics);
 
             return new MedicXData
             {
                 Medics = medics,
                 Clinics = clinics,
                 Consultations = consultations,
-                InvestigationTypes = investigationTypes
+                Investigations = investigations
             };
         }
 
@@ -52,8 +50,8 @@ namespace DustInTheWind.MedicX.Persistence.Json.Translators
                 Medics = medicXData.Medics.Translate(),
                 Clinics = medicXData.Clinics.Translate(),
                 Consultations = medicXData.Consultations.Translate(),
-                InvestigationTypes = medicXData.InvestigationTypes.Translate(),
-                Investigations = null
+                Investigations = medicXData.Investigations.Translate(),
+                InvestigationDescriptions = null
             };
         }
     }

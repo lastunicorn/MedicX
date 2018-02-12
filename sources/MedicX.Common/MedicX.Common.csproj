@@ -41,9 +41,9 @@
     <Compile Include="Entities\Clinic.cs" />
     <Compile Include="Entities\Consultation.cs" />
     <Compile Include="Entities\MedicalEvent.cs" />
-    <Compile Include="Entities\InvestigationInstance.cs" />
-    <Compile Include="Entities\InvestigationResult.cs" />
     <Compile Include="Entities\Investigation.cs" />
+    <Compile Include="Entities\InvestigationResult.cs" />
+    <Compile Include="Entities\InvestigationDescription.cs" />
     <Compile Include="Entities\InvestigationItem.cs" />
     <Compile Include="Entities\Medic.cs" />
     <Compile Include="Entities\MedicXData.cs" />

@@ -33,9 +33,7 @@ namespace DustInTheWind.MedicX.Cli.Controllers
 
         public ConsultationsController(UnitOfWork unitOfWork, string searchText = null)
         {
-            if (unitOfWork == null) throw new ArgumentNullException(nameof(unitOfWork));
-
-            this.unitOfWork = unitOfWork;
+            this.unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
             this.searchText = searchText;
 
             textOutputControl = new TextOutputControl();
@@ -55,9 +53,9 @@ namespace DustInTheWind.MedicX.Cli.Controllers
 
         private void DisplayAllConsultations()
         {
-            IConsultationsRepository consultationsRepository = unitOfWork.ConsultationsRepository;
+            IConsultationRepository consultationRepository = unitOfWork.ConsultationRepository;
 
-            List<Consultation> consultations = consultationsRepository.GetAll();
+            List<Consultation> consultations = consultationRepository.GetAll();
 
             if (consultations == null || consultations.Count == 0)
                 CustomConsole.WriteLineError("No consultations exist in the database.");
@@ -67,9 +65,9 @@ namespace DustInTheWind.MedicX.Cli.Controllers
 
         private void SearchConsultation()
         {
-            IConsultationsRepository consultationsRepository = unitOfWork.ConsultationsRepository;
+            IConsultationRepository consultationRepository = unitOfWork.ConsultationRepository;
 
-            List<Consultation> consultations = consultationsRepository.Search(searchText);
+            List<Consultation> consultations = consultationRepository.Search(searchText);
 
             if (consultations == null || consultations.Count == 0)
                 CustomConsole.WriteLineError("No consultations exist in the database contining the searched text.");

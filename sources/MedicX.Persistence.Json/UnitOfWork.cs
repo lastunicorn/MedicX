@@ -29,7 +29,8 @@ namespace DustInTheWind.MedicX.Persistence.Json
 
         private readonly JsonDatabase jsonDatabase;
         private IMedicRepository medicRepository;
-        private IConsultationsRepository consultationsRepository;
+        private IConsultationRepository consultationRepository;
+        private IInvestigationRepository investigationRepository;
         private IClinicRepository clinicRepository;
         private readonly MedicXData medicXData;
 
@@ -47,17 +48,31 @@ namespace DustInTheWind.MedicX.Persistence.Json
             }
         }
 
-        public IConsultationsRepository ConsultationsRepository
+        public IConsultationRepository ConsultationRepository
         {
             get
             {
                 if (isDisposed)
                     throw new ObjectDisposedException(GetType().Name);
 
-                if (consultationsRepository == null)
-                    consultationsRepository = new ConsultationsRepository(medicXData);
+                if (consultationRepository == null)
+                    consultationRepository = new ConsultationRepository(medicXData);
 
-                return consultationsRepository;
+                return consultationRepository;
+            }
+        }
+
+        public IInvestigationRepository InvestigationRepository
+        {
+            get
+            {
+                if (isDisposed)
+                    throw new ObjectDisposedException(GetType().Name);
+
+                if (investigationRepository == null)
+                    investigationRepository = new InvestigationRepository(medicXData);
+
+                return investigationRepository;
             }
         }
 
