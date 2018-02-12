@@ -59,10 +59,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                     <Style TargetType="{x:Type ListViewItem}">
                         <Style.Triggers>
                             <DataTrigger Binding="{Binding Path=., Converter={StaticResource EventTypeConverter}}" Value="Consult">
-                                <Setter Property="Background" Value="LightGreen" />
+                                <Setter Property="Background" Value="DarkSeaGreen" />
                             </DataTrigger>
                             <DataTrigger Binding="{Binding Path=., Converter={StaticResource EventTypeConverter}}" Value="Investigation">
-                                <Setter Property="Background" Value="LightBlue" />
+                                <Setter Property="Background" Value="LightGreen" />
                             </DataTrigger>
                         </Style.Triggers>
                     </Style>

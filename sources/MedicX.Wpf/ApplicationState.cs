@@ -17,6 +17,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using DustInTheWind.MedicX.Common.Entities;
 using DustInTheWind.MedicX.Persistence.Json;
 
@@ -63,18 +64,19 @@ namespace DustInTheWind.MedicX.Wpf
                     Clinics.Add(clinic);
 
                 IConsultationRepository consultationRepository = unitOfWork.ConsultationRepository;
-
-                List<Consultation> consultationsFromRepository = consultationRepository.GetAll();
-
-                foreach (Consultation consultation in consultationsFromRepository)
-                    MedicalEvents.Add(consultation);
-
                 IInvestigationRepository investigationsRepository = unitOfWork.InvestigationRepository;
 
+                List<Consultation> consultationsFromRepository = consultationRepository.GetAll();
                 List<Investigation> investigationsFromRepository = investigationsRepository.GetAll();
 
-                foreach (Investigation investigation in investigationsFromRepository)
-                    MedicalEvents.Add(investigation);
+                List<MedicalEvent> medicalEvents = consultationsFromRepository
+                    .Cast<MedicalEvent>()
+                    .Concat(investigationsFromRepository)
+                    .OrderByDescending(x=>x.Date)
+                    .ToList();
+
+                foreach (MedicalEvent medicalEvent in medicalEvents)
+                    MedicalEvents.Add(medicalEvent);
             }
         }
 

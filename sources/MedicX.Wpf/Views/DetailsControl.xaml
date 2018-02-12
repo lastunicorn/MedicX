@@ -46,29 +46,34 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             FontSize="25"
             Visibility="{Binding IsNoItemPanelVisible, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
-        <ContentControl Content="{Binding Item}">
+        <ScrollViewer
+            VerticalScrollBarVisibility="Auto"
+            HorizontalScrollBarVisibility="Auto">
 
-            <ContentControl.Resources>
+            <ContentControl Content="{Binding Item}">
 
-                <DataTemplate DataType="{x:Type entities:Medic}">
-                    <views:MedicView/>
-                </DataTemplate>
+                <ContentControl.Resources>
 
-                <DataTemplate DataType="{x:Type entities:Clinic}">
-                    <views:ClinicView/>
-                </DataTemplate>
+                    <DataTemplate DataType="{x:Type entities:Medic}">
+                        <views:MedicView />
+                    </DataTemplate>
 
-                <DataTemplate DataType="{x:Type entities:Consultation}">
-                    <views:ConsultationView/>
-                </DataTemplate>
+                    <DataTemplate DataType="{x:Type entities:Clinic}">
+                        <views:ClinicView />
+                    </DataTemplate>
 
-                <DataTemplate DataType="{x:Type entities:Investigation}">
-                    <views:InvestigationView/>
-                </DataTemplate>
+                    <DataTemplate DataType="{x:Type entities:Consultation}">
+                        <views:ConsultationView />
+                    </DataTemplate>
 
-            </ContentControl.Resources>
+                    <DataTemplate DataType="{x:Type entities:Investigation}">
+                        <views:InvestigationView />
+                    </DataTemplate>
 
-        </ContentControl>
+                </ContentControl.Resources>
+
+            </ContentControl>
+        </ScrollViewer>
 
     </Grid>
 
