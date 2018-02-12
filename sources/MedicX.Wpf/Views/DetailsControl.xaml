@@ -62,6 +62,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                     <views:ConsultationView/>
                 </DataTemplate>
 
+                <DataTemplate DataType="{x:Type entities:Investigation}">
+                    <views:InvestigationView/>
+                </DataTemplate>
+
             </ContentControl.Resources>
 
         </ContentControl>

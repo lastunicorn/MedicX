@@ -21,5 +21,10 @@ namespace DustInTheWind.MedicX.Common.Entities
         public int Id { get; set; }
         public PersonName Name { get; set; }
         public string Comments { get; set; }
+
+        public override string ToString()
+        {
+            return Name?.ToString();
+        }
     }
 }

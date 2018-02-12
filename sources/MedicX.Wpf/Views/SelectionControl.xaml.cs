@@ -53,7 +53,7 @@ namespace DustInTheWind.MedicX.Wpf.Views
                     viewModel.SelectedTab = Tab.Clinics;
                     break;
 
-                case "Consultations":
+                case "MedicalEvents":
                     viewModel.SelectedTab = Tab.Consultations;
                     break;
 

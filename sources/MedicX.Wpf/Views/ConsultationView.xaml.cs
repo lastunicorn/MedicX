@@ -21,7 +21,7 @@ namespace DustInTheWind.MedicX.Wpf.Views
     /// <summary>
     /// Interaction logic for ConsultationView.xaml
     /// </summary>
-    public partial class ConsultationView : UserControl
+    internal partial class ConsultationView : UserControl
     {
         public ConsultationView()
         {

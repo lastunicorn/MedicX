@@ -16,10 +16,11 @@
 
 using System;
 using System.Windows.Data;
+using DustInTheWind.MedicX.Common.Entities;
 
 namespace DustInTheWind.MedicX.Wpf
 {
-    public class DateTimeConverter : IValueConverter
+    public class EventTypeToStringConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
@@ -28,6 +29,31 @@ namespace DustInTheWind.MedicX.Wpf
 
             EventType test = (EventType)value;
             return test.ToString();
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+    public class EventTypeConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            if (value == null)
+                return EventType.Unknown;
+
+            switch (value)
+            {
+                case Consultation consultation:
+                    return EventType.Consult;
+
+                case Investigation investigation:
+                    return EventType.Investigation;
+
+                default:
+                    return EventType.Unknown;
+            }
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)

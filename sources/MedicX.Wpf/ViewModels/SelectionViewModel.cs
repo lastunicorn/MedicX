@@ -16,6 +16,7 @@
 
 using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using DustInTheWind.MedicX.Common.Entities;
 using DustInTheWind.MedicX.Wpf.Views;
 
@@ -26,7 +27,7 @@ namespace DustInTheWind.MedicX.Wpf.ViewModels
         private readonly ApplicationState applicationState;
         private ObservableCollection<Medic> medics;
         private ObservableCollection<Clinic> clinics;
-        private ObservableCollection<MedicalEvent> consultations;
+        private ObservableCollection<MedicalEvent> medicalEvents;
         private Medic selectedMedic;
         private Clinic selectedClinic;
         private MedicalEvent selectedConsultation;
@@ -82,12 +83,12 @@ namespace DustInTheWind.MedicX.Wpf.ViewModels
             }
         }
 
-        public ObservableCollection<MedicalEvent> Consultations
+        public ObservableCollection<MedicalEvent> MedicalEvents
         {
-            get { return consultations; }
+            get => medicalEvents;
             set
             {
-                consultations = value;
+                medicalEvents = value;
                 OnPropertyChanged();
             }
         }
@@ -141,7 +142,17 @@ namespace DustInTheWind.MedicX.Wpf.ViewModels
 
             medics = applicationState.Medics;
             clinics = applicationState.Clinics;
-            consultations = applicationState.MedicalEvents;
+            medicalEvents = applicationState.MedicalEvents;
+        }
+    }
+
+    internal class MedicalEventViewModel
+    {
+        private readonly MedicalEvent medicalEvent;
+
+        public MedicalEventViewModel(MedicalEvent medicalEvent)
+        {
+            this.medicalEvent = medicalEvent ?? throw new ArgumentNullException(nameof(medicalEvent));
         }
     }
 }

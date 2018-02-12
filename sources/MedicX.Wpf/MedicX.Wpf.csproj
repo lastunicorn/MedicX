@@ -72,6 +72,9 @@
     <Compile Include="Views\ClinicView.xaml.cs">
       <DependentUpon>ClinicView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\InvestigationView.xaml.cs">
+      <DependentUpon>InvestigationView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ConsultationView.xaml.cs">
       <DependentUpon>ConsultationView.xaml</DependentUpon>
     </Compile>
@@ -103,6 +106,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\InvestigationView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\ConsultationView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -126,7 +133,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DateTimeConverter.cs" />
+    <Compile Include="EventTypeToStringConverter.cs" />
     <Compile Include="Views\EventItem.xaml.cs">
       <DependentUpon>EventItem.xaml</DependentUpon>
     </Compile>
