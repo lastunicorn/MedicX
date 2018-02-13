@@ -30,6 +30,17 @@
             "specializations": [
                 "Medic primar"
             ]
+        },
+        {
+            "id": 4,
+            "name": {
+                "first": "Ion",
+                "middle": "",
+                "last": "Coteț"
+            },
+            "specializations": [
+                "Dermatovenerologie"
+            ]
         }
     ],
     "clinics": [
@@ -172,6 +183,24 @@
                 {
                     "description": "medicament 2",
                     "result": null
+                }
+            ]
+        },
+        {
+            "date": "2018-02-13T00:00:00",
+            "location": 1,
+            "labels": [
+                "verucă-talpă"
+            ],
+            "medic": 4,
+            "prescriptions": [
+                {
+                    "description": "verucă talpă tratată cu azot lichid",
+                    "result": true
+                },
+                {
+                    "description": "verucă mâna dr, degetul arătător, tratată cu azot lichid",
+                    "result": true
                 }
             ]
         }
