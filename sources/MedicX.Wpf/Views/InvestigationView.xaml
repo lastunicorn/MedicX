@@ -25,11 +25,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:entities="clr-namespace:DustInTheWind.MedicX.Common.Entities;assembly=DustInTheWind.MedicX.Common"
+    xmlns:viewModels="clr-namespace:DustInTheWind.MedicX.Wpf.ViewModels"
+    xmlns:system="clr-namespace:System;assembly=mscorlib"
 
     mc:Ignorable="d" 
     d:DesignHeight="300"
     d:DesignWidth="300"
     d:DataContext="{d:DesignInstance entities:Investigation}">
+
+    <UserControl.Resources>
+        <viewModels:StringListToStringConverter x:Key="StringListToStringConverter"/>
+    </UserControl.Resources>
 
     <StackPanel Margin="8">
         <Grid Background="DarkGray">
@@ -69,7 +75,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            
+
             <TextBlock
                 Grid.Column="0"
                 Grid.Row="0"
@@ -85,7 +91,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 <TextBlock
                     Text="{Binding Date, StringFormat={}{0:yyyy MM dd}}"
                     Margin="0 4"/>
-                
+
                 <Calendar
                     SelectedDate="{Binding Date, Mode=TwoWay}"
                     DisplayDate="{Binding Date, Mode=OneTime}"
@@ -105,7 +111,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 Grid.Row="1"
                 Text="{Binding SentBy.Name}"
                 Margin="0 4"/>
-            
+
             <TextBlock
                 Grid.Column="0"
                 Grid.Row="2"
@@ -118,19 +124,29 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 Grid.Row="2"
                 Text="{Binding Clinic.Name}"
                 Margin="0 4"/>
-            
-            <TextBlock
+
+            <StackPanel
                 Grid.Column="0"
                 Grid.Row="3"
-                Text="Labels:"
                 Margin="0 4 10 4"
-                FontWeight="Bold"/>
+                Orientation="Vertical">
 
-            <TextBlock
+                <TextBlock
+                    Text="Labels:"
+                    FontWeight="Bold"/>
+
+                <TextBlock
+                    Text="(list)"
+                    FontWeight="Bold"/>
+
+            </StackPanel>
+
+            <TextBox
                 Grid.Column="1"
                 Grid.Row="3"
-                Text="{Binding Labels}"
-                Margin="0 4"/>
+                Height="100"
+                AcceptsReturn="True"
+                Text="{Binding Labels, Converter={StaticResource StringListToStringConverter}, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"/>
 
             <TextBlock
                 Grid.Column="0"
@@ -152,3 +168,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     </StackPanel>
 
 </UserControl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

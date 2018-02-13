@@ -25,11 +25,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:entities="clr-namespace:DustInTheWind.MedicX.Common.Entities;assembly=DustInTheWind.MedicX.Common"
+    xmlns:viewModels="clr-namespace:DustInTheWind.MedicX.Wpf.ViewModels"
 
     mc:Ignorable="d" 
     d:DesignHeight="300"
     d:DesignWidth="300"
     d:DataContext="{d:DesignInstance entities:Consultation}">
+
+    <UserControl.Resources>
+        <viewModels:StringListToStringConverter x:Key="StringListToStringConverter"/>
+    </UserControl.Resources>
 
     <StackPanel Margin="8">
         <Grid Background="DarkGray">
@@ -120,18 +125,28 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 Text="{Binding Clinic.Name}"
                 Margin="0 4"/>
             
-            <TextBlock
+            <StackPanel
                 Grid.Column="0"
                 Grid.Row="3"
-                Text="Labels:"
                 Margin="0 4 10 4"
-                FontWeight="Bold"/>
+                Orientation="Vertical">
 
-            <TextBlock
+                <TextBlock
+                    Text="Labels:"
+                    FontWeight="Bold"/>
+
+                <TextBlock
+                    Text="(list)"
+                    FontWeight="Bold"/>
+
+            </StackPanel>
+
+            <TextBox
                 Grid.Column="1"
                 Grid.Row="3"
-                Text="{Binding Labels}"
-                Margin="0 4"/>
+                Height="100"
+                AcceptsReturn="True"
+                Text="{Binding Labels, Converter={StaticResource StringListToStringConverter}, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"/>
 
             <TextBlock
                 Grid.Column="0"

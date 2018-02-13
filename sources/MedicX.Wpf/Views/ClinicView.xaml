@@ -26,6 +26,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     xmlns:entities="clr-namespace:DustInTheWind.MedicX.Common.Entities;assembly=DustInTheWind.MedicX.Common"
     xmlns:views="clr-namespace:DustInTheWind.MedicX.Wpf.Views"
     xmlns:viewModels="clr-namespace:DustInTheWind.MedicX.Wpf.ViewModels"
+    xmlns:system="clr-namespace:System;assembly=mscorlib"
 
     mc:Ignorable="d" 
     d:DesignHeight="300"
@@ -33,7 +34,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     d:DataContext="{d:DesignInstance entities:Clinic}">
 
     <UserControl.Resources>
-        <viewModels:StringListViewModelConverter x:Key="StringListViewModelConverter"/>
+        <viewModels:StringListToStringConverter x:Key="StringListToStringConverter"/>
     </UserControl.Resources>
 
     <StackPanel Margin="8">
@@ -85,22 +86,28 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 DataContext="{Binding Address}"
                 Margin="0 4"/>
 
-            <TextBlock
+            <StackPanel
                 Grid.Column="0"
                 Grid.Row="2"
-                Text="Phones:"
                 Margin="0 4 10 4"
-                FontWeight="Bold"/>
+                Orientation="Vertical">
 
-            <views:StringListView
+                <TextBlock
+                    Text="Phones:"
+                    FontWeight="Bold"/>
+
+                <TextBlock
+                    Text="(list)"
+                    FontWeight="Bold"/>
+
+            </StackPanel>
+
+            <TextBox
                 Grid.Column="1"
                 Grid.Row="2"
-                DataContext="{Binding Phones, Converter={StaticResource StringListViewModelConverter}}"/>
-
-            <!--<views:UserControl1
-                Grid.Column="1"
-                Grid.Row="2"
-                ItemsSource="{Binding Phones}"  />-->
+                Height="100"
+                AcceptsReturn="True"
+                Text="{Binding Phones, Converter={StaticResource StringListToStringConverter}, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"/>
 
             <TextBlock
                 Grid.Column="0"

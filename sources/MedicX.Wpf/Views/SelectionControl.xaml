@@ -52,7 +52,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             </ListView>
         </TabItem>
 
-        <TabItem Tag="MedicalEvents" Header="MedicalEvents">
+        <TabItem Tag="MedicalEvents" Header="Medical Events">
             <ListView ItemsSource="{Binding MedicalEvents}" SelectedItem="{Binding SelectedConsultation}">
 
                 <ListView.Resources>
