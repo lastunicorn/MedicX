@@ -24,6 +24,7 @@ namespace DustInTheWind.MedicX.Persistence.Json
         List<Medic> GetAll();
         Medic GetById(int id);
         void Add(Medic medic);
+        void AddOrUpdate(Medic medic);
         List<Medic> GetByName(string medicName);
         List<Medic> Search(string text);
     }

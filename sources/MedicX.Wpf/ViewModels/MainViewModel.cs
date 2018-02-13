@@ -16,6 +16,7 @@
 
 using System;
 using System.Reflection;
+using System.Windows.Input;
 
 namespace DustInTheWind.MedicX.Wpf.ViewModels
 {
@@ -37,6 +38,8 @@ namespace DustInTheWind.MedicX.Wpf.ViewModels
 
         public DetailsViewModel DetailsViewModel { get; }
 
+        public SaveCommand SaveCommand { get; }
+
         public MainViewModel()
         {
             UpdateWindowTitle();
@@ -45,6 +48,8 @@ namespace DustInTheWind.MedicX.Wpf.ViewModels
 
             SelectionViewModel = new SelectionViewModel(applicationState);
             DetailsViewModel = new DetailsViewModel(applicationState);
+
+            SaveCommand = new SaveCommand(applicationState);
         }
 
         private void UpdateWindowTitle()
@@ -54,6 +59,28 @@ namespace DustInTheWind.MedicX.Wpf.ViewModels
             Version version = assemblyName.Version;
 
             Title = "MedicX " + version.ToString(3);
+        }
+    }
+
+    internal class SaveCommand : ICommand
+    {
+        private readonly ApplicationState applicationState;
+
+        public event EventHandler CanExecuteChanged;
+
+        public SaveCommand(ApplicationState applicationState)
+        {
+            this.applicationState = applicationState ?? throw new ArgumentNullException(nameof(applicationState));
+        }
+
+        public bool CanExecute(object parameter)
+        {
+            return true;
+        }
+
+        public void Execute(object parameter)
+        {
+            applicationState.Save();
         }
     }
 }

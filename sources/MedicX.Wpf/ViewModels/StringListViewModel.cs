@@ -14,12 +14,9 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Globalization;
-using System.Windows.Data;
-using System.Windows.Input;
+using DustInTheWind.MedicX.Wpf.Commands;
 
 namespace DustInTheWind.MedicX.Wpf.ViewModels
 {
@@ -70,58 +67,6 @@ namespace DustInTheWind.MedicX.Wpf.ViewModels
         private void ExecuteRemoveCommand()
         {
             Values.RemoveAt(CurrentIndex);
-        }
-    }
-
-    internal class RelayCommand : ICommand
-    {
-        private readonly Func<bool> canExecuteAction;
-        private readonly Action executeAction;
-
-        public RelayCommand(Action executeAction)
-        {
-            this.executeAction = executeAction ?? throw new ArgumentNullException(nameof(executeAction));
-        }
-
-        public RelayCommand(Action executeAction, Func<bool> canExecuteAction)
-        {
-            this.executeAction = executeAction ?? throw new ArgumentNullException(nameof(executeAction));
-            this.canExecuteAction = canExecuteAction ?? throw new ArgumentNullException(nameof(canExecuteAction));
-        }
-
-        public event EventHandler CanExecuteChanged;
-
-        public bool CanExecute(object parameter)
-        {
-            return canExecuteAction?.Invoke() ?? true;
-        }
-
-        public void Execute(object parameter)
-        {
-            executeAction?.Invoke();
-        }
-
-        public void ReevaluateCanExecute()
-        {
-            OnCanExecuteChanged();
-        }
-
-        protected virtual void OnCanExecuteChanged()
-        {
-            CanExecuteChanged?.Invoke(this, EventArgs.Empty);
-        }
-    }
-
-    internal class StringListViewModelConverter : IValueConverter
-    {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            return new StringListViewModel(value as List<string>);
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            return new List<string>();
         }
     }
 }

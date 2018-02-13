@@ -205,12 +205,10 @@
             ]
         }
     ],
-    "investigations": [
+    "investigationDescriptions": [
         {
             "id": 0,
-            "date": "2017-07-01T00:00:00",
             "name": "Hemoleucograma completă",
-            "sentBy": 1,
             "substance": "sânge EDTA",
             "method": "metoda spectrofotometrică",
             "comments": "spectrometrie de impedanță și citometrie în flux / microscopie",
@@ -373,6 +371,8 @@
         },
         {
             "id": 23,
+            "date": "2017-07-01T00:00:00",
+            "location": 1,
             "sentBy": 2,
             "name": "VSH",
             "substance": null,
@@ -391,6 +391,7 @@
         {
             "id": 24,
             "date": "2017-07-03T00:00:00",
+            "location": 1,
             "sentBy": 1,
             "name": "Fosfataza alcalina",
             "substance": "ser",
@@ -409,6 +410,7 @@
         {
             "id": 25,
             "date": "2017-07-04T00:00:00",
+            "location": 1,
             "sentBy": 3,
             "name": "Gama GT",
             "substance": "ser",
@@ -427,6 +429,7 @@
         {
             "id": 26,
             "date": "2017-07-04T00:00:00",
+            "location": 1,
             "sentBy": 1,
             "name": "TGO/AST",
             "substance": "ser",
@@ -445,6 +448,7 @@
         {
             "id": 27,
             "date": "2017-08-04T00:00:00",
+            "location": 1,
             "sentBy": 1,
             "name": "TGP/ALT",
             "substance": "ser",
@@ -463,6 +467,7 @@
         {
             "id": 28,
             "date": "2017-09-04T00:00:00",
+            "location": 1,
             "sentBy": 2,
             "name": "CRP cantitativ",
             "substance": "ser",
@@ -479,10 +484,10 @@
             ]
         }
     ],
-    "investigationDescriptions": [
+    "investigations": [
         {
-            "date": "2017 06 30",
-            "medic": 0,
+	        "date": "2017-07-01T00:00:00",
+	        "medic": 0,
             "location": 2,
             "labels": [
                 "demielinizare"

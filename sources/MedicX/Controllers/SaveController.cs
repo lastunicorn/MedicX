@@ -26,8 +26,7 @@ namespace DustInTheWind.MedicX.Cli.Controllers
 
         public SaveController(UnitOfWork unitOfWork)
         {
-            if (unitOfWork == null) throw new ArgumentNullException(nameof(unitOfWork));
-            this.unitOfWork = unitOfWork;
+            this.unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
         }
 
         public void Run()

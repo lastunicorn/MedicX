@@ -72,11 +72,22 @@ namespace DustInTheWind.MedicX.Wpf
                 List<MedicalEvent> medicalEvents = consultationsFromRepository
                     .Cast<MedicalEvent>()
                     .Concat(investigationsFromRepository)
-                    .OrderByDescending(x=>x.Date)
+                    .OrderByDescending(x => x.Date)
                     .ToList();
 
                 foreach (MedicalEvent medicalEvent in medicalEvents)
                     MedicalEvents.Add(medicalEvent);
+            }
+        }
+
+        public void Save()
+        {
+            using (UnitOfWork unitOfWork = new UnitOfWork())
+            {
+                foreach (Medic medic in Medics)
+                    unitOfWork.MedicRepository.AddOrUpdate(medic);
+
+                unitOfWork.Save();
             }
         }
 

@@ -35,25 +35,36 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     d:DataContext="{d:DesignInstance viewModels:MainViewModel}"
     Background="LightGray">
 
-    <Grid>
+    <DockPanel>
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="4*" />
-            <ColumnDefinition Width="8" />
-            <ColumnDefinition Width="8*" />
-        </Grid.ColumnDefinitions>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="_File">
+                <MenuItem Header="_Save" Command="{Binding SaveCommand}"/>
+            </MenuItem>
+        </Menu>
 
-        <views:SelectionControl
-            Grid.Column="0"
-            DataContext="{Binding SelectionViewModel}"/>
+        <Grid>
 
-        <GridSplitter
-            Grid.Column="1"
-            HorizontalAlignment="Stretch" />
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*" />
+                <ColumnDefinition Width="8" />
+                <ColumnDefinition Width="8*" />
+            </Grid.ColumnDefinitions>
 
-        <views:DetailsControl
-            Grid.Column="2"
-            DataContext="{Binding DetailsViewModel}"/>
+            <views:SelectionControl
+                Grid.Column="0"
+                DataContext="{Binding SelectionViewModel}"/>
 
-    </Grid>
+            <GridSplitter
+                Grid.Column="1"
+                HorizontalAlignment="Stretch" />
+
+            <views:DetailsControl
+                Grid.Column="2"
+                DataContext="{Binding DetailsViewModel}"/>
+
+        </Grid>
+
+    </DockPanel>
+
 </Window>

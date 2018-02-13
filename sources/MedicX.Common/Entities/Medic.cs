@@ -20,6 +20,6 @@ namespace DustInTheWind.MedicX.Common.Entities
 {
     public class Medic : Person
     {
-        public List<string> Specializations { get; } = new List<string>();
+        public List<string> Specializations { get; set; }
     }
 }

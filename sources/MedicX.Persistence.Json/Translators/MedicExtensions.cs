@@ -38,10 +38,9 @@ namespace DustInTheWind.MedicX.Persistence.Json.Translators
             {
                 Id = medic.Id,
                 Name = medic.Name.Translate(),
+                Specializations = medic.Specializations.ToList(),
                 Comments = medic.Comments
             };
-
-            translatedMedic.Specializations.AddRange(medic.Specializations);
 
             return translatedMedic;
         }
@@ -63,7 +62,7 @@ namespace DustInTheWind.MedicX.Persistence.Json.Translators
                 Id = medic.Id,
                 Name = medic.Name.Translate(),
                 Comments = medic.Comments,
-                Specializations = medic.Specializations.ToList()
+                Specializations = medic.Specializations?.ToList()
             };
         }
     }

@@ -38,7 +38,7 @@ namespace DustInTheWind.MedicX.Persistence.Json
 
         public void Save(MedicXData medicXData)
         {
-            using (StreamWriter streamWriter = new StreamWriter("medicx2.json"))
+            using (StreamWriter streamWriter = new StreamWriter("medicx.json"))
             using (JsonTextWriter jsonTextWriter = new JsonTextWriter(streamWriter))
             {
                 jsonTextWriter.Formatting = Formatting.Indented;

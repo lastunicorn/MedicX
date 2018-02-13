@@ -28,8 +28,7 @@ namespace DustInTheWind.MedicX.Cli.Controllers
 
         public AddMedicController(UnitOfWork unitOfWork)
         {
-            if (unitOfWork == null) throw new ArgumentNullException(nameof(unitOfWork));
-            this.unitOfWork = unitOfWork;
+            this.unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
         }
 
         public void Run()
@@ -54,10 +53,9 @@ namespace DustInTheWind.MedicX.Cli.Controllers
                     MiddleName = middleName,
                     LastName = lastName
                 },
+                Specializations = specializations,
                 Comments = comments
             };
-
-            medic.Specializations.AddRange(specializations);
 
             unitOfWork.MedicRepository.Add(medic);
         }

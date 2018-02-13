@@ -24,7 +24,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:entities="clr-namespace:DustInTheWind.MedicX.Common.Entities;assembly=DustInTheWind.MedicX.Common"
-    xmlns:views="clr-namespace:DustInTheWind.MedicX.Wpf.Views"
     xmlns:viewModels="clr-namespace:DustInTheWind.MedicX.Wpf.ViewModels"
 
     mc:Ignorable="d" 
@@ -33,7 +32,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     d:DataContext="{d:DesignInstance entities:Medic}">
 
     <UserControl.Resources>
-        <viewModels:StringListViewModelConverter x:Key="StringListViewModelConverter"/>
+        <viewModels:StringListToStringConverter x:Key="StringListToStringConverter"/>
     </UserControl.Resources>
 
     <StackPanel Margin="8">
@@ -98,17 +97,28 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 Text="{Binding Name.LastName}"
                 Margin="0 4"/>
 
-            <TextBlock
+            <StackPanel
                 Grid.Column="0"
                 Grid.Row="3"
-                Text="Specializations:"
                 Margin="0 4 10 4"
-                FontWeight="Bold"/>
+                Orientation="Vertical">
+                
+                <TextBlock
+                    Text="Specializations:"
+                    FontWeight="Bold"/>
 
-            <views:StringListView
+                <TextBlock
+                    Text="(list)"
+                    FontWeight="Bold"/>
+
+            </StackPanel>
+
+            <TextBox
                 Grid.Column="1"
                 Grid.Row="3"
-                DataContext="{Binding Specializations, Converter={StaticResource StringListViewModelConverter}}"/>
+                Height="100"
+                AcceptsReturn="True"
+                Text="{Binding Specializations, Converter={StaticResource StringListToStringConverter}, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"/>
 
             <TextBlock
                 Grid.Column="0"

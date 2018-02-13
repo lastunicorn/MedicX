@@ -146,7 +146,7 @@ namespace DustInTheWind.MedicX.Cli.Controllers
                 new Cell(medic.Name)
             });
 
-            if (medic.Specializations.Count > 0)
+            if (medic.Specializations?.Count > 0)
                 medicsTable.AddRow(new[]
                 {
                     new Cell("Specializations"),
