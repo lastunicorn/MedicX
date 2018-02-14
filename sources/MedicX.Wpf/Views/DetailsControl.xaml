@@ -62,7 +62,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                         <views:ClinicView />
                     </DataTemplate>
 
-                    <DataTemplate DataType="{x:Type entities:Consultation}">
+                    <!--<DataTemplate DataType="{x:Type entities:Consultation}">
+                        <views:ConsultationView />
+                    </DataTemplate>-->
+
+                    <DataTemplate DataType="{x:Type viewModels:ConsultationViewModel}">
                         <views:ConsultationView />
                     </DataTemplate>
 

@@ -21,12 +21,12 @@ using System.Windows.Data;
 
 namespace DustInTheWind.MedicX.Wpf.ViewModels
 {
-    internal class StringListToStringConverter : IValueConverter
+    internal class StringListToCsvConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value is List<string> list)
-                return string.Join(Environment.NewLine, list);
+                return string.Join(",", list);
 
             return null;
         }
@@ -35,7 +35,7 @@ namespace DustInTheWind.MedicX.Wpf.ViewModels
         {
             if (value is string s)
             {
-                string[] values = s.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+                string[] values = s.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
                 return new List<string>(values);
             }
 

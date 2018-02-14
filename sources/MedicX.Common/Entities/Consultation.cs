@@ -20,7 +20,14 @@ namespace DustInTheWind.MedicX.Common.Entities
 {
     public class Consultation : MedicalEvent
     {
-        public Medic Medic { get; set; }
+        private Medic medic;
+
+        public Medic Medic
+        {
+            get => medic;
+            set => medic = value;
+        }
+
         public List<Prescription> Prescriptions { get; set; }
     }
 }

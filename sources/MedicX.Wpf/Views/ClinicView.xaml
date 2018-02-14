@@ -34,7 +34,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     d:DataContext="{d:DesignInstance entities:Clinic}">
 
     <UserControl.Resources>
-        <viewModels:StringListToStringConverter x:Key="StringListToStringConverter"/>
+        <viewModels:StringListToMultilineStringConverter x:Key="StringListToMultilineStringConverter"/>
     </UserControl.Resources>
 
     <StackPanel Margin="8">
@@ -107,7 +107,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 Grid.Row="2"
                 Height="100"
                 AcceptsReturn="True"
-                Text="{Binding Phones, Converter={StaticResource StringListToStringConverter}, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"/>
+                Text="{Binding Phones, Converter={StaticResource StringListToMultilineStringConverter}, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"/>
 
             <TextBlock
                 Grid.Column="0"

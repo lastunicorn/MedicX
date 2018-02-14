@@ -59,6 +59,7 @@
     <Compile Include="Commands\ClearCommand.cs" />
     <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="Translators\ConsultationExtensions.cs" />
+    <Compile Include="ViewModels\ConsultationViewModel.cs" />
     <Compile Include="ViewModels\DetailsViewModel.cs" />
     <Compile Include="Translators\EventExtensions.cs" />
     <Compile Include="ViewModels\EventsViewModel.cs" />
@@ -67,7 +68,8 @@
     <Compile Include="Commands\ReplaceCommand.cs" />
     <Compile Include="Translators\InvestigationInstanceExcensions.cs" />
     <Compile Include="ViewModels\SelectionViewModel.cs" />
-    <Compile Include="ViewModels\StringListToStringConverter.cs" />
+    <Compile Include="ViewModels\StringListToCsvConverter.cs" />
+    <Compile Include="ViewModels\StringListToMultilineStringConverter.cs" />
     <Compile Include="ViewModels\StringListViewModelConverter.cs" />
     <Compile Include="Views\AddressView.xaml.cs">
       <DependentUpon>AddressView.xaml</DependentUpon>

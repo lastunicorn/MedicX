@@ -15,6 +15,7 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
+using DustInTheWind.MedicX.Common.Entities;
 
 namespace DustInTheWind.MedicX.Wpf.ViewModels
 {
@@ -57,7 +58,16 @@ namespace DustInTheWind.MedicX.Wpf.ViewModels
 
         private void HandleCurrentItemChanged(object sender, EventArgs e)
         {
-            Item = applicationState.CurrentItem;
+            switch (applicationState.CurrentItem)
+            {
+                case Consultation consultation:
+                    Item = new ConsultationViewModel(applicationState.CurrentItem as Consultation, applicationState.Medics);
+                    break;
+
+                default:
+                    Item = applicationState.CurrentItem;
+                    break;
+            }
         }
     }
 }
