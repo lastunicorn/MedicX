@@ -67,6 +67,7 @@
     <Compile Include="Commands\RemoveCommand.cs" />
     <Compile Include="Commands\ReplaceCommand.cs" />
     <Compile Include="Translators\InvestigationInstanceExcensions.cs" />
+    <Compile Include="ViewModels\InvestigationViewModel.cs" />
     <Compile Include="ViewModels\SelectionViewModel.cs" />
     <Compile Include="ViewModels\StringListToCsvConverter.cs" />
     <Compile Include="ViewModels\StringListToMultilineStringConverter.cs" />

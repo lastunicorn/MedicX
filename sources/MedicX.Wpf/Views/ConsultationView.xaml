@@ -108,12 +108,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 Margin="0 4 10 4"
                 FontWeight="Bold"/>
 
-            <!--<TextBlock
-                Grid.Column="1"
-                Grid.Row="1"
-                Text="{Binding Consultation.Medic.Name}"
-                Margin="0 4"/>-->
-
             <ComboBox
                 Grid.Column="1"
                 Grid.Row="1"

@@ -60,8 +60,12 @@ namespace DustInTheWind.MedicX.Wpf.ViewModels
         {
             switch (applicationState.CurrentItem)
             {
-                case Consultation consultation:
+                case Consultation _:
                     Item = new ConsultationViewModel(applicationState.CurrentItem as Consultation, applicationState.Medics);
+                    break;
+                    
+                case Investigation _:
+                    Item = new InvestigationViewModel(applicationState.CurrentItem as Investigation, applicationState.Medics);
                     break;
 
                 default:
