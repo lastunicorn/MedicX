@@ -16,7 +16,7 @@
 
 using System;
 using System.Reflection;
-using System.Windows.Input;
+using DustInTheWind.MedicX.Wpf.Commands;
 
 namespace DustInTheWind.MedicX.Wpf.ViewModels
 {
@@ -26,7 +26,7 @@ namespace DustInTheWind.MedicX.Wpf.ViewModels
 
         public string Title
         {
-            get { return title; }
+            get => title;
             set
             {
                 title = value;
@@ -58,29 +58,7 @@ namespace DustInTheWind.MedicX.Wpf.ViewModels
             AssemblyName assemblyName = assembly.GetName();
             Version version = assemblyName.Version;
 
-            Title = "MedicX " + version.ToString(3);
-        }
-    }
-
-    internal class SaveCommand : ICommand
-    {
-        private readonly ApplicationState applicationState;
-
-        public event EventHandler CanExecuteChanged;
-
-        public SaveCommand(ApplicationState applicationState)
-        {
-            this.applicationState = applicationState ?? throw new ArgumentNullException(nameof(applicationState));
-        }
-
-        public bool CanExecute(object parameter)
-        {
-            return true;
-        }
-
-        public void Execute(object parameter)
-        {
-            applicationState.Save();
+            Title = $"MedicX {version.ToString(3)}";
         }
     }
 }

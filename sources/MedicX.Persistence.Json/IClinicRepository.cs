@@ -25,5 +25,6 @@ namespace DustInTheWind.MedicX.Persistence.Json
         Clinic GetById(int id);
         List<Clinic> GetByName(string clinicName);
         List<Clinic> Search(string text);
+        void AddOrUpdate(Clinic clinic);
     }
 }

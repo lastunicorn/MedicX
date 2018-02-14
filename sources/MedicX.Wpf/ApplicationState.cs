@@ -87,6 +87,9 @@ namespace DustInTheWind.MedicX.Wpf
                 foreach (Medic medic in Medics)
                     unitOfWork.MedicRepository.AddOrUpdate(medic);
 
+                foreach (Clinic clinic in Clinics)
+                    unitOfWork.ClinicRepository.AddOrUpdate(clinic);
+
                 unitOfWork.Save();
             }
         }

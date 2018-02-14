@@ -58,6 +58,7 @@
     <Compile Include="Commands\AddCommand.cs" />
     <Compile Include="Commands\ClearCommand.cs" />
     <Compile Include="Commands\RelayCommand.cs" />
+    <Compile Include="Commands\SaveCommand.cs" />
     <Compile Include="Translators\ConsultationExtensions.cs" />
     <Compile Include="ViewModels\ConsultationViewModel.cs" />
     <Compile Include="ViewModels\DetailsViewModel.cs" />

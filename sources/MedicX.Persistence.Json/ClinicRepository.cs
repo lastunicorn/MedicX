@@ -27,8 +27,7 @@ namespace DustInTheWind.MedicX.Persistence.Json
 
         public ClinicRepository(MedicXData medicXData)
         {
-            if (medicXData == null) throw new ArgumentNullException(nameof(medicXData));
-            this.medicXData = medicXData;
+            this.medicXData = medicXData ?? throw new ArgumentNullException(nameof(medicXData));
         }
 
         public List<Clinic> GetAll()
@@ -57,6 +56,26 @@ namespace DustInTheWind.MedicX.Persistence.Json
                     (x.Address != null && x.Address.Contains(text)) ||
                     (x.Comments != null && x.Comments.IndexOf(text, StringComparison.InvariantCultureIgnoreCase) >= 0))
                 .ToList();
+        }
+
+        public void AddOrUpdate(Clinic clinic)
+        {
+            if (clinic == null)
+                return;
+
+            Clinic existingClinic = medicXData.Clinics
+                .FirstOrDefault(x => x.Id == clinic.Id);
+
+            if (existingClinic == null)
+                medicXData.Clinics.Add(clinic);
+            else
+            {
+                existingClinic.Name = clinic.Name;
+                existingClinic.Address = clinic.Address;
+                existingClinic.Phones = clinic.Phones.ToList();
+                existingClinic.Program = clinic.Program;
+                existingClinic.Comments = clinic.Comments;
+            }
         }
     }
 }
