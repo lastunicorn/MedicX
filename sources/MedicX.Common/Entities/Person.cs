@@ -14,13 +14,40 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+using System;
+
 namespace DustInTheWind.MedicX.Common.Entities
 {
     public class Person
     {
+        private PersonName name;
         public int Id { get; set; }
-        public PersonName Name { get; set; }
+
+        public PersonName Name
+        {
+            get => name;
+            set
+            {
+                if(name != null)
+                    name.Changed -= HandleNameChanged;
+
+                name = value;
+
+                if (name != null)
+                    name.Changed += HandleNameChanged;
+
+                OnNameChanged();
+            }
+        }
+
+        private void HandleNameChanged(object sender, EventArgs eventArgs)
+        {
+            OnNameChanged();
+        }
+
         public string Comments { get; set; }
+
+        public event EventHandler NameChanged;
 
         public virtual void CopyFrom(Person person)
         {
@@ -32,6 +59,11 @@ namespace DustInTheWind.MedicX.Common.Entities
         public override string ToString()
         {
             return Name?.ToString();
+        }
+
+        protected virtual void OnNameChanged()
+        {
+            NameChanged?.Invoke(this, EventArgs.Empty);
         }
     }
 }

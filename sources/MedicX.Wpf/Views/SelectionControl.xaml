@@ -25,17 +25,26 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <TabControl SelectionChanged="Selector_OnSelectionChanged">
 
         <TabItem Tag="Medics" Header="Medics">
-            <ListView ItemsSource="{Binding Medics}" SelectedItem="{Binding SelectedMedic}">
+            <DockPanel>
+                <StackPanel
+                    DockPanel.Dock="Bottom"
+                    Orientation="Horizontal">
+                    
+                    <Button Content="Add" Command="{Binding AddMedicCommand}"/>
 
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel>
-                            <TextBlock Text="{Binding Name}" Padding="5 6" />
-                        </StackPanel>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
+                </StackPanel>
+                <ListView ItemsSource="{Binding Medics}" SelectedItem="{Binding SelectedMedic}">
 
-            </ListView>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock Text="{Binding Text}" Padding="5 6" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+
+                </ListView>
+            </DockPanel>
         </TabItem>
 
         <TabItem Tag="Clinics" Header="Clinics">

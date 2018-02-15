@@ -56,6 +56,7 @@
     </ApplicationDefinition>
     <Compile Include="ApplicationState.cs" />
     <Compile Include="Commands\AddCommand.cs" />
+    <Compile Include="Commands\AddMedicCommand.cs" />
     <Compile Include="Commands\ClearCommand.cs" />
     <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="Commands\SaveCommand.cs" />
@@ -69,6 +70,7 @@
     <Compile Include="Commands\ReplaceCommand.cs" />
     <Compile Include="Translators\InvestigationInstanceExcensions.cs" />
     <Compile Include="ViewModels\InvestigationViewModel.cs" />
+    <Compile Include="ViewModels\MedicItemViewModel.cs" />
     <Compile Include="ViewModels\SelectionViewModel.cs" />
     <Compile Include="ViewModels\StringListToCsvConverter.cs" />
     <Compile Include="ViewModels\StringListToMultilineStringConverter.cs" />

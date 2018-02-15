@@ -22,9 +22,41 @@ namespace DustInTheWind.MedicX.Common.Entities
 {
     public class PersonName : IComparable<PersonName>
     {
-        public string FirstName { get; set; }
-        public string MiddleName { get; set; }
-        public string LastName { get; set; }
+        private string firstName;
+        private string middleName;
+        private string lastName;
+
+        public string FirstName
+        {
+            get => firstName;
+            set
+            {
+                firstName = value;
+                OnChanged();
+            }
+        }
+
+        public string MiddleName
+        {
+            get => middleName;
+            set
+            {
+                middleName = value;
+                OnChanged();
+            }
+        }
+
+        public string LastName
+        {
+            get => lastName;
+            set
+            {
+                lastName = value;
+                OnChanged();
+            }
+        }
+
+        public event EventHandler Changed;
 
         public override string ToString()
         {
@@ -129,6 +161,11 @@ namespace DustInTheWind.MedicX.Common.Entities
             if (middleNameComparison != 0) return middleNameComparison;
 
             return string.Compare(LastName, other.LastName, StringComparison.Ordinal);
+        }
+
+        protected virtual void OnChanged()
+        {
+            Changed?.Invoke(this, EventArgs.Empty);
         }
     }
 }

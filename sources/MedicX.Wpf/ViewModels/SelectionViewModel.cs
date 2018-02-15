@@ -15,33 +15,25 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using DustInTheWind.MedicX.Common.Entities;
+using DustInTheWind.MedicX.Wpf.Commands;
 
 namespace DustInTheWind.MedicX.Wpf.ViewModels
 {
     internal class SelectionViewModel : ViewModelBase
     {
         private readonly ApplicationState applicationState;
-        private ObservableCollection<Medic> medics;
-        private ObservableCollection<Clinic> clinics;
-        private ObservableCollection<MedicalEvent> medicalEvents;
-        private Medic selectedMedic;
+        private MedicItemViewModel selectedMedic;
         private Clinic selectedClinic;
         private MedicalEvent selectedConsultation;
         private Tab selectedTab;
 
-        public ObservableCollection<Medic> Medics
-        {
-            get => medics;
-            set
-            {
-                medics = value;
-                OnPropertyChanged();
-            }
-        }
+        public List<MedicItemViewModel> Medics { get; }
 
-        public Medic SelectedMedic
+        public MedicItemViewModel SelectedMedic
         {
             get => selectedMedic;
             set
@@ -52,19 +44,11 @@ namespace DustInTheWind.MedicX.Wpf.ViewModels
                 selectedMedic = value;
                 OnPropertyChanged();
 
-                applicationState.CurrentItem = selectedMedic;
+                applicationState.CurrentItem = selectedMedic?.Medic;
             }
         }
 
-        public ObservableCollection<Clinic> Clinics
-        {
-            get => clinics;
-            set
-            {
-                clinics = value;
-                OnPropertyChanged();
-            }
-        }
+        public ObservableCollection<Clinic> Clinics { get; }
 
         public Clinic SelectedClinic
         {
@@ -81,15 +65,7 @@ namespace DustInTheWind.MedicX.Wpf.ViewModels
             }
         }
 
-        public ObservableCollection<MedicalEvent> MedicalEvents
-        {
-            get => medicalEvents;
-            set
-            {
-                medicalEvents = value;
-                OnPropertyChanged();
-            }
-        }
+        public ObservableCollection<MedicalEvent> MedicalEvents { get; }
 
         public MedicalEvent SelectedConsultation
         {
@@ -116,7 +92,7 @@ namespace DustInTheWind.MedicX.Wpf.ViewModels
                 switch (selectedTab)
                 {
                     case Tab.Medics:
-                        applicationState.CurrentItem = selectedMedic;
+                        applicationState.CurrentItem = selectedMedic?.Medic;
                         break;
 
                     case Tab.Clinics:
@@ -134,14 +110,29 @@ namespace DustInTheWind.MedicX.Wpf.ViewModels
             }
         }
 
+        public AddMedicCommand AddMedicCommand { get; }
+
         public SelectionViewModel(ApplicationState applicationState)
         {
             this.applicationState = applicationState ?? throw new ArgumentNullException(nameof(applicationState));
 
-            medics = applicationState.Medics;
-            clinics = applicationState.Clinics;
-            medicalEvents = applicationState.MedicalEvents;
-            
+            Medics = applicationState.Medics.Select(x => new MedicItemViewModel(x)).ToList();
+            Clinics = applicationState.Clinics;
+            MedicalEvents = applicationState.MedicalEvents;
+
+            AddMedicCommand = new AddMedicCommand(applicationState);
+
+            applicationState.CurrentItemChanged += HandleCurrentItemChanged;
+        }
+
+        private void HandleCurrentItemChanged(object sender, EventArgs e)
+        {
+            Medic medic = applicationState.CurrentItem as Medic;
+
+            if (medic == null)
+                return;
+
+            SelectedMedic = Medics.FirstOrDefault(x => x.Medic == medic);
         }
     }
 }
