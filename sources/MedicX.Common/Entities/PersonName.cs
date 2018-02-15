@@ -20,7 +20,7 @@ using System.Text;
 
 namespace DustInTheWind.MedicX.Common.Entities
 {
-    public class PersonName
+    public class PersonName : IComparable<PersonName>
     {
         public string FirstName { get; set; }
         public string MiddleName { get; set; }
@@ -115,6 +115,20 @@ namespace DustInTheWind.MedicX.Common.Entities
         public static implicit operator string(PersonName personName)
         {
             return personName?.ToString();
+        }
+
+        public int CompareTo(PersonName other)
+        {
+            if (ReferenceEquals(this, other)) return 0;
+            if (ReferenceEquals(null, other)) return 1;
+
+            int firstNameComparison = string.Compare(FirstName, other.FirstName, StringComparison.Ordinal);
+            if (firstNameComparison != 0) return firstNameComparison;
+
+            int middleNameComparison = string.Compare(MiddleName, other.MiddleName, StringComparison.Ordinal);
+            if (middleNameComparison != 0) return middleNameComparison;
+
+            return string.Compare(LastName, other.LastName, StringComparison.Ordinal);
         }
     }
 }

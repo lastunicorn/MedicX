@@ -15,7 +15,9 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using DustInTheWind.MedicX.Common.Entities;
 
 namespace DustInTheWind.MedicX.Wpf.ViewModels
@@ -24,12 +26,25 @@ namespace DustInTheWind.MedicX.Wpf.ViewModels
     {
         public Consultation Consultation { get; }
 
-        public ObservableCollection<Medic> Medics { get; }
+        public List<Medic> Medics { get; }
 
-        public ConsultationViewModel(Consultation consultation, ObservableCollection<Medic> medics)
+        public List<Clinic> Clinics { get; }
+
+        public ConsultationViewModel(Consultation consultation, ObservableCollection<Medic> medics, ObservableCollection<Clinic> clinics)
         {
-            Consultation = consultation ?? throw new ArgumentNullException(nameof(consultation));
-            Medics = medics ?? throw new ArgumentNullException(nameof(medics));
+            if (consultation == null) throw new ArgumentNullException(nameof(consultation));
+            if (medics == null) throw new ArgumentNullException(nameof(medics));
+            if (clinics == null) throw new ArgumentNullException(nameof(clinics));
+
+            Consultation = consultation;
+
+            Medics = medics
+                .OrderBy(x => x.Name)
+                .ToList();
+
+            Clinics = clinics
+                .OrderBy(x => x.Name)
+                .ToList();
         }
     }
 }

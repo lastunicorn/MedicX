@@ -134,11 +134,22 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 Margin="0 4 10 4"
                 FontWeight="Bold"/>
 
-            <TextBlock
+            <ComboBox
                 Grid.Column="1"
                 Grid.Row="2"
-                Text="{Binding Investigation.Clinic.Name}"
-                Margin="0 4"/>
+                Margin="0 4"
+                ItemsSource="{Binding Clinics}"
+                SelectedItem="{Binding Investigation.Clinic}">
+
+                <ComboBox.Resources>
+                    <DataTemplate DataType="{x:Type entities:Clinic}">
+                        <TextBlock
+                            FontWeight="Bold"
+                            Text="{Binding Name}"/>
+                    </DataTemplate>
+                </ComboBox.Resources>
+
+            </ComboBox>
 
             <StackPanel
                 Grid.Column="0"

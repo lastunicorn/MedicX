@@ -141,6 +141,7 @@ namespace DustInTheWind.MedicX.Wpf.ViewModels
             medics = applicationState.Medics;
             clinics = applicationState.Clinics;
             medicalEvents = applicationState.MedicalEvents;
+            
         }
     }
 }
