@@ -15,12 +15,30 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System.Collections.Generic;
+using System.Linq;
 
 namespace DustInTheWind.MedicX.Common.Entities
 {
     public class Investigation : MedicalEvent
     {
         public Medic SentBy { get; set; }
+
         public List<InvestigationResult> Result { get; set; }
+
+        public void CopyFrom(Investigation investigation)
+        {
+            base.CopyFrom(investigation);
+
+            SentBy = investigation.SentBy;
+            Result = investigation.Result?.ToList();
+        }
+
+        public override void CopyFrom(MedicalEvent medicalEvent)
+        {
+            if (medicalEvent is Investigation investigation)
+                CopyFrom(investigation);
+            else
+                base.CopyFrom(medicalEvent);
+        }
     }
 }

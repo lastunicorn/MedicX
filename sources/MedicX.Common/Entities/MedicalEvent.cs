@@ -16,14 +16,29 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace DustInTheWind.MedicX.Common.Entities
 {
     public class MedicalEvent
     {
+        public int Id { get; set; }
+
         public DateTime Date { get; set; }
+
         public Clinic Clinic { get; set; }
+
         public List<string> Labels { get; set; }
+
         public string Comments { get; set; }
+
+        public virtual void CopyFrom(MedicalEvent medicalEvent)
+        {
+            Id = medicalEvent.Id;
+            Date = medicalEvent.Date;
+            Clinic = medicalEvent.Clinic;
+            Labels = medicalEvent.Labels.ToList();
+            Comments = medicalEvent.Comments;
+        }
     }
 }

@@ -138,6 +138,7 @@
     ],
     "consultations": [
         {
+            "id": 1,
             "date": "2017-07-03T00:00:00",
             "location": 1,
             "labels": [
@@ -161,6 +162,7 @@
             ]
         },
         {
+            "id": 2,
             "date": "2017-10-19T00:00:00",
             "location": 1,
             "labels": [
@@ -187,6 +189,7 @@
             ]
         },
         {
+            "id": 3,
             "date": "2018-02-13T00:00:00",
             "location": 1,
             "labels": [
@@ -486,8 +489,9 @@
     ],
     "investigations": [
         {
-	        "date": "2017-07-01T00:00:00",
-	        "medic": 0,
+            "id": 1,
+            "date": "2017-07-01T00:00:00",
+            "medic": 0,
             "location": 2,
             "labels": [
                 "demielinizare"

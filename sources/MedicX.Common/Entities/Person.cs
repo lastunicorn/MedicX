@@ -22,6 +22,13 @@ namespace DustInTheWind.MedicX.Common.Entities
         public PersonName Name { get; set; }
         public string Comments { get; set; }
 
+        public virtual void CopyFrom(Person person)
+        {
+            Id = person.Id;
+            Name = person.Name;
+            Comments = person.Comments;
+        }
+
         public override string ToString()
         {
             return Name?.ToString();

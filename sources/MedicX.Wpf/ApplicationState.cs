@@ -90,6 +90,20 @@ namespace DustInTheWind.MedicX.Wpf
                 foreach (Clinic clinic in Clinics)
                     unitOfWork.ClinicRepository.AddOrUpdate(clinic);
 
+                foreach (MedicalEvent medicalEvent in MedicalEvents)
+                {
+                    switch (medicalEvent)
+                    {
+                        case Consultation consultation:
+                            unitOfWork.ConsultationRepository.AddOrUpdate(consultation);
+                            break;
+
+                        case Investigation investigation:
+                            unitOfWork.InvestigationRepository.AddOrUpdate(investigation);
+                            break;
+                    }
+                }
+
                 unitOfWork.Save();
             }
         }

@@ -69,13 +69,7 @@ namespace DustInTheWind.MedicX.Persistence.Json
             if (existingClinic == null)
                 medicXData.Clinics.Add(clinic);
             else
-            {
-                existingClinic.Name = clinic.Name;
-                existingClinic.Address = clinic.Address;
-                existingClinic.Phones = clinic.Phones.ToList();
-                existingClinic.Program = clinic.Program;
-                existingClinic.Comments = clinic.Comments;
-            }
+                existingClinic.CopyFrom(clinic);
         }
     }
 }

@@ -15,11 +15,26 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System.Collections.Generic;
+using System.Linq;
 
 namespace DustInTheWind.MedicX.Common.Entities
 {
     public class Medic : Person
     {
         public List<string> Specializations { get; set; }
+
+        public void CopyFrom(Medic medic)
+        {
+            base.CopyFrom(medic);
+            Specializations = medic.Specializations.ToList();
+        }
+
+        public override void CopyFrom(Person person)
+        {
+            if (person is Medic medic)
+                CopyFrom(medic);
+            else
+                base.CopyFrom(person);
+        }
     }
 }

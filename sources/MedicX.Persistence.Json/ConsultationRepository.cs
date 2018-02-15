@@ -46,5 +46,19 @@ namespace DustInTheWind.MedicX.Persistence.Json
                             (x.Comments != null && x.Comments.IndexOf(text, StringComparison.InvariantCultureIgnoreCase) >= 0))
                 .ToList();
         }
+
+        public void AddOrUpdate(Consultation consultation)
+        {
+            if (consultation == null)
+                return;
+
+            Consultation existingConsultation = medicXData.Consultations
+                .FirstOrDefault(x => x.Id == consultation.Id);
+
+            if (existingConsultation == null)
+                medicXData.Consultations.Add(consultation);
+            else
+                existingConsultation.CopyFrom(consultation);
+        }
     }
 }

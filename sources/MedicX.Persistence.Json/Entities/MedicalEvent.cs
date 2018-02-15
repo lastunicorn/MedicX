@@ -14,15 +14,27 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+using System;
 using System.Collections.Generic;
-using DustInTheWind.MedicX.Common.Entities;
+using Newtonsoft.Json;
 
-namespace DustInTheWind.MedicX.Persistence.Json
+namespace DustInTheWind.MedicX.Persistence.Json.Entities
 {
-    public interface IInvestigationRepository
+    internal class MedicalEvent
     {
-        List<Investigation> GetAll();
-        List<Investigation> Search(string text);
-        void AddOrUpdate(Investigation investigation);
+        [JsonProperty("id", Order = 1)]
+        public int Id { get; set; }
+
+        [JsonProperty("date", Order = 1)]
+        public DateTime Date { get; set; }
+
+        [JsonProperty("location", Order = 1)]
+        public int ClinicLocationId { get; set; }
+
+        [JsonProperty("labels", Order = 1)]
+        public List<string> Labels { get; set; }
+
+        [JsonProperty("comments", Order = 1)]
+        public string Comments { get; set; }
     }
 }

@@ -73,11 +73,7 @@ namespace DustInTheWind.MedicX.Persistence.Json
             if (existingMedic == null)
                 medicXData.Medics.Add(medic);
             else
-            {
-                existingMedic.Name = medic.Name;
-                existingMedic.Specializations = medic.Specializations.ToList();
-                existingMedic.Comments = medic.Comments;
-            }
+                existingMedic.CopyFrom(medic);
         }
 
         public List<Medic> GetByName(string medicName)

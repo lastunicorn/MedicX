@@ -15,6 +15,7 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System.Collections.Generic;
+using System.Linq;
 
 namespace DustInTheWind.MedicX.Common.Entities
 {
@@ -26,5 +27,15 @@ namespace DustInTheWind.MedicX.Common.Entities
         public List<string> Phones { get; set; }
         public string Program { get; set; }
         public string Comments { get; set; }
+
+        public void CopyFrom(Clinic clinic)
+        {
+            Id = clinic.Id;
+            Name = clinic.Name;
+            Address = clinic.Address;
+            Phones = clinic.Phones.ToList();
+            Program = clinic.Program;
+            Comments = clinic.Comments;
+        }
     }
 }

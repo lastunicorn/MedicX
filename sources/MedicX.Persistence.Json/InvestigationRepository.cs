@@ -46,5 +46,19 @@ namespace DustInTheWind.MedicX.Persistence.Json
                             (x.Comments != null && x.Comments.IndexOf(text, StringComparison.InvariantCultureIgnoreCase) >= 0))
                 .ToList();
         }
+
+        public void AddOrUpdate(Investigation investigation)
+        {
+            if (investigation == null)
+                return;
+
+            Investigation existingInvestigation = medicXData.Investigations
+                .FirstOrDefault(x => x.Id == investigation.Id);
+
+            if (existingInvestigation == null)
+                medicXData.Investigations.Add(investigation);
+            else
+                existingInvestigation.CopyFrom(investigation);
+        }
     }
 }

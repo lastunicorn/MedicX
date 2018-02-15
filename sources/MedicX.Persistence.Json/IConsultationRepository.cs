@@ -23,5 +23,6 @@ namespace DustInTheWind.MedicX.Persistence.Json
     {
         List<Consultation> GetAll();
         List<Consultation> Search(string text);
+        void AddOrUpdate(Consultation consultation);
     }
 }

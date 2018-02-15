@@ -36,6 +36,7 @@ namespace DustInTheWind.MedicX.Persistence.Json.Translators
 
             return new Consultation
             {
+                Id = consultation.Id,
                 Date = consultation.Date,
                 Medic = medics.FirstOrDefault(x => x.Id == consultation.MedicId),
                 Clinic = clinicLocations.FirstOrDefault(x => x.Id == consultation.ClinicLocationId),
@@ -59,6 +60,7 @@ namespace DustInTheWind.MedicX.Persistence.Json.Translators
 
             return new Entities.Consultation
             {
+                Id = consultation.Id,
                 Date = consultation.Date,
                 MedicId = consultation.Medic.Id,
                 ClinicLocationId = consultation.Clinic.Id,
