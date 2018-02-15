@@ -16,7 +16,7 @@
 
 using System.Windows.Controls;
 
-namespace DustInTheWind.MedicX.Wpf.Views
+namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemDetails.Views
 {
     /// <summary>
     /// Interaction logic for InvestigationView.xaml

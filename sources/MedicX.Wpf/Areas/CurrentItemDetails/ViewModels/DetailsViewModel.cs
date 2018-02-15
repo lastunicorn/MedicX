@@ -17,7 +17,7 @@
 using System;
 using DustInTheWind.MedicX.Common.Entities;
 
-namespace DustInTheWind.MedicX.Wpf.ViewModels
+namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemDetails.ViewModels
 {
     internal class DetailsViewModel : ViewModelBase
     {

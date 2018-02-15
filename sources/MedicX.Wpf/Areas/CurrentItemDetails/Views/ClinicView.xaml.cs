@@ -14,28 +14,18 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using System;
-using DustInTheWind.MedicX.Common.Entities;
+using System.Windows.Controls;
 
-namespace DustInTheWind.MedicX.Wpf.ViewModels
+namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemDetails.Views
 {
-    internal class MedicItemViewModel : ViewModelBase
+    /// <summary>
+    /// Interaction logic for ClinicView.xaml
+    /// </summary>
+    internal partial class ClinicView : UserControl
     {
-        public Medic Medic { get; }
-
-        public string Text { get; private set; }
-
-        public MedicItemViewModel(Medic medic)
+        public ClinicView()
         {
-            Medic = medic ?? throw new ArgumentNullException(nameof(medic));
-
-            Text = Medic.Name;
-            medic.NameChanged += HandleMedicNameChanged;
-        }
-
-        private void HandleMedicNameChanged(object sender, EventArgs eventArgs)
-        {
-            Text = Medic.Name;
+            InitializeComponent();
         }
     }
 }

@@ -16,14 +16,14 @@
 
 using System.Windows.Controls;
 
-namespace DustInTheWind.MedicX.Wpf.Views
+namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemDetails.Views
 {
     /// <summary>
-    /// Interaction logic for DetailsControl.xaml
+    /// Interaction logic for ConsultationView.xaml
     /// </summary>
-    internal partial class DetailsControl : UserControl
+    internal partial class ConsultationView : UserControl
     {
-        public DetailsControl()
+        public ConsultationView()
         {
             InitializeComponent();
         }

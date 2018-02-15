@@ -16,6 +16,8 @@
 
 using System;
 using System.Reflection;
+using DustInTheWind.MedicX.Wpf.Areas.CurrentItemDetails.ViewModels;
+using DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.VewModels;
 using DustInTheWind.MedicX.Wpf.Commands;
 
 namespace DustInTheWind.MedicX.Wpf.ViewModels

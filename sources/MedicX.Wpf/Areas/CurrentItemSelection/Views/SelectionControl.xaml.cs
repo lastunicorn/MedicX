@@ -15,9 +15,10 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System.Windows.Controls;
+using DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.VewModels;
 using DustInTheWind.MedicX.Wpf.ViewModels;
 
-namespace DustInTheWind.MedicX.Wpf.Views
+namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.Views
 {
     /// <summary>
     /// Interaction logic for SelectionControl.xaml

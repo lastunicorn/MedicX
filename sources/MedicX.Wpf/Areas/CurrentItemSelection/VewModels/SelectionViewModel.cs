@@ -20,20 +20,21 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using DustInTheWind.MedicX.Common.Entities;
 using DustInTheWind.MedicX.Wpf.Commands;
+using DustInTheWind.MedicX.Wpf.ViewModels;
 
-namespace DustInTheWind.MedicX.Wpf.ViewModels
+namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.VewModels
 {
     internal class SelectionViewModel : ViewModelBase
     {
         private readonly ApplicationState applicationState;
-        private MedicItemViewModel selectedMedic;
+        private MedicListItemViewModel selectedMedic;
         private Clinic selectedClinic;
         private MedicalEvent selectedConsultation;
         private Tab selectedTab;
 
-        public List<MedicItemViewModel> Medics { get; }
+        public List<MedicListItemViewModel> Medics { get; }
 
-        public MedicItemViewModel SelectedMedic
+        public MedicListItemViewModel SelectedMedic
         {
             get => selectedMedic;
             set
@@ -116,7 +117,7 @@ namespace DustInTheWind.MedicX.Wpf.ViewModels
         {
             this.applicationState = applicationState ?? throw new ArgumentNullException(nameof(applicationState));
 
-            Medics = applicationState.Medics.Select(x => new MedicItemViewModel(x)).ToList();
+            Medics = applicationState.Medics.Select(x => new MedicListItemViewModel(x)).ToList();
             Clinics = applicationState.Clinics;
             MedicalEvents = applicationState.MedicalEvents;
 

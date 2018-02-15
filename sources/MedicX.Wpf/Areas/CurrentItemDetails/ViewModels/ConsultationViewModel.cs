@@ -20,7 +20,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using DustInTheWind.MedicX.Common.Entities;
 
-namespace DustInTheWind.MedicX.Wpf.ViewModels
+namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemDetails.ViewModels
 {
     internal class ConsultationViewModel : ViewModelBase
     {

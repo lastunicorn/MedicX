@@ -61,42 +61,42 @@
     <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="Commands\SaveCommand.cs" />
     <Compile Include="Translators\ConsultationExtensions.cs" />
-    <Compile Include="ViewModels\ConsultationViewModel.cs" />
-    <Compile Include="ViewModels\DetailsViewModel.cs" />
+    <Compile Include="Areas\CurrentItemDetails\ViewModels\ConsultationViewModel.cs" />
+    <Compile Include="Areas\CurrentItemDetails\ViewModels\DetailsViewModel.cs" />
     <Compile Include="Translators\EventExtensions.cs" />
     <Compile Include="ViewModels\EventsViewModel.cs" />
     <Compile Include="Commands\MoveCommand.cs" />
     <Compile Include="Commands\RemoveCommand.cs" />
     <Compile Include="Commands\ReplaceCommand.cs" />
     <Compile Include="Translators\InvestigationInstanceExcensions.cs" />
-    <Compile Include="ViewModels\InvestigationViewModel.cs" />
-    <Compile Include="ViewModels\MedicItemViewModel.cs" />
-    <Compile Include="ViewModels\SelectionViewModel.cs" />
+    <Compile Include="Areas\CurrentItemDetails\ViewModels\InvestigationViewModel.cs" />
+    <Compile Include="Areas\CurrentItemSelection\VewModels\MedicListItemViewModel.cs" />
+    <Compile Include="Areas\CurrentItemSelection\VewModels\SelectionViewModel.cs" />
     <Compile Include="ViewModels\StringListToCsvConverter.cs" />
     <Compile Include="ViewModels\StringListToMultilineStringConverter.cs" />
     <Compile Include="ViewModels\StringListViewModelConverter.cs" />
     <Compile Include="Views\AddressView.xaml.cs">
       <DependentUpon>AddressView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ClinicView.xaml.cs">
+    <Compile Include="Areas\CurrentItemDetails\Views\ClinicView.xaml.cs">
       <DependentUpon>ClinicView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\InvestigationView.xaml.cs">
+    <Compile Include="Areas\CurrentItemDetails\Views\InvestigationView.xaml.cs">
       <DependentUpon>InvestigationView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ConsultationView.xaml.cs">
+    <Compile Include="Areas\CurrentItemDetails\Views\ConsultationView.xaml.cs">
       <DependentUpon>ConsultationView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\DetailsControl.xaml.cs">
+    <Compile Include="Areas\CurrentItemDetails\Views\DetailsControl.xaml.cs">
       <DependentUpon>DetailsControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\MedicView.xaml.cs">
+    <Compile Include="Areas\CurrentItemDetails\Views\MedicView.xaml.cs">
       <DependentUpon>MedicView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\StringListView.xaml.cs">
       <DependentUpon>StringListView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\SelectionControl.xaml.cs">
+    <Compile Include="Areas\CurrentItemSelection\Views\SelectionControl.xaml.cs">
       <DependentUpon>SelectionControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\StringListViewModel.cs" />
@@ -111,19 +111,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ClinicView.xaml">
+    <Page Include="Areas\CurrentItemDetails\Views\ClinicView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\InvestigationView.xaml">
+    <Page Include="Areas\CurrentItemDetails\Views\InvestigationView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\ConsultationView.xaml">
+    <Page Include="Areas\CurrentItemDetails\Views\ConsultationView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\DetailsControl.xaml">
+    <Page Include="Areas\CurrentItemDetails\Views\DetailsControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -155,7 +155,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Views\MedicView.xaml">
+    <Page Include="Areas\CurrentItemDetails\Views\MedicView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -163,7 +163,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\SelectionControl.xaml">
+    <Page Include="Areas\CurrentItemSelection\Views\SelectionControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -216,5 +216,6 @@
       <Name>MedicX.Persistence.Json</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
