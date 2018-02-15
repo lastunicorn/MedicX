@@ -15,8 +15,9 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using DustInTheWind.MedicX.Wpf.Commands;
+using DustInTheWind.MedicX.Wpf.ViewModels;
 
-namespace DustInTheWind.MedicX.Wpf.ViewModels
+namespace DustInTheWind.MedicX.Wpf.Areas.Main.ViewModels
 {
     internal class MainViewModel2 : ViewModelBase
     {

@@ -15,20 +15,20 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System.Windows;
-using DustInTheWind.MedicX.Wpf.ViewModels;
+using DustInTheWind.MedicX.Wpf.Areas.Main.ViewModels;
 
-namespace DustInTheWind.MedicX.Wpf.Views
+namespace DustInTheWind.MedicX.Wpf.Areas.Main.Views
 {
     /// <summary>
-    /// Interaction logic for Window2.xaml
+    /// Interaction logic for MainWindow.xaml
     /// </summary>
-    internal partial class Window2 : Window
+    internal partial class MainWindow : Window
     {
-        public Window2()
+        public MainWindow()
         {
             InitializeComponent();
 
-            DataContext = new MainViewModel2();
+            DataContext = new MainViewModel();
         }
     }
 }

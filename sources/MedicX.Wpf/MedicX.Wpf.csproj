@@ -72,10 +72,10 @@
     <Compile Include="Areas\CurrentItemDetails\ViewModels\InvestigationViewModel.cs" />
     <Compile Include="Areas\CurrentItemSelection\VewModels\MedicListItemViewModel.cs" />
     <Compile Include="Areas\CurrentItemSelection\VewModels\SelectionViewModel.cs" />
-    <Compile Include="ViewModels\StringListToCsvConverter.cs" />
-    <Compile Include="ViewModels\StringListToMultilineStringConverter.cs" />
-    <Compile Include="ViewModels\StringListViewModelConverter.cs" />
-    <Compile Include="Views\AddressView.xaml.cs">
+    <Compile Include="Areas\CurrentItemDetails\StringListToCsvConverter.cs" />
+    <Compile Include="Areas\CurrentItemDetails\StringListToMultilineStringConverter.cs" />
+    <Compile Include="StringListViewModelConverter.cs" />
+    <Compile Include="Areas\CurrentItemDetails\Views\AddressView.xaml.cs">
       <DependentUpon>AddressView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Areas\CurrentItemDetails\Views\ClinicView.xaml.cs">
@@ -100,14 +100,14 @@
       <DependentUpon>SelectionControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\StringListViewModel.cs" />
-    <Compile Include="ViewModels\Tab.cs" />
+    <Compile Include="Areas\CurrentItemSelection\Tab.cs" />
     <Compile Include="Views\StringListBox.xaml.cs">
       <DependentUpon>StringListBox.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Window2.xaml.cs">
+    <Compile Include="Areas\Main\Views\Window2.xaml.cs">
       <DependentUpon>Window2.xaml</DependentUpon>
     </Compile>
-    <Page Include="Views\AddressView.xaml">
+    <Page Include="Areas\CurrentItemDetails\Views\AddressView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -131,7 +131,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\MainWindow.xaml">
+    <Page Include="Areas\Main\Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -148,10 +148,10 @@
     </Compile>
     <Compile Include="ViewModels\EventViewModel.cs" />
     <Compile Include="EventType.cs" />
-    <Compile Include="ViewModels\MainViewModel.cs" />
-    <Compile Include="ViewModels\MainViewModel2.cs" />
+    <Compile Include="Areas\Main\ViewModels\MainViewModel.cs" />
+    <Compile Include="Areas\Main\ViewModels\MainViewModel2.cs" />
     <Compile Include="ViewModelBase.cs" />
-    <Compile Include="Views\MainWindow.xaml.cs">
+    <Compile Include="Areas\Main\Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
@@ -171,7 +171,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Window2.xaml">
+    <Page Include="Areas\Main\Views\Window2.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

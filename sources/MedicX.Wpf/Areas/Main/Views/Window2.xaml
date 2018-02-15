@@ -17,7 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 
 <Window
-    x:Class="DustInTheWind.MedicX.Wpf.Views.Window2"
+    x:Class="DustInTheWind.MedicX.Wpf.Areas.Main.Views.Window2"
     x:ClassModifier="internal"
 
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -25,14 +25,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local="clr-namespace:DustInTheWind.MedicX.Wpf"
-    xmlns:viewModels="clr-namespace:DustInTheWind.MedicX.Wpf.ViewModels"
     xmlns:core="clr-namespace:System;assembly=mscorlib"
+    xmlns:viewModels1="clr-namespace:DustInTheWind.MedicX.Wpf.Areas.Main.ViewModels"
 
     mc:Ignorable="d"
     Title="Window2"
     Height="480"
     Width="640"
-    d:DataContext="{viewModels:MainViewModel2}">
+    d:DataContext="{viewModels1:MainViewModel2}">
 
     <Window.Resources>
         <ObjectDataProvider x:Key="EventTypeEnum" MethodName="GetValues" ObjectType="{x:Type core:Enum}">

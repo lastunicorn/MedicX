@@ -16,7 +16,6 @@
 
 using System.Windows.Controls;
 using DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.VewModels;
-using DustInTheWind.MedicX.Wpf.ViewModels;
 
 namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.Views
 {

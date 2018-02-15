@@ -20,7 +20,7 @@ using DustInTheWind.MedicX.Wpf.Areas.CurrentItemDetails.ViewModels;
 using DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.VewModels;
 using DustInTheWind.MedicX.Wpf.Commands;
 
-namespace DustInTheWind.MedicX.Wpf.ViewModels
+namespace DustInTheWind.MedicX.Wpf.Areas.Main.ViewModels
 {
     internal class MainViewModel : ViewModelBase
     {

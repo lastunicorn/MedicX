@@ -17,23 +17,23 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 
 <Window
-    x:Class="DustInTheWind.MedicX.Wpf.Views.MainWindow"
+    x:Class="DustInTheWind.MedicX.Wpf.Areas.Main.Views.MainWindow"
     x:ClassModifier="internal"
     
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:viewModels="clr-namespace:DustInTheWind.MedicX.Wpf.ViewModels"
     xmlns:views1="clr-namespace:DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.Views"
     xmlns:views3="clr-namespace:DustInTheWind.MedicX.Wpf.Areas.CurrentItemDetails.Views"
+    xmlns:viewModels1="clr-namespace:DustInTheWind.MedicX.Wpf.Areas.Main.ViewModels"
 
     mc:Ignorable="d"
     Title="{Binding Title}"
     Height="540"
     Width="960"
     ResizeMode="CanResizeWithGrip"
-    d:DataContext="{d:DesignInstance viewModels:MainViewModel}"
+    d:DataContext="{d:DesignInstance viewModels1:MainViewModel}"
     Background="LightGray">
 
     <DockPanel>
