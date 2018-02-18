@@ -37,15 +37,80 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <wpf:EventTypeConverter x:Key="EventTypeConverter" />
     </UserControl.Resources>
 
-    <TabControl SelectionChanged="Selector_OnSelectionChanged">
+    <TabControl
+        SelectionChanged="Selector_OnSelectionChanged"
+        ItemsSource="{Binding Tabs}">
 
-        <TabItem Tag="Medics" Header="Medics">
+        <TabControl.ItemTemplate>
+            <DataTemplate DataType="vewModels:TabItemViewModel">
+                <TextBlock Text="{Binding Header}" />
+            </DataTemplate>
+        </TabControl.ItemTemplate>
+
+        <TabControl.ContentTemplate>
+            <DataTemplate>
+                <DockPanel>
+                    <StackPanel
+                        DockPanel.Dock="Bottom"
+                        Orientation="Horizontal">
+
+                        <Button Content="Add" Command="{Binding Content.AddMedicCommand}"/>
+                        <TextBox Text="{Binding Content.SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                    </StackPanel>
+                    <ListView ItemsSource="{Binding Content.Medics}" SelectedItem="{Binding Content.SelectedMedic}">
+
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding Text}" Padding="5 6" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+
+                    </ListView>
+                </DockPanel>
+            </DataTemplate>
+        </TabControl.ContentTemplate>
+
+        <!--<TabControl.Resources>
+            <DataTemplate DataType="vewModels:TabItemViewModel">
+                <DockPanel>
+                    <StackPanel
+                        DockPanel.Dock="Bottom"
+                        Orientation="Horizontal">
+
+                        <Button Content="Add" Command="{Binding Content.AddMedicCommand}"/>
+                        <TextBox Text="{Binding Content.SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                    </StackPanel>
+                    <ListView ItemsSource="{Binding Content.Medics}" SelectedItem="{Binding Content.SelectedMedic}">
+
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding Text}" Padding="5 6" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+
+                    </ListView>
+                </DockPanel>
+            </DataTemplate>
+        </TabControl.Resources>-->
+
+        <!--<TabItem
+            Tag="Medics"
+            Header="Medics"
+            DataContext="{Binding MedicsTabViewModel}">
+
             <DockPanel>
                 <StackPanel
                     DockPanel.Dock="Bottom"
                     Orientation="Horizontal">
 
                     <Button Content="Add" Command="{Binding AddMedicCommand}"/>
+                    <TextBox Text="{Binding SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
                 </StackPanel>
                 <ListView ItemsSource="{Binding Medics}" SelectedItem="{Binding SelectedMedic}">
@@ -60,6 +125,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
                 </ListView>
             </DockPanel>
+
         </TabItem>
 
         <TabItem Tag="Clinics" Header="Clinics">
@@ -105,7 +171,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 </ListView.Resources>
 
             </ListView>
-        </TabItem>
+        </TabItem>-->
 
     </TabControl>
 

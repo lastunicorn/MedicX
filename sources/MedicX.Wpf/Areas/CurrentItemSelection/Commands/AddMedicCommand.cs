@@ -19,7 +19,7 @@ using System.Collections.Generic;
 using System.Windows.Input;
 using DustInTheWind.MedicX.Common.Entities;
 
-namespace DustInTheWind.MedicX.Wpf.Commands
+namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.Commands
 {
     internal class AddMedicCommand : ICommand
     {
@@ -34,7 +34,7 @@ namespace DustInTheWind.MedicX.Wpf.Commands
 
         public bool CanExecute(object parameter)
         {
-            return false;
+            return true;
         }
 
         public void Execute(object parameter)

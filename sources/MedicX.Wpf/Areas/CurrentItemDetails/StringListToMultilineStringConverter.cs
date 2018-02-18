@@ -35,7 +35,7 @@ namespace DustInTheWind.MedicX.Wpf.ViewModels
         {
             if (value is string s)
             {
-                string[] values = s.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+                string[] values = s.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
                 return new List<string>(values);
             }
 

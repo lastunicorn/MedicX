@@ -55,8 +55,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ApplicationState.cs" />
+    <Compile Include="Areas\CurrentItemSelection\VewModels\MedicsTabViewModel.cs" />
     <Compile Include="Commands\AddCommand.cs" />
-    <Compile Include="Commands\AddMedicCommand.cs" />
+    <Compile Include="Areas\CurrentItemSelection\Commands\AddMedicCommand.cs" />
     <Compile Include="Commands\ClearCommand.cs" />
     <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="Commands\SaveCommand.cs" />

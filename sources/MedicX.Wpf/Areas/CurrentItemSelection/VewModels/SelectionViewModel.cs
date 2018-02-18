@@ -17,37 +17,20 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
 using DustInTheWind.MedicX.Common.Entities;
-using DustInTheWind.MedicX.Wpf.Commands;
-using DustInTheWind.MedicX.Wpf.ViewModels;
+using DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.Commands;
 
 namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.VewModels
 {
     internal class SelectionViewModel : ViewModelBase
     {
         private readonly ApplicationState applicationState;
-        private MedicListItemViewModel selectedMedic;
         private Clinic selectedClinic;
         private MedicalEvent selectedConsultation;
         private Tab selectedTab;
+        public MedicsTabViewModel MedicsTabViewModel { get; }
 
-        public List<MedicListItemViewModel> Medics { get; }
-
-        public MedicListItemViewModel SelectedMedic
-        {
-            get => selectedMedic;
-            set
-            {
-                if (selectedMedic == value)
-                    return;
-
-                selectedMedic = value;
-                OnPropertyChanged();
-
-                applicationState.CurrentItem = selectedMedic?.Medic;
-            }
-        }
+        public List<TabItemViewModel> Tabs { get; }
 
         public ObservableCollection<Clinic> Clinics { get; }
 
@@ -93,7 +76,7 @@ namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.VewModels
                 switch (selectedTab)
                 {
                     case Tab.Medics:
-                        applicationState.CurrentItem = selectedMedic?.Medic;
+                        applicationState.CurrentItem = MedicsTabViewModel.SelectedMedic?.Medic;
                         break;
 
                     case Tab.Clinics:
@@ -111,29 +94,49 @@ namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.VewModels
             }
         }
 
-        public AddMedicCommand AddMedicCommand { get; }
-
         public SelectionViewModel(ApplicationState applicationState)
         {
             this.applicationState = applicationState ?? throw new ArgumentNullException(nameof(applicationState));
 
-            Medics = applicationState.Medics.Select(x => new MedicListItemViewModel(x)).ToList();
+            MedicsTabViewModel = new MedicsTabViewModel(applicationState);
+
+            Tabs = new List<TabItemViewModel>
+            {
+                new TabItemViewModel
+                {
+                    Header = "Medics",
+                    Content = MedicsTabViewModel
+                }
+            };
+
             Clinics = applicationState.Clinics;
             MedicalEvents = applicationState.MedicalEvents;
+        }
+    }
 
-            AddMedicCommand = new AddMedicCommand(applicationState);
+    internal sealed class TabItemViewModel : ViewModelBase
+    {
+        private string header;
+        private MedicsTabViewModel content;
 
-            applicationState.CurrentItemChanged += HandleCurrentItemChanged;
+        public string Header
+        {
+            get => header;
+            set
+            {
+                header = value;
+                OnPropertyChanged();
+            }
         }
 
-        private void HandleCurrentItemChanged(object sender, EventArgs e)
+        public MedicsTabViewModel Content
         {
-            Medic medic = applicationState.CurrentItem as Medic;
-
-            if (medic == null)
-                return;
-
-            SelectedMedic = Medics.FirstOrDefault(x => x.Medic == medic);
+            get => content;
+            set
+            {
+                content = value;
+                OnPropertyChanged();
+            }
         }
     }
 }
