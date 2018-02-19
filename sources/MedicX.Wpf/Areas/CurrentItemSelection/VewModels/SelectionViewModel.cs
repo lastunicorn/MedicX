@@ -16,75 +16,40 @@
 
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using DustInTheWind.MedicX.Common.Entities;
-using DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.Commands;
 
 namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.VewModels
 {
     internal class SelectionViewModel : ViewModelBase
     {
         private readonly ApplicationState applicationState;
-        private Clinic selectedClinic;
-        private MedicalEvent selectedConsultation;
-        private Tab selectedTab;
-        public MedicsTabViewModel MedicsTabViewModel { get; }
+
+        private TabItemViewModel selectedTab;
 
         public List<TabItemViewModel> Tabs { get; }
 
-        public ObservableCollection<Clinic> Clinics { get; }
-
-        public Clinic SelectedClinic
-        {
-            get => selectedClinic;
-            set
-            {
-                if (selectedClinic == value)
-                    return;
-
-                selectedClinic = value;
-                OnPropertyChanged();
-
-                applicationState.CurrentItem = selectedClinic;
-            }
-        }
-
-        public ObservableCollection<MedicalEvent> MedicalEvents { get; }
-
-        public MedicalEvent SelectedConsultation
-        {
-            get => selectedConsultation;
-            set
-            {
-                if (selectedConsultation == value)
-                    return;
-
-                selectedConsultation = value;
-                OnPropertyChanged();
-
-                applicationState.CurrentItem = selectedConsultation;
-            }
-        }
-
-        public Tab SelectedTab
+        public TabItemViewModel SelectedTab
         {
             get => selectedTab;
             set
             {
+                if (selectedTab == value)
+                    return;
+
                 selectedTab = value;
+                OnPropertyChanged();
 
-                switch (selectedTab)
+                switch (selectedTab?.Content)
                 {
-                    case Tab.Medics:
-                        applicationState.CurrentItem = MedicsTabViewModel.SelectedMedic?.Medic;
+                    case MedicsViewModel medicsViewModel:
+                        applicationState.CurrentItem = medicsViewModel.SelectedMedic?.Medic;
                         break;
 
-                    case Tab.Clinics:
-                        applicationState.CurrentItem = selectedClinic;
+                    case ClinicsViewModel clinicsViewModel:
+                        applicationState.CurrentItem = clinicsViewModel.SelectedClinic;
                         break;
 
-                    case Tab.Consultations:
-                        applicationState.CurrentItem = selectedConsultation;
+                    case MedicalEventsViewModel medicalEventsViewModel:
+                        applicationState.CurrentItem = medicalEventsViewModel.SelectedMedicalEvent;
                         break;
 
                     default:
@@ -98,45 +63,26 @@ namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.VewModels
         {
             this.applicationState = applicationState ?? throw new ArgumentNullException(nameof(applicationState));
 
-            MedicsTabViewModel = new MedicsTabViewModel(applicationState);
-
             Tabs = new List<TabItemViewModel>
             {
                 new TabItemViewModel
                 {
                     Header = "Medics",
-                    Content = MedicsTabViewModel
+                    Content = new MedicsViewModel(applicationState)
+                },
+                new TabItemViewModel
+                {
+                    Header = "Clinics",
+                    Content = new ClinicsViewModel(applicationState)
+                },
+                new TabItemViewModel
+                {
+                    Header = "Medical Events",
+                    Content = new MedicalEventsViewModel(applicationState)
                 }
             };
 
-            Clinics = applicationState.Clinics;
-            MedicalEvents = applicationState.MedicalEvents;
-        }
-    }
-
-    internal sealed class TabItemViewModel : ViewModelBase
-    {
-        private string header;
-        private MedicsTabViewModel content;
-
-        public string Header
-        {
-            get => header;
-            set
-            {
-                header = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public MedicsTabViewModel Content
-        {
-            get => content;
-            set
-            {
-                content = value;
-                OnPropertyChanged();
-            }
+            SelectedTab = Tabs[2];
         }
     }
 }

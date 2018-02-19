@@ -14,32 +14,31 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Windows.Data;
-
-namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemDetails
+namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.VewModels
 {
-    internal class StringListToCsvConverter : IValueConverter
+    internal sealed class TabItemViewModel : ViewModelBase
     {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            if (value is List<string> list)
-                return string.Join(",", list);
+        private string header;
+        private ViewModelBase content;
 
-            return null;
+        public string Header
+        {
+            get => header;
+            set
+            {
+                header = value;
+                OnPropertyChanged();
+            }
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        public ViewModelBase Content
         {
-            if (value is string s)
+            get => content;
+            set
             {
-                string[] values = s.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-                return new List<string>(values);
+                content = value;
+                OnPropertyChanged();
             }
-
-            return null;
         }
     }
 }

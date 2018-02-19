@@ -25,7 +25,7 @@ using DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.Commands;
 
 namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.VewModels
 {
-    internal class MedicsTabViewModel : ViewModelBase
+    internal class MedicsViewModel : ViewModelBase
     {
         private readonly ApplicationState applicationState;
         private MedicListItemViewModel selectedMedic;
@@ -66,7 +66,7 @@ namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.VewModels
 
         public AddMedicCommand AddMedicCommand { get; }
 
-        public MedicsTabViewModel(ApplicationState applicationState)
+        public MedicsViewModel(ApplicationState applicationState)
         {
             this.applicationState = applicationState ?? throw new ArgumentNullException(nameof(applicationState));
 

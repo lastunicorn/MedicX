@@ -38,140 +38,97 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     </UserControl.Resources>
 
     <TabControl
-        SelectionChanged="Selector_OnSelectionChanged"
-        ItemsSource="{Binding Tabs}">
+        ItemsSource="{Binding Tabs}"
+        SelectedItem="{Binding SelectedTab}">
 
         <TabControl.ItemTemplate>
-            <DataTemplate DataType="vewModels:TabItemViewModel">
+            <DataTemplate DataType="{x:Type vewModels:TabItemViewModel}">
                 <TextBlock Text="{Binding Header}" />
             </DataTemplate>
         </TabControl.ItemTemplate>
 
         <TabControl.ContentTemplate>
-            <DataTemplate>
-                <DockPanel>
-                    <StackPanel
-                        DockPanel.Dock="Bottom"
-                        Orientation="Horizontal">
+            <DataTemplate DataType="{x:Type vewModels:TabItemViewModel}">
 
-                        <Button Content="Add" Command="{Binding Content.AddMedicCommand}"/>
-                        <TextBox Text="{Binding Content.SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <ContentControl Content="{Binding Content}">
 
-                    </StackPanel>
-                    <ListView ItemsSource="{Binding Content.Medics}" SelectedItem="{Binding Content.SelectedMedic}">
+                    <ContentControl.Resources>
 
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel>
-                                    <TextBlock Text="{Binding Text}" Padding="5 6" />
+                        <DataTemplate DataType="{x:Type vewModels:MedicsViewModel}">
+                            <DockPanel>
+                                <StackPanel
+                                    DockPanel.Dock="Bottom"
+                                    Orientation="Horizontal">
+
+                                    <Button Content="Add" Command="{Binding AddMedicCommand}"/>
+                                    <TextBox Text="{Binding SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
                                 </StackPanel>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
+                                <ListView ItemsSource="{Binding Medics}" SelectedItem="{Binding SelectedMedic}">
 
-                    </ListView>
-                </DockPanel>
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel>
+                                                <TextBlock Text="{Binding Text}" Padding="5 6" />
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+
+                                </ListView>
+                            </DockPanel>
+                        </DataTemplate>
+
+                        <DataTemplate DataType="{x:Type vewModels:ClinicsViewModel}">
+                            <ListView ItemsSource="{Binding Clinics}" SelectedItem="{Binding SelectedClinic}">
+
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel>
+                                            <TextBlock Text="{Binding Name}" Padding="5 6" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+
+                            </ListView>
+                        </DataTemplate>
+
+                        <DataTemplate DataType="{x:Type vewModels:MedicalEventsViewModel}">
+                            <ListView ItemsSource="{Binding MedicalEvents}" SelectedItem="{Binding SelectedMedicalEvent}">
+
+                                <ListView.Resources>
+                                    <Style TargetType="{x:Type ListViewItem}">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Path=., Converter={StaticResource EventTypeConverter}}" Value="Consult">
+                                                <Setter Property="Background" Value="DarkSeaGreen" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Path=., Converter={StaticResource EventTypeConverter}}" Value="Investigation">
+                                                <Setter Property="Background" Value="LightGreen" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                    <DataTemplate DataType="{x:Type entities:Consultation}">
+                                        <StackPanel Margin="5 6">
+                                            <TextBlock Text="{Binding Date, StringFormat={}{0:yyyy MM dd}}" />
+                                            <TextBlock Text="{Binding Medic.Name}" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                    <DataTemplate DataType="{x:Type entities:Investigation}">
+                                        <StackPanel Margin="5 6">
+                                            <TextBlock Text="{Binding Date, StringFormat={}{0:yyyy MM dd}}" />
+                                            <TextBlock Text="{Binding SentBy.Name, StringFormat=Sent by: {0}}" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListView.Resources>
+
+                            </ListView>
+                        </DataTemplate>
+
+                    </ContentControl.Resources>
+
+                </ContentControl>
+
             </DataTemplate>
         </TabControl.ContentTemplate>
-
-        <!--<TabControl.Resources>
-            <DataTemplate DataType="vewModels:TabItemViewModel">
-                <DockPanel>
-                    <StackPanel
-                        DockPanel.Dock="Bottom"
-                        Orientation="Horizontal">
-
-                        <Button Content="Add" Command="{Binding Content.AddMedicCommand}"/>
-                        <TextBox Text="{Binding Content.SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-
-                    </StackPanel>
-                    <ListView ItemsSource="{Binding Content.Medics}" SelectedItem="{Binding Content.SelectedMedic}">
-
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel>
-                                    <TextBlock Text="{Binding Text}" Padding="5 6" />
-                                </StackPanel>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-
-                    </ListView>
-                </DockPanel>
-            </DataTemplate>
-        </TabControl.Resources>-->
-
-        <!--<TabItem
-            Tag="Medics"
-            Header="Medics"
-            DataContext="{Binding MedicsTabViewModel}">
-
-            <DockPanel>
-                <StackPanel
-                    DockPanel.Dock="Bottom"
-                    Orientation="Horizontal">
-
-                    <Button Content="Add" Command="{Binding AddMedicCommand}"/>
-                    <TextBox Text="{Binding SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-
-                </StackPanel>
-                <ListView ItemsSource="{Binding Medics}" SelectedItem="{Binding SelectedMedic}">
-
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel>
-                                <TextBlock Text="{Binding Text}" Padding="5 6" />
-                            </StackPanel>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-
-                </ListView>
-            </DockPanel>
-
-        </TabItem>
-
-        <TabItem Tag="Clinics" Header="Clinics">
-            <ListView ItemsSource="{Binding Clinics}" SelectedItem="{Binding SelectedClinic}">
-
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel>
-                            <TextBlock Text="{Binding Name}" Padding="5 6" />
-                        </StackPanel>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-
-            </ListView>
-        </TabItem>
-
-        <TabItem Tag="MedicalEvents" Header="Medical Events">
-            <ListView ItemsSource="{Binding MedicalEvents}" SelectedItem="{Binding SelectedConsultation}">
-
-                <ListView.Resources>
-                    <Style TargetType="{x:Type ListViewItem}">
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding Path=., Converter={StaticResource EventTypeConverter}}" Value="Consult">
-                                <Setter Property="Background" Value="DarkSeaGreen" />
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Path=., Converter={StaticResource EventTypeConverter}}" Value="Investigation">
-                                <Setter Property="Background" Value="LightGreen" />
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                    <DataTemplate DataType="{x:Type entities:Consultation}">
-                        <StackPanel Margin="5 6">
-                            <TextBlock Text="{Binding Date, StringFormat={}{0:yyyy MM dd}}" />
-                            <TextBlock Text="{Binding Medic.Name}" />
-                        </StackPanel>
-                    </DataTemplate>
-                    <DataTemplate DataType="{x:Type entities:Investigation}">
-                        <StackPanel Margin="5 6">
-                            <TextBlock Text="{Binding Date, StringFormat={}{0:yyyy MM dd}}" />
-                            <TextBlock Text="{Binding SentBy.Name, StringFormat=Sent by: {0}}" />
-                        </StackPanel>
-                    </DataTemplate>
-                </ListView.Resources>
-
-            </ListView>
-        </TabItem>-->
 
     </TabControl>
 

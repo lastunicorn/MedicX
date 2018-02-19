@@ -55,7 +55,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ApplicationState.cs" />
-    <Compile Include="Areas\CurrentItemSelection\VewModels\MedicsTabViewModel.cs" />
+    <Compile Include="Areas\CurrentItemSelection\VewModels\ClinicsViewModel.cs" />
+    <Compile Include="Areas\CurrentItemSelection\VewModels\MedicalEventsViewModel.cs" />
+    <Compile Include="Areas\CurrentItemSelection\VewModels\MedicsViewModel.cs" />
+    <Compile Include="Areas\CurrentItemSelection\VewModels\TabItemViewModel.cs" />
     <Compile Include="Commands\AddCommand.cs" />
     <Compile Include="Areas\CurrentItemSelection\Commands\AddMedicCommand.cs" />
     <Compile Include="Commands\ClearCommand.cs" />

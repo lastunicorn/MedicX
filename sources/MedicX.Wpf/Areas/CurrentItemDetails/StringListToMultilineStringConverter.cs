@@ -19,7 +19,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Windows.Data;
 
-namespace DustInTheWind.MedicX.Wpf.ViewModels
+namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemDetails
 {
     internal class StringListToMultilineStringConverter : IValueConverter
     {
