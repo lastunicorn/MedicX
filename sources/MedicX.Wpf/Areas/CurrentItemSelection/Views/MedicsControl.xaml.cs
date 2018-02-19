@@ -19,11 +19,11 @@ using System.Windows.Controls;
 namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.Views
 {
     /// <summary>
-    /// Interaction logic for SelectionControl.xaml
+    /// Interaction logic for MedicsControl.xaml
     /// </summary>
-    internal partial class SelectionControl : UserControl
+    internal partial class MedicsControl : UserControl
     {
-        public SelectionControl()
+        public MedicsControl()
         {
             InitializeComponent();
         }

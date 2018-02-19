@@ -59,6 +59,15 @@
     <Compile Include="Areas\CurrentItemSelection\VewModels\MedicalEventsViewModel.cs" />
     <Compile Include="Areas\CurrentItemSelection\VewModels\MedicsViewModel.cs" />
     <Compile Include="Areas\CurrentItemSelection\VewModels\TabItemViewModel.cs" />
+    <Compile Include="Areas\CurrentItemSelection\Views\ClinicsControl.xaml.cs">
+      <DependentUpon>ClinicsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\CurrentItemSelection\Views\MedicalEventsControl.xaml.cs">
+      <DependentUpon>MedicalEventsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\CurrentItemSelection\Views\MedicsControl.xaml.cs">
+      <DependentUpon>MedicsControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Commands\AddCommand.cs" />
     <Compile Include="Areas\CurrentItemSelection\Commands\AddMedicCommand.cs" />
     <Compile Include="Commands\ClearCommand.cs" />
@@ -128,6 +137,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Areas\CurrentItemDetails\Views\DetailsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Areas\CurrentItemSelection\Views\ClinicsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Areas\CurrentItemSelection\Views\MedicalEventsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Areas\CurrentItemSelection\Views\MedicsControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

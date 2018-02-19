@@ -24,18 +24,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:entities="clr-namespace:DustInTheWind.MedicX.Common.Entities;assembly=DustInTheWind.MedicX.Common"
-    xmlns:wpf="clr-namespace:DustInTheWind.MedicX.Wpf"
     xmlns:vewModels="clr-namespace:DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.VewModels"
+    xmlns:views="clr-namespace:DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.Views"
 
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="300"
     d:DataContext="{d:DesignInstance vewModels:SelectionViewModel}">
-
-    <UserControl.Resources>
-        <wpf:EventTypeConverter x:Key="EventTypeConverter" />
-    </UserControl.Resources>
 
     <TabControl
         ItemsSource="{Binding Tabs}"
@@ -55,72 +50,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                     <ContentControl.Resources>
 
                         <DataTemplate DataType="{x:Type vewModels:MedicsViewModel}">
-                            <DockPanel>
-                                <StackPanel
-                                    DockPanel.Dock="Bottom"
-                                    Orientation="Horizontal">
-
-                                    <Button Content="Add" Command="{Binding AddMedicCommand}"/>
-                                    <TextBox Text="{Binding SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-
-                                </StackPanel>
-                                <ListView ItemsSource="{Binding Medics}" SelectedItem="{Binding SelectedMedic}">
-
-                                    <ListView.ItemTemplate>
-                                        <DataTemplate>
-                                            <StackPanel>
-                                                <TextBlock Text="{Binding Text}" Padding="5 6" />
-                                            </StackPanel>
-                                        </DataTemplate>
-                                    </ListView.ItemTemplate>
-
-                                </ListView>
-                            </DockPanel>
+                            <views:MedicsControl DataContext="{Binding}"/>
                         </DataTemplate>
 
                         <DataTemplate DataType="{x:Type vewModels:ClinicsViewModel}">
-                            <ListView ItemsSource="{Binding Clinics}" SelectedItem="{Binding SelectedClinic}">
-
-                                <ListView.ItemTemplate>
-                                    <DataTemplate>
-                                        <StackPanel>
-                                            <TextBlock Text="{Binding Name}" Padding="5 6" />
-                                        </StackPanel>
-                                    </DataTemplate>
-                                </ListView.ItemTemplate>
-
-                            </ListView>
+                            <views:ClinicsControl DataContext="{Binding}"/>
                         </DataTemplate>
 
                         <DataTemplate DataType="{x:Type vewModels:MedicalEventsViewModel}">
-                            <ListView ItemsSource="{Binding MedicalEvents}" SelectedItem="{Binding SelectedMedicalEvent}">
-
-                                <ListView.Resources>
-                                    <Style TargetType="{x:Type ListViewItem}">
-                                        <Style.Triggers>
-                                            <DataTrigger Binding="{Binding Path=., Converter={StaticResource EventTypeConverter}}" Value="Consult">
-                                                <Setter Property="Background" Value="DarkSeaGreen" />
-                                            </DataTrigger>
-                                            <DataTrigger Binding="{Binding Path=., Converter={StaticResource EventTypeConverter}}" Value="Investigation">
-                                                <Setter Property="Background" Value="LightGreen" />
-                                            </DataTrigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                    <DataTemplate DataType="{x:Type entities:Consultation}">
-                                        <StackPanel Margin="5 6">
-                                            <TextBlock Text="{Binding Date, StringFormat={}{0:yyyy MM dd}}" />
-                                            <TextBlock Text="{Binding Medic.Name}" />
-                                        </StackPanel>
-                                    </DataTemplate>
-                                    <DataTemplate DataType="{x:Type entities:Investigation}">
-                                        <StackPanel Margin="5 6">
-                                            <TextBlock Text="{Binding Date, StringFormat={}{0:yyyy MM dd}}" />
-                                            <TextBlock Text="{Binding SentBy.Name, StringFormat=Sent by: {0}}" />
-                                        </StackPanel>
-                                    </DataTemplate>
-                                </ListView.Resources>
-
-                            </ListView>
+                            <views:MedicalEventsControl DataContext="{Binding}"/>
                         </DataTemplate>
 
                     </ContentControl.Resources>
