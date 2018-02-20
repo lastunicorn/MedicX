@@ -77,7 +77,7 @@ namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.VewModels
             switch (selectedTab?.Content)
             {
                 case MedicsViewModel medicsViewModel:
-                    applicationState.CurrentItem = medicsViewModel.SelectedMedic?.Medic;
+                    applicationState.CurrentItem = medicsViewModel.SelectedMedic?.Value;
                     break;
 
                 case ClinicsViewModel clinicsViewModel:

@@ -14,33 +14,31 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using System;
-using DustInTheWind.MedicX.Common.Entities;
-
 namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.VewModels
 {
-    internal class MedicListItemViewModel : ListItemViewModel<Medic>
+    internal class ListItemViewModel<T> : ViewModelBase
     {
-        public MedicListItemViewModel(Medic medic)
-        {
-            Value = medic ?? throw new ArgumentNullException(nameof(medic));
+        private string text;
+        private T value;
 
-            UpdateText();
-            medic.NameChanged += HandleMedicNameChanged;
+        public string Text
+        {
+            get => text;
+            protected set
+            {
+                text = value;
+                OnPropertyChanged();
+            }
         }
 
-        private void HandleMedicNameChanged(object sender, EventArgs eventArgs)
+        public T Value
         {
-            UpdateText();
-        }
-
-        private void UpdateText()
-        {
-            string personName = Value.Name?.ToString();
-
-            Text = string.IsNullOrEmpty(personName)
-                ? "<no name>"
-                : personName;
+            get => value;
+            protected set
+            {
+                this.value = value;
+                OnPropertyChanged();
+            }
         }
     }
 }

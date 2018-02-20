@@ -16,6 +16,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
@@ -45,7 +46,7 @@ namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.VewModels
                 selectedMedic = value;
                 OnPropertyChanged();
 
-                applicationState.CurrentItem = selectedMedic?.Medic;
+                applicationState.CurrentItem = selectedMedic?.Value;
             }
         }
 
@@ -57,10 +58,17 @@ namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.VewModels
                 searchText = value;
                 OnPropertyChanged();
 
-                if (string.IsNullOrEmpty(searchText))
-                    medicsSource.View.Filter = null;
+                if (searchText == null)
+                {
+                    if (Medics.Filter != null) Medics.Filter = null;
+                }
                 else
-                    medicsSource.View.Filter = Filter;
+                {
+                    if (Medics.Filter == null)
+                        Medics.Filter = FilterMedic;
+                    else
+                        Medics.Refresh();
+                }
             }
         }
 
@@ -72,9 +80,9 @@ namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.VewModels
 
             medicsSource = new CollectionViewSource
             {
-                Source = applicationState.Medics
+                Source = new ObservableCollection<MedicListItemViewModel>(applicationState.Medics
                     .Select(x => new MedicListItemViewModel(x))
-                    .ToList()
+                    .ToList())
             };
             Medics = medicsSource.View;
             applicationState.Medics.CollectionChanged += HandleMedicsCollectionChanged;
@@ -89,13 +97,14 @@ namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.VewModels
             switch (e.Action)
             {
                 case NotifyCollectionChangedAction.Add:
-                    if (medicsSource.Source is List<MedicListItemViewModel> medics)
+                    if (medicsSource.Source is ObservableCollection<MedicListItemViewModel> medics)
                     {
-                        IEnumerable<MedicListItemViewModel> medictobEAdded = e.NewItems
+                        IEnumerable<MedicListItemViewModel> medicsToBeAdded = e.NewItems
                             .Cast<Medic>()
                             .Select(medic => new MedicListItemViewModel(medic));
 
-                        medics.AddRange(medictobEAdded);
+                        foreach (MedicListItemViewModel medicToBeAdded in medicsToBeAdded)
+                            medics.Add(medicToBeAdded);
                     }
                     break;
 
@@ -124,14 +133,16 @@ namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.VewModels
             if (medicsViewModels == null)
                 return;
 
-            SelectedMedic = medicsViewModels.FirstOrDefault(x => x.Medic == medic);
+            SelectedMedic = medicsViewModels.FirstOrDefault(x => x.Value == medic);
         }
 
-        private bool Filter(object o)
+        private bool FilterMedic(object o)
         {
-            MedicListItemViewModel medicListItemViewModel = o as MedicListItemViewModel;
+            if (string.IsNullOrEmpty(searchText))
+                return true;
 
-            return medicListItemViewModel?.Medic?.Comments?.Contains(searchText) ?? false;
+            MedicListItemViewModel medicListItemViewModel = o as MedicListItemViewModel;
+            return medicListItemViewModel?.Value?.Comments?.Contains(searchText) ?? false;
         }
     }
 }
