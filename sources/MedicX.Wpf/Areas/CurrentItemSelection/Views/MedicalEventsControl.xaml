@@ -26,10 +26,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:entities="clr-namespace:DustInTheWind.MedicX.Common.Entities;assembly=DustInTheWind.MedicX.Common"
     xmlns:wpf="clr-namespace:DustInTheWind.MedicX.Wpf"
+    xmlns:vewModels="clr-namespace:DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.VewModels"
 
     mc:Ignorable="d" 
     d:DesignHeight="300"
-    d:DesignWidth="300">
+    d:DesignWidth="300"
+    d:DataContext="{d:DesignInstance vewModels:MedicalEventsViewModel}">
 
     <UserControl.Resources>
         <wpf:EventTypeConverter x:Key="EventTypeConverter" />

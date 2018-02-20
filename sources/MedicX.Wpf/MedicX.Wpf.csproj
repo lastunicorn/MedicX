@@ -113,7 +113,6 @@
       <DependentUpon>SelectionControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\StringListViewModel.cs" />
-    <Compile Include="Areas\CurrentItemSelection\Tab.cs" />
     <Compile Include="Views\StringListBox.xaml.cs">
       <DependentUpon>StringListBox.xaml</DependentUpon>
     </Compile>

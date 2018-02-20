@@ -38,24 +38,7 @@ namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.VewModels
                 selectedTab = value;
                 OnPropertyChanged();
 
-                switch (selectedTab?.Content)
-                {
-                    case MedicsViewModel medicsViewModel:
-                        applicationState.CurrentItem = medicsViewModel.SelectedMedic?.Medic;
-                        break;
-
-                    case ClinicsViewModel clinicsViewModel:
-                        applicationState.CurrentItem = clinicsViewModel.SelectedClinic;
-                        break;
-
-                    case MedicalEventsViewModel medicalEventsViewModel:
-                        applicationState.CurrentItem = medicalEventsViewModel.SelectedMedicalEvent;
-                        break;
-
-                    default:
-                        applicationState.CurrentItem = null;
-                        break;
-                }
+                UpdateCurrentItem();
             }
         }
 
@@ -63,7 +46,13 @@ namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.VewModels
         {
             this.applicationState = applicationState ?? throw new ArgumentNullException(nameof(applicationState));
 
-            Tabs = new List<TabItemViewModel>
+            Tabs = CreateTabs();
+            SelectedTab = Tabs[2];
+        }
+
+        private List<TabItemViewModel> CreateTabs()
+        {
+            return new List<TabItemViewModel>
             {
                 new TabItemViewModel
                 {
@@ -81,8 +70,28 @@ namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.VewModels
                     Content = new MedicalEventsViewModel(applicationState)
                 }
             };
+        }
 
-            SelectedTab = Tabs[2];
+        private void UpdateCurrentItem()
+        {
+            switch (selectedTab?.Content)
+            {
+                case MedicsViewModel medicsViewModel:
+                    applicationState.CurrentItem = medicsViewModel.SelectedMedic?.Medic;
+                    break;
+
+                case ClinicsViewModel clinicsViewModel:
+                    applicationState.CurrentItem = clinicsViewModel.SelectedClinic;
+                    break;
+
+                case MedicalEventsViewModel medicalEventsViewModel:
+                    applicationState.CurrentItem = medicalEventsViewModel.SelectedMedicalEvent;
+                    break;
+
+                default:
+                    applicationState.CurrentItem = null;
+                    break;
+            }
         }
     }
 }
