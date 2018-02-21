@@ -75,9 +75,7 @@
     <Compile Include="Areas\CurrentItemSelection\Views\MedicsControl.xaml.cs">
       <DependentUpon>MedicsControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Commands\AddCommand.cs" />
     <Compile Include="Areas\CurrentItemSelection\Commands\AddMedicCommand.cs" />
-    <Compile Include="Commands\ClearCommand.cs" />
     <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="Commands\SaveCommand.cs" />
     <Compile Include="EventTypeConverter.cs" />
@@ -86,9 +84,6 @@
     <Compile Include="Areas\CurrentItemDetails\ViewModels\DetailsViewModel.cs" />
     <Compile Include="Translators\EventExtensions.cs" />
     <Compile Include="ViewModels\EventsViewModel.cs" />
-    <Compile Include="Commands\MoveCommand.cs" />
-    <Compile Include="Commands\RemoveCommand.cs" />
-    <Compile Include="Commands\ReplaceCommand.cs" />
     <Compile Include="Translators\InvestigationInstanceExcensions.cs" />
     <Compile Include="Areas\CurrentItemDetails\ViewModels\InvestigationViewModel.cs" />
     <Compile Include="Areas\CurrentItemSelection\VewModels\MedicListItemViewModel.cs" />
@@ -123,9 +118,6 @@
     <Compile Include="ViewModels\StringListViewModel.cs" />
     <Compile Include="Views\StringListBox.xaml.cs">
       <DependentUpon>StringListBox.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Areas\Main\Views\Window2.xaml.cs">
-      <DependentUpon>Window2.xaml</DependentUpon>
     </Compile>
     <Page Include="Areas\CurrentItemDetails\Views\AddressView.xaml">
       <SubType>Designer</SubType>
@@ -181,7 +173,6 @@
     <Compile Include="ViewModels\EventViewModel.cs" />
     <Compile Include="EventType.cs" />
     <Compile Include="Areas\Main\ViewModels\MainViewModel.cs" />
-    <Compile Include="Areas\Main\ViewModels\MainViewModel2.cs" />
     <Compile Include="ViewModelBase.cs" />
     <Compile Include="Areas\Main\Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -203,13 +194,8 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Areas\Main\Views\Window2.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Project.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
