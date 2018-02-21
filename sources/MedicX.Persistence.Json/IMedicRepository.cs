@@ -14,6 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+using System;
 using System.Collections.Generic;
 using DustInTheWind.MedicX.Common.Entities;
 
@@ -22,7 +23,7 @@ namespace DustInTheWind.MedicX.Persistence.Json
     public interface IMedicRepository
     {
         List<Medic> GetAll();
-        Medic GetById(int id);
+        Medic GetById(Guid id);
         void Add(Medic medic);
         void AddOrUpdate(Medic medic);
         List<Medic> GetByName(string medicName);

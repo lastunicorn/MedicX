@@ -21,7 +21,8 @@ namespace DustInTheWind.MedicX.Common.Entities
     public class Person
     {
         private PersonName name;
-        public int Id { get; set; }
+
+        public Guid Id { get; set; }
 
         public PersonName Name
         {

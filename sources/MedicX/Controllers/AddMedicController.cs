@@ -46,7 +46,7 @@ namespace DustInTheWind.MedicX.Cli.Controllers
 
             Medic medic = new Medic
             {
-                Id = 0,
+                Id = Guid.NewGuid(),
                 Name = new PersonName
                 {
                     FirstName = firstName,

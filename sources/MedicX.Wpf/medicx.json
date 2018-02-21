@@ -1,7 +1,7 @@
 ﻿{
     "medics": [
         {
-            "id": 1,
+            "id": "946f387d-a160-46a5-84de-c8ca6f087e6f",
             "name": {
                 "first": "Nicoleta",
                 "last": "Coca"
@@ -11,7 +11,7 @@
             ]
         },
         {
-            "id": 2,
+            "id": "3c61ed6b-91bf-49be-8e9a-05d58148eb50",
             "name": {
                 "first": "Ioana",
                 "last": "Varga"
@@ -21,7 +21,7 @@
             ]
         },
         {
-            "id": 3,
+            "id": "459c9e7f-b137-4da6-ba1d-ca619cd8a5fb",
             "name": {
                 "first": "Ecaterina",
                 "middle": "Alexandrina",
@@ -32,7 +32,7 @@
             ]
         },
         {
-            "id": 4,
+            "id": "ee792951-eaee-4e28-9015-b72953f362bb",
             "name": {
                 "first": "Ion",
                 "middle": "",
@@ -145,7 +145,7 @@
                 "paraziți"
             ],
             "comments": "Per ansamblu, all ok.",
-            "medic": 1,
+            "medic": "946f387d-a160-46a5-84de-c8ca6f087e6f",
             "prescriptions": [
                 {
                     "description": "sugestie: apă de gură cu clorhexidină"
@@ -168,7 +168,7 @@
             "labels": [
                 "pancreas"
             ],
-            "medic": 1,
+            "medic": "946f387d-a160-46a5-84de-c8ca6f087e6f",
             "prescriptions": [
                 {
                     "description": "ecografie",
@@ -195,7 +195,7 @@
             "labels": [
                 "verucă-talpă"
             ],
-            "medic": 4,
+            "medic": "ee792951-eaee-4e28-9015-b72953f362bb",
             "prescriptions": [
                 {
                     "description": "verucă talpă tratată cu azot lichid",
@@ -491,12 +491,12 @@
         {
             "id": 1,
             "date": "2017-07-01T00:00:00",
-            "medic": 0,
+            "medic": "3C61ED6B-91BF-49BE-8E9A-05D58148EB50",
             "location": 2,
             "labels": [
                 "demielinizare"
             ],
-            "sentBy": 2,
+            "sentBy": "3c61ed6b-91bf-49be-8e9a-05d58148eb50",
             "result": [
                 {
                     "investigationTypeId": 2,

@@ -36,7 +36,7 @@ namespace DustInTheWind.MedicX.Persistence.Json
             return medicXData.Medics;
         }
 
-        public Medic GetById(int id)
+        public Medic GetById(Guid id)
         {
             return medicXData.Medics
                 .FirstOrDefault(x => x.Id == id);
@@ -44,20 +44,11 @@ namespace DustInTheWind.MedicX.Persistence.Json
 
         public void Add(Medic medic)
         {
-            int id = 0;
+            bool idExists = medicXData.Medics
+                .Any(x => x.Id == medic.Id);
 
-            while (true)
-            {
-                id++;
-
-                bool idExists = medicXData.Medics
-                    .Any(x => x.Id == id);
-
-                if (!idExists)
-                    break;
-            }
-
-            medic.Id = id;
+            if (idExists)
+                throw new ApplicationException("Another medic with the same id already exists.");
 
             medicXData.Medics.Add(medic);
         }
@@ -71,7 +62,7 @@ namespace DustInTheWind.MedicX.Persistence.Json
                 .FirstOrDefault(x => x.Id == medic.Id);
 
             if (existingMedic == null)
-                medicXData.Medics.Add(medic);
+                Add(medic);
             else
                 existingMedic.CopyFrom(medic);
         }

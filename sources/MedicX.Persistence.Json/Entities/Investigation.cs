@@ -14,6 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
@@ -22,7 +23,7 @@ namespace DustInTheWind.MedicX.Persistence.Json.Entities
     internal class Investigation : MedicalEvent
     {
         [JsonProperty("sentBy", Order = 2)]
-        public int SentById { get; set; }
+        public Guid SentById { get; set; }
 
         [JsonProperty("result", Order = 2)]
         public List<InvestigationResult> Result { get; set; }

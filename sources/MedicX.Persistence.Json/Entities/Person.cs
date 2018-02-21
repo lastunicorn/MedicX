@@ -14,6 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+using System;
 using Newtonsoft.Json;
 
 namespace DustInTheWind.MedicX.Persistence.Json.Entities
@@ -21,7 +22,7 @@ namespace DustInTheWind.MedicX.Persistence.Json.Entities
     internal class Person
     {
         [JsonProperty("id", Order = 1)]
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         [JsonProperty("name", Order = 1)]
         public PersonName Name { get; set; }
