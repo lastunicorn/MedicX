@@ -56,6 +56,8 @@
     </ApplicationDefinition>
     <Compile Include="ApplicationState.cs" />
     <Compile Include="Areas\CurrentItemSelection\Commands\AddClinicCommand.cs" />
+    <Compile Include="Areas\CurrentItemSelection\Commands\AddConsultationCommand.cs" />
+    <Compile Include="Areas\CurrentItemSelection\Commands\AddInvestigationCommand.cs" />
     <Compile Include="Areas\CurrentItemSelection\VewModels\ClinicListItemViewModel.cs" />
     <Compile Include="Areas\CurrentItemSelection\VewModels\ClinicsViewModel.cs" />
     <Compile Include="Areas\CurrentItemSelection\VewModels\ConsultationListItemViewModel.cs" />

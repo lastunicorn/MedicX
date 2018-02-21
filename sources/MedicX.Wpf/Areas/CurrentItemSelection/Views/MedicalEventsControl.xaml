@@ -44,11 +44,24 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <TextBox
+            <Button
+                Grid.Column="0"
+                Content="New Consultation" Command="{Binding AddConsultationCommand}"
+                Margin="0 0 4 0"
+                Padding="10 0 10 0"/>
+
+            <Button
                 Grid.Column="1"
+                Content="New Investigation" Command="{Binding AddInvestigationCommand}"
+                Margin="0 0 4 0"
+                Padding="10 0 10 0"/>
+
+            <TextBox
+                Grid.Column="2"
                 Text="{Binding SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
         </Grid>

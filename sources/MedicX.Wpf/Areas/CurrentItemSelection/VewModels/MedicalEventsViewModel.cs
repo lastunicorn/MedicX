@@ -22,6 +22,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Windows.Data;
 using DustInTheWind.MedicX.Common.Entities;
+using DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.Commands;
 
 namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.VewModels
 {
@@ -84,9 +85,16 @@ namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.VewModels
             }
         }
 
+        public AddConsultationCommand AddConsultationCommand { get; }
+
+        public AddInvestigationCommand AddInvestigationCommand { get; }
+
         public MedicalEventsViewModel(ApplicationState applicationState)
         {
             this.applicationState = applicationState ?? throw new ArgumentNullException(nameof(applicationState));
+
+            AddConsultationCommand = new AddConsultationCommand(applicationState);
+            AddInvestigationCommand = new AddInvestigationCommand(applicationState);
 
             medicalEventsSource = new CollectionViewSource
             {

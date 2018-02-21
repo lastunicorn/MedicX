@@ -78,6 +78,8 @@ namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.VewModels
         {
             this.applicationState = applicationState ?? throw new ArgumentNullException(nameof(applicationState));
 
+            AddMedicCommand = new AddMedicCommand(applicationState);
+
             medicsSource = new CollectionViewSource
             {
                 Source = new ObservableCollection<MedicListItemViewModel>(applicationState.Medics
@@ -88,8 +90,6 @@ namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.VewModels
             applicationState.Medics.CollectionChanged += HandleMedicsCollectionChanged;
 
             applicationState.CurrentItemChanged += HandleCurrentItemChanged;
-
-            AddMedicCommand = new AddMedicCommand(applicationState);
         }
 
         private void HandleMedicsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
