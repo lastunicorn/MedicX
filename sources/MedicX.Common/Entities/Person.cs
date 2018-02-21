@@ -41,20 +41,35 @@ namespace DustInTheWind.MedicX.Common.Entities
             }
         }
 
+        public string Comments { get; set; }
+
+        public event EventHandler NameChanged;
+
         private void HandleNameChanged(object sender, EventArgs eventArgs)
         {
             OnNameChanged();
         }
-
-        public string Comments { get; set; }
-
-        public event EventHandler NameChanged;
 
         public virtual void CopyFrom(Person person)
         {
             Id = person.Id;
             Name = person.Name;
             Comments = person.Comments;
+        }
+
+        public virtual bool Contains(string text)
+        {
+            bool foundInName = Name != null && Name.Contains(text);
+
+            if (foundInName)
+                return true;
+
+            bool foundInComments = Comments != null && Comments.IndexOf(text, StringComparison.OrdinalIgnoreCase) >= 0;
+
+            if (foundInComments)
+                return true;
+
+            return false;
         }
 
         public override string ToString()

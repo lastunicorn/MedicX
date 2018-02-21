@@ -33,7 +33,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
     <DockPanel>
 
-        <Grid DockPanel.Dock="Bottom">
+        <Grid
+            DockPanel.Dock="Bottom"
+            Margin="0 4 0 0">
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
@@ -42,7 +44,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
             <Button
                 Grid.Column="0"
-                Content="Add" Command="{Binding AddMedicCommand}"/>
+                Content="New" Command="{Binding AddMedicCommand}"
+                Margin="0 0 4 0"
+                Padding="10 0 10 0"/>
 
             <TextBox
                 Grid.Column="1"

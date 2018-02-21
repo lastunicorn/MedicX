@@ -142,7 +142,8 @@ namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.VewModels
                 return true;
 
             MedicListItemViewModel medicListItemViewModel = o as MedicListItemViewModel;
-            return medicListItemViewModel?.Value?.Comments?.Contains(searchText) ?? false;
+
+            return medicListItemViewModel?.Value?.Contains(searchText) ?? false;
         }
     }
 }
