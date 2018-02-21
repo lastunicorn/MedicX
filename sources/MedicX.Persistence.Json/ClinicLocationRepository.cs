@@ -27,8 +27,7 @@ namespace DustInTheWind.MedicX.Persistence.Json
 
         public ClinicLocationRepository(MedicXData medicXData)
         {
-            if (medicXData == null) throw new ArgumentNullException(nameof(medicXData));
-            this.medicXData = medicXData;
+            this.medicXData = medicXData ?? throw new ArgumentNullException(nameof(medicXData));
         }
 
         public List<Medic> GetAll()
@@ -36,7 +35,7 @@ namespace DustInTheWind.MedicX.Persistence.Json
             return medicXData.Medics;
         }
 
-        public Clinic GetById(int id)
+        public Clinic GetById(Guid id)
         {
             return medicXData.Clinics
                 .FirstOrDefault(x => x.Id == id);

@@ -31,16 +31,43 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     d:DesignWidth="300"
     d:DataContext="{d:DesignInstance vewModels:ClinicsViewModel}">
 
-    <ListView ItemsSource="{Binding Clinics}" SelectedItem="{Binding SelectedClinic}">
+    <DockPanel>
 
-        <ListView.ItemTemplate>
-            <DataTemplate>
-                <StackPanel>
-                    <TextBlock Text="{Binding Name}" Padding="5 6" />
-                </StackPanel>
-            </DataTemplate>
-        </ListView.ItemTemplate>
+        <Grid
+            DockPanel.Dock="Bottom"
+            Margin="0 4 0 0">
 
-    </ListView>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Button
+                Grid.Column="0"
+                Content="New" Command="{Binding AddClinicCommand}"
+                Margin="0 0 4 0"
+                Padding="10 0 10 0"/>
+
+            <TextBox
+                Grid.Column="1"
+                Text="{Binding SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+        </Grid>
+
+        <ListView
+            ItemsSource="{Binding Clinics}"
+            SelectedItem="{Binding SelectedClinic}">
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text="{Binding Text}" Padding="5 6" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+
+        </ListView>
+
+    </DockPanel>
 
 </UserControl>

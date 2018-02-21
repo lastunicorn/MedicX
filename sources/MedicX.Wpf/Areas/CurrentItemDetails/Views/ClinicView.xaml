@@ -25,9 +25,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:entities="clr-namespace:DustInTheWind.MedicX.Common.Entities;assembly=DustInTheWind.MedicX.Common"
-    xmlns:views="clr-namespace:DustInTheWind.MedicX.Wpf.Views"
-    xmlns:viewModels="clr-namespace:DustInTheWind.MedicX.Wpf.ViewModels"
-    xmlns:views1="clr-namespace:DustInTheWind.MedicX.Wpf.Areas.CurrentItemDetails.Views"
+    xmlns:views="clr-namespace:DustInTheWind.MedicX.Wpf.Areas.CurrentItemDetails.Views"
     xmlns:currentItemDetails="clr-namespace:DustInTheWind.MedicX.Wpf.Areas.CurrentItemDetails"
 
     mc:Ignorable="d" 
@@ -72,7 +70,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             <TextBox
                 Grid.Column="1"
                 Grid.Row="0"
-                Text="{Binding Name}"
+                Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 Margin="0 4"/>
 
             <TextBlock
@@ -82,7 +80,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 Margin="0 4 10 4"
                 FontWeight="Bold"/>
 
-            <views1:AddressView
+            <views:AddressView
                 Grid.Column="1"
                 Grid.Row="1"
                 DataContext="{Binding Address}"
@@ -121,7 +119,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             <TextBox
                 Grid.Column="1"
                 Grid.Row="3"
-                Text="{Binding Program}"
+                Text="{Binding Program, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 Margin="0 4"/>
 
             <TextBlock
@@ -134,7 +132,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             <TextBox
                 Grid.Column="1"
                 Grid.Row="4"
-                Text="{Binding Comments}"
+                Text="{Binding Comments, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 Margin="0 4"
                 Height="100"
                 AcceptsReturn="True"/>

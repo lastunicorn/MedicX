@@ -15,26 +15,32 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using System.Collections.Generic;
-using Newtonsoft.Json;
+using DustInTheWind.MedicX.Common.Entities;
 
-namespace DustInTheWind.MedicX.Persistence.Json.Entities
+namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.VewModels
 {
-    internal class MedicalEvent
+    internal class ClinicListItemViewModel : ListItemViewModel<Clinic>
     {
-        [JsonProperty("id", Order = 1)]
-        public int Id { get; set; }
+        public ClinicListItemViewModel(Clinic clinic)
+        {
+            Value = clinic ?? throw new ArgumentNullException(nameof(clinic));
 
-        [JsonProperty("date", Order = 1)]
-        public DateTime Date { get; set; }
+            UpdateText();
+            clinic.NameChanged += HandleMedicNameChanged;
+        }
 
-        [JsonProperty("location", Order = 1)]
-        public Guid ClinicLocationId { get; set; }
+        private void HandleMedicNameChanged(object sender, EventArgs e)
+        {
+            UpdateText();
+        }
 
-        [JsonProperty("labels", Order = 1)]
-        public List<string> Labels { get; set; }
+        private void UpdateText()
+        {
+            string name = Value.Name;
 
-        [JsonProperty("comments", Order = 1)]
-        public string Comments { get; set; }
+            Text = string.IsNullOrEmpty(name)
+                ? "<no name>"
+                : name;
+        }
     }
 }

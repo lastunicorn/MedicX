@@ -55,6 +55,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ApplicationState.cs" />
+    <Compile Include="Areas\CurrentItemSelection\Commands\AddClinicCommand.cs" />
+    <Compile Include="Areas\CurrentItemSelection\VewModels\ClinicListItemViewModel.cs" />
     <Compile Include="Areas\CurrentItemSelection\VewModels\ClinicsViewModel.cs" />
     <Compile Include="Areas\CurrentItemSelection\VewModels\ListItemViewModel.cs" />
     <Compile Include="Areas\CurrentItemSelection\VewModels\MedicalEventsViewModel.cs" />

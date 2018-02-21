@@ -25,7 +25,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:entities="clr-namespace:DustInTheWind.MedicX.Common.Entities;assembly=DustInTheWind.MedicX.Common"
-    xmlns:views1="clr-namespace:DustInTheWind.MedicX.Wpf.Areas.CurrentItemDetails.Views"
+    xmlns:views="clr-namespace:DustInTheWind.MedicX.Wpf.Areas.CurrentItemDetails.Views"
     xmlns:viewModels="clr-namespace:DustInTheWind.MedicX.Wpf.Areas.CurrentItemDetails.ViewModels"
 
     mc:Ignorable="d" 
@@ -55,19 +55,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 <ContentControl.Resources>
 
                     <DataTemplate DataType="{x:Type entities:Medic}">
-                        <views1:MedicView />
+                        <views:MedicView />
                     </DataTemplate>
 
                     <DataTemplate DataType="{x:Type entities:Clinic}">
-                        <views1:ClinicView />
+                        <views:ClinicView />
                     </DataTemplate>
 
                     <DataTemplate DataType="{x:Type viewModels:ConsultationViewModel}">
-                        <views1:ConsultationView />
+                        <views:ConsultationView />
                     </DataTemplate>
 
                     <DataTemplate DataType="{x:Type viewModels:InvestigationViewModel}">
-                        <views1:InvestigationView />
+                        <views:InvestigationView />
                     </DataTemplate>
 
                 </ContentControl.Resources>

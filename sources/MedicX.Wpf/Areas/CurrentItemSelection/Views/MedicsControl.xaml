@@ -54,7 +54,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
         </Grid>
 
-        <ListView ItemsSource="{Binding Medics}" SelectedItem="{Binding SelectedMedic}">
+        <ListView
+            ItemsSource="{Binding Medics}"
+            SelectedItem="{Binding SelectedMedic}">
 
             <ListView.ItemTemplate>
                 <DataTemplate>

@@ -101,7 +101,7 @@ namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.VewModels
                     {
                         IEnumerable<MedicListItemViewModel> medicsToBeAdded = e.NewItems
                             .Cast<Medic>()
-                            .Select(medic => new MedicListItemViewModel(medic));
+                            .Select(x => new MedicListItemViewModel(x));
 
                         foreach (MedicListItemViewModel medicToBeAdded in medicsToBeAdded)
                             medics.Add(medicToBeAdded);

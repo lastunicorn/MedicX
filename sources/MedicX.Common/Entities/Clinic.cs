@@ -14,6 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -21,12 +22,29 @@ namespace DustInTheWind.MedicX.Common.Entities
 {
     public class Clinic
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
+        private string name;
+
+        public Guid Id { get; set; }
+
+        public string Name
+        {
+            get => name;
+            set
+            {
+                name = value;
+                OnNameChanged();
+            }
+        }
+
         public Address Address { get; set; }
+
         public List<string> Phones { get; set; }
+
         public string Program { get; set; }
+
         public string Comments { get; set; }
+
+        public event EventHandler NameChanged;
 
         public void CopyFrom(Clinic clinic)
         {
@@ -36,6 +54,20 @@ namespace DustInTheWind.MedicX.Common.Entities
             Phones = clinic.Phones.ToList();
             Program = clinic.Program;
             Comments = clinic.Comments;
+        }
+
+        protected virtual void OnNameChanged()
+        {
+            NameChanged?.Invoke(this, EventArgs.Empty);
+        }
+
+        public bool Contains(string text)
+        {
+            return (Name != null && Name.IndexOf(text, StringComparison.OrdinalIgnoreCase) >= 0) ||
+                   (Address != null && Address.Contains(text)) ||
+                   (Phones != null && Phones.Any(x => x != null && x.IndexOf(text, StringComparison.OrdinalIgnoreCase) >= 0)) ||
+                   (Program != null && Program.IndexOf(text, StringComparison.OrdinalIgnoreCase) >= 0) ||
+                   (Comments != null && Comments.IndexOf(text, StringComparison.OrdinalIgnoreCase) >= 0);
         }
     }
 }

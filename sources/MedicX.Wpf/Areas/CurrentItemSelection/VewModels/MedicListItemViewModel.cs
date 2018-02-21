@@ -29,7 +29,7 @@ namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.VewModels
             medic.NameChanged += HandleMedicNameChanged;
         }
 
-        private void HandleMedicNameChanged(object sender, EventArgs eventArgs)
+        private void HandleMedicNameChanged(object sender, EventArgs e)
         {
             UpdateText();
         }

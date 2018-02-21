@@ -45,7 +45,7 @@
     ],
     "clinics": [
         {
-            "id": 1,
+            "id": "{252FF85A-5B81-4CC5-B7FD-AF369DA5BAFB}",
             "name": "MedLife Livada Vulturului",
             "address": {
                 "street": "Livada Vulturului nr.10",
@@ -61,7 +61,7 @@
             "comments": "Laborator clinic - Policlinică de Diagnostic Rapid"
         },
         {
-            "id": 2,
+            "id": "{101E6BBF-738B-478A-BB8E-AB4BE76D379C}",
             "name": "MedLife 13 Decembrie",
             "address": {
                 "street": "13 Decembrie",
@@ -75,7 +75,7 @@
             "comments": "Nu există pe site la MedLife."
         },
         {
-            "id": 3,
+            "id": "{DD54820E-3DE7-480F-8A0D-F54FD64B2705}",
             "name": "MedLife Turnului Hyperclinică",
             "address": {
                 "street": "Turnului nr.5",
@@ -90,7 +90,7 @@
             "comments": "Hyperclinică"
         },
         {
-            "id": 4,
+            "id": "{7A4A93EE-626E-42EE-A993-F9BED186B6FE}",
             "name": "MedLife Turnului Spital",
             "address": {
                 "street": "Turnului nr.5A",
@@ -104,7 +104,7 @@
             "comments": "Spital"
         },
         {
-            "id": 5,
+            "id": "{DC9DB3DE-04E2-45AE-9943-780EADFFED40}",
             "name": "MedLife Pediatrie",
             "address": {
                 "street": "Nicopole nr.65",
@@ -119,7 +119,7 @@
             "comments": "Centru de Pediatrie"
         },
         {
-            "id": 6,
+            "id": "{B521FAA7-EBA1-4872-8021-F2BC9D37A215}",
             "name": "MedLife Eva",
             "address": {
                 "street": "Păltiniș nr.15",
@@ -140,7 +140,7 @@
         {
             "id": 1,
             "date": "2017-07-03T00:00:00",
-            "location": 1,
+            "location": "{252FF85A-5B81-4CC5-B7FD-AF369DA5BAFB}",
             "labels": [
                 "paraziți"
             ],
@@ -164,7 +164,7 @@
         {
             "id": 2,
             "date": "2017-10-19T00:00:00",
-            "location": 1,
+            "location": "{252FF85A-5B81-4CC5-B7FD-AF369DA5BAFB}",
             "labels": [
                 "pancreas"
             ],
@@ -191,7 +191,7 @@
         {
             "id": 3,
             "date": "2018-02-13T00:00:00",
-            "location": 1,
+            "location": "{252FF85A-5B81-4CC5-B7FD-AF369DA5BAFB}",
             "labels": [
                 "verucă-talpă"
             ],
@@ -492,7 +492,7 @@
             "id": 1,
             "date": "2017-07-01T00:00:00",
             "medic": "3C61ED6B-91BF-49BE-8E9A-05D58148EB50",
-            "location": 2,
+            "location": "{101E6BBF-738B-478A-BB8E-AB4BE76D379C}",
             "labels": [
                 "demielinizare"
             ],
