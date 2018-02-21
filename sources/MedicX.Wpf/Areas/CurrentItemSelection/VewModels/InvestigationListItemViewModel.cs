@@ -15,24 +15,33 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using System.Windows.Data;
+using DustInTheWind.MedicX.Common.Entities;
 
-namespace DustInTheWind.MedicX.Wpf
+namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.VewModels
 {
-    public class EventTypeToStringConverter : IValueConverter
+    internal class InvestigationListItemViewModel : ListItemViewModel<Investigation>
     {
-        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public InvestigationListItemViewModel(Investigation investigation)
         {
-            if (value == null || value.GetType() != typeof(EventType))
-                return string.Empty;
+            Value = investigation ?? throw new ArgumentNullException(nameof(investigation));
 
-            EventType test = (EventType)value;
-            return test.ToString();
+            UpdateText();
+            investigation.SentByChanged += HandleSentByChanged;
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        private void HandleSentByChanged(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            UpdateText();
+        }
+
+        private void UpdateText()
+        {
+            string medicName = Value.SentBy?.ToString();
+
+            Text = string.IsNullOrEmpty(medicName)
+                ? "<no name>"
+                : medicName;
+
         }
     }
 }

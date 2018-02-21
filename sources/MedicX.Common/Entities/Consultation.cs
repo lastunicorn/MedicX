@@ -14,6 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -21,9 +22,21 @@ namespace DustInTheWind.MedicX.Common.Entities
 {
     public class Consultation : MedicalEvent
     {
-        public Medic Medic { get; set; }
+        private Medic medic;
+
+        public Medic Medic
+        {
+            get => medic;
+            set
+            {
+                medic = value;
+                OnMedicChanged();
+            }
+        }
 
         public List<Prescription> Prescriptions { get; set; }
+
+        public event EventHandler MedicChanged;
 
         public void CopyFrom(Consultation consultation)
         {
@@ -39,6 +52,18 @@ namespace DustInTheWind.MedicX.Common.Entities
                 CopyFrom(consultation);
             else
                 base.CopyFrom(medicalEvent);
+        }
+
+        protected virtual void OnMedicChanged()
+        {
+            MedicChanged?.Invoke(this, EventArgs.Empty);
+        }
+
+        public override bool Contains(string text)
+        {
+            return base.Contains(text) ||
+                   (Medic != null && Medic.Contains(text)) ||
+                   (Prescriptions != null && Prescriptions.Any(x => x != null && x.Contains(text)));
         }
     }
 }

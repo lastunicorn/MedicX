@@ -85,14 +85,14 @@ namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.VewModels
                     .ToList())
             };
             Clinics = clinicsSource.View;
-            applicationState.Clinics.CollectionChanged += HandleMedicsCollectionChanged;
+            applicationState.Clinics.CollectionChanged += HandleClinicsCollectionChanged;
 
             applicationState.CurrentItemChanged += HandleCurrentItemChanged;
 
             AddClinicCommand = new AddClinicCommand(applicationState);
         }
 
-        private void HandleMedicsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        private void HandleClinicsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             switch (e.Action)
             {

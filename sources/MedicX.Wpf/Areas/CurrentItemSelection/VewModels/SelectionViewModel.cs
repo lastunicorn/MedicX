@@ -85,7 +85,20 @@ namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.VewModels
                     break;
 
                 case MedicalEventsViewModel medicalEventsViewModel:
-                    applicationState.CurrentItem = medicalEventsViewModel.SelectedMedicalEvent;
+                    switch (medicalEventsViewModel.SelectedMedicalEvent)
+                    {
+                        case ConsultationListItemViewModel consultation:
+                            applicationState.CurrentItem = consultation.Value;
+                            break;
+
+                        case InvestigationListItemViewModel investigation:
+                            applicationState.CurrentItem = investigation.Value;
+                            break;
+
+                        default:
+                            applicationState.CurrentItem = null;
+                            break;
+                    }
                     break;
 
                 default:

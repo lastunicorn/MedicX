@@ -40,5 +40,13 @@ namespace DustInTheWind.MedicX.Common.Entities
             Labels = medicalEvent.Labels.ToList();
             Comments = medicalEvent.Comments;
         }
+
+        public virtual bool Contains(string text)
+        {
+            return (Clinic != null && Clinic.Contains(text)) ||
+                   (Date.ToString().IndexOf(text, StringComparison.OrdinalIgnoreCase) >= 0) ||
+                   (Labels != null && Labels.Any(x => x != null && x.IndexOf(text, StringComparison.OrdinalIgnoreCase) >= 0)) ||
+                   (Comments != null && Comments.IndexOf(text, StringComparison.OrdinalIgnoreCase) >= 0);
+        }
     }
 }

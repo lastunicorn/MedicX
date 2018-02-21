@@ -14,11 +14,18 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+using System;
+
 namespace DustInTheWind.MedicX.Common.Entities
 {
     public class InvestigationResult
     {
         public InvestigationDescription InvestigationDescription { get; set; }
         public int Value { get; set; }
+
+        public bool Contains(string text)
+        {
+            return Value.ToString().IndexOf(text, StringComparison.OrdinalIgnoreCase) >= 0;
+        }
     }
 }

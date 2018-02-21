@@ -40,17 +40,8 @@ namespace DustInTheWind.MedicX.Common.Entities
 
         public override bool Contains(string text)
         {
-            bool foundInPerson = base.Contains(text);
-
-            if (foundInPerson)
-                return true;
-
-            bool foundInSpecializations = Specializations != null && Specializations.Any(x => x != null && x.IndexOf(text, StringComparison.OrdinalIgnoreCase) >= 0);
-
-            if (foundInSpecializations)
-                return true;
-
-            return false;
+            return base.Contains(text) ||
+                   Specializations != null && Specializations.Any(x => x != null && x.IndexOf(text, StringComparison.OrdinalIgnoreCase) >= 0);
         }
     }
 }
