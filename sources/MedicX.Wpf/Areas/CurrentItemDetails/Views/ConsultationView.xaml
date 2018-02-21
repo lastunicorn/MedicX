@@ -24,15 +24,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:viewModels="clr-namespace:DustInTheWind.MedicX.Wpf.ViewModels"
     xmlns:entities="clr-namespace:DustInTheWind.MedicX.Common.Entities;assembly=DustInTheWind.MedicX.Common"
-    xmlns:viewModels1="clr-namespace:DustInTheWind.MedicX.Wpf.Areas.CurrentItemDetails.ViewModels"
+    xmlns:viewModels="clr-namespace:DustInTheWind.MedicX.Wpf.Areas.CurrentItemDetails.ViewModels"
     xmlns:currentItemDetails="clr-namespace:DustInTheWind.MedicX.Wpf.Areas.CurrentItemDetails"
 
     mc:Ignorable="d" 
     d:DesignHeight="300"
     d:DesignWidth="300"
-    d:DataContext="{d:DesignInstance viewModels1:ConsultationViewModel}">
+    d:DataContext="{d:DesignInstance viewModels:ConsultationViewModel}">
 
     <UserControl.Resources>
         <currentItemDetails:StringListToMultilineStringConverter x:Key="StringListToMultilineStringConverter"/>
@@ -69,10 +68,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
             <Grid.RowDefinitions>
-                <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
@@ -83,36 +82,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             <TextBlock
                 Grid.Column="0"
                 Grid.Row="0"
-                Text="Date:"
-                Margin="0 4 10 4"
-                FontWeight="Bold"/>
-
-            <StackPanel
-                Grid.Column="1"
-                Grid.Row="0"
-                Orientation="Vertical">
-
-                <TextBlock
-                    Text="{Binding Consultation.Date, StringFormat={}{0:yyyy MM dd}}"
-                    Margin="0 4"/>
-
-                <Calendar
-                    SelectedDate="{Binding Consultation.Date, Mode=TwoWay}"
-                    DisplayDate="{Binding Consultation.Date, Mode=OneTime}"
-                    HorizontalAlignment="Left"/>
-
-            </StackPanel>
-
-            <TextBlock
-                Grid.Column="0"
-                Grid.Row="1"
                 Text="Medic:"
                 Margin="0 4 10 4"
                 FontWeight="Bold"/>
 
             <ComboBox
                 Grid.Column="1"
-                Grid.Row="1"
+                Grid.Row="0"
+                Margin="0 4 0 4"
                 ItemsSource="{Binding Medics}"
                 SelectedItem="{Binding Consultation.Medic}">
 
@@ -131,16 +108,26 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
             </ComboBox>
 
+            <Calendar
+                Grid.Column="2"
+                Grid.Row="0"
+                Grid.RowSpan="3"
+                Margin="8 0 0 8"
+                SelectedDate="{Binding Consultation.Date, Mode=TwoWay}"
+                DisplayDate="{Binding Consultation.Date, Mode=OneTime}"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"/>
+
             <TextBlock
                 Grid.Column="0"
-                Grid.Row="2"
+                Grid.Row="1"
                 Text="Clinic:"
                 Margin="0 4 10 4"
                 FontWeight="Bold"/>
 
             <ComboBox
                 Grid.Column="1"
-                Grid.Row="2"
+                Grid.Row="1"
                 Margin="0 4"
                 ItemsSource="{Binding Clinics}"
                 SelectedItem="{Binding Consultation.Clinic}">
@@ -157,7 +144,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
             <StackPanel
                 Grid.Column="0"
-                Grid.Row="3"
+                Grid.Row="2"
                 Margin="0 4 10 4"
                 Orientation="Vertical">
 
@@ -173,21 +160,22 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
             <TextBox
                 Grid.Column="1"
-                Grid.Row="3"
+                Grid.Row="2"
                 Height="100"
                 AcceptsReturn="True"
                 Text="{Binding Consultation.Labels, Converter={StaticResource StringListToMultilineStringConverter}, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"/>
 
             <TextBlock
                 Grid.Column="0"
-                Grid.Row="4"
+                Grid.Row="3"
                 Text="Comments:"
                 Margin="0 4 10 4"
                 FontWeight="Bold"/>
 
             <TextBox
                 Grid.Column="1"
-                Grid.Row="4"
+                Grid.Row="3"
+                Grid.ColumnSpan="2"
                 Text="{Binding Consultation.Comments}"
                 Margin="0 4"
                 Height="100"
@@ -195,14 +183,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
             <TextBlock
                 Grid.Column="0"
-                Grid.Row="5"
+                Grid.Row="4"
                 Text="Prescriptions:"
                 Margin="0 4 10 4"
                 FontWeight="Bold"/>
 
             <ItemsControl
                 Grid.Column="1"
-                Grid.Row="5"
+                Grid.Row="4"
+                Grid.ColumnSpan="2"
                 ItemsSource="{Binding Consultation.Prescriptions}"
                 Margin="0 4">
 
