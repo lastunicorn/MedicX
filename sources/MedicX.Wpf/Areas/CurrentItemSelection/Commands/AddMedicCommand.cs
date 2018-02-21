@@ -41,6 +41,7 @@ namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.Commands
         {
             Medic medic = new Medic
             {
+                Id = Guid.NewGuid(),
                 Name = new PersonName(),
                 Specializations = new List<string>()
             };

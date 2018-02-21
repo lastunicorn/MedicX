@@ -23,7 +23,7 @@ namespace DustInTheWind.MedicX.Persistence.Json.Entities
     internal class MedicalEvent
     {
         [JsonProperty("id", Order = 1)]
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         [JsonProperty("date", Order = 1)]
         public DateTime Date { get; set; }

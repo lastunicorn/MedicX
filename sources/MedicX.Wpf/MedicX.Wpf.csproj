@@ -83,7 +83,7 @@
     <Compile Include="Areas\CurrentItemDetails\ViewModels\ConsultationViewModel.cs" />
     <Compile Include="Areas\CurrentItemDetails\ViewModels\DetailsViewModel.cs" />
     <Compile Include="Translators\EventExtensions.cs" />
-    <Compile Include="ViewModels\EventsViewModel.cs" />
+    <Compile Include="ViewModels\ObservableCollectionWithSource.cs" />
     <Compile Include="Translators\InvestigationInstanceExcensions.cs" />
     <Compile Include="Areas\CurrentItemDetails\ViewModels\InvestigationViewModel.cs" />
     <Compile Include="Areas\CurrentItemSelection\VewModels\MedicListItemViewModel.cs" />

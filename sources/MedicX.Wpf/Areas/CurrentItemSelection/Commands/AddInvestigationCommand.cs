@@ -41,6 +41,7 @@ namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.Commands
         {
             Investigation investigation = new Investigation
             {
+                Id = Guid.NewGuid(),
                 Date = DateTime.Today,
                 Labels = new List<string>()
             };

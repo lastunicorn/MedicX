@@ -41,6 +41,7 @@ namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.Commands
         {
             Consultation consultation = new Consultation
             {
+                Id = Guid.NewGuid(),
                 Date = DateTime.Today,
                 Labels = new List<string>()
             };
