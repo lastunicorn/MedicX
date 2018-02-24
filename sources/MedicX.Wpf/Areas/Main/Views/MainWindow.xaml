@@ -34,7 +34,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     Width="960"
     ResizeMode="CanResizeWithGrip"
     d:DataContext="{d:DesignInstance viewModels1:MainViewModel}"
-    Background="LightGray">
+    Background="{StaticResource MainBackground}">
+
+    <Window.Resources>
+
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Colors/Colors.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+
+    </Window.Resources>
 
     <DockPanel>
 
@@ -58,7 +68,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
             <GridSplitter
                 Grid.Column="1"
-                HorizontalAlignment="Stretch" />
+                HorizontalAlignment="Stretch"
+                Background="{StaticResource SplitterBackground}"/>
 
             <views3:DetailsControl
                 Grid.Column="2"

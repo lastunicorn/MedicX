@@ -48,7 +48,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
                 <StackPanel.Resources>
                     <Style TargetType="TextBlock">
-                        <Setter Property="FontSize" Value="18"/>
+                        <Setter Property="FontSize" Value="20"/>
                         <Setter Property="Foreground" Value="WhiteSmoke" />
                     </Style>
                 </StackPanel.Resources>
@@ -91,7 +91,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 Grid.Row="0"
                 Margin="0 4 0 4"
                 ItemsSource="{Binding Medics}"
-                SelectedItem="{Binding Consultation.Medic}">
+                SelectedItem="{Binding Consultation.Medic}"
+                VerticalContentAlignment="Center">
 
                 <ComboBox.Resources>
                     <DataTemplate DataType="{x:Type entities:Medic}">
@@ -130,7 +131,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 Grid.Row="1"
                 Margin="0 4"
                 ItemsSource="{Binding Clinics}"
-                SelectedItem="{Binding Consultation.Clinic}">
+                SelectedItem="{Binding Consultation.Clinic}"
+                VerticalContentAlignment="Center">
 
                 <ComboBox.Resources>
                     <DataTemplate DataType="{x:Type entities:Clinic}">

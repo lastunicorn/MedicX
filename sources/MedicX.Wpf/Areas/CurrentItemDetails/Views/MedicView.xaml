@@ -43,7 +43,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             Padding="5 6"
             Background="DarkGray"
             Foreground="WhiteSmoke"
-            FontSize="18"/>
+            FontSize="20"/>
 
         <Grid>
             <Grid.ColumnDefinitions>

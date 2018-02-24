@@ -22,6 +22,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
              StartupUri="Areas/Main/Views/MainWindow.xaml">
 
     <Application.Resources>
+
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Colors/Colors.xaml"/>
+                <ResourceDictionary Source="/Styles/ButtonStylesDictionary.xaml"/>
+                <ResourceDictionary Source="/Styles/TabControlStylesDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+
     </Application.Resources>
 
 </Application>

@@ -34,7 +34,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
     <TabControl
         ItemsSource="{Binding Tabs}"
-        SelectedItem="{Binding SelectedTab}">
+        SelectedItem="{Binding SelectedTab}"
+        Background="Transparent">
 
         <TabControl.ItemTemplate>
             <DataTemplate DataType="{x:Type vewModels:TabItemViewModel}">
@@ -45,7 +46,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <TabControl.ContentTemplate>
             <DataTemplate DataType="{x:Type vewModels:TabItemViewModel}">
 
-                <ContentControl Content="{Binding Content}">
+                <ContentControl
+                    Content="{Binding Content}"
+                    Margin="4">
 
                     <ContentControl.Resources>
 

@@ -45,12 +45,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             <Button
                 Grid.Column="0"
                 Content="New" Command="{Binding AddMedicCommand}"
-                Margin="0 0 4 0"
-                Padding="10 0 10 0"/>
+                Margin="0 0 4 0"/>
 
             <TextBox
                 Grid.Column="1"
-                Text="{Binding SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                Text="{Binding SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                VerticalContentAlignment="Center"
+                FontSize="20"/>
 
         </Grid>
 
