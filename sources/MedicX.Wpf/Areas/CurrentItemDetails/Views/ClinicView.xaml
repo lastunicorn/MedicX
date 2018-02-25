@@ -42,8 +42,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <TextBlock
             Text="{Binding Name}"
             Padding="5 6"
-            Background="DarkGray"
-            Foreground="WhiteSmoke"
+            Background="{StaticResource DetailsTitleBackground}"
+            Foreground="{StaticResource DetailsTitleForeground}"
             FontSize="20"/>
 
         <Grid>

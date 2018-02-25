@@ -27,8 +27,7 @@ namespace DustInTheWind.MedicX.Persistence.Json
 
         public MedicRepository(MedicXData medicXData)
         {
-            if (medicXData == null) throw new ArgumentNullException(nameof(medicXData));
-            this.medicXData = medicXData;
+            this.medicXData = medicXData ?? throw new ArgumentNullException(nameof(medicXData));
         }
 
         public List<Medic> GetAll()
@@ -39,6 +38,7 @@ namespace DustInTheWind.MedicX.Persistence.Json
         public Medic GetById(Guid id)
         {
             return medicXData.Medics
+                .Where(x => x != null)
                 .FirstOrDefault(x => x.Id == id);
         }
 
@@ -59,6 +59,7 @@ namespace DustInTheWind.MedicX.Persistence.Json
                 return;
 
             Medic existingMedic = medicXData.Medics
+                .Where(x => x != null)
                 .FirstOrDefault(x => x.Id == medic.Id);
 
             if (existingMedic == null)
@@ -70,6 +71,7 @@ namespace DustInTheWind.MedicX.Persistence.Json
         public List<Medic> GetByName(string medicName)
         {
             return medicXData.Medics
+                .Where(x => x != null)
                 .Where(x => x.Name != null && x.Name.Contains(medicName))
                 .ToList();
         }
@@ -77,6 +79,7 @@ namespace DustInTheWind.MedicX.Persistence.Json
         public List<Medic> Search(string text)
         {
             return medicXData.Medics
+                .Where(x => x != null)
                 .Where(x => (x.Name != null && x.Name.Contains(text)) ||
                     (x.Specializations.Any(z => z != null && z.IndexOf(text, StringComparison.OrdinalIgnoreCase) >= 0)) ||
                     (x.Comments != null && x.Comments.IndexOf(text, StringComparison.InvariantCultureIgnoreCase) >= 0))

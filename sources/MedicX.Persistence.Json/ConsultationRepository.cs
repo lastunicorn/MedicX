@@ -33,6 +33,7 @@ namespace DustInTheWind.MedicX.Persistence.Json
         public List<Consultation> GetAll()
         {
             return medicXData.Consultations
+                .Where(x=>x!= null)
                 .OrderByDescending(x => x.Date)
                 .ToList();
         }
@@ -40,6 +41,7 @@ namespace DustInTheWind.MedicX.Persistence.Json
         public List<Consultation> Search(string text)
         {
             return medicXData.Consultations
+                .Where(x => x != null)
                 .Where(x => (x.Medic?.Name != null && x.Medic.Name.Contains(text)) ||
                             (x.Clinic?.Name != null && x.Clinic.Name.IndexOf(text, StringComparison.OrdinalIgnoreCase) >= 0) ||
                             (x.Labels != null && x.Labels.Any(z => z != null && z.IndexOf(text, StringComparison.OrdinalIgnoreCase) >= 0)) ||
@@ -53,6 +55,7 @@ namespace DustInTheWind.MedicX.Persistence.Json
                 return;
 
             Consultation existingConsultation = medicXData.Consultations
+                .Where(x => x != null)
                 .FirstOrDefault(x => x.Id == consultation.Id);
 
             if (existingConsultation == null)

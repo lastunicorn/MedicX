@@ -120,4 +120,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
     <SolidColorBrush x:Key="TabsOverBackground" Color="#009700"/>
 
+    <!-- Consultation -->
+
+    <SolidColorBrush x:Key="DetailsTitleBackground" Color="#007100"/>
+    <SolidColorBrush x:Key="DetailsTitleForeground" Color="#ffffff"/>
+
 </ResourceDictionary>

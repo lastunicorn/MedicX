@@ -91,15 +91,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
                 <DataTemplate DataType="{x:Type vewModels:ConsultationListItemViewModel}">
                     <StackPanel Margin="5 6">
-                        <TextBlock Text="{Binding Value.Date, StringFormat={}{0:yyyy MM dd}}" />
-                        <TextBlock Text="{Binding Value.Medic.Name}" />
+                        <TextBlock
+                            Text="{Binding Value.Date, StringFormat={}{0:yyyy MM dd}}"
+                            FontWeight="Bold"/>
+                        <TextBlock Text="{Binding Value.Medic.Name}"/>
                     </StackPanel>
                 </DataTemplate>
                 
                 <DataTemplate DataType="{x:Type vewModels:InvestigationListItemViewModel}">
                     <StackPanel Margin="5 6">
-                        <TextBlock Text="{Binding Value.Date, StringFormat={}{0:yyyy MM dd}}" />
-                        <TextBlock Text="{Binding Value.SentBy.Name, StringFormat=Sent by: {0}}" />
+                        <TextBlock
+                            Text="{Binding Value.Date, StringFormat={}{0:yyyy MM dd}}"
+                            FontWeight="Bold"/>
+                        <TextBlock Text="{Binding Value.SentBy.Name, StringFormat=Sent by: {0}}"/>
                     </StackPanel>
                 </DataTemplate>
 

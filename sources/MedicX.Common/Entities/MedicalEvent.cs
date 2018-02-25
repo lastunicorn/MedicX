@@ -26,16 +26,31 @@ namespace DustInTheWind.MedicX.Common.Entities
 
         public DateTime Date { get; set; }
 
+        private Medic medic;
+
+        public Medic Medic
+        {
+            get => medic;
+            set
+            {
+                medic = value;
+                OnMedicChanged();
+            }
+        }
+
         public Clinic Clinic { get; set; }
 
         public List<string> Labels { get; set; }
 
         public string Comments { get; set; }
 
+        public event EventHandler MedicChanged;
+
         public virtual void CopyFrom(MedicalEvent medicalEvent)
         {
             Id = medicalEvent.Id;
             Date = medicalEvent.Date;
+            Medic = medicalEvent.Medic;
             Clinic = medicalEvent.Clinic;
             Labels = medicalEvent.Labels.ToList();
             Comments = medicalEvent.Comments;
@@ -44,9 +59,15 @@ namespace DustInTheWind.MedicX.Common.Entities
         public virtual bool Contains(string text)
         {
             return (Clinic != null && Clinic.Contains(text)) ||
-                   (Date.ToString().IndexOf(text, StringComparison.OrdinalIgnoreCase) >= 0) ||
+                   (Date.ToString("yyyy MM dd").IndexOf(text, StringComparison.OrdinalIgnoreCase) >= 0) ||
+                   (Medic != null && Medic.Contains(text)) ||
                    (Labels != null && Labels.Any(x => x != null && x.IndexOf(text, StringComparison.OrdinalIgnoreCase) >= 0)) ||
                    (Comments != null && Comments.IndexOf(text, StringComparison.OrdinalIgnoreCase) >= 0);
+        }
+
+        protected virtual void OnMedicChanged()
+        {
+            MedicChanged?.Invoke(this, EventArgs.Empty);
         }
     }
 }

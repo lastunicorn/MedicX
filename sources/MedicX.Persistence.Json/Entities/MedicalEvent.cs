@@ -28,8 +28,11 @@ namespace DustInTheWind.MedicX.Persistence.Json.Entities
         [JsonProperty("date", Order = 1)]
         public DateTime Date { get; set; }
 
+        [JsonProperty("medic", Order = 2)]
+        public Guid? MedicId { get; set; }
+
         [JsonProperty("location", Order = 1)]
-        public Guid ClinicLocationId { get; set; }
+        public Guid? ClinicLocationId { get; set; }
 
         [JsonProperty("labels", Order = 1)]
         public List<string> Labels { get; set; }

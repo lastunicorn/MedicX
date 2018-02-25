@@ -39,7 +39,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     </UserControl.Resources>
 
     <StackPanel Margin="8">
-        <Grid Background="DarkGray">
+        <Grid Background="{StaticResource DetailsTitleBackground}">
 
             <StackPanel
                 FlowDirection="LeftToRight"
@@ -48,18 +48,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
                 <StackPanel.Resources>
                     <Style TargetType="TextBlock">
-                        <Setter Property="FontSize" Value="18"/>
-                        <Setter Property="Foreground" Value="WhiteSmoke" />
+                        <Setter Property="FontSize" Value="20"/>
+                        <Setter Property="Foreground" Value="{StaticResource DetailsTitleForeground}" />
                     </Style>
                 </StackPanel.Resources>
 
-                <TextBlock Text="{Binding Investigation.Date, StringFormat={}{0:yyyy MM dd}}" />
+                <TextBlock Text="{Binding Investigation.Date, StringFormat={}{0:yyyy MM dd}, Mode=OneWay}" />
 
                 <TextBlock
                     Text="-"
                     Margin="8 0"/>
 
-                <TextBlock Text="{Binding Investigation.SentBy.Name, StringFormat=Sent by {0}}" />
+                <TextBlock Text="{Binding Investigation.SentBy.Name, StringFormat=Sent by {0}, Mode=OneWay}" />
             </StackPanel>
         </Grid>
 
@@ -75,21 +75,26 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
+                <RowDefinition/>
             </Grid.RowDefinitions>
 
+            <!-- Sent By -->
+
             <TextBlock
-                Grid.Column="0"
                 Grid.Row="0"
+                Grid.Column="0"
                 Text="Sent by:"
                 Margin="0 4 10 4"
-                FontWeight="Bold"/>
+                FontWeight="Bold"
+                VerticalAlignment="Center"/>
 
             <ComboBox
-                Grid.Column="1"
                 Grid.Row="0"
+                Grid.Column="1"
                 Margin="0 4 0 4"
+                Padding="8"
                 ItemsSource="{Binding Medics}"
-                SelectedItem="{Binding Investigation.SentBy}"
+                SelectedItem="{Binding Investigation.SentBy, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 VerticalContentAlignment="Center">
 
                 <ComboBox.Resources>
@@ -107,29 +112,69 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
             </ComboBox>
 
+            <!-- Date -->
+
             <Calendar
-                Grid.Column="2"
                 Grid.Row="0"
-                Grid.RowSpan="3"
+                Grid.Column="2"
+                Grid.RowSpan="4"
                 Margin="8 0 0 8"
                 SelectedDate="{Binding Investigation.Date, Mode=TwoWay}"
-                DisplayDate="{Binding Investigation.Date, Mode=OneTime}"
+                DisplayDate="{Binding Investigation.Date, Mode=OneWay}"
                 HorizontalAlignment="Center"
-                VerticalAlignment="Center"/>
+                VerticalAlignment="Top"/>
+
+            <!-- Medic -->
 
             <TextBlock
-                Grid.Column="0"
                 Grid.Row="1"
-                Text="Clinic:"
+                Grid.Column="0"
+                Text="Medic:"
                 Margin="0 4 10 4"
-                FontWeight="Bold"/>
+                FontWeight="Bold"
+                VerticalAlignment="Center"/>
 
             <ComboBox
-                Grid.Column="1"
                 Grid.Row="1"
+                Grid.Column="1"
+                Margin="0 4 0 4"
+                Padding="8"
+                ItemsSource="{Binding Medics}"
+                SelectedItem="{Binding Investigation.Medic, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                VerticalContentAlignment="Center">
+
+                <ComboBox.Resources>
+                    <DataTemplate DataType="{x:Type entities:Medic}">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock
+                                FontWeight="Bold"
+                                Text="{Binding Name}"/>
+                            <TextBlock
+                                Margin="5 0 0 0"
+                                Text="{Binding Specializations, Converter={StaticResource StringListToCsvConverter}, StringFormat= ({0})}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ComboBox.Resources>
+
+            </ComboBox>
+
+            <!-- Clinic -->
+
+            <TextBlock
+                Grid.Row="2"
+                Grid.Column="0"
+                Text="Clinic:"
+                Margin="0 4 10 4"
+                FontWeight="Bold"
+                VerticalAlignment="Center"/>
+
+            <ComboBox
+                Grid.Row="2"
+                Grid.Column="1"
                 Margin="0 4"
+                Padding="8"
                 ItemsSource="{Binding Clinics}"
-                SelectedItem="{Binding Investigation.Clinic}"
+                SelectedItem="{Binding Investigation.Clinic, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 VerticalContentAlignment="Center">
 
                 <ComboBox.Resources>
@@ -142,9 +187,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
             </ComboBox>
 
+            <!-- Labels -->
+
             <StackPanel
+                Grid.Row="3"
                 Grid.Column="0"
-                Grid.Row="2"
                 Margin="0 4 10 4"
                 Orientation="Vertical">
 
@@ -159,27 +206,33 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             </StackPanel>
 
             <TextBox
+                Grid.Row="3"
                 Grid.Column="1"
-                Grid.Row="2"
-                Height="100"
+                Height="70"
                 AcceptsReturn="True"
+                VerticalScrollBarVisibility="Auto"
+                HorizontalScrollBarVisibility="Auto"
                 Text="{Binding Investigation.Labels, Converter={StaticResource StringListToMultilineStringConverter}, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"/>
 
+            <!-- Comments -->
+
             <TextBlock
+                Grid.Row="4"
                 Grid.Column="0"
-                Grid.Row="3"
                 Text="Comments:"
                 Margin="0 4 10 4"
                 FontWeight="Bold"/>
 
             <TextBox
+                Grid.Row="4"
                 Grid.Column="1"
-                Grid.Row="3"
                 Grid.ColumnSpan="2"
-                Text="{Binding Investigation.Comments}"
+                Text="{Binding Investigation.Comments, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 Margin="0 4"
                 Height="100"
-                AcceptsReturn="True"/>
+                AcceptsReturn="True"
+                VerticalScrollBarVisibility="Auto"
+                HorizontalScrollBarVisibility="Auto"/>
 
         </Grid>
 

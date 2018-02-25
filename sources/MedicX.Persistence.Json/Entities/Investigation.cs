@@ -23,7 +23,7 @@ namespace DustInTheWind.MedicX.Persistence.Json.Entities
     internal class Investigation : MedicalEvent
     {
         [JsonProperty("sentBy", Order = 2)]
-        public Guid SentById { get; set; }
+        public Guid? SentById { get; set; }
 
         [JsonProperty("result", Order = 2)]
         public List<InvestigationResult> Result { get; set; }

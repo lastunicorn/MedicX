@@ -25,7 +25,7 @@ namespace DustInTheWind.MedicX.Persistence.Json.Translators
         public static List<Investigation> Translate(this IEnumerable<Entities.Investigation> investigations, List<Medic> medics, IEnumerable<Clinic> clinicLocations)
         {
             return investigations?
-                .Select(x => Translate((Entities.Investigation)x, medics, clinicLocations))
+                .Select(x => x.Translate(medics, clinicLocations))
                 .ToList();
         }
 
@@ -39,6 +39,7 @@ namespace DustInTheWind.MedicX.Persistence.Json.Translators
                 Id = investigation.Id,
                 Date = investigation.Date,
                 SentBy = medics.FirstOrDefault(x => x.Id == investigation.SentById),
+                Medic = medics.FirstOrDefault(x => x.Id == investigation.MedicId),
                 Clinic = clinicLocations.FirstOrDefault(x => x.Id == investigation.ClinicLocationId),
                 Labels = investigation.Labels?.ToList(),
                 Comments = investigation.Comments,
@@ -68,8 +69,9 @@ namespace DustInTheWind.MedicX.Persistence.Json.Translators
             {
                 Id = investigation.Id,
                 Date = investigation.Date,
-                SentById = investigation.SentBy.Id,
-                ClinicLocationId = investigation.Clinic.Id,
+                SentById = investigation.SentBy?.Id,
+                MedicId = investigation.Medic?.Id,
+                ClinicLocationId = investigation.Clinic?.Id,
                 Labels = investigation.Labels?.ToList(),
                 Comments = investigation.Comments
             };

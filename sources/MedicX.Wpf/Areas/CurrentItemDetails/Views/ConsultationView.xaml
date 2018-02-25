@@ -35,11 +35,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
     <UserControl.Resources>
         <currentItemDetails:StringListToMultilineStringConverter x:Key="StringListToMultilineStringConverter"/>
+        <currentItemDetails:PrescriptionListToMultilineStringConverter x:Key="PrescriptionListToMultilineStringConverter"/>
         <currentItemDetails:StringListToCsvConverter x:Key="StringListToCsvConverter"/>
     </UserControl.Resources>
 
     <StackPanel Margin="8">
-        <Grid Background="DarkGray">
+        <Grid Background="{StaticResource DetailsTitleBackground}">
 
             <StackPanel
                 FlowDirection="LeftToRight"
@@ -49,17 +50,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 <StackPanel.Resources>
                     <Style TargetType="TextBlock">
                         <Setter Property="FontSize" Value="20"/>
-                        <Setter Property="Foreground" Value="WhiteSmoke" />
+                        <Setter Property="Foreground" Value="{StaticResource DetailsTitleForeground}" />
                     </Style>
                 </StackPanel.Resources>
 
-                <TextBlock Text="{Binding Consultation.Date, StringFormat={}{0:yyyy MM dd}}" />
+                <TextBlock Text="{Binding Consultation.Date, StringFormat={}{0:yyyy MM dd}, Mode=OneWay}" />
 
                 <TextBlock
                     Text="-"
                     Margin="8 0"/>
 
-                <TextBlock Text="{Binding Consultation.Medic.Name}" />
+                <TextBlock Text="{Binding Consultation.Medic.Name, Mode=OneWay}" />
             </StackPanel>
         </Grid>
 
@@ -74,24 +75,28 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
-                <RowDefinition/>
+                <RowDefinition Height="*"/>
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
+            <!-- Medic -->
+
             <TextBlock
-                Grid.Column="0"
                 Grid.Row="0"
+                Grid.Column="0"
                 Text="Medic:"
                 Margin="0 4 10 4"
-                FontWeight="Bold"/>
+                FontWeight="Bold"
+                VerticalAlignment="Center"/>
 
             <ComboBox
-                Grid.Column="1"
                 Grid.Row="0"
+                Grid.Column="1"
                 Margin="0 4 0 4"
+                Padding="8"
                 ItemsSource="{Binding Medics}"
-                SelectedItem="{Binding Consultation.Medic}"
+                SelectedItem="{Binding Consultation.Medic, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 VerticalContentAlignment="Center">
 
                 <ComboBox.Resources>
@@ -99,54 +104,62 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                         <StackPanel Orientation="Horizontal">
                             <TextBlock
                                 FontWeight="Bold"
-                                Text="{Binding Name}"/>
+                                Text="{Binding Name, Mode=OneWay}"/>
                             <TextBlock
                                 Margin="5 0 0 0"
-                                Text="{Binding Specializations, Converter={StaticResource StringListToCsvConverter}, StringFormat= ({0})}"/>
+                                Text="{Binding Specializations, Converter={StaticResource StringListToCsvConverter}, StringFormat= ({0}), Mode=OneWay}"/>
                         </StackPanel>
                     </DataTemplate>
                 </ComboBox.Resources>
 
             </ComboBox>
 
+            <!-- Date -->
+
             <Calendar
-                Grid.Column="2"
                 Grid.Row="0"
+                Grid.Column="2"
                 Grid.RowSpan="3"
                 Margin="8 0 0 8"
                 SelectedDate="{Binding Consultation.Date, Mode=TwoWay}"
-                DisplayDate="{Binding Consultation.Date, Mode=OneTime}"
+                DisplayDate="{Binding Consultation.Date, Mode=OneWay}"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"/>
 
+            <!-- Clinic -->
+
             <TextBlock
-                Grid.Column="0"
                 Grid.Row="1"
+                Grid.Column="0"
                 Text="Clinic:"
                 Margin="0 4 10 4"
-                FontWeight="Bold"/>
+                FontWeight="Bold"
+                VerticalAlignment="Center"/>
 
             <ComboBox
-                Grid.Column="1"
                 Grid.Row="1"
+                Grid.Column="1"
                 Margin="0 4"
+                Padding="8"
                 ItemsSource="{Binding Clinics}"
-                SelectedItem="{Binding Consultation.Clinic}"
+                SelectedItem="{Binding Consultation.Clinic, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 VerticalContentAlignment="Center">
 
                 <ComboBox.Resources>
                     <DataTemplate DataType="{x:Type entities:Clinic}">
                         <TextBlock
                             FontWeight="Bold"
-                            Text="{Binding Name}"/>
+                            Text="{Binding Name, Mode=OneWay}"/>
                     </DataTemplate>
                 </ComboBox.Resources>
 
             </ComboBox>
 
+            <!-- Labels -->
+
             <StackPanel
-                Grid.Column="0"
                 Grid.Row="2"
+                Grid.Column="0"
                 Margin="0 4 10 4"
                 Orientation="Vertical">
 
@@ -161,49 +174,62 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             </StackPanel>
 
             <TextBox
-                Grid.Column="1"
                 Grid.Row="2"
+                Grid.Column="1"
                 Height="100"
                 AcceptsReturn="True"
+                VerticalScrollBarVisibility="Auto"
+                HorizontalScrollBarVisibility="Auto"
                 Text="{Binding Consultation.Labels, Converter={StaticResource StringListToMultilineStringConverter}, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"/>
 
+            <!-- Comments -->
+
             <TextBlock
-                Grid.Column="0"
                 Grid.Row="3"
+                Grid.Column="0"
                 Text="Comments:"
                 Margin="0 4 10 4"
                 FontWeight="Bold"/>
 
             <TextBox
-                Grid.Column="1"
                 Grid.Row="3"
+                Grid.Column="1"
                 Grid.ColumnSpan="2"
-                Text="{Binding Consultation.Comments}"
+                Text="{Binding Consultation.Comments, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 Margin="0 4"
                 Height="100"
-                AcceptsReturn="True"/>
+                AcceptsReturn="True"
+                VerticalScrollBarVisibility="Auto"
+                HorizontalScrollBarVisibility="Auto"/>
 
-            <TextBlock
+            <!-- Prescriptions -->
+
+            <StackPanel
+                Grid.Row="4"
                 Grid.Column="0"
-                Grid.Row="4"
-                Text="Prescriptions:"
                 Margin="0 4 10 4"
-                FontWeight="Bold"/>
+                Orientation="Vertical">
 
-            <ItemsControl
-                Grid.Column="1"
+                <TextBlock
+                    Text="Prescriptions:"
+                    FontWeight="Bold"/>
+
+                <TextBlock
+                    Text="(list)"
+                    FontWeight="Bold"/>
+
+            </StackPanel>
+
+            <TextBox
                 Grid.Row="4"
+                Grid.Column="1"
                 Grid.ColumnSpan="2"
-                ItemsSource="{Binding Consultation.Prescriptions}"
-                Margin="0 4">
-
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding Description}"/>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-
-            </ItemsControl>
+                Text="{Binding Consultation.Prescriptions, Converter={StaticResource PrescriptionListToMultilineStringConverter}, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                Margin="0 4"
+                Height="100"
+                AcceptsReturn="True"
+                VerticalScrollBarVisibility="Auto"
+                HorizontalScrollBarVisibility="Auto"/>
 
         </Grid>
 

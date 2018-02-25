@@ -38,12 +38,14 @@ namespace DustInTheWind.MedicX.Persistence.Json
         public Clinic GetById(Guid id)
         {
             return medicXData.Clinics
+                .Where(x => x != null)
                 .FirstOrDefault(x => x.Id == id);
         }
 
         public List<Clinic> GetByName(string clinicName)
         {
             return medicXData.Clinics
+                .Where(x => x != null)
                 .Where(x => x.Name != null && x.Name.IndexOf(clinicName, StringComparison.OrdinalIgnoreCase) >= 0)
                 .ToList();
         }
@@ -51,6 +53,7 @@ namespace DustInTheWind.MedicX.Persistence.Json
         public List<Clinic> Search(string text)
         {
             return medicXData.Clinics
+                .Where(x => x != null)
                 .Where(x => (x.Name != null && x.Name.IndexOf(text, StringComparison.OrdinalIgnoreCase) >= 0) ||
                     (x.Phones != null && x.Phones.Any(z => z != null && z.IndexOf(text, StringComparison.OrdinalIgnoreCase) >= 0)) ||
                     (x.Address != null && x.Address.Contains(text)) ||
@@ -64,6 +67,7 @@ namespace DustInTheWind.MedicX.Persistence.Json
                 return;
 
             Clinic existingClinic = medicXData.Clinics
+                .Where(x => x != null)
                 .FirstOrDefault(x => x.Id == clinic.Id);
 
             if (existingClinic == null)
