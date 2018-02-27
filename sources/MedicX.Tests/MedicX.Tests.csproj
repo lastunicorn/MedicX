@@ -41,12 +41,22 @@
     <Compile Include="..\AssemblyInfo.Shared.cs">
       <Link>Properties\AssemblyInfo.Shared.cs</Link>
     </Compile>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Common\Entities\PersonNameTests\ContainsTests.cs" />
+    <Compile Include="Common\Entities\PersonNameTests\FirstNameTests.cs" />
+    <Compile Include="Common\Entities\PersonNameTests\LastNameTests.cs" />
+    <Compile Include="Common\Entities\PersonNameTests\MiddleNameTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MedicX.Common\MedicX.Common.csproj">
+      <Project>{854C77F6-22F9-48A9-AE73-43E19AB9B258}</Project>
+      <Name>MedicX.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

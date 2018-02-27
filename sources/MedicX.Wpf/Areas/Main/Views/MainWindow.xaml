@@ -46,6 +46,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
     </Window.Resources>
 
+    <Window.InputBindings>
+        <KeyBinding Command="{Binding SaveCommand}" Key="S" Modifiers="Control"/>
+    </Window.InputBindings>
+
     <DockPanel>
 
         <Menu DockPanel.Dock="Top">
