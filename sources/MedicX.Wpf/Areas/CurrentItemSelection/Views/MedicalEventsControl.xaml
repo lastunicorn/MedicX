@@ -75,7 +75,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
         </Grid>
 
-        <ListView ItemsSource="{Binding MedicalEvents}" SelectedItem="{Binding SelectedMedicalEvent}">
+        <ListView
+            ItemsSource="{Binding MedicalEvents}"
+            SelectedItem="{Binding SelectedMedicalEvent}">
 
             <ListView.Resources>
                 <Style TargetType="{x:Type ListViewItem}">
