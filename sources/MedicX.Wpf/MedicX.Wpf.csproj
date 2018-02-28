@@ -54,7 +54,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ApplicationState.cs" />
+    <Compile Include="MedicXProject.cs" />
     <Compile Include="Areas\CurrentItemDetails\PrescriptionListToMultilineStringConverter.cs" />
     <Compile Include="Areas\CurrentItemSelection\Commands\AddClinicCommand.cs" />
     <Compile Include="Areas\CurrentItemSelection\Commands\AddConsultationCommand.cs" />
@@ -80,6 +80,7 @@
     <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="Commands\SaveCommand.cs" />
     <Compile Include="EventTypeConverter.cs" />
+    <Compile Include="ProjectStatus.cs" />
     <Compile Include="Translators\ConsultationExtensions.cs" />
     <Compile Include="Areas\CurrentItemDetails\ViewModels\ConsultationViewModel.cs" />
     <Compile Include="Areas\CurrentItemDetails\ViewModels\DetailsViewModel.cs" />

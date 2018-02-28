@@ -14,30 +14,15 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using System;
-using System.Windows.Input;
+using System.Collections.Generic;
 
-namespace DustInTheWind.MedicX.Wpf.Commands
+namespace DustInTheWind.MedicX.Common.Entities
 {
-    internal class SaveCommand : ICommand
+    public class MedicXData
     {
-        private readonly MedicXProject medicXProject;
-
-        public event EventHandler CanExecuteChanged;
-
-        public SaveCommand(MedicXProject medicXProject)
-        {
-            this.medicXProject = medicXProject ?? throw new ArgumentNullException(nameof(medicXProject));
-        }
-
-        public bool CanExecute(object parameter)
-        {
-            return true;
-        }
-
-        public void Execute(object parameter)
-        {
-            medicXProject.Save();
-        }
+        public List<Medic> Medics { get; set; }
+        public List<Clinic> Clinics { get; set; }
+        public List<Consultation> Consultations { get; set; }
+        public List<Investigation> Investigations { get; set; }
     }
 }

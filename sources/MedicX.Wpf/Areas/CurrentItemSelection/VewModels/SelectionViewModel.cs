@@ -21,7 +21,7 @@ namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.VewModels
 {
     internal class SelectionViewModel : ViewModelBase
     {
-        private readonly ApplicationState applicationState;
+        private readonly MedicXProject medicXProject;
 
         private TabItemViewModel selectedTab;
 
@@ -42,9 +42,9 @@ namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.VewModels
             }
         }
 
-        public SelectionViewModel(ApplicationState applicationState)
+        public SelectionViewModel(MedicXProject medicXProject)
         {
-            this.applicationState = applicationState ?? throw new ArgumentNullException(nameof(applicationState));
+            this.medicXProject = medicXProject ?? throw new ArgumentNullException(nameof(medicXProject));
 
             Tabs = CreateTabs();
             SelectedTab = Tabs[2];
@@ -57,17 +57,17 @@ namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.VewModels
                 new TabItemViewModel
                 {
                     Header = "Medics",
-                    Content = new MedicsViewModel(applicationState)
+                    Content = new MedicsViewModel(medicXProject)
                 },
                 new TabItemViewModel
                 {
                     Header = "Clinics",
-                    Content = new ClinicsViewModel(applicationState)
+                    Content = new ClinicsViewModel(medicXProject)
                 },
                 new TabItemViewModel
                 {
                     Header = "Medical Events",
-                    Content = new MedicalEventsViewModel(applicationState)
+                    Content = new MedicalEventsViewModel(medicXProject)
                 }
             };
         }
@@ -77,32 +77,32 @@ namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.VewModels
             switch (selectedTab?.Content)
             {
                 case MedicsViewModel medicsViewModel:
-                    applicationState.CurrentItem = medicsViewModel.SelectedMedic?.Value;
+                    medicXProject.CurrentItem = medicsViewModel.SelectedMedic?.Value;
                     break;
 
                 case ClinicsViewModel clinicsViewModel:
-                    applicationState.CurrentItem = clinicsViewModel.SelectedClinic?.Value;
+                    medicXProject.CurrentItem = clinicsViewModel.SelectedClinic?.Value;
                     break;
 
                 case MedicalEventsViewModel medicalEventsViewModel:
                     switch (medicalEventsViewModel.SelectedMedicalEvent)
                     {
                         case ConsultationListItemViewModel consultation:
-                            applicationState.CurrentItem = consultation.Value;
+                            medicXProject.CurrentItem = consultation.Value;
                             break;
 
                         case InvestigationListItemViewModel investigation:
-                            applicationState.CurrentItem = investigation.Value;
+                            medicXProject.CurrentItem = investigation.Value;
                             break;
 
                         default:
-                            applicationState.CurrentItem = null;
+                            medicXProject.CurrentItem = null;
                             break;
                     }
                     break;
 
                 default:
-                    applicationState.CurrentItem = null;
+                    medicXProject.CurrentItem = null;
                     break;
             }
         }

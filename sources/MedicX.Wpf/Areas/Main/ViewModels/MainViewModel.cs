@@ -15,6 +15,7 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
+using System.Diagnostics;
 using System.Reflection;
 using DustInTheWind.MedicX.Wpf.Areas.CurrentItemDetails.ViewModels;
 using DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.VewModels;
@@ -25,6 +26,7 @@ namespace DustInTheWind.MedicX.Wpf.Areas.Main.ViewModels
     internal class MainViewModel : ViewModelBase
     {
         private string title;
+        private MedicXProject medicXProject;
 
         public string Title
         {
@@ -44,23 +46,45 @@ namespace DustInTheWind.MedicX.Wpf.Areas.Main.ViewModels
 
         public MainViewModel()
         {
+            medicXProject = new MedicXProject();
+
+            SelectionViewModel = new SelectionViewModel(medicXProject);
+            DetailsViewModel = new DetailsViewModel(medicXProject);
+
+            SaveCommand = new SaveCommand(medicXProject);
+
+            medicXProject.StatusChanged += HandleProjectStatusChanged;
             UpdateWindowTitle();
+        }
 
-            ApplicationState applicationState = new ApplicationState();
-
-            SelectionViewModel = new SelectionViewModel(applicationState);
-            DetailsViewModel = new DetailsViewModel(applicationState);
-
-            SaveCommand = new SaveCommand(applicationState);
+        private void HandleProjectStatusChanged(object sender, EventArgs e)
+        {
+            UpdateWindowTitle();
         }
 
         private void UpdateWindowTitle()
         {
-            Assembly assembly = Assembly.GetEntryAssembly();
-            AssemblyName assemblyName = assembly.GetName();
-            Version version = assemblyName.Version;
+            string name = BuildName();
 
-            Title = $"MedicX {version.ToString(3)}";
+            Title = medicXProject.Status == ProjectStatus.Saved
+                ? name
+                : name + " *";
+        }
+
+        private string BuildName()
+        {
+            Assembly assembly = Assembly.GetExecutingAssembly();
+            AssemblyName assemblyName = assembly.GetName();
+
+            string version = assemblyName.Version.Build == 0
+                ? assemblyName.Version.ToString(2)
+                : assemblyName.Version.ToString(3);
+
+            FileVersionInfo fileVersionInfo = FileVersionInfo.GetVersionInfo(assembly.Location);
+
+            string productName = fileVersionInfo.ProductName;
+
+            return $"{productName} {version}";
         }
     }
 }

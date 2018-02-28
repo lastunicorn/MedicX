@@ -67,6 +67,7 @@
     <Compile Include="InvestigationRepository.cs" />
     <Compile Include="JsonDatabase.cs" />
     <Compile Include="MedicRepository.cs" />
+    <Compile Include="MedicXData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Translators\AddressExtensions.cs" />
     <Compile Include="Translators\ClinicExtensions.cs" />

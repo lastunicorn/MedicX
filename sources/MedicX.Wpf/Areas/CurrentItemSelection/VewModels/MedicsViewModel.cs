@@ -28,7 +28,7 @@ namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.VewModels
 {
     internal class MedicsViewModel : ViewModelBase
     {
-        private readonly ApplicationState applicationState;
+        private readonly MedicXProject medicXProject;
         private MedicListItemViewModel selectedMedic;
         private readonly CollectionViewSource medicsSource;
         private string searchText;
@@ -46,7 +46,7 @@ namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.VewModels
                 selectedMedic = value;
                 OnPropertyChanged();
 
-                applicationState.CurrentItem = selectedMedic?.Value;
+                medicXProject.CurrentItem = selectedMedic?.Value;
             }
         }
 
@@ -74,22 +74,22 @@ namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.VewModels
 
         public AddMedicCommand AddMedicCommand { get; }
 
-        public MedicsViewModel(ApplicationState applicationState)
+        public MedicsViewModel(MedicXProject medicXProject)
         {
-            this.applicationState = applicationState ?? throw new ArgumentNullException(nameof(applicationState));
+            this.medicXProject = medicXProject ?? throw new ArgumentNullException(nameof(medicXProject));
 
-            AddMedicCommand = new AddMedicCommand(applicationState);
+            AddMedicCommand = new AddMedicCommand(medicXProject);
 
             medicsSource = new CollectionViewSource
             {
-                Source = new ObservableCollection<MedicListItemViewModel>(applicationState.Medics
+                Source = new ObservableCollection<MedicListItemViewModel>(medicXProject.Medics
                     .Select(x => new MedicListItemViewModel(x))
                     .ToList())
             };
             Medics = medicsSource.View;
-            applicationState.Medics.CollectionChanged += HandleMedicsCollectionChanged;
+            medicXProject.Medics.CollectionChanged += HandleMedicsCollectionChanged;
 
-            applicationState.CurrentItemChanged += HandleCurrentItemChanged;
+            medicXProject.CurrentItemChanged += HandleCurrentItemChanged;
         }
 
         private void HandleMedicsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
@@ -123,7 +123,7 @@ namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.VewModels
 
         private void HandleCurrentItemChanged(object sender, EventArgs e)
         {
-            Medic medic = applicationState.CurrentItem as Medic;
+            Medic medic = medicXProject.CurrentItem as Medic;
 
             if (medic == null)
                 return;

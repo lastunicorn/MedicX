@@ -28,7 +28,7 @@ namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.VewModels
 {
     internal class ClinicsViewModel : ViewModelBase
     {
-        private readonly ApplicationState applicationState;
+        private readonly MedicXProject medicXProject;
         private ClinicListItemViewModel selectedClinic;
         private readonly CollectionViewSource clinicsSource;
         private string searchText;
@@ -46,7 +46,7 @@ namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.VewModels
                 selectedClinic = value;
                 OnPropertyChanged();
 
-                applicationState.CurrentItem = selectedClinic?.Value;
+                medicXProject.CurrentItem = selectedClinic?.Value;
             }
         }
 
@@ -74,22 +74,22 @@ namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.VewModels
 
         public AddClinicCommand AddClinicCommand { get; }
 
-        public ClinicsViewModel(ApplicationState applicationState)
+        public ClinicsViewModel(MedicXProject medicXProject)
         {
-            this.applicationState = applicationState ?? throw new ArgumentNullException(nameof(applicationState));
+            this.medicXProject = medicXProject ?? throw new ArgumentNullException(nameof(medicXProject));
 
-            AddClinicCommand = new AddClinicCommand(applicationState);
+            AddClinicCommand = new AddClinicCommand(medicXProject);
 
             clinicsSource = new CollectionViewSource
             {
-                Source = new ObservableCollection<ClinicListItemViewModel>(applicationState.Clinics
+                Source = new ObservableCollection<ClinicListItemViewModel>(medicXProject.Clinics
                     .Select(x => new ClinicListItemViewModel(x))
                     .ToList())
             };
             Clinics = clinicsSource.View;
-            applicationState.Clinics.CollectionChanged += HandleClinicsCollectionChanged;
+            medicXProject.Clinics.CollectionChanged += HandleClinicsCollectionChanged;
 
-            applicationState.CurrentItemChanged += HandleCurrentItemChanged;
+            medicXProject.CurrentItemChanged += HandleCurrentItemChanged;
         }
 
         private void HandleClinicsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
@@ -123,7 +123,7 @@ namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.VewModels
 
         private void HandleCurrentItemChanged(object sender, EventArgs e)
         {
-            Clinic clinic = applicationState.CurrentItem as Clinic;
+            Clinic clinic = medicXProject.CurrentItem as Clinic;
 
             if (clinic == null)
                 return;

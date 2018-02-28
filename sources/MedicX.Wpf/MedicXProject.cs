@@ -17,14 +17,17 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Linq;
 using DustInTheWind.MedicX.Common.Entities;
 using DustInTheWind.MedicX.Persistence.Json;
 
 namespace DustInTheWind.MedicX.Wpf
 {
-    internal class ApplicationState
+    internal class MedicXProject
     {
+        private ProjectStatus status = ProjectStatus.New;
+
         private object currentItem;
 
         public ObservableCollection<Medic> Medics { get; } = new ObservableCollection<Medic>();
@@ -43,9 +46,25 @@ namespace DustInTheWind.MedicX.Wpf
             }
         }
 
-        public event EventHandler CurrentItemChanged;
+        public ProjectStatus Status
+        {
+            get => status;
+            private set
+            {
+                status = value;
+                OnStatusChanged();
+            }
+        }
 
-        public ApplicationState()
+        public event EventHandler CurrentItemChanged;
+        public event EventHandler StatusChanged;
+
+        public MedicXProject()
+        {
+            LoadData();
+        }
+
+        private void LoadData()
         {
             using (UnitOfWork unitOfWork = new UnitOfWork())
             {
@@ -56,12 +75,16 @@ namespace DustInTheWind.MedicX.Wpf
                 foreach (Medic medic in medicsFromRepository)
                     Medics.Add(medic);
 
+                Medics.CollectionChanged += HandleMedicsCollectionChanged;
+
                 IClinicRepository clinicRepository = unitOfWork.ClinicRepository;
 
                 List<Clinic> clinicsFromRepository = clinicRepository.GetAll();
 
                 foreach (Clinic clinic in clinicsFromRepository)
                     Clinics.Add(clinic);
+
+                Clinics.CollectionChanged += HandleClinicsCollectionChanged;
 
                 IConsultationRepository consultationRepository = unitOfWork.ConsultationRepository;
                 IInvestigationRepository investigationsRepository = unitOfWork.InvestigationRepository;
@@ -77,7 +100,26 @@ namespace DustInTheWind.MedicX.Wpf
 
                 foreach (MedicalEvent medicalEvent in medicalEvents)
                     MedicalEvents.Add(medicalEvent);
+
+                MedicalEvents.CollectionChanged += HandleMedicalEventsCollectionChanged;
             }
+
+            Status = ProjectStatus.Saved;
+        }
+
+        private void HandleMedicsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            Status = ProjectStatus.Modified;
+        }
+
+        private void HandleClinicsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            Status = ProjectStatus.Modified;
+        }
+
+        private void HandleMedicalEventsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            Status = ProjectStatus.Modified;
         }
 
         public void Save()
@@ -106,11 +148,18 @@ namespace DustInTheWind.MedicX.Wpf
 
                 unitOfWork.Save();
             }
+
+            Status = ProjectStatus.Saved;
         }
 
         protected virtual void OnCurrentItemChanged()
         {
             CurrentItemChanged?.Invoke(this, EventArgs.Empty);
+        }
+
+        protected virtual void OnStatusChanged()
+        {
+            StatusChanged?.Invoke(this, EventArgs.Empty);
         }
     }
 }

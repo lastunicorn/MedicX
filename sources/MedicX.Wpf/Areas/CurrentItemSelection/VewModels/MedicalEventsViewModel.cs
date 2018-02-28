@@ -28,7 +28,7 @@ namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.VewModels
 {
     internal class MedicalEventsViewModel : ViewModelBase
     {
-        private readonly ApplicationState applicationState;
+        private readonly MedicXProject medicXProject;
         private ViewModelBase selectedMedicalEvent;
         private readonly CollectionViewSource medicalEventsSource;
         private string searchText;
@@ -49,15 +49,15 @@ namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.VewModels
                 switch (selectedMedicalEvent)
                 {
                     case ConsultationListItemViewModel consultationListItemViewModel:
-                        applicationState.CurrentItem = consultationListItemViewModel.Value;
+                        medicXProject.CurrentItem = consultationListItemViewModel.Value;
                         break;
 
                     case InvestigationListItemViewModel investigationListItemViewModel:
-                        applicationState.CurrentItem = investigationListItemViewModel.Value;
+                        medicXProject.CurrentItem = investigationListItemViewModel.Value;
                         break;
 
                     default:
-                        applicationState.CurrentItem = null;
+                        medicXProject.CurrentItem = null;
                         break;
                 }
             }
@@ -89,16 +89,16 @@ namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.VewModels
 
         public AddInvestigationCommand AddInvestigationCommand { get; }
 
-        public MedicalEventsViewModel(ApplicationState applicationState)
+        public MedicalEventsViewModel(MedicXProject medicXProject)
         {
-            this.applicationState = applicationState ?? throw new ArgumentNullException(nameof(applicationState));
+            this.medicXProject = medicXProject ?? throw new ArgumentNullException(nameof(medicXProject));
 
-            AddConsultationCommand = new AddConsultationCommand(applicationState);
-            AddInvestigationCommand = new AddInvestigationCommand(applicationState);
+            AddConsultationCommand = new AddConsultationCommand(medicXProject);
+            AddInvestigationCommand = new AddInvestigationCommand(medicXProject);
 
             medicalEventsSource = new CollectionViewSource
             {
-                Source = new ObservableCollection<ViewModelBase>(applicationState.MedicalEvents
+                Source = new ObservableCollection<ViewModelBase>(medicXProject.MedicalEvents
                     .Select<MedicalEvent, ViewModelBase>(x =>
                     {
                         switch (x)
@@ -116,9 +116,9 @@ namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.VewModels
                     .ToList())
             };
             MedicalEvents = medicalEventsSource.View;
-            applicationState.MedicalEvents.CollectionChanged += HandleMedicalEventsCollectionChanged;
+            medicXProject.MedicalEvents.CollectionChanged += HandleMedicalEventsCollectionChanged;
 
-            applicationState.CurrentItemChanged += HandleCurrentItemChanged;
+            medicXProject.CurrentItemChanged += HandleCurrentItemChanged;
         }
 
         private void HandleMedicalEventsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
@@ -165,7 +165,7 @@ namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.VewModels
 
         private void HandleCurrentItemChanged(object sender, EventArgs e)
         {
-            MedicalEvent medicalEvent = applicationState.CurrentItem as MedicalEvent;
+            MedicalEvent medicalEvent = medicXProject.CurrentItem as MedicalEvent;
 
             if (medicalEvent == null)
                 return;

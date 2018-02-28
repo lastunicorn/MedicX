@@ -21,7 +21,7 @@ namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemDetails.ViewModels
 {
     internal class DetailsViewModel : ViewModelBase
     {
-        private readonly ApplicationState applicationState;
+        private readonly MedicXProject medicXProject;
         private object item;
         private bool isNoItemPanelVisible;
 
@@ -48,28 +48,28 @@ namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemDetails.ViewModels
             }
         }
 
-        public DetailsViewModel(ApplicationState applicationState)
+        public DetailsViewModel(MedicXProject medicXProject)
         {
-            this.applicationState = applicationState ?? throw new ArgumentNullException(nameof(applicationState));
+            this.medicXProject = medicXProject ?? throw new ArgumentNullException(nameof(medicXProject));
 
             isNoItemPanelVisible = true;
-            applicationState.CurrentItemChanged += HandleCurrentItemChanged;
+            medicXProject.CurrentItemChanged += HandleCurrentItemChanged;
         }
 
         private void HandleCurrentItemChanged(object sender, EventArgs e)
         {
-            switch (applicationState.CurrentItem)
+            switch (medicXProject.CurrentItem)
             {
                 case Consultation _:
-                    Item = new ConsultationViewModel(applicationState.CurrentItem as Consultation, applicationState.Medics, applicationState.Clinics);
+                    Item = new ConsultationViewModel(medicXProject.CurrentItem as Consultation, medicXProject.Medics, medicXProject.Clinics);
                     break;
                     
                 case Investigation _:
-                    Item = new InvestigationViewModel(applicationState.CurrentItem as Investigation, applicationState.Medics, applicationState.Clinics);
+                    Item = new InvestigationViewModel(medicXProject.CurrentItem as Investigation, medicXProject.Medics, medicXProject.Clinics);
                     break;
 
                 default:
-                    Item = applicationState.CurrentItem;
+                    Item = medicXProject.CurrentItem;
                     break;
             }
         }

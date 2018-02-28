@@ -23,13 +23,13 @@ namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.Commands
 {
     internal class AddClinicCommand : ICommand
     {
-        private readonly ApplicationState applicationState;
+        private readonly MedicXProject medicXProject;
 
         public event EventHandler CanExecuteChanged;
 
-        public AddClinicCommand(ApplicationState applicationState)
+        public AddClinicCommand(MedicXProject medicXProject)
         {
-            this.applicationState = applicationState ?? throw new ArgumentNullException(nameof(applicationState));
+            this.medicXProject = medicXProject ?? throw new ArgumentNullException(nameof(medicXProject));
         }
 
         public bool CanExecute(object parameter)
@@ -46,8 +46,8 @@ namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.Commands
                 Phones = new List<string>()
             };
 
-            applicationState.Clinics.Add(clinic);
-            applicationState.CurrentItem = clinic;
+            medicXProject.Clinics.Add(clinic);
+            medicXProject.CurrentItem = clinic;
         }
     }
 }

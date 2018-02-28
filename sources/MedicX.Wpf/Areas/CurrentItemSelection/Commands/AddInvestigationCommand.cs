@@ -23,13 +23,13 @@ namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.Commands
 {
     internal class AddInvestigationCommand : ICommand
     {
-        private readonly ApplicationState applicationState;
+        private readonly MedicXProject medicXProject;
 
         public event EventHandler CanExecuteChanged;
 
-        public AddInvestigationCommand(ApplicationState applicationState)
+        public AddInvestigationCommand(MedicXProject medicXProject)
         {
-            this.applicationState = applicationState ?? throw new ArgumentNullException(nameof(applicationState));
+            this.medicXProject = medicXProject ?? throw new ArgumentNullException(nameof(medicXProject));
         }
 
         public bool CanExecute(object parameter)
@@ -46,8 +46,8 @@ namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.Commands
                 Labels = new List<string>()
             };
 
-            applicationState.MedicalEvents.Add(investigation);
-            applicationState.CurrentItem = investigation;
+            medicXProject.MedicalEvents.Add(investigation);
+            medicXProject.CurrentItem = investigation;
         }
     }
 }
