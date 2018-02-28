@@ -21,10 +21,52 @@ namespace DustInTheWind.MedicX.Common.Entities
 {
     public class Address
     {
-        public string Street { get; set; }
-        public string City { get; set; }
-        public string County { get; set; }
-        public string Country { get; set; }
+        private string street;
+        private string city;
+        private string county;
+        private string country;
+
+        public string Street
+        {
+            get => street;
+            set
+            {
+                street = value;
+                OnChanged();
+            }
+        }
+
+        public string City
+        {
+            get => city;
+            set
+            {
+                city = value;
+                OnChanged();
+            }
+        }
+
+        public string County
+        {
+            get => county;
+            set
+            {
+                county = value;
+                OnChanged();
+            }
+        }
+
+        public string Country
+        {
+            get => country;
+            set
+            {
+                country = value;
+                OnChanged();
+            }
+        }
+
+        public event EventHandler Changed;
 
         public override string ToString()
         {
@@ -66,6 +108,11 @@ namespace DustInTheWind.MedicX.Common.Entities
                    (City != null && City.IndexOf(text, StringComparison.OrdinalIgnoreCase) >= 0) ||
                    (County != null && County.IndexOf(text, StringComparison.OrdinalIgnoreCase) >= 0) ||
                    (Country != null && Country.IndexOf(text, StringComparison.OrdinalIgnoreCase) >= 0);
+        }
+
+        protected virtual void OnChanged()
+        {
+            Changed?.Invoke(this, EventArgs.Empty);
         }
     }
 }

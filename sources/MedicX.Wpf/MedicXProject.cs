@@ -149,6 +149,42 @@ namespace DustInTheWind.MedicX.Wpf
         private void HandleClinicsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             Status = ProjectStatus.Modified;
+
+            switch (e.Action)
+            {
+                case NotifyCollectionChangedAction.Add:
+                    foreach (Clinic clinic in e.NewItems)
+                        clinic.Changed += HandleClinicChanged;
+                    break;
+
+                case NotifyCollectionChangedAction.Remove:
+                    foreach (Clinic clinic in e.OldItems)
+                        clinic.Changed -= HandleClinicChanged;
+                    break;
+
+                case NotifyCollectionChangedAction.Replace:
+                    foreach (Clinic clinic in e.OldItems)
+                        clinic.Changed -= HandleClinicChanged;
+                    foreach (Clinic clinic in e.NewItems)
+                        clinic.Changed += HandleClinicChanged;
+                    break;
+
+                case NotifyCollectionChangedAction.Move:
+                    break;
+
+                case NotifyCollectionChangedAction.Reset:
+                    foreach (Clinic clinic in e.OldItems)
+                        clinic.Changed -= HandleClinicChanged;
+                    break;
+
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        }
+
+        private void HandleClinicChanged(object sender, EventArgs e)
+        {
+            Status = ProjectStatus.Modified;
         }
 
         private void HandleMedicalEventsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)

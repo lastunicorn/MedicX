@@ -107,7 +107,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 Grid.Row="2"
                 Height="100"
                 AcceptsReturn="True"
-                Text="{Binding Phones, Converter={StaticResource StringListToMultilineStringConverter}, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"/>
+                Text="{Binding Phones, Converter={StaticResource StringListToMultilineStringConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
             <TextBlock
                 Grid.Column="0"

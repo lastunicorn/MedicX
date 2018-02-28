@@ -16,6 +16,8 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Linq;
 
 namespace DustInTheWind.MedicX.Common.Entities
@@ -23,6 +25,10 @@ namespace DustInTheWind.MedicX.Common.Entities
     public class Clinic
     {
         private string name;
+        private Address address;
+        private ObservableCollection<string> phones;
+        private string program;
+        private string comments;
 
         public Guid Id { get; set; }
 
@@ -32,33 +38,87 @@ namespace DustInTheWind.MedicX.Common.Entities
             set
             {
                 name = value;
+
                 OnNameChanged();
+                OnChanged();
             }
         }
 
-        public Address Address { get; set; }
+        public Address Address
+        {
+            get => address;
+            set
+            {
+                if (address != null)
+                    address.Changed -= HandleAddressChanged;
 
-        public List<string> Phones { get; set; }
+                address = value;
 
-        public string Program { get; set; }
+                if (address != null)
+                    address.Changed += HandleAddressChanged;
 
-        public string Comments { get; set; }
+                OnChanged();
+            }
+        }
+
+        public ObservableCollection<string> Phones
+        {
+            get => phones;
+            set
+            {
+                if (phones != null)
+                    phones.CollectionChanged -= HandlePhonesCollectionChanged;
+
+                phones = value;
+
+                if (phones != null)
+                    phones.CollectionChanged += HandlePhonesCollectionChanged;
+
+                OnChanged();
+            }
+        }
+
+        public string Program
+        {
+            get => program;
+            set
+            {
+                program = value;
+                OnChanged();
+            }
+        }
+
+        public string Comments
+        {
+            get => comments;
+            set
+            {
+                comments = value;
+                OnChanged();
+            }
+        }
 
         public event EventHandler NameChanged;
+        public event EventHandler Changed;
+
+        private void HandleAddressChanged(object sender, EventArgs e)
+        {
+            OnChanged();
+        }
+
+        private void HandlePhonesCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            OnChanged();
+        }
 
         public void CopyFrom(Clinic clinic)
         {
             Id = clinic.Id;
             Name = clinic.Name;
             Address = clinic.Address;
-            Phones = clinic.Phones.ToList();
+            Phones = new ObservableCollection<string>(clinic.Phones);
             Program = clinic.Program;
             Comments = clinic.Comments;
-        }
-
-        protected virtual void OnNameChanged()
-        {
-            NameChanged?.Invoke(this, EventArgs.Empty);
         }
 
         public bool Contains(string text)
@@ -68,6 +128,16 @@ namespace DustInTheWind.MedicX.Common.Entities
                    (Phones != null && Phones.Any(x => x != null && x.IndexOf(text, StringComparison.OrdinalIgnoreCase) >= 0)) ||
                    (Program != null && Program.IndexOf(text, StringComparison.OrdinalIgnoreCase) >= 0) ||
                    (Comments != null && Comments.IndexOf(text, StringComparison.OrdinalIgnoreCase) >= 0);
+        }
+
+        protected virtual void OnNameChanged()
+        {
+            NameChanged?.Invoke(this, EventArgs.Empty);
+        }
+
+        protected virtual void OnChanged()
+        {
+            Changed?.Invoke(this, EventArgs.Empty);
         }
     }
 }
