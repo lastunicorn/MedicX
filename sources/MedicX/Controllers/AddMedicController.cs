@@ -16,6 +16,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using DustInTheWind.ConsoleTools.InputControls;
 using DustInTheWind.MedicX.Common.Entities;
 using DustInTheWind.MedicX.Persistence.Json;
@@ -53,7 +54,7 @@ namespace DustInTheWind.MedicX.Cli.Controllers
                     MiddleName = middleName,
                     LastName = lastName
                 },
-                Specializations = specializations,
+                Specializations = new ObservableCollection<string>(specializations),
                 Comments = comments
             };
 

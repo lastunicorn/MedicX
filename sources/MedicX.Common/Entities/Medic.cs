@@ -15,19 +15,42 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Linq;
 
 namespace DustInTheWind.MedicX.Common.Entities
 {
     public class Medic : Person
     {
-        public List<string> Specializations { get; set; }
+        private ObservableCollection<string> specializations;
+
+        public ObservableCollection<string> Specializations
+        {
+            get => specializations;
+            set
+            {
+                if (specializations != null)
+                    specializations.CollectionChanged -= HandleSpecializationsCollectionChanged;
+
+                specializations = value;
+
+                if (specializations != null)
+                    specializations.CollectionChanged += HandleSpecializationsCollectionChanged;
+
+                OnChanged();
+            }
+        }
+
+        private void HandleSpecializationsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            OnChanged();
+        }
 
         public void CopyFrom(Medic medic)
         {
             base.CopyFrom(medic);
-            Specializations = medic.Specializations.ToList();
+            Specializations = new ObservableCollection<string>(medic.Specializations);
         }
 
         public override void CopyFrom(Person person)

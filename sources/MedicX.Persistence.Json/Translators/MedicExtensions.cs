@@ -15,6 +15,7 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using DustInTheWind.MedicX.Common.Entities;
 
@@ -38,7 +39,7 @@ namespace DustInTheWind.MedicX.Persistence.Json.Translators
             {
                 Id = medic.Id,
                 Name = medic.Name.Translate(),
-                Specializations = medic.Specializations.ToList(),
+                Specializations = new ObservableCollection<string>(medic.Specializations),
                 Comments = medic.Comments
             };
 

@@ -26,7 +26,7 @@ namespace DustInTheWind.MedicX.Wpf.Areas.Main.ViewModels
     internal class MainViewModel : ViewModelBase
     {
         private string title;
-        private MedicXProject medicXProject;
+        private readonly MedicXProject medicXProject;
 
         public string Title
         {
@@ -71,7 +71,7 @@ namespace DustInTheWind.MedicX.Wpf.Areas.Main.ViewModels
                 : name + " *";
         }
 
-        private string BuildName()
+        private static string BuildName()
         {
             Assembly assembly = Assembly.GetExecutingAssembly();
             AssemblyName assemblyName = assembly.GetName();

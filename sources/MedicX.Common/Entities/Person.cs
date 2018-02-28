@@ -21,6 +21,7 @@ namespace DustInTheWind.MedicX.Common.Entities
     public class Person
     {
         private PersonName name;
+        private string comments;
 
         public Guid Id { get; set; }
 
@@ -29,7 +30,7 @@ namespace DustInTheWind.MedicX.Common.Entities
             get => name;
             set
             {
-                if(name != null)
+                if (name != null)
                     name.Changed -= HandleNameChanged;
 
                 name = value;
@@ -38,16 +39,28 @@ namespace DustInTheWind.MedicX.Common.Entities
                     name.Changed += HandleNameChanged;
 
                 OnNameChanged();
+                OnChanged();
             }
         }
 
-        public string Comments { get; set; }
+        public string Comments
+        {
+            get => comments;
+            set
+            {
+                comments = value;
+
+                OnChanged();
+            }
+        }
 
         public event EventHandler NameChanged;
+        public event EventHandler Changed;
 
         private void HandleNameChanged(object sender, EventArgs eventArgs)
         {
             OnNameChanged();
+            OnChanged();
         }
 
         public virtual void CopyFrom(Person person)
@@ -80,6 +93,11 @@ namespace DustInTheWind.MedicX.Common.Entities
         protected virtual void OnNameChanged()
         {
             NameChanged?.Invoke(this, EventArgs.Empty);
+        }
+
+        protected virtual void OnChanged()
+        {
+            Changed?.Invoke(this, EventArgs.Empty);
         }
     }
 }

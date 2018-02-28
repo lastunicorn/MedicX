@@ -16,6 +16,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Windows.Data;
 
@@ -25,7 +26,7 @@ namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemDetails
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value is List<string> list)
+            if (value is IEnumerable<string> list)
                 return string.Join(",", list);
 
             return null;
@@ -36,7 +37,12 @@ namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemDetails
             if (value is string s)
             {
                 string[] values = s.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-                return new List<string>(values);
+
+                if (targetType == typeof(List<string>))
+                    return new List<string>(values);
+
+                if (targetType == typeof(ObservableCollection<string>))
+                    return new ObservableCollection<string>(values);
             }
 
             return null;
