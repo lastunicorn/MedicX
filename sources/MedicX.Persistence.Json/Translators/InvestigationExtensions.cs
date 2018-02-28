@@ -15,6 +15,7 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using DustInTheWind.MedicX.Common.Entities;
 
@@ -41,15 +42,13 @@ namespace DustInTheWind.MedicX.Persistence.Json.Translators
                 SentBy = medics.FirstOrDefault(x => x.Id == investigation.SentById),
                 Medic = medics.FirstOrDefault(x => x.Id == investigation.MedicId),
                 Clinic = clinicLocations.FirstOrDefault(x => x.Id == investigation.ClinicLocationId),
-                Labels = investigation.Labels?.ToList(),
+                Labels = investigation.Labels == null
+                    ? null
+                    : new ObservableCollection<string>(investigation.Labels.ToList()),
                 Comments = investigation.Comments,
-                Result = investigation.Result?
-                    .Select(x => new InvestigationResult
-                    {
-                        InvestigationDescription = null,
-                        Value = x.Value
-                    })
-                    .ToList()
+                Result = investigation.Result == null
+                    ? null
+                    : new ObservableCollection<InvestigationResult>(investigation.Result.Translate())
             };
         }
 
@@ -73,7 +72,8 @@ namespace DustInTheWind.MedicX.Persistence.Json.Translators
                 MedicId = investigation.Medic?.Id,
                 ClinicLocationId = investigation.Clinic?.Id,
                 Labels = investigation.Labels?.ToList(),
-                Comments = investigation.Comments
+                Comments = investigation.Comments,
+                Result = investigation.Result?.Translate()
             };
         }
     }

@@ -180,7 +180,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 AcceptsReturn="True"
                 VerticalScrollBarVisibility="Auto"
                 HorizontalScrollBarVisibility="Auto"
-                Text="{Binding Consultation.Labels, Converter={StaticResource StringListToMultilineStringConverter}, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"/>
+                Text="{Binding Consultation.Labels, Converter={StaticResource StringListToMultilineStringConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
             <!-- Comments -->
 
@@ -224,7 +224,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 Grid.Row="4"
                 Grid.Column="1"
                 Grid.ColumnSpan="2"
-                Text="{Binding Consultation.Prescriptions, Converter={StaticResource PrescriptionListToMultilineStringConverter}, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                Text="{Binding Consultation.Prescriptions, Converter={StaticResource PrescriptionListToMultilineStringConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 Margin="0 4"
                 Height="100"
                 AcceptsReturn="True"

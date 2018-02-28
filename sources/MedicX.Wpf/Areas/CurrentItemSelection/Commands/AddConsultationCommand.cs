@@ -16,6 +16,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
 using DustInTheWind.MedicX.Common.Entities;
 
@@ -43,7 +44,7 @@ namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.Commands
             {
                 Id = Guid.NewGuid(),
                 Date = DateTime.Today,
-                Labels = new List<string>()
+                Labels = new ObservableCollection<string>()
             };
 
             medicXProject.MedicalEvents.Add(consultation);

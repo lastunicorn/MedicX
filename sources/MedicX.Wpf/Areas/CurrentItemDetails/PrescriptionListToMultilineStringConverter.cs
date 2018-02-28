@@ -16,6 +16,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
 using System.Windows.Data;
@@ -27,7 +28,7 @@ namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemDetails
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value is List<Prescription> list)
+            if (value is IEnumerable<Prescription> list)
             {
                 IEnumerable<string> descriptions = list.Select(x => x.Description);
                 return string.Join(Environment.NewLine, descriptions);
@@ -41,12 +42,17 @@ namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemDetails
             if (value is string s)
             {
                 string[] values = s.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
-                return values
+                IEnumerable<Prescription> prescriptions = values
                     .Select(x => new Prescription
                     {
                         Description = x
-                    })
-                    .ToList();
+                    });
+
+                if (targetType == typeof(List<Prescription>))
+                    return prescriptions.ToList();
+
+                if (targetType == typeof(ObservableCollection<Prescription>))
+                    return new ObservableCollection<Prescription>(prescriptions);
             }
 
             return null;

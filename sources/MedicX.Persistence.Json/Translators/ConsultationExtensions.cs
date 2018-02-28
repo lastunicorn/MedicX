@@ -15,7 +15,9 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
+using System.Runtime.Serialization;
 using DustInTheWind.MedicX.Common.Entities;
 
 namespace DustInTheWind.MedicX.Persistence.Json.Translators
@@ -40,9 +42,13 @@ namespace DustInTheWind.MedicX.Persistence.Json.Translators
                 Date = consultation.Date,
                 Medic = medics.FirstOrDefault(x => x.Id == consultation.MedicId),
                 Clinic = clinicLocations.FirstOrDefault(x => x.Id == consultation.ClinicLocationId),
-                Labels = consultation.Labels?.ToList(),
+                Labels = consultation.Labels == null
+                    ? null
+                    : new ObservableCollection<string>(consultation.Labels.ToList()),
                 Comments = consultation.Comments,
-                Prescriptions = consultation.Prescriptions?.Translate()
+                Prescriptions = consultation.Prescriptions == null
+                    ? null
+                    : new ObservableCollection<Prescription>(consultation.Prescriptions.Translate())
             };
         }
 

@@ -20,12 +20,39 @@ namespace DustInTheWind.MedicX.Common.Entities
 {
     public class InvestigationResult
     {
-        public InvestigationDescription InvestigationDescription { get; set; }
-        public int Value { get; set; }
+        private InvestigationDescription investigationDescription;
+        private int value;
+
+        public InvestigationDescription InvestigationDescription
+        {
+            get => investigationDescription;
+            set
+            {
+                investigationDescription = value;
+                OnChanged();
+            }
+        }
+
+        public int Value
+        {
+            get => value;
+            set
+            {
+                this.value = value;
+                OnChanged();
+            }
+        }
+
+        public event EventHandler Changed;
 
         public bool Contains(string text)
         {
             return Value.ToString().IndexOf(text, StringComparison.OrdinalIgnoreCase) >= 0;
+        }
+
+        protected virtual void OnChanged()
+        {
+            Changed?.Invoke(this, EventArgs.Empty);
         }
     }
 }

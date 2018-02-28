@@ -20,12 +20,39 @@ namespace DustInTheWind.MedicX.Common.Entities
 {
     public class Prescription
     {
-        public string Description { get; set; }
-        public object Result { get; set; }
+        private string description;
+        private object result;
+
+        public string Description
+        {
+            get => description;
+            set
+            {
+                description = value;
+                OnChanged();
+            }
+        }
+
+        public object Result
+        {
+            get => result;
+            set
+            {
+                result = value;
+                OnChanged();
+            }
+        }
+
+        public event EventHandler Changed;
 
         public bool Contains(string text)
         {
             return (Description != null && Description.IndexOf(text, StringComparison.OrdinalIgnoreCase) >= 0);
+        }
+
+        protected virtual void OnChanged()
+        {
+            Changed?.Invoke(this, EventArgs.Empty);
         }
     }
 }

@@ -60,4 +60,44 @@ namespace DustInTheWind.MedicX.Persistence.Json.Translators
             };
         }
     }
+    internal static class InvestigationResultExtensions
+    {
+        public static List<InvestigationResult> Translate(this IEnumerable<Entities.InvestigationResult> investigationResults)
+        {
+            return investigationResults?
+                .Select(Translate)
+                .ToList();
+        }
+
+        private static InvestigationResult Translate(this Entities.InvestigationResult investigationResult)
+        {
+            if (investigationResult == null)
+                return null;
+
+            return new InvestigationResult
+            {
+                InvestigationDescription = null,
+                Value = investigationResult.Value
+            };
+        }
+
+        public static List<Entities.InvestigationResult> Translate(this IEnumerable<InvestigationResult> investigationResults)
+        {
+            return investigationResults?
+                .Select(Translate)
+                .ToList();
+        }
+
+        private static Entities.InvestigationResult Translate(this InvestigationResult investigationResult)
+        {
+            if (investigationResult == null)
+                return null;
+
+            return new Entities.InvestigationResult
+            {
+                InvestigationId = 0,
+                Value = investigationResult.Value
+            };
+        }
+    }
 }

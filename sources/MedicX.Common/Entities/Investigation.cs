@@ -15,7 +15,8 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Linq;
 
 namespace DustInTheWind.MedicX.Common.Entities
@@ -23,6 +24,7 @@ namespace DustInTheWind.MedicX.Common.Entities
     public class Investigation : MedicalEvent
     {
         private Medic sentBy;
+        private ObservableCollection<InvestigationResult> result;
 
         public Medic SentBy
         {
@@ -30,20 +32,80 @@ namespace DustInTheWind.MedicX.Common.Entities
             set
             {
                 sentBy = value;
+
                 OnSentByChanged();
+                OnChanged();
             }
         }
 
-        public List<InvestigationResult> Result { get; set; }
+        public ObservableCollection<InvestigationResult> Result
+        {
+            get => result;
+            set
+            {
+                if (result != null)
+                    result.CollectionChanged -= HandleResultCollectionChanged;
+
+                result = value;
+
+                if (result != null)
+                    result.CollectionChanged += HandleResultCollectionChanged;
+
+                OnChanged();
+            }
+        }
 
         public event EventHandler SentByChanged;
+
+        private void HandleResultCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            switch (e.Action)
+            {
+                case NotifyCollectionChangedAction.Add:
+                    foreach (InvestigationResult investigationResult in e.NewItems)
+                        investigationResult.Changed += HandleInvestigationResultChanged;
+                    break;
+
+                case NotifyCollectionChangedAction.Remove:
+                    foreach (InvestigationResult investigationResult in e.OldItems)
+                        investigationResult.Changed -= HandleInvestigationResultChanged;
+                    break;
+
+                case NotifyCollectionChangedAction.Replace:
+                    foreach (InvestigationResult investigationResult in e.OldItems)
+                        investigationResult.Changed -= HandleInvestigationResultChanged;
+                    foreach (InvestigationResult investigationResult in e.NewItems)
+                        investigationResult.Changed += HandleInvestigationResultChanged;
+                    break;
+
+                case NotifyCollectionChangedAction.Move:
+                    break;
+
+                case NotifyCollectionChangedAction.Reset:
+                    foreach (InvestigationResult investigationResult in e.OldItems)
+                        investigationResult.Changed -= HandleInvestigationResultChanged;
+                    break;
+
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+
+            OnChanged();
+        }
+
+        private void HandleInvestigationResultChanged(object sender, EventArgs e)
+        {
+            OnChanged();
+        }
 
         public void CopyFrom(Investigation investigation)
         {
             base.CopyFrom(investigation);
 
             SentBy = investigation.SentBy;
-            Result = investigation.Result?.ToList();
+            Result = investigation.Result == null
+                ? null
+                : new ObservableCollection<InvestigationResult>(investigation.Result);
         }
 
         public override void CopyFrom(MedicalEvent medicalEvent)

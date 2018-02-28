@@ -15,18 +15,31 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Linq;
 
 namespace DustInTheWind.MedicX.Common.Entities
 {
     public class MedicalEvent
     {
+        private DateTime date;
+        private Medic medic;
+        private Clinic clinic;
+        private ObservableCollection<string> labels;
+        private string comments;
+
         public Guid Id { get; set; }
 
-        public DateTime Date { get; set; }
-
-        private Medic medic;
+        public DateTime Date
+        {
+            get => date;
+            set
+            {
+                date = value;
+                OnChanged();
+            }
+        }
 
         public Medic Medic
         {
@@ -35,16 +48,54 @@ namespace DustInTheWind.MedicX.Common.Entities
             {
                 medic = value;
                 OnMedicChanged();
+                OnChanged();
             }
         }
 
-        public Clinic Clinic { get; set; }
+        public Clinic Clinic
+        {
+            get => clinic;
+            set
+            {
+                clinic = value;
+                OnChanged();
+            }
+        }
 
-        public List<string> Labels { get; set; }
+        public ObservableCollection<string> Labels
+        {
+            get => labels;
+            set
+            {
+                if (labels != null)
+                    labels.CollectionChanged -= HandleLabelsCollectionChanged;
 
-        public string Comments { get; set; }
+                labels = value;
+
+                if (labels != null)
+                    labels.CollectionChanged += HandleLabelsCollectionChanged;
+
+                OnChanged();
+            }
+        }
+
+        public string Comments
+        {
+            get => comments;
+            set
+            {
+                comments = value;
+                OnChanged();
+            }
+        }
 
         public event EventHandler MedicChanged;
+        public event EventHandler Changed;
+
+        private void HandleLabelsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            OnChanged();
+        }
 
         public virtual void CopyFrom(MedicalEvent medicalEvent)
         {
@@ -52,7 +103,7 @@ namespace DustInTheWind.MedicX.Common.Entities
             Date = medicalEvent.Date;
             Medic = medicalEvent.Medic;
             Clinic = medicalEvent.Clinic;
-            Labels = medicalEvent.Labels.ToList();
+            Labels = new ObservableCollection<string>(medicalEvent.Labels);
             Comments = medicalEvent.Comments;
         }
 
@@ -68,6 +119,11 @@ namespace DustInTheWind.MedicX.Common.Entities
         protected virtual void OnMedicChanged()
         {
             MedicChanged?.Invoke(this, EventArgs.Empty);
+        }
+
+        protected virtual void OnChanged()
+        {
+            Changed?.Invoke(this, EventArgs.Empty);
         }
     }
 }

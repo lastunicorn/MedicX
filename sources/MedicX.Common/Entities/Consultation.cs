@@ -14,20 +14,82 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using System.Collections.Generic;
+using System;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Linq;
 
 namespace DustInTheWind.MedicX.Common.Entities
 {
     public class Consultation : MedicalEvent
     {
-        public List<Prescription> Prescriptions { get; set; }
+        private ObservableCollection<Prescription> prescriptions;
+
+        public ObservableCollection<Prescription> Prescriptions
+        {
+            get => prescriptions;
+            set
+            {
+                if (prescriptions != null)
+                    prescriptions.CollectionChanged -= HandlePrescriptionsCollectionChanged;
+
+                prescriptions = value;
+
+                if (prescriptions != null)
+                    prescriptions.CollectionChanged += HandlePrescriptionsCollectionChanged;
+
+                OnChanged();
+            }
+        }
+
+        private void HandlePrescriptionsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            switch (e.Action)
+            {
+                case NotifyCollectionChangedAction.Add:
+                    foreach (Prescription prescription in e.NewItems)
+                        prescription.Changed += HandleClinicChanged;
+                    break;
+
+                case NotifyCollectionChangedAction.Remove:
+                    foreach (Prescription prescription in e.OldItems)
+                        prescription.Changed -= HandleClinicChanged;
+                    break;
+
+                case NotifyCollectionChangedAction.Replace:
+                    foreach (Prescription prescription in e.OldItems)
+                        prescription.Changed -= HandleClinicChanged;
+                    foreach (Prescription prescription in e.NewItems)
+                        prescription.Changed += HandleClinicChanged;
+                    break;
+
+                case NotifyCollectionChangedAction.Move:
+                    break;
+
+                case NotifyCollectionChangedAction.Reset:
+                    foreach (Prescription prescription in e.OldItems)
+                        prescription.Changed -= HandleClinicChanged;
+                    break;
+
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+
+            OnChanged();
+        }
+
+        private void HandleClinicChanged(object sender, EventArgs e)
+        {
+            OnChanged();
+        }
 
         public void CopyFrom(Consultation consultation)
         {
             base.CopyFrom(consultation);
 
-            Prescriptions = consultation.Prescriptions?.ToList();
+            Prescriptions = consultation.Prescriptions == null
+                ? null
+                : new ObservableCollection<Prescription>(consultation.Prescriptions);
         }
 
         public override void CopyFrom(MedicalEvent medicalEvent)
