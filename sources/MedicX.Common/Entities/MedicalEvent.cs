@@ -21,7 +21,7 @@ using System.Linq;
 
 namespace DustInTheWind.MedicX.Common.Entities
 {
-    public class MedicalEvent
+    public class MedicalEvent : IEquatable<MedicalEvent>
     {
         private DateTime date;
         private Medic medic;
@@ -124,6 +124,40 @@ namespace DustInTheWind.MedicX.Common.Entities
         protected virtual void OnChanged()
         {
             Changed?.Invoke(this, EventArgs.Empty);
+        }
+
+        public bool Equals(MedicalEvent other)
+        {
+            if (ReferenceEquals(null, other)) return false;
+            if (ReferenceEquals(this, other)) return true;
+            return date.Equals(other.date) &&
+                   Equals(medic, other.medic) &&
+                   Equals(clinic, other.clinic) &&
+                   ((labels == null && other.labels == null) || (labels != null && other.labels != null && labels.SequenceEqual(other.labels))) &&
+                   string.Equals(comments, other.comments) &&
+                   Id.Equals(other.Id);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            if (obj.GetType() != this.GetType()) return false;
+            return Equals((MedicalEvent)obj);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                int hashCode = date.GetHashCode();
+                hashCode = (hashCode * 397) ^ (medic != null ? medic.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ (clinic != null ? clinic.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ (labels != null ? labels.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ (comments != null ? comments.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ Id.GetHashCode();
+                return hashCode;
+            }
         }
     }
 }

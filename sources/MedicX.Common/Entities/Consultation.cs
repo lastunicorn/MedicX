@@ -21,7 +21,7 @@ using System.Linq;
 
 namespace DustInTheWind.MedicX.Common.Entities
 {
-    public class Consultation : MedicalEvent
+    public class Consultation : MedicalEvent, IEquatable<Consultation>
     {
         private ObservableCollection<Prescription> prescriptions;
 
@@ -104,6 +104,32 @@ namespace DustInTheWind.MedicX.Common.Entities
         {
             return base.Contains(text) ||
                    Prescriptions != null && Prescriptions.Any(x => x != null && x.Contains(text));
+        }
+
+        public bool Equals(Consultation other)
+        {
+            if (ReferenceEquals(null, other)) return false;
+            if (ReferenceEquals(this, other)) return true;
+
+            return base.Equals(other) &&
+                   ((prescriptions == null & other.prescriptions == null) || (prescriptions != null & other.prescriptions != null && prescriptions.SequenceEqual(other.prescriptions)));
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            if (obj.GetType() != GetType()) return false;
+
+            return Equals((Consultation)obj);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                return (base.GetHashCode() * 397) ^ (prescriptions != null ? prescriptions.GetHashCode() : 0);
+            }
         }
     }
 }

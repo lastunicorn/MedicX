@@ -18,7 +18,7 @@ using System;
 
 namespace DustInTheWind.MedicX.Common.Entities
 {
-    public class Person
+    public class Person : IEquatable<Person>
     {
         private PersonName name;
         private string comments;
@@ -98,6 +98,35 @@ namespace DustInTheWind.MedicX.Common.Entities
         protected virtual void OnChanged()
         {
             Changed?.Invoke(this, EventArgs.Empty);
+        }
+
+        public bool Equals(Person other)
+        {
+            if (ReferenceEquals(null, other)) return false;
+            if (ReferenceEquals(this, other)) return true;
+
+            return Equals(name, other.name) && string.Equals(comments, other.comments) && Id.Equals(other.Id);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+
+            if (obj.GetType() != GetType()) return false;
+
+            return Equals((Person)obj);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                int hashCode = (name != null ? name.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ (comments != null ? comments.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ Id.GetHashCode();
+                return hashCode;
+            }
         }
     }
 }

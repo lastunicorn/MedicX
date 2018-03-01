@@ -21,7 +21,7 @@ using System.Linq;
 
 namespace DustInTheWind.MedicX.Common.Entities
 {
-    public class Medic : Person
+    public class Medic : Person, IEquatable<Medic>
     {
         private ObservableCollection<string> specializations;
 
@@ -65,6 +65,36 @@ namespace DustInTheWind.MedicX.Common.Entities
         {
             return base.Contains(text) ||
                    Specializations != null && Specializations.Any(x => x != null && x.IndexOf(text, StringComparison.OrdinalIgnoreCase) >= 0);
+        }
+
+        public bool Equals(Medic other)
+        {
+            if (ReferenceEquals(null, other)) return false;
+            if (ReferenceEquals(this, other)) return true;
+
+            return base.Equals(other) &&
+                   (
+                       (specializations == null && other.specializations == null) ||
+                       (specializations != null && other.specializations != null && specializations.SequenceEqual(other.specializations))
+                   );
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+
+            if (obj.GetType() != GetType()) return false;
+
+            return Equals((Medic)obj);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                return (base.GetHashCode() * 397) ^ (specializations != null ? specializations.GetHashCode() : 0);
+            }
         }
     }
 }

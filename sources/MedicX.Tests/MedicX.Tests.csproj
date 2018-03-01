@@ -41,7 +41,15 @@
     <Compile Include="..\AssemblyInfo.Shared.cs">
       <Link>Properties\AssemblyInfo.Shared.cs</Link>
     </Compile>
+    <Compile Include="Common\Entities\ClinicTests\EqualsTests.cs" />
+    <Compile Include="Common\Entities\InvestigationTests\EqualsTests.cs" />
+    <Compile Include="Common\Entities\ConsultationTests\EqualsTests.cs" />
+    <Compile Include="Common\Entities\MedicalEventTests\EqualsTests.cs" />
+    <Compile Include="Common\Entities\PrescriptionTests\EqualsTests.cs" />
+    <Compile Include="Common\Entities\PersonTests\EqualsTests.cs" />
+    <Compile Include="Common\Entities\MedicTests\EqualsTests.cs" />
     <Compile Include="Common\Entities\PersonNameTests\ContainsTests.cs" />
+    <Compile Include="Common\Entities\PersonNameTests\EqualsTests.cs" />
     <Compile Include="Common\Entities\PersonNameTests\FirstNameTests.cs" />
     <Compile Include="Common\Entities\PersonNameTests\LastNameTests.cs" />
     <Compile Include="Common\Entities\PersonNameTests\MiddleNameTests.cs" />

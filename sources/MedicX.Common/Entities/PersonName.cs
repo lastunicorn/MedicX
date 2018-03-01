@@ -20,7 +20,7 @@ using System.Text;
 
 namespace DustInTheWind.MedicX.Common.Entities
 {
-    public class PersonName : IComparable<PersonName>
+    public class PersonName : IComparable<PersonName>, IEquatable<PersonName>
     {
         private string firstName;
         private string middleName;
@@ -166,6 +166,36 @@ namespace DustInTheWind.MedicX.Common.Entities
         protected virtual void OnChanged()
         {
             Changed?.Invoke(this, EventArgs.Empty);
+        }
+
+        public bool Equals(PersonName other)
+        {
+            if (ReferenceEquals(null, other)) return false;
+            if (ReferenceEquals(this, other)) return true;
+
+            return string.Equals(firstName, other.firstName) &&
+                   string.Equals(middleName, other.middleName) &&
+                   string.Equals(lastName, other.lastName);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            if (obj.GetType() != GetType()) return false;
+
+            return Equals((PersonName) obj);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                int hashCode = (firstName != null ? firstName.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ (middleName != null ? middleName.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ (lastName != null ? lastName.GetHashCode() : 0);
+                return hashCode;
+            }
         }
     }
 }

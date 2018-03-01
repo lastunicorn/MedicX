@@ -22,7 +22,7 @@ using System.Linq;
 
 namespace DustInTheWind.MedicX.Common.Entities
 {
-    public class Clinic
+    public class Clinic : IEquatable<Clinic>
     {
         private string name;
         private Address address;
@@ -138,6 +138,42 @@ namespace DustInTheWind.MedicX.Common.Entities
         protected virtual void OnChanged()
         {
             Changed?.Invoke(this, EventArgs.Empty);
+        }
+
+        public bool Equals(Clinic other)
+        {
+            if (ReferenceEquals(null, other)) return false;
+            if (ReferenceEquals(this, other)) return true;
+
+            return string.Equals(name, other.name) &&
+                   Equals(address, other.address) &&
+                   ((phones == null && other.phones == null) || (phones != null && other.phones != null && phones.SequenceEqual(other.phones))) &&
+                   string.Equals(program, other.program) &&
+                   string.Equals(comments, other.comments) &&
+                   Id.Equals(other.Id);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            if (obj.GetType() != GetType()) return false;
+
+            return Equals((Clinic)obj);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                int hashCode = (name != null ? name.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ (address != null ? address.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ (phones != null ? phones.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ (program != null ? program.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ (comments != null ? comments.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ Id.GetHashCode();
+                return hashCode;
+            }
         }
     }
 }

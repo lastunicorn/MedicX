@@ -18,7 +18,7 @@ using System;
 
 namespace DustInTheWind.MedicX.Common.Entities
 {
-    public class Prescription
+    public class Prescription : IEquatable<Prescription>
     {
         private string description;
         private object result;
@@ -53,6 +53,28 @@ namespace DustInTheWind.MedicX.Common.Entities
         protected virtual void OnChanged()
         {
             Changed?.Invoke(this, EventArgs.Empty);
+        }
+
+        public bool Equals(Prescription other)
+        {
+            if (ReferenceEquals(null, other)) return false;
+            if (ReferenceEquals(this, other)) return true;
+
+            return string.Equals(description, other.description);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            if (obj.GetType() != GetType()) return false;
+
+            return Equals((Prescription) obj);
+        }
+
+        public override int GetHashCode()
+        {
+            return (description != null ? description.GetHashCode() : 0);
         }
     }
 }

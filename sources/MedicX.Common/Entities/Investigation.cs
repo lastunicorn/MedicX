@@ -21,7 +21,7 @@ using System.Linq;
 
 namespace DustInTheWind.MedicX.Common.Entities
 {
-    public class Investigation : MedicalEvent
+    public class Investigation : MedicalEvent, IEquatable<Investigation>
     {
         private Medic sentBy;
         private ObservableCollection<InvestigationResult> result;
@@ -126,6 +126,31 @@ namespace DustInTheWind.MedicX.Common.Entities
             return base.Contains(text) ||
                    (SentBy != null && SentBy.Contains(text)) ||
                    (Result != null && Result.Any(x => x != null && x.Contains(text)));
+        }
+
+        public bool Equals(Investigation other)
+        {
+            if (ReferenceEquals(null, other)) return false;
+            if (ReferenceEquals(this, other)) return true;
+
+            return base.Equals(other) && Equals(sentBy, other.sentBy);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            if (obj.GetType() != GetType()) return false;
+
+            return Equals((Investigation)obj);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                return (base.GetHashCode() * 397) ^ (sentBy != null ? sentBy.GetHashCode() : 0);
+            }
         }
     }
 }

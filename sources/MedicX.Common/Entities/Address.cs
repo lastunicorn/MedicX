@@ -19,7 +19,7 @@ using System.Text;
 
 namespace DustInTheWind.MedicX.Common.Entities
 {
-    public class Address
+    public class Address : IEquatable<Address>
     {
         private string street;
         private string city;
@@ -113,6 +113,38 @@ namespace DustInTheWind.MedicX.Common.Entities
         protected virtual void OnChanged()
         {
             Changed?.Invoke(this, EventArgs.Empty);
+        }
+
+        public bool Equals(Address other)
+        {
+            if (ReferenceEquals(null, other)) return false;
+            if (ReferenceEquals(this, other)) return true;
+
+            return string.Equals(street, other.street) &&
+                   string.Equals(city, other.city) &&
+                   string.Equals(county, other.county) &&
+                   string.Equals(country, other.country);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            if (obj.GetType() != GetType()) return false;
+
+            return Equals((Address) obj);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                int hashCode = (street != null ? street.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ (city != null ? city.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ (county != null ? county.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ (country != null ? country.GetHashCode() : 0);
+                return hashCode;
+            }
         }
     }
 }
