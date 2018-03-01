@@ -19,7 +19,7 @@ using System.Collections.ObjectModel;
 using DustInTheWind.MedicX.Common.Entities;
 using NUnit.Framework;
 
-namespace DustInThyeWind.MedicX.Tests.Common.Entities.ConsultationTests1
+namespace DustInThyeWind.MedicX.Tests.Common.Entities.ConsultationTests
 {
     [TestFixture]
     public class EqualsTests

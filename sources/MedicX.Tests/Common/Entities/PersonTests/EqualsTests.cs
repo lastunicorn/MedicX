@@ -15,11 +15,10 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using System.Collections.ObjectModel;
 using DustInTheWind.MedicX.Common.Entities;
 using NUnit.Framework;
 
-namespace DustInThyeWind.PersonX.Tests.Common.Entities.PersonTests
+namespace DustInThyeWind.MedicX.Tests.Common.Entities.PersonTests
 {
     [TestFixture]
     public class EqualsTests

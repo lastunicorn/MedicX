@@ -17,7 +17,7 @@
 using DustInTheWind.MedicX.Common.Entities;
 using NUnit.Framework;
 
-namespace DustInThyeWind.PrescriptionX.Tests.Common.Entities.PrescriptionTests1
+namespace DustInThyeWind.MedicX.Tests.Common.Entities.PrescriptionTests
 {
     [TestFixture]
     public class EqualsTests
