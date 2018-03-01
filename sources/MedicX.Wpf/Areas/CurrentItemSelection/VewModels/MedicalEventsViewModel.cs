@@ -17,7 +17,6 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Data;
@@ -116,50 +115,27 @@ namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.VewModels
                     .ToList())
             };
             MedicalEvents = medicalEventsSource.View;
-            medicXProject.MedicalEvents.CollectionChanged += HandleMedicalEventsCollectionChanged;
+            medicXProject.MedicalEvents.Added += HandleMedicalEventAdded;
 
             medicXProject.CurrentItemChanged += HandleCurrentItemChanged;
         }
 
-        private void HandleMedicalEventsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        private void HandleMedicalEventAdded(object sender, MedicalEventAddedEventArgs e)
         {
-            switch (e.Action)
+            if (medicalEventsSource.Source is ObservableCollection<ViewModelBase> medicalEvents)
             {
-                case NotifyCollectionChangedAction.Add:
-                    if (medicalEventsSource.Source is ObservableCollection<ViewModelBase> medicalEvents)
-                    {
-                        IEnumerable<ViewModelBase> medicalEventsToBeAdded = e.NewItems
-                            .Cast<MedicalEvent>()
-                            .Select<MedicalEvent, ViewModelBase>(x =>
-                            {
-                                switch (x)
-                                {
-                                    case Consultation consultation:
-                                        return new ConsultationListItemViewModel(consultation);
+                switch (e.MedicalEvent)
+                {
+                    case Consultation consultation:
+                        ConsultationListItemViewModel consultationToBeAdded = new ConsultationListItemViewModel(consultation);
+                        medicalEvents.Add(consultationToBeAdded);
+                        break;
 
-                                    case Investigation investigation:
-                                        return new InvestigationListItemViewModel(investigation);
-
-                                    default:
-                                        return null;
-                                }
-                            });
-
-                        foreach (ViewModelBase medicalEventToBeAdded in medicalEventsToBeAdded)
-                            medicalEvents.Add(medicalEventToBeAdded);
-                    }
-                    break;
-
-                case NotifyCollectionChangedAction.Remove:
-                    break;
-                case NotifyCollectionChangedAction.Replace:
-                    break;
-                case NotifyCollectionChangedAction.Move:
-                    break;
-                case NotifyCollectionChangedAction.Reset:
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
+                    case Investigation investigation:
+                        InvestigationListItemViewModel invetigationToBeAdded = new InvestigationListItemViewModel(investigation);
+                        medicalEvents.Add(invetigationToBeAdded);
+                        break;
+                }
             }
         }
 

@@ -16,8 +16,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Collections.Specialized;
 using System.Linq;
 using DustInTheWind.MedicX.Common.Entities;
 using DustInTheWind.MedicX.Persistence.Json;
@@ -30,11 +28,11 @@ namespace DustInTheWind.MedicX.Wpf
 
         private object currentItem;
 
-        public ObservableCollection<Medic> Medics { get; } = new ObservableCollection<Medic>();
+        public MedicsCollection Medics { get; } = new MedicsCollection();
 
-        public ObservableCollection<Clinic> Clinics { get; } = new ObservableCollection<Clinic>();
+        public ClinicsCollection Clinics { get; } = new ClinicsCollection();
 
-        public ObservableCollection<MedicalEvent> MedicalEvents { get; } = new ObservableCollection<MedicalEvent>();
+        public MedicalEventCollection MedicalEvents { get; } = new MedicalEventCollection();
 
         public object CurrentItem
         {
@@ -61,11 +59,26 @@ namespace DustInTheWind.MedicX.Wpf
 
         public MedicXProject()
         {
-            Medics.CollectionChanged += HandleMedicsCollectionChanged;
-            Clinics.CollectionChanged += HandleClinicsCollectionChanged;
-            MedicalEvents.CollectionChanged += HandleMedicalEventsCollectionChanged;
+            Medics.Changed += HandleMedicsCollectionChanged;
+            Clinics.Changed += HandleClinicsCollectionChanged;
+            MedicalEvents.Changed += HandleMedicalEventsCollectionChanged;
 
             LoadData();
+        }
+
+        private void HandleMedicsCollectionChanged(object sender, EventArgs e)
+        {
+            Status = ProjectStatus.Modified;
+        }
+
+        private void HandleClinicsCollectionChanged(object sender, EventArgs e)
+        {
+            Status = ProjectStatus.Modified;
+        }
+
+        private void HandleMedicalEventsCollectionChanged(object sender, EventArgs e)
+        {
+            Status = ProjectStatus.Modified;
         }
 
         private void LoadData()
@@ -103,129 +116,6 @@ namespace DustInTheWind.MedicX.Wpf
             }
 
             Status = ProjectStatus.Saved;
-        }
-
-        private void HandleMedicsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            Status = ProjectStatus.Modified;
-
-            switch (e.Action)
-            {
-                case NotifyCollectionChangedAction.Add:
-                    foreach (Medic medic in e.NewItems)
-                        medic.Changed += HandleMedicChanged;
-                    break;
-
-                case NotifyCollectionChangedAction.Remove:
-                    foreach (Medic medic in e.OldItems)
-                        medic.Changed -= HandleMedicChanged;
-                    break;
-
-                case NotifyCollectionChangedAction.Replace:
-                    foreach (Medic medic in e.OldItems)
-                        medic.Changed -= HandleMedicChanged;
-                    foreach (Medic medic in e.NewItems)
-                        medic.Changed += HandleMedicChanged;
-                    break;
-
-                case NotifyCollectionChangedAction.Move:
-                    break;
-
-                case NotifyCollectionChangedAction.Reset:
-                    foreach (Medic medic in e.OldItems)
-                        medic.Changed -= HandleMedicChanged;
-                    break;
-
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
-        }
-
-        private void HandleMedicChanged(object sender, EventArgs e)
-        {
-            Status = ProjectStatus.Modified;
-        }
-
-        private void HandleClinicsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            Status = ProjectStatus.Modified;
-
-            switch (e.Action)
-            {
-                case NotifyCollectionChangedAction.Add:
-                    foreach (Clinic clinic in e.NewItems)
-                        clinic.Changed += HandleClinicChanged;
-                    break;
-
-                case NotifyCollectionChangedAction.Remove:
-                    foreach (Clinic clinic in e.OldItems)
-                        clinic.Changed -= HandleClinicChanged;
-                    break;
-
-                case NotifyCollectionChangedAction.Replace:
-                    foreach (Clinic clinic in e.OldItems)
-                        clinic.Changed -= HandleClinicChanged;
-                    foreach (Clinic clinic in e.NewItems)
-                        clinic.Changed += HandleClinicChanged;
-                    break;
-
-                case NotifyCollectionChangedAction.Move:
-                    break;
-
-                case NotifyCollectionChangedAction.Reset:
-                    foreach (Clinic clinic in e.OldItems)
-                        clinic.Changed -= HandleClinicChanged;
-                    break;
-
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
-        }
-
-        private void HandleClinicChanged(object sender, EventArgs e)
-        {
-            Status = ProjectStatus.Modified;
-        }
-
-        private void HandleMedicalEventsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            Status = ProjectStatus.Modified;
-
-            switch (e.Action)
-            {
-                case NotifyCollectionChangedAction.Add:
-                    foreach (MedicalEvent medicalEvent in e.NewItems)
-                        medicalEvent.Changed += HandleMedicalEventChanged;
-                    break;
-
-                case NotifyCollectionChangedAction.Remove:
-                    foreach (MedicalEvent medicalEvent in e.OldItems)
-                        medicalEvent.Changed -= HandleMedicalEventChanged;
-                    break;
-
-                case NotifyCollectionChangedAction.Replace:
-                    foreach (MedicalEvent medicalEvent in e.OldItems)
-                        medicalEvent.Changed -= HandleMedicalEventChanged;
-                    foreach (MedicalEvent medicalEvent in e.NewItems)
-                        medicalEvent.Changed += HandleMedicalEventChanged;
-                    break;
-
-                case NotifyCollectionChangedAction.Move:
-                    break;
-
-                case NotifyCollectionChangedAction.Reset:
-                    foreach (MedicalEvent medicalEvent in e.OldItems)
-                        medicalEvent.Changed -= HandleMedicalEventChanged;
-                    break;
-
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
-        }
-
-        private void HandleMedicalEventChanged(object sender, EventArgs e)
-        {
-            Status = ProjectStatus.Modified;
         }
 
         public void Save()

@@ -17,7 +17,6 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Data;
@@ -87,37 +86,17 @@ namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.VewModels
                     .ToList())
             };
             Medics = medicsSource.View;
-            medicXProject.Medics.CollectionChanged += HandleMedicsCollectionChanged;
+            medicXProject.Medics.Added += HandleMedicAdded;
 
             medicXProject.CurrentItemChanged += HandleCurrentItemChanged;
         }
 
-        private void HandleMedicsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        private void HandleMedicAdded(object sender, MedicAddedEventArgs e)
         {
-            switch (e.Action)
+            if (medicsSource.Source is ObservableCollection<MedicListItemViewModel> medics)
             {
-                case NotifyCollectionChangedAction.Add:
-                    if (medicsSource.Source is ObservableCollection<MedicListItemViewModel> medics)
-                    {
-                        IEnumerable<MedicListItemViewModel> medicsToBeAdded = e.NewItems
-                            .Cast<Medic>()
-                            .Select(x => new MedicListItemViewModel(x));
-
-                        foreach (MedicListItemViewModel medicToBeAdded in medicsToBeAdded)
-                            medics.Add(medicToBeAdded);
-                    }
-                    break;
-
-                case NotifyCollectionChangedAction.Remove:
-                    break;
-                case NotifyCollectionChangedAction.Replace:
-                    break;
-                case NotifyCollectionChangedAction.Move:
-                    break;
-                case NotifyCollectionChangedAction.Reset:
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
+                MedicListItemViewModel medicListItemViewModel = new MedicListItemViewModel(e.Medic);
+                medics.Add(medicListItemViewModel);
             }
         }
 

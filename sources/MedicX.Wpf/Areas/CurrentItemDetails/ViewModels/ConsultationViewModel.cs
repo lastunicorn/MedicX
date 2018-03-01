@@ -16,7 +16,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using DustInTheWind.MedicX.Common.Entities;
 
@@ -30,7 +29,7 @@ namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemDetails.ViewModels
 
         public List<Clinic> Clinics { get; }
 
-        public ConsultationViewModel(Consultation consultation, ObservableCollection<Medic> medics, ObservableCollection<Clinic> clinics)
+        public ConsultationViewModel(Consultation consultation, MedicsCollection medics, ClinicsCollection clinics)
         {
             if (consultation == null) throw new ArgumentNullException(nameof(consultation));
             if (medics == null) throw new ArgumentNullException(nameof(medics));

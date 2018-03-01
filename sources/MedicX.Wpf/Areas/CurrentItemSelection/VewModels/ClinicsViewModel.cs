@@ -17,7 +17,6 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Data;
@@ -87,37 +86,17 @@ namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.VewModels
                     .ToList())
             };
             Clinics = clinicsSource.View;
-            medicXProject.Clinics.CollectionChanged += HandleClinicsCollectionChanged;
+            medicXProject.Clinics.Added += HandleClinicAdded;
 
             medicXProject.CurrentItemChanged += HandleCurrentItemChanged;
         }
 
-        private void HandleClinicsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        private void HandleClinicAdded(object sender, ClinicAddedEventArgs e)
         {
-            switch (e.Action)
+            if (clinicsSource.Source is ObservableCollection<ClinicListItemViewModel> clinics)
             {
-                case NotifyCollectionChangedAction.Add:
-                    if (clinicsSource.Source is ObservableCollection<ClinicListItemViewModel> clinics)
-                    {
-                        IEnumerable<ClinicListItemViewModel> clinicsToBeAdded = e.NewItems
-                            .Cast<Clinic>()
-                            .Select(x => new ClinicListItemViewModel(x));
-
-                        foreach (ClinicListItemViewModel clinicToBeAdded in clinicsToBeAdded)
-                            clinics.Add(clinicToBeAdded);
-                    }
-                    break;
-
-                case NotifyCollectionChangedAction.Remove:
-                    break;
-                case NotifyCollectionChangedAction.Replace:
-                    break;
-                case NotifyCollectionChangedAction.Move:
-                    break;
-                case NotifyCollectionChangedAction.Reset:
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
+                ClinicListItemViewModel clinicToBeAdded = new ClinicListItemViewModel(e.Clinic);
+                clinics.Add(clinicToBeAdded);
             }
         }
 
