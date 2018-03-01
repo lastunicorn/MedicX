@@ -50,9 +50,12 @@ namespace DustInTheWind.MedicX.Common.Entities
             {
                 comments = value;
 
+                IsCommentsChanged = true;
                 OnChanged();
             }
         }
+
+        public bool IsCommentsChanged { get; private set; }
 
         public event EventHandler NameChanged;
         public event EventHandler Changed;
@@ -85,19 +88,14 @@ namespace DustInTheWind.MedicX.Common.Entities
             return false;
         }
 
+        public void AcceptChanges()
+        {
+            IsCommentsChanged = false;
+        }
+
         public override string ToString()
         {
             return Name?.ToString();
-        }
-
-        protected virtual void OnNameChanged()
-        {
-            NameChanged?.Invoke(this, EventArgs.Empty);
-        }
-
-        protected virtual void OnChanged()
-        {
-            Changed?.Invoke(this, EventArgs.Empty);
         }
 
         public bool Equals(Person other)
@@ -127,6 +125,16 @@ namespace DustInTheWind.MedicX.Common.Entities
                 hashCode = (hashCode * 397) ^ Id.GetHashCode();
                 return hashCode;
             }
+        }
+
+        protected virtual void OnNameChanged()
+        {
+            NameChanged?.Invoke(this, EventArgs.Empty);
+        }
+
+        protected virtual void OnChanged()
+        {
+            Changed?.Invoke(this, EventArgs.Empty);
         }
     }
 }

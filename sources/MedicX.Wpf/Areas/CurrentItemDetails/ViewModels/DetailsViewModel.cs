@@ -15,6 +15,7 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
+using System.Windows.Navigation;
 using DustInTheWind.MedicX.Common.Entities;
 
 namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemDetails.ViewModels
@@ -60,12 +61,16 @@ namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemDetails.ViewModels
         {
             switch (medicXProject.CurrentItem)
             {
-                case Consultation _:
-                    Item = new ConsultationViewModel(medicXProject.CurrentItem as Consultation, medicXProject.Medics, medicXProject.Clinics);
+                case Consultation consultation:
+                    Item = new ConsultationViewModel(consultation, medicXProject.Medics, medicXProject.Clinics);
                     break;
-                    
-                case Investigation _:
-                    Item = new InvestigationViewModel(medicXProject.CurrentItem as Investigation, medicXProject.Medics, medicXProject.Clinics);
+
+                case Investigation investigation:
+                    Item = new InvestigationViewModel(investigation, medicXProject.Medics, medicXProject.Clinics);
+                    break;
+
+                case Medic medic:
+                    Item = new MedicViewModel(medic);
                     break;
 
                 default:

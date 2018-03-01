@@ -43,6 +43,8 @@ namespace DustInTheWind.MedicX.Persistence.Json.Translators
                 Comments = medic.Comments
             };
 
+            translatedMedic.AcceptChanges();
+
             return translatedMedic;
         }
 

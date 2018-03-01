@@ -55,6 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Areas\CurrentItemDetails\ViewModels\MedicViewModel.cs" />
     <Compile Include="ClinicAddedEventArgs.cs" />
     <Compile Include="MedicAddedEventArgs.cs" />
     <Compile Include="MedicalEventAddedEventArgs.cs" />
