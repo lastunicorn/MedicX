@@ -18,8 +18,9 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Windows.Data;
+using DustInTheWind.MedicX.Wpf.ViewModels;
 
-namespace DustInTheWind.MedicX.Wpf.ViewModels
+namespace DustInTheWind.MedicX.Wpf
 {
     internal class StringListViewModelConverter : IValueConverter
     {

@@ -15,8 +15,9 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System.Collections.Generic;
+using DustInTheWind.MedicX.Common.Entities;
 
-namespace DustInTheWind.MedicX.Common.Entities
+namespace DustInTheWind.MedicX.Persistence.Json
 {
     public class MedicXData
     {
