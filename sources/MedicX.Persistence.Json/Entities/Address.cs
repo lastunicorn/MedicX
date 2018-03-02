@@ -18,7 +18,7 @@ using Newtonsoft.Json;
 
 namespace DustInTheWind.MedicX.Persistence.Json.Entities
 {
-    internal class Address
+    public class Address
     {
         [JsonProperty("street")]
         public string Street { get; set; }

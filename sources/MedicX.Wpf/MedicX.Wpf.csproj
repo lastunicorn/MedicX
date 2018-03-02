@@ -275,9 +275,9 @@
       <Project>{854c77f6-22f9-48a9-ae73-43e19ab9b258}</Project>
       <Name>MedicX.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MedicX.Persistence.Json\MedicX.Persistence.Json.csproj">
-      <Project>{9684B41D-C429-4B04-8CF0-0612785B398A}</Project>
-      <Name>MedicX.Persistence.Json</Name>
+    <ProjectReference Include="..\MedicX.Persistence\MedicX.Persistence.csproj">
+      <Project>{6104e0cd-5f5a-4c47-bd41-6d4c58822928}</Project>
+      <Name>MedicX.Persistence</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

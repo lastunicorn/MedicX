@@ -14,29 +14,31 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+using System;
 using System.Collections.Generic;
-using Newtonsoft.Json;
+using System.Linq;
+using DustInTheWind.MedicX.Common.Entities;
 
-namespace DustInTheWind.MedicX.Persistence.Json.Entities
+namespace DustInTheWind.MedicX.Persistence.Json
 {
-    public class InvestigationDescription
+    internal class ClinicLocationRepository : IClinicLocationRepository
     {
-        [JsonProperty("id")]
-        public int Id { get; set; }
+        private readonly MedicXData medicXData;
 
-        [JsonProperty("name")]
-        public string Name { get; set; }
+        public ClinicLocationRepository(MedicXData medicXData)
+        {
+            this.medicXData = medicXData ?? throw new ArgumentNullException(nameof(medicXData));
+        }
 
-        [JsonProperty("substance")]
-        public string Substance { get; set; }
+        public List<Medic> GetAll()
+        {
+            return medicXData.Medics;
+        }
 
-        [JsonProperty("method")]
-        public string Method { get; set; }
-
-        [JsonProperty("comments")]
-        public string Comments { get; set; }
-
-        [JsonProperty("items")]
-        public List<InvestigationItem> Items { get; set; }
+        public Clinic GetById(Guid id)
+        {
+            return medicXData.Clinics
+                .FirstOrDefault(x => x.Id == id);
+        }
     }
 }

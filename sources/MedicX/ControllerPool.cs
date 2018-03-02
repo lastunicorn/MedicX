@@ -29,11 +29,8 @@ namespace DustInTheWind.MedicX.Cli
 
         public ControllerPool(UnitOfWork unitOfWork, MedicXApplication medicXApplication)
         {
-            if (unitOfWork == null) throw new ArgumentNullException(nameof(unitOfWork));
-            if (medicXApplication == null) throw new ArgumentNullException(nameof(medicXApplication));
-
-            this.unitOfWork = unitOfWork;
-            this.medicXApplication = medicXApplication;
+            this.unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
+            this.medicXApplication = medicXApplication ?? throw new ArgumentNullException(nameof(medicXApplication));
         }
 
         public IController Get(UserCommand command)

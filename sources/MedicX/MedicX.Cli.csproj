@@ -67,9 +67,9 @@
       <Project>{854c77f6-22f9-48a9-ae73-43e19ab9b258}</Project>
       <Name>MedicX.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MedicX.Persistence.Json\MedicX.Persistence.Json.csproj">
-      <Project>{9684b41d-c429-4b04-8cf0-0612785b398a}</Project>
-      <Name>MedicX.Persistence.Json</Name>
+    <ProjectReference Include="..\MedicX.Persistence\MedicX.Persistence.csproj">
+      <Project>{6104e0cd-5f5a-4c47-bd41-6d4c58822928}</Project>
+      <Name>MedicX.Persistence</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -19,7 +19,7 @@ using Newtonsoft.Json;
 
 namespace DustInTheWind.MedicX.Persistence.Json.Entities
 {
-    internal class Person
+    public class Person
     {
         [JsonProperty("id", Order = 1)]
         public Guid Id { get; set; }
