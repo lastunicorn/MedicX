@@ -23,28 +23,28 @@ namespace DustInTheWind.MedicX.Persistence.Json
 {
     internal class ClinicRepository : IClinicRepository
     {
-        private readonly MedicXData medicXData;
+        private readonly Storage storage;
 
-        public ClinicRepository(MedicXData medicXData)
+        public ClinicRepository(Storage storage)
         {
-            this.medicXData = medicXData ?? throw new ArgumentNullException(nameof(medicXData));
+            this.storage = storage ?? throw new ArgumentNullException(nameof(storage));
         }
 
         public List<Clinic> GetAll()
         {
-            return medicXData.Clinics;
+            return storage.Clinics;
         }
 
         public Clinic GetById(Guid id)
         {
-            return medicXData.Clinics
+            return storage.Clinics
                 .Where(x => x != null)
                 .FirstOrDefault(x => x.Id == id);
         }
 
         public List<Clinic> GetByName(string clinicName)
         {
-            return medicXData.Clinics
+            return storage.Clinics
                 .Where(x => x != null)
                 .Where(x => x.Name != null && x.Name.IndexOf(clinicName, StringComparison.OrdinalIgnoreCase) >= 0)
                 .ToList();
@@ -52,7 +52,7 @@ namespace DustInTheWind.MedicX.Persistence.Json
 
         public List<Clinic> Search(string text)
         {
-            return medicXData.Clinics
+            return storage.Clinics
                 .Where(x => x != null)
                 .Where(x => (x.Name != null && x.Name.IndexOf(text, StringComparison.OrdinalIgnoreCase) >= 0) ||
                     (x.Phones != null && x.Phones.Any(z => z != null && z.IndexOf(text, StringComparison.OrdinalIgnoreCase) >= 0)) ||
@@ -66,12 +66,12 @@ namespace DustInTheWind.MedicX.Persistence.Json
             if (clinic == null)
                 return;
 
-            Clinic existingClinic = medicXData.Clinics
+            Clinic existingClinic = storage.Clinics
                 .Where(x => x != null)
                 .FirstOrDefault(x => x.Id == clinic.Id);
 
             if (existingClinic == null)
-                medicXData.Clinics.Add(clinic);
+                storage.Clinics.Add(clinic);
             else
                 existingClinic.CopyFrom(clinic);
         }

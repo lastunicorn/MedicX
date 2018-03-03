@@ -23,16 +23,16 @@ namespace DustInTheWind.MedicX.Persistence.Json
 {
     internal class InvestigationRepository : IInvestigationRepository
     {
-        private readonly MedicXData medicXData;
+        private readonly Storage storage;
 
-        public InvestigationRepository(MedicXData medicXData)
+        public InvestigationRepository(Storage storage)
         {
-            this.medicXData = medicXData ?? throw new ArgumentNullException(nameof(medicXData));
+            this.storage = storage ?? throw new ArgumentNullException(nameof(storage));
         }
 
         public List<Investigation> GetAll()
         {
-            return medicXData.Investigations
+            return storage.Investigations
                 .Where(x => x != null)
                 .OrderByDescending(x => x.Date)
                 .ToList();
@@ -40,7 +40,7 @@ namespace DustInTheWind.MedicX.Persistence.Json
 
         public List<Investigation> Search(string text)
         {
-            return medicXData.Investigations
+            return storage.Investigations
                 .Where(x => x != null)
                 .Where(x => (x.SentBy?.Name != null && x.SentBy.Name.Contains(text)) ||
                             (x.Clinic?.Name != null && x.Clinic.Name.IndexOf(text, StringComparison.OrdinalIgnoreCase) >= 0) ||
@@ -54,12 +54,12 @@ namespace DustInTheWind.MedicX.Persistence.Json
             if (investigation == null)
                 return;
 
-            Investigation existingInvestigation = medicXData.Investigations
+            Investigation existingInvestigation = storage.Investigations
                 .Where(x => x != null)
                 .FirstOrDefault(x => x.Id == investigation.Id);
 
             if (existingInvestigation == null)
-                medicXData.Investigations.Add(investigation);
+                storage.Investigations.Add(investigation);
             else
                 existingInvestigation.CopyFrom(investigation);
         }

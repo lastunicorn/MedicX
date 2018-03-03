@@ -23,16 +23,16 @@ namespace DustInTheWind.MedicX.Persistence.Json
 {
     internal class ConsultationRepository : IConsultationRepository
     {
-        private readonly MedicXData medicXData;
+        private readonly Storage storage;
 
-        public ConsultationRepository(MedicXData medicXData)
+        public ConsultationRepository(Storage storage)
         {
-            this.medicXData = medicXData ?? throw new ArgumentNullException(nameof(medicXData));
+            this.storage = storage ?? throw new ArgumentNullException(nameof(storage));
         }
 
         public List<Consultation> GetAll()
         {
-            return medicXData.Consultations
+            return storage.Consultations
                 .Where(x=>x!= null)
                 .OrderByDescending(x => x.Date)
                 .ToList();
@@ -40,7 +40,7 @@ namespace DustInTheWind.MedicX.Persistence.Json
 
         public List<Consultation> Search(string text)
         {
-            return medicXData.Consultations
+            return storage.Consultations
                 .Where(x => x != null)
                 .Where(x => (x.Medic?.Name != null && x.Medic.Name.Contains(text)) ||
                             (x.Clinic?.Name != null && x.Clinic.Name.IndexOf(text, StringComparison.OrdinalIgnoreCase) >= 0) ||
@@ -54,12 +54,12 @@ namespace DustInTheWind.MedicX.Persistence.Json
             if (consultation == null)
                 return;
 
-            Consultation existingConsultation = medicXData.Consultations
+            Consultation existingConsultation = storage.Consultations
                 .Where(x => x != null)
                 .FirstOrDefault(x => x.Id == consultation.Id);
 
             if (existingConsultation == null)
-                medicXData.Consultations.Add(consultation);
+                storage.Consultations.Add(consultation);
             else
                 existingConsultation.CopyFrom(consultation);
         }

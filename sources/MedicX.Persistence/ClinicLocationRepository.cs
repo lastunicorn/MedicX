@@ -23,21 +23,21 @@ namespace DustInTheWind.MedicX.Persistence.Json
 {
     internal class ClinicLocationRepository : IClinicLocationRepository
     {
-        private readonly MedicXData medicXData;
+        private readonly Storage storage;
 
-        public ClinicLocationRepository(MedicXData medicXData)
+        public ClinicLocationRepository(Storage storage)
         {
-            this.medicXData = medicXData ?? throw new ArgumentNullException(nameof(medicXData));
+            this.storage = storage ?? throw new ArgumentNullException(nameof(storage));
         }
 
         public List<Medic> GetAll()
         {
-            return medicXData.Medics;
+            return storage.Medics;
         }
 
         public Clinic GetById(Guid id)
         {
-            return medicXData.Clinics
+            return storage.Clinics
                 .FirstOrDefault(x => x.Id == id);
         }
     }

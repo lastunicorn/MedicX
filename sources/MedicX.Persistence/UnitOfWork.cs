@@ -15,7 +15,6 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using DustInTheWind.MedicX.Persistence.Json.Translators;
 
 namespace DustInTheWind.MedicX.Persistence.Json
 {
@@ -26,12 +25,11 @@ namespace DustInTheWind.MedicX.Persistence.Json
 
         private bool isDisposed;
 
-        private readonly JsonZipFile jsonZipFile;
+        private readonly Storage storage;
         private IMedicRepository medicRepository;
         private IConsultationRepository consultationRepository;
         private IInvestigationRepository investigationRepository;
         private IClinicRepository clinicRepository;
-        private readonly MedicXData medicXData;
 
         public IMedicRepository MedicRepository
         {
@@ -41,7 +39,7 @@ namespace DustInTheWind.MedicX.Persistence.Json
                     throw new ObjectDisposedException(GetType().Name);
 
                 if (medicRepository == null)
-                    medicRepository = new MedicRepository(medicXData);
+                    medicRepository = new MedicRepository(storage);
 
                 return medicRepository;
             }
@@ -55,7 +53,7 @@ namespace DustInTheWind.MedicX.Persistence.Json
                     throw new ObjectDisposedException(GetType().Name);
 
                 if (consultationRepository == null)
-                    consultationRepository = new ConsultationRepository(medicXData);
+                    consultationRepository = new ConsultationRepository(storage);
 
                 return consultationRepository;
             }
@@ -69,7 +67,7 @@ namespace DustInTheWind.MedicX.Persistence.Json
                     throw new ObjectDisposedException(GetType().Name);
 
                 if (investigationRepository == null)
-                    investigationRepository = new InvestigationRepository(medicXData);
+                    investigationRepository = new InvestigationRepository(storage);
 
                 return investigationRepository;
             }
@@ -83,7 +81,7 @@ namespace DustInTheWind.MedicX.Persistence.Json
                     throw new ObjectDisposedException(GetType().Name);
 
                 if (clinicRepository == null)
-                    clinicRepository = new ClinicRepository(medicXData);
+                    clinicRepository = new ClinicRepository(storage);
 
                 return clinicRepository;
             }
@@ -99,11 +97,8 @@ namespace DustInTheWind.MedicX.Persistence.Json
                 if (instanceCount > 0)
                     throw new Exception("Another instance of the UnitOfWork already exists.");
 
-                jsonZipFile = new JsonZipFile("medicx.zip");
-                jsonZipFile.Open();
-
-                Entities.MedicXData data = jsonZipFile.Data;
-                medicXData = data.Translate();
+                storage = new Storage();
+                storage.Open();
 
                 instanceCount++;
             }
@@ -114,14 +109,15 @@ namespace DustInTheWind.MedicX.Persistence.Json
             if (isDisposed)
                 throw new ObjectDisposedException(GetType().Name);
 
-            jsonZipFile.Data = medicXData.Translate();
-            jsonZipFile.Save();
+            storage.Save();
         }
 
         public void Dispose()
         {
             lock (SyncObject)
+            {
                 instanceCount--;
+            }
 
             isDisposed = true;
         }

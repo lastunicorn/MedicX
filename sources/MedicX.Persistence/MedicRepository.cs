@@ -23,34 +23,34 @@ namespace DustInTheWind.MedicX.Persistence.Json
 {
     internal class MedicRepository : IMedicRepository
     {
-        private readonly MedicXData medicXData;
+        private readonly Storage storage;
 
-        public MedicRepository(MedicXData medicXData)
+        public MedicRepository(Storage storage)
         {
-            this.medicXData = medicXData ?? throw new ArgumentNullException(nameof(medicXData));
+            this.storage = storage ?? throw new ArgumentNullException(nameof(storage));
         }
 
         public List<Medic> GetAll()
         {
-            return medicXData.Medics;
+            return storage.Medics;
         }
 
         public Medic GetById(Guid id)
         {
-            return medicXData.Medics
+            return storage.Medics
                 .Where(x => x != null)
                 .FirstOrDefault(x => x.Id == id);
         }
 
         public void Add(Medic medic)
         {
-            bool idExists = medicXData.Medics
+            bool idExists = storage.Medics
                 .Any(x => x.Id == medic.Id);
 
             if (idExists)
                 throw new ApplicationException("Another medic with the same id already exists.");
 
-            medicXData.Medics.Add(medic);
+            storage.Medics.Add(medic);
         }
 
         public void AddOrUpdate(Medic medic)
@@ -58,7 +58,7 @@ namespace DustInTheWind.MedicX.Persistence.Json
             if (medic == null)
                 return;
 
-            Medic existingMedic = medicXData.Medics
+            Medic existingMedic = storage.Medics
                 .Where(x => x != null)
                 .FirstOrDefault(x => x.Id == medic.Id);
 
@@ -70,7 +70,7 @@ namespace DustInTheWind.MedicX.Persistence.Json
 
         public List<Medic> GetByName(string medicName)
         {
-            return medicXData.Medics
+            return storage.Medics
                 .Where(x => x != null)
                 .Where(x => x.Name != null && x.Name.Contains(medicName))
                 .ToList();
@@ -78,7 +78,7 @@ namespace DustInTheWind.MedicX.Persistence.Json
 
         public List<Medic> Search(string text)
         {
-            return medicXData.Medics
+            return storage.Medics
                 .Where(x => x != null)
                 .Where(x => (x.Name != null && x.Name.Contains(text)) ||
                     (x.Specializations.Any(z => z != null && z.IndexOf(text, StringComparison.OrdinalIgnoreCase) >= 0)) ||
