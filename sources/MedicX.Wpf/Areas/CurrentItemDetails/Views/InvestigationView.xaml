@@ -92,20 +92,25 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 Grid.Row="0"
                 Grid.Column="1"
                 Margin="0 4 0 4"
-                Padding="8"
+                Padding="8 0 8 0"
                 ItemsSource="{Binding Medics}"
                 SelectedItem="{Binding Investigation.SentBy, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 VerticalContentAlignment="Center">
 
                 <ComboBox.Resources>
                     <DataTemplate DataType="{x:Type entities:Medic}">
-                        <StackPanel Orientation="Horizontal">
+                        <StackPanel
+                            Orientation="Horizontal"
+                            Margin="0 8 0 8">
+
                             <TextBlock
                                 FontWeight="Bold"
                                 Text="{Binding Name}"/>
+
                             <TextBlock
                                 Margin="5 0 0 0"
                                 Text="{Binding Specializations, Converter={StaticResource StringListToCsvConverter}, StringFormat= ({0})}"/>
+
                         </StackPanel>
                     </DataTemplate>
                 </ComboBox.Resources>
@@ -138,20 +143,25 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 Grid.Row="1"
                 Grid.Column="1"
                 Margin="0 4 0 4"
-                Padding="8"
+                Padding="8 0 8 0"
                 ItemsSource="{Binding Medics}"
                 SelectedItem="{Binding Investigation.Medic, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 VerticalContentAlignment="Center">
 
                 <ComboBox.Resources>
                     <DataTemplate DataType="{x:Type entities:Medic}">
-                        <StackPanel Orientation="Horizontal">
+                        <StackPanel
+                            Orientation="Horizontal"
+                            Margin="0 8 0 8">
+
                             <TextBlock
                                 FontWeight="Bold"
                                 Text="{Binding Name}"/>
+
                             <TextBlock
                                 Margin="5 0 0 0"
                                 Text="{Binding Specializations, Converter={StaticResource StringListToCsvConverter}, StringFormat= ({0})}"/>
+
                         </StackPanel>
                     </DataTemplate>
                 </ComboBox.Resources>
@@ -172,7 +182,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 Grid.Row="2"
                 Grid.Column="1"
                 Margin="0 4"
-                Padding="8"
+                Padding="8 0 8 0"
                 ItemsSource="{Binding Clinics}"
                 SelectedItem="{Binding Investigation.Clinic, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 VerticalContentAlignment="Center">
@@ -181,6 +191,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                     <DataTemplate DataType="{x:Type entities:Clinic}">
                         <TextBlock
                             FontWeight="Bold"
+                            Margin="0 8 0 8"
                             Text="{Binding Name}"/>
                     </DataTemplate>
                 </ComboBox.Resources>
