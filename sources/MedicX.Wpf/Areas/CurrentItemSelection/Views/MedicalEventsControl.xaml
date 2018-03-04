@@ -80,7 +80,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             SelectedItem="{Binding SelectedMedicalEvent}">
 
             <ListView.Resources>
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Magenta"/>
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="White"/>
+                <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="DarkMagenta"/>
+                <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightTextBrushKey}" Color="White"/>
+
                 <Style TargetType="{x:Type ListViewItem}">
+                    <Setter Property="BorderBrush" Value="White"/>
+                    <Setter Property="BorderThickness" Value="0 0 0 1"/>
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding Path=., Converter={StaticResource EventTypeConverter}}" Value="Consult">
                             <Setter Property="Background" Value="DarkSeaGreen" />
@@ -99,7 +106,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                         <TextBlock Text="{Binding Value.Medic.Name}"/>
                     </StackPanel>
                 </DataTemplate>
-                
+
                 <DataTemplate DataType="{x:Type vewModels:InvestigationListItemViewModel}">
                     <StackPanel Margin="5 6">
                         <TextBlock

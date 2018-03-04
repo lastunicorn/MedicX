@@ -116,11 +116,6 @@ namespace DustInTheWind.MedicX.Common.Entities
                 base.CopyFrom(medicalEvent);
         }
 
-        protected virtual void OnSentByChanged()
-        {
-            SentByChanged?.Invoke(this, EventArgs.Empty);
-        }
-
         public override bool Contains(string text)
         {
             return base.Contains(text) ||
@@ -151,6 +146,11 @@ namespace DustInTheWind.MedicX.Common.Entities
             {
                 return (base.GetHashCode() * 397) ^ (sentBy != null ? sentBy.GetHashCode() : 0);
             }
+        }
+
+        protected virtual void OnSentByChanged()
+        {
+            SentByChanged?.Invoke(this, EventArgs.Empty);
         }
     }
 }

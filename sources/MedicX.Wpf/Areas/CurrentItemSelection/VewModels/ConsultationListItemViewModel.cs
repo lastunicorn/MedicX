@@ -26,7 +26,13 @@ namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.VewModels
             Value = consultation ?? throw new ArgumentNullException(nameof(consultation));
 
             UpdateText();
+            consultation.DateChanged += HandleDateChanged;
             consultation.MedicChanged += HandleMedicChanged;
+        }
+
+        private void HandleDateChanged(object sender, EventArgs e)
+        {
+            UpdateText();
         }
 
         private void HandleMedicChanged(object sender, EventArgs e)
