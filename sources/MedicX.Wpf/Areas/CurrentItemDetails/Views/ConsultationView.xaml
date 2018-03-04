@@ -203,7 +203,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 Grid.ColumnSpan="2"
                 Text="{Binding Consultation.Comments, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 Margin="0 4"
-                Height="100"
+                Height="200"
                 AcceptsReturn="True"
                 VerticalScrollBarVisibility="Auto"
                 HorizontalScrollBarVisibility="Auto"/>
