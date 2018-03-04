@@ -103,9 +103,11 @@ namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.VewModels
                         switch (x)
                         {
                             case Consultation consultation:
+                                consultation.DateChanged += HandleMedicalEventDateChanged;
                                 return new ConsultationListItemViewModel(consultation);
 
                             case Investigation investigation:
+                                investigation.DateChanged += HandleMedicalEventDateChanged;
                                 return new InvestigationListItemViewModel(investigation);
 
                             default:
@@ -115,6 +117,7 @@ namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.VewModels
                     .ToList())
             };
             MedicalEvents = medicalEventsSource.View;
+            MedicalEvents.SortDescriptions.Add(new SortDescription("Date", ListSortDirection.Descending));
             medicXProject.MedicalEvents.Added += HandleMedicalEventAdded;
 
             medicXProject.CurrentItemChanged += HandleCurrentItemChanged;
@@ -129,14 +132,21 @@ namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.VewModels
                     case Consultation consultation:
                         ConsultationListItemViewModel consultationToBeAdded = new ConsultationListItemViewModel(consultation);
                         medicalEvents.Add(consultationToBeAdded);
+                        consultationToBeAdded.DateChanged += HandleMedicalEventDateChanged;
                         break;
 
                     case Investigation investigation:
-                        InvestigationListItemViewModel invetigationToBeAdded = new InvestigationListItemViewModel(investigation);
-                        medicalEvents.Add(invetigationToBeAdded);
+                        InvestigationListItemViewModel investigationToBeAdded = new InvestigationListItemViewModel(investigation);
+                        medicalEvents.Add(investigationToBeAdded);
+                        investigationToBeAdded.DateChanged += HandleMedicalEventDateChanged;
                         break;
                 }
             }
+        }
+
+        private void HandleMedicalEventDateChanged(object sender, EventArgs e)
+        {
+            MedicalEvents.Refresh();
         }
 
         private void HandleCurrentItemChanged(object sender, EventArgs e)

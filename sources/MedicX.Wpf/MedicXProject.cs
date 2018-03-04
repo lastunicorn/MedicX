@@ -105,11 +105,9 @@ namespace DustInTheWind.MedicX.Wpf
                 List<Consultation> consultationsFromRepository = consultationRepository.GetAll();
                 List<Investigation> investigationsFromRepository = investigationsRepository.GetAll();
 
-                List<MedicalEvent> medicalEvents = consultationsFromRepository
+                IEnumerable<MedicalEvent> medicalEvents = consultationsFromRepository
                     .Cast<MedicalEvent>()
-                    .Concat(investigationsFromRepository)
-                    .OrderByDescending(x => x.Date)
-                    .ToList();
+                    .Concat(investigationsFromRepository);
 
                 foreach (MedicalEvent medicalEvent in medicalEvents)
                     MedicalEvents.Add(medicalEvent);

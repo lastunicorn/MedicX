@@ -21,10 +21,14 @@ namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.VewModels
 {
     internal class ConsultationListItemViewModel : ListItemViewModel<Consultation>
     {
+        public DateTime Date => Value.Date;
+
+        public event EventHandler DateChanged;
+
         public ConsultationListItemViewModel(Consultation consultation)
         {
             Value = consultation ?? throw new ArgumentNullException(nameof(consultation));
-
+            
             UpdateText();
             consultation.DateChanged += HandleDateChanged;
             consultation.MedicChanged += HandleMedicChanged;
@@ -33,6 +37,7 @@ namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.VewModels
         private void HandleDateChanged(object sender, EventArgs e)
         {
             UpdateText();
+            OnDateChanged();
         }
 
         private void HandleMedicChanged(object sender, EventArgs e)
@@ -48,6 +53,11 @@ namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.VewModels
                 ? "<no name>"
                 : medicName;
 
+        }
+
+        protected virtual void OnDateChanged()
+        {
+            DateChanged?.Invoke(this, EventArgs.Empty);
         }
     }
 }
