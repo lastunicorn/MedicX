@@ -18,6 +18,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using DustInTheWind.MedicX.Common.Entities;
+using DustInTheWind.MedicX.Persistence.Json;
 
 namespace DustInTheWind.MedicX.Persistence
 {

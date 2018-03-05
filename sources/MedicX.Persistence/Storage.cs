@@ -15,14 +15,15 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System.Collections.Generic;
+using DustInTheWind.MedicX.Persistence.Json;
 using DustInTheWind.MedicX.Persistence.Json.Entities;
-using DustInTheWind.MedicX.Persistence.Json.Translators;
+using DustInTheWind.MedicX.Persistence.Translators;
 using Clinic = DustInTheWind.MedicX.Common.Entities.Clinic;
 using Consultation = DustInTheWind.MedicX.Common.Entities.Consultation;
 using Investigation = DustInTheWind.MedicX.Common.Entities.Investigation;
 using Medic = DustInTheWind.MedicX.Common.Entities.Medic;
 
-namespace DustInTheWind.MedicX.Persistence.Json
+namespace DustInTheWind.MedicX.Persistence
 {
     public class Storage
     {

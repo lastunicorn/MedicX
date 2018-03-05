@@ -16,7 +16,7 @@
 
 using System;
 
-namespace DustInTheWind.MedicX.Persistence.Json
+namespace DustInTheWind.MedicX.Persistence
 {
     public class UnitOfWork : IDisposable
     {
