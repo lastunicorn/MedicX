@@ -16,7 +16,7 @@
 
 using System;
 using DustInTheWind.ConsoleTools;
-using DustInTheWind.MedicX.Persistence.Json;
+using DustInTheWind.MedicX.Persistence;
 
 namespace DustInTheWind.MedicX.Cli
 {

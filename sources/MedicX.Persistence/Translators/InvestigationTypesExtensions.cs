@@ -18,18 +18,18 @@ using System.Collections.Generic;
 using System.Linq;
 using DustInTheWind.MedicX.Common.Entities;
 
-namespace DustInTheWind.MedicX.Persistence.Json.Translators
+namespace DustInTheWind.MedicX.Persistence.Translators
 {
     internal static class InvestigationTypesExtensions
     {
-        public static List<InvestigationDescription> Translate(this IEnumerable<Entities.InvestigationDescription> investigationTypes)
+        public static List<InvestigationDescription> Translate(this IEnumerable<Json.Entities.InvestigationDescription> investigationTypes)
         {
             return investigationTypes?
                 .Select(Translate)
                 .ToList();
         }
 
-        public static InvestigationDescription Translate(this Entities.InvestigationDescription investigationDescription)
+        public static InvestigationDescription Translate(this Json.Entities.InvestigationDescription investigationDescription)
         {
             if (investigationDescription == null)
                 return null;
@@ -45,19 +45,19 @@ namespace DustInTheWind.MedicX.Persistence.Json.Translators
             };
         }
 
-        public static List<Entities.InvestigationDescription> Translate(this IEnumerable<InvestigationDescription> investigationTypes)
+        public static List<Json.Entities.InvestigationDescription> Translate(this IEnumerable<InvestigationDescription> investigationTypes)
         {
             return investigationTypes?
                 .Select(Translate)
                 .ToList();
         }
 
-        public static Entities.InvestigationDescription Translate(this InvestigationDescription investigationDescription)
+        public static Json.Entities.InvestigationDescription Translate(this InvestigationDescription investigationDescription)
         {
             if (investigationDescription == null)
                 return null;
 
-            return new Entities.InvestigationDescription
+            return new Json.Entities.InvestigationDescription
             {
                 Id = investigationDescription.Id,
                 Name = investigationDescription.Name,

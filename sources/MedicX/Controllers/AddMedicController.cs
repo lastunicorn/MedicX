@@ -19,7 +19,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using DustInTheWind.ConsoleTools.InputControls;
 using DustInTheWind.MedicX.Common.Entities;
-using DustInTheWind.MedicX.Persistence.Json;
+using DustInTheWind.MedicX.Persistence;
 
 namespace DustInTheWind.MedicX.Cli.Controllers
 {

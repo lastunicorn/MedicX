@@ -16,11 +16,11 @@
 
 using DustInTheWind.MedicX.Common.Entities;
 
-namespace DustInTheWind.MedicX.Persistence.Json.Translators
+namespace DustInTheWind.MedicX.Persistence.Translators
 {
     internal static class AddressExtensions
     {
-        public static Address Translate(this Entities.Address address)
+        public static Address Translate(this Json.Entities.Address address)
         {
             if (address == null)
                 return null;
@@ -34,12 +34,12 @@ namespace DustInTheWind.MedicX.Persistence.Json.Translators
             };
         }
 
-        public static Entities.Address Translate(this Address address)
+        public static Json.Entities.Address Translate(this Address address)
         {
             if (address == null)
                 return null;
 
-            return new Entities.Address
+            return new Json.Entities.Address
             {
                 Street = address.Street,
                 City = address.City,

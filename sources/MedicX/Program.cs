@@ -18,7 +18,7 @@ using System;
 using System.Reflection;
 using System.Threading;
 using DustInTheWind.ConsoleTools;
-using DustInTheWind.MedicX.Persistence.Json;
+using DustInTheWind.MedicX.Persistence;
 
 namespace DustInTheWind.MedicX.Cli
 {

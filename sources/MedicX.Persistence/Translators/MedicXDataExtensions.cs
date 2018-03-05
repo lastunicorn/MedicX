@@ -17,11 +17,11 @@
 using System.Collections.Generic;
 using DustInTheWind.MedicX.Common.Entities;
 
-namespace DustInTheWind.MedicX.Persistence.Json.Translators
+namespace DustInTheWind.MedicX.Persistence.Translators
 {
     internal static class MedicXDataExtensions
     {
-        public static MedicXData Translate(this Entities.MedicXData medicXData)
+        public static MedicXData Translate(this Json.Entities.MedicXData medicXData)
         {
             if (medicXData == null)
                 return null;
@@ -40,12 +40,12 @@ namespace DustInTheWind.MedicX.Persistence.Json.Translators
             };
         }
 
-        public static Entities.MedicXData Translate(this MedicXData medicXData)
+        public static Json.Entities.MedicXData Translate(this MedicXData medicXData)
         {
             if (medicXData == null)
                 return null;
 
-            return new Entities.MedicXData
+            return new Json.Entities.MedicXData
             {
                 Medics = medicXData.Medics.Translate(),
                 Clinics = medicXData.Clinics.Translate(),

@@ -18,18 +18,18 @@ using System.Collections.Generic;
 using System.Linq;
 using DustInTheWind.MedicX.Common.Entities;
 
-namespace DustInTheWind.MedicX.Persistence.Json.Translators
+namespace DustInTheWind.MedicX.Persistence.Translators
 {
     internal static class PrescriptionsExtensions
     {
-        public static List<Prescription> Translate(this IEnumerable<Entities.Prescription> prescriptions)
+        public static List<Prescription> Translate(this IEnumerable<Json.Entities.Prescription> prescriptions)
         {
             return prescriptions?
                 .Select(Translate)
                 .ToList();
         }
 
-        private static Prescription Translate(this Entities.Prescription prescription)
+        private static Prescription Translate(this Json.Entities.Prescription prescription)
         {
             if (prescription == null)
                 return null;
@@ -41,19 +41,19 @@ namespace DustInTheWind.MedicX.Persistence.Json.Translators
             };
         }
 
-        public static List<Entities.Prescription> Translate(this IEnumerable<Prescription> prescriptions)
+        public static List<Json.Entities.Prescription> Translate(this IEnumerable<Prescription> prescriptions)
         {
             return prescriptions?
                 .Select(Translate)
                 .ToList();
         }
 
-        private static Entities.Prescription Translate(this Prescription prescription)
+        private static Json.Entities.Prescription Translate(this Prescription prescription)
         {
             if (prescription == null)
                 return null;
 
-            return new Entities.Prescription
+            return new Json.Entities.Prescription
             {
                 Description = prescription.Description,
                 Result = prescription.Result
@@ -62,14 +62,14 @@ namespace DustInTheWind.MedicX.Persistence.Json.Translators
     }
     internal static class InvestigationResultExtensions
     {
-        public static List<InvestigationResult> Translate(this IEnumerable<Entities.InvestigationResult> investigationResults)
+        public static List<InvestigationResult> Translate(this IEnumerable<Json.Entities.InvestigationResult> investigationResults)
         {
             return investigationResults?
                 .Select(Translate)
                 .ToList();
         }
 
-        private static InvestigationResult Translate(this Entities.InvestigationResult investigationResult)
+        private static InvestigationResult Translate(this Json.Entities.InvestigationResult investigationResult)
         {
             if (investigationResult == null)
                 return null;
@@ -81,19 +81,19 @@ namespace DustInTheWind.MedicX.Persistence.Json.Translators
             };
         }
 
-        public static List<Entities.InvestigationResult> Translate(this IEnumerable<InvestigationResult> investigationResults)
+        public static List<Json.Entities.InvestigationResult> Translate(this IEnumerable<InvestigationResult> investigationResults)
         {
             return investigationResults?
                 .Select(Translate)
                 .ToList();
         }
 
-        private static Entities.InvestigationResult Translate(this InvestigationResult investigationResult)
+        private static Json.Entities.InvestigationResult Translate(this InvestigationResult investigationResult)
         {
             if (investigationResult == null)
                 return null;
 
-            return new Entities.InvestigationResult
+            return new Json.Entities.InvestigationResult
             {
                 InvestigationId = 0,
                 Value = investigationResult.Value

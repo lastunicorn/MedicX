@@ -18,18 +18,18 @@ using System.Collections.Generic;
 using System.Linq;
 using DustInTheWind.MedicX.Common.Entities;
 
-namespace DustInTheWind.MedicX.Persistence.Json.Translators
+namespace DustInTheWind.MedicX.Persistence.Translators
 {
     internal static class InvestigationTypesItemExtensions
     {
-        public static List<InvestigationItem> Translate(this IEnumerable<Entities.InvestigationItem> investigationTypeItems)
+        public static List<InvestigationItem> Translate(this IEnumerable<Json.Entities.InvestigationItem> investigationTypeItems)
         {
             return investigationTypeItems?
                 .Select(Translate)
                 .ToList();
         }
 
-        public static InvestigationItem Translate(this Entities.InvestigationItem investigationItem)
+        public static InvestigationItem Translate(this Json.Entities.InvestigationItem investigationItem)
         {
             if (investigationItem == null)
                 return null;
@@ -44,19 +44,19 @@ namespace DustInTheWind.MedicX.Persistence.Json.Translators
             };
         }
 
-        public static List<Entities.InvestigationItem> Translate(this IEnumerable<InvestigationItem> investigationTypeItems)
+        public static List<Json.Entities.InvestigationItem> Translate(this IEnumerable<InvestigationItem> investigationTypeItems)
         {
             return investigationTypeItems?
                 .Select(Translate)
                 .ToList();
         }
 
-        public static Entities.InvestigationItem Translate(this InvestigationItem investigationItem)
+        public static Json.Entities.InvestigationItem Translate(this InvestigationItem investigationItem)
         {
             if (investigationItem == null)
                 return null;
 
-            return new Entities.InvestigationItem
+            return new Json.Entities.InvestigationItem
             {
                 Id = investigationItem.Id,
                 Name = investigationItem.Name,

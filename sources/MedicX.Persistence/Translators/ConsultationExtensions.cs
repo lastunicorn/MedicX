@@ -17,21 +17,20 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Runtime.Serialization;
 using DustInTheWind.MedicX.Common.Entities;
 
-namespace DustInTheWind.MedicX.Persistence.Json.Translators
+namespace DustInTheWind.MedicX.Persistence.Translators
 {
     internal static class ConsultationExtensions
     {
-        public static List<Consultation> Translate(this IEnumerable<Entities.Consultation> consultations, List<Medic> medics, IEnumerable<Clinic> clinicLocations)
+        public static List<Consultation> Translate(this IEnumerable<Json.Entities.Consultation> consultations, List<Medic> medics, IEnumerable<Clinic> clinicLocations)
         {
             return consultations?
                 .Select(x => x.Translate(medics, clinicLocations))
                 .ToList();
         }
 
-        private static Consultation Translate(this Entities.Consultation consultation, IEnumerable<Medic> medics, IEnumerable<Clinic> clinicLocations)
+        private static Consultation Translate(this Json.Entities.Consultation consultation, IEnumerable<Medic> medics, IEnumerable<Clinic> clinicLocations)
         {
             if (consultation == null)
                 return null;
@@ -52,19 +51,19 @@ namespace DustInTheWind.MedicX.Persistence.Json.Translators
             };
         }
 
-        public static List<Entities.Consultation> Translate(this IEnumerable<Consultation> consultations)
+        public static List<Json.Entities.Consultation> Translate(this IEnumerable<Consultation> consultations)
         {
             return consultations?
                 .Select(x => x.Translate())
                 .ToList();
         }
 
-        private static Entities.Consultation Translate(this Consultation consultation)
+        private static Json.Entities.Consultation Translate(this Consultation consultation)
         {
             if (consultation == null)
                 return null;
 
-            return new Entities.Consultation
+            return new Json.Entities.Consultation
             {
                 Id = consultation.Id,
                 Date = consultation.Date,

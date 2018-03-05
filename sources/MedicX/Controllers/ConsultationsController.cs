@@ -20,7 +20,7 @@ using System.Linq;
 using DustInTheWind.ConsoleTools;
 using DustInTheWind.ConsoleTools.InputControls;
 using DustInTheWind.MedicX.Common.Entities;
-using DustInTheWind.MedicX.Persistence.Json;
+using DustInTheWind.MedicX.Persistence;
 
 namespace DustInTheWind.MedicX.Cli.Controllers
 {

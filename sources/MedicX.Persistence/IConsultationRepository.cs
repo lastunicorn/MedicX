@@ -17,7 +17,7 @@
 using System.Collections.Generic;
 using DustInTheWind.MedicX.Common.Entities;
 
-namespace DustInTheWind.MedicX.Persistence.Json
+namespace DustInTheWind.MedicX.Persistence
 {
     public interface IConsultationRepository
     {

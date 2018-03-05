@@ -16,11 +16,11 @@
 
 using DustInTheWind.MedicX.Common.Entities;
 
-namespace DustInTheWind.MedicX.Persistence.Json.Translators
+namespace DustInTheWind.MedicX.Persistence.Translators
 {
     internal static class NameExtensions
     {
-        public static PersonName Translate(this Entities.PersonName personName)
+        public static PersonName Translate(this Json.Entities.PersonName personName)
         {
             if (personName == null)
                 return null;
@@ -33,12 +33,12 @@ namespace DustInTheWind.MedicX.Persistence.Json.Translators
             };
         }
 
-        public static Entities.PersonName Translate(this PersonName personName)
+        public static Json.Entities.PersonName Translate(this PersonName personName)
         {
             if (personName == null)
                 return null;
 
-            return new Entities.PersonName
+            return new Json.Entities.PersonName
             {
                 FirstName = personName.FirstName,
                 MiddleName = personName.MiddleName,

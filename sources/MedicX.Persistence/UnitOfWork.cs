@@ -15,9 +15,10 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using DustInTheWind.MedicX.Persistence.Json.Translators;
+using DustInTheWind.MedicX.Persistence.Json;
+using DustInTheWind.MedicX.Persistence.Translators;
 
-namespace DustInTheWind.MedicX.Persistence.Json
+namespace DustInTheWind.MedicX.Persistence
 {
     public class UnitOfWork : IDisposable
     {
@@ -102,7 +103,7 @@ namespace DustInTheWind.MedicX.Persistence.Json
                 jsonZipFile = new JsonZipFile("medicx.zip");
                 jsonZipFile.Open();
 
-                Entities.MedicXData data = jsonZipFile.Data;
+                Json.Entities.MedicXData data = jsonZipFile.Data;
                 medicXData = data.Translate();
 
                 instanceCount++;

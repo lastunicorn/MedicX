@@ -19,18 +19,18 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using DustInTheWind.MedicX.Common.Entities;
 
-namespace DustInTheWind.MedicX.Persistence.Json.Translators
+namespace DustInTheWind.MedicX.Persistence.Translators
 {
     internal static class InvestigationExtensions
     {
-        public static List<Investigation> Translate(this IEnumerable<Entities.Investigation> investigations, List<Medic> medics, IEnumerable<Clinic> clinicLocations)
+        public static List<Investigation> Translate(this IEnumerable<Json.Entities.Investigation> investigations, List<Medic> medics, IEnumerable<Clinic> clinicLocations)
         {
             return investigations?
                 .Select(x => x.Translate(medics, clinicLocations))
                 .ToList();
         }
 
-        private static Investigation Translate(this Entities.Investigation investigation, IEnumerable<Medic> medics, IEnumerable<Clinic> clinicLocations)
+        private static Investigation Translate(this Json.Entities.Investigation investigation, IEnumerable<Medic> medics, IEnumerable<Clinic> clinicLocations)
         {
             if (investigation == null)
                 return null;
@@ -52,19 +52,19 @@ namespace DustInTheWind.MedicX.Persistence.Json.Translators
             };
         }
 
-        public static List<Entities.Investigation> Translate(this IEnumerable<Investigation> investigations)
+        public static List<Json.Entities.Investigation> Translate(this IEnumerable<Investigation> investigations)
         {
             return investigations?
                 .Select(x => x.Translate())
                 .ToList();
         }
 
-        private static Entities.Investigation Translate(this Investigation investigation)
+        private static Json.Entities.Investigation Translate(this Investigation investigation)
         {
             if (investigation == null)
                 return null;
 
-            return new Entities.Investigation
+            return new Json.Entities.Investigation
             {
                 Id = investigation.Id,
                 Date = investigation.Date,
