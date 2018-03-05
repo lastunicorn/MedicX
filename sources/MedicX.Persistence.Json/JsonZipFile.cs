@@ -29,55 +29,65 @@ namespace DustInTheWind.MedicX.Persistence.Json
     /// </summary>
     public class JsonZipFile
     {
-        private readonly string fileName;
+        private readonly string zipFileName;
+
+        private const string MedicsFileName = "medics.json";
+        private const string ClinicsFileName = "clinics.json";
+        private const string ConsultationsFileName = "consultations.json";
+        private const string InvestigationsFileName = "investigations.json";
+        private const string InvestigationDescriptionsFileName = "investigation-descriptions.json";
 
         public MedicXData Data { get; set; }
 
-        public JsonZipFile(string fileName)
+        public readonly List<Exception> Warnings = new List<Exception>();
+
+        public JsonZipFile(string zipFileName)
         {
-            this.fileName = fileName ?? throw new ArgumentNullException(nameof(fileName));
+            this.zipFileName = zipFileName ?? throw new ArgumentNullException(nameof(zipFileName));
         }
 
         public void Open()
         {
-            if (!File.Exists(fileName))
-                Data = new MedicXData();
+            Warnings.Clear();
+            Data = new MedicXData();
 
-            MedicXData medicXData = new MedicXData();
+            if (!File.Exists(zipFileName))
+                return;
 
-            using (FileStream fileStream = File.OpenRead(fileName))
+            using (FileStream fileStream = File.OpenRead(zipFileName))
+            using (ZipArchive archive = new ZipArchive(fileStream, ZipArchiveMode.Read))
             {
-                using (ZipArchive archive = new ZipArchive(fileStream, ZipArchiveMode.Read))
+                foreach (ZipArchiveEntry entry in archive.Entries)
                 {
-                    foreach (ZipArchiveEntry entry in archive.Entries)
+                    switch (entry.Name)
                     {
-                        switch (entry.Name)
-                        {
-                            case "medics.json":
-                                medicXData.Medics = ReadFile<List<Medic>>(entry);
-                                break;
+                        case MedicsFileName:
+                            Data.Medics = ReadFile<List<Medic>>(entry);
+                            break;
 
-                            case "clinics.json":
-                                medicXData.Clinics = ReadFile<List<Clinic>>(entry);
-                                break;
+                        case ClinicsFileName:
+                            Data.Clinics = ReadFile<List<Clinic>>(entry);
+                            break;
 
-                            case "consultations.json":
-                                medicXData.Consultations = ReadFile<List<Consultation>>(entry);
-                                break;
+                        case ConsultationsFileName:
+                            Data.Consultations = ReadFile<List<Consultation>>(entry);
+                            break;
 
-                            case "investigations.json":
-                                medicXData.Investigations = ReadFile<List<Investigation>>(entry);
-                                break;
+                        case InvestigationsFileName:
+                            Data.Investigations = ReadFile<List<Investigation>>(entry);
+                            break;
 
-                            case "investigation-descriptions.json":
-                                medicXData.InvestigationDescriptions = ReadFile<List<InvestigationDescription>>(entry);
-                                break;
-                        }
+                        case InvestigationDescriptionsFileName:
+                            Data.InvestigationDescriptions = ReadFile<List<InvestigationDescription>>(entry);
+                            break;
+
+                        default:
+                            Exception warning = new Exception($"Invalid file encountered: {entry.Name}");
+                            Warnings.Add(warning);
+                            break;
                     }
                 }
             }
-
-            Data = medicXData;
         }
 
         private static T ReadFile<T>(ZipArchiveEntry entry)
@@ -93,15 +103,15 @@ namespace DustInTheWind.MedicX.Persistence.Json
 
         public void Save()
         {
-            using (FileStream fileStream = File.Create(fileName))
+            using (FileStream fileStream = File.Create(zipFileName))
             {
                 using (ZipArchive archive = new ZipArchive(fileStream, ZipArchiveMode.Create))
                 {
-                    AddFile(archive, Data.Medics, "medics.json");
-                    AddFile(archive, Data.Clinics, "clinics.json");
-                    AddFile(archive, Data.Consultations, "consultations.json");
-                    AddFile(archive, Data.Investigations, "investigations.json");
-                    AddFile(archive, Data.InvestigationDescriptions, "investigation-descriptions.json");
+                    AddFile(archive, Data.Medics, MedicsFileName);
+                    AddFile(archive, Data.Clinics, ClinicsFileName);
+                    AddFile(archive, Data.Consultations, ConsultationsFileName);
+                    AddFile(archive, Data.Investigations, InvestigationsFileName);
+                    AddFile(archive, Data.InvestigationDescriptions, InvestigationDescriptionsFileName);
                 }
             }
         }

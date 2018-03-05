@@ -32,6 +32,8 @@ namespace DustInTheWind.MedicX.Common.Entities
             set
             {
                 street = value;
+
+                OnStreetChanged();
                 OnChanged();
             }
         }
@@ -42,6 +44,8 @@ namespace DustInTheWind.MedicX.Common.Entities
             set
             {
                 city = value;
+
+                OnCityChanged();
                 OnChanged();
             }
         }
@@ -52,6 +56,8 @@ namespace DustInTheWind.MedicX.Common.Entities
             set
             {
                 county = value;
+
+                OnCountyChanged();
                 OnChanged();
             }
         }
@@ -62,10 +68,16 @@ namespace DustInTheWind.MedicX.Common.Entities
             set
             {
                 country = value;
+
+                OnCountryChanged();
                 OnChanged();
             }
         }
 
+        public event EventHandler StreetChanged;
+        public event EventHandler CityChanged;
+        public event EventHandler CountyChanged;
+        public event EventHandler CountryChanged;
         public event EventHandler Changed;
 
         public override string ToString()
@@ -110,11 +122,6 @@ namespace DustInTheWind.MedicX.Common.Entities
                    (Country != null && Country.IndexOf(text, StringComparison.OrdinalIgnoreCase) >= 0);
         }
 
-        protected virtual void OnChanged()
-        {
-            Changed?.Invoke(this, EventArgs.Empty);
-        }
-
         public bool Equals(Address other)
         {
             if (ReferenceEquals(null, other)) return false;
@@ -145,6 +152,31 @@ namespace DustInTheWind.MedicX.Common.Entities
                 hashCode = (hashCode * 397) ^ (country != null ? country.GetHashCode() : 0);
                 return hashCode;
             }
+        }
+
+        protected virtual void OnStreetChanged()
+        {
+            StreetChanged?.Invoke(this, EventArgs.Empty);
+        }
+
+        protected virtual void OnCityChanged()
+        {
+            CityChanged?.Invoke(this, EventArgs.Empty);
+        }
+
+        protected virtual void OnCountyChanged()
+        {
+            CountyChanged?.Invoke(this, EventArgs.Empty);
+        }
+
+        protected virtual void OnCountryChanged()
+        {
+            CountryChanged?.Invoke(this, EventArgs.Empty);
+        }
+
+        protected virtual void OnChanged()
+        {
+            Changed?.Invoke(this, EventArgs.Empty);
         }
     }
 }

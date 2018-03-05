@@ -32,6 +32,8 @@ namespace DustInTheWind.MedicX.Common.Entities
             set
             {
                 firstName = value;
+
+                OnFirstNameChanged();
                 OnChanged();
             }
         }
@@ -42,6 +44,8 @@ namespace DustInTheWind.MedicX.Common.Entities
             set
             {
                 middleName = value;
+
+                OnMiddleNameChanged();
                 OnChanged();
             }
         }
@@ -52,10 +56,15 @@ namespace DustInTheWind.MedicX.Common.Entities
             set
             {
                 lastName = value;
+
+                OnLastNameChanged();
                 OnChanged();
             }
         }
 
+        public event EventHandler FirstNameChanged;
+        public event EventHandler MiddleNameChanged;
+        public event EventHandler LastNameChanged;
         public event EventHandler Changed;
 
         public override string ToString()
@@ -163,11 +172,6 @@ namespace DustInTheWind.MedicX.Common.Entities
             return string.Compare(LastName, other.LastName, StringComparison.Ordinal);
         }
 
-        protected virtual void OnChanged()
-        {
-            Changed?.Invoke(this, EventArgs.Empty);
-        }
-
         public bool Equals(PersonName other)
         {
             if (ReferenceEquals(null, other)) return false;
@@ -196,6 +200,26 @@ namespace DustInTheWind.MedicX.Common.Entities
                 hashCode = (hashCode * 397) ^ (lastName != null ? lastName.GetHashCode() : 0);
                 return hashCode;
             }
+        }
+
+        protected virtual void OnFirstNameChanged()
+        {
+            FirstNameChanged?.Invoke(this, EventArgs.Empty);
+        }
+
+        protected virtual void OnMiddleNameChanged()
+        {
+            MiddleNameChanged?.Invoke(this, EventArgs.Empty);
+        }
+
+        protected virtual void OnLastNameChanged()
+        {
+            LastNameChanged?.Invoke(this, EventArgs.Empty);
+        }
+
+        protected virtual void OnChanged()
+        {
+            Changed?.Invoke(this, EventArgs.Empty);
         }
     }
 }

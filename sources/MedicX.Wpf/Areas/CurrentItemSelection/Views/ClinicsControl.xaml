@@ -34,33 +34,40 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <DockPanel>
 
         <Grid
-            DockPanel.Dock="Bottom"
-            Margin="0 4 0 0">
+            DockPanel.Dock="Top"
+            Margin="0 0 0 4">
 
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
-            <Button
-                Grid.Column="0"
-                Content="New" Command="{Binding AddClinicCommand}"
-                Margin="0 0 4 0"/>
-
             <TextBox
-                Grid.Column="1"
+                Grid.Column="0"
                 Text="{Binding SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 VerticalContentAlignment="Center"
                 FontSize="20"/>
+            
+            <Button
+                Grid.Column="1"
+                Margin="4 0 0 0"
+                Content="&lt;&lt;"
+                Command="{Binding ClearSearchTextCommand}"/>
 
         </Grid>
+
+        <Button
+            DockPanel.Dock="Bottom"
+            Margin="0 4 0 0"
+            Content="New"
+            Command="{Binding AddClinicCommand}"/>
 
         <ListView
             ItemsSource="{Binding Clinics}"
             SelectedItem="{Binding SelectedClinic}">
 
             <ListView.ItemTemplate>
-                <DataTemplate>
+                <DataTemplate DataType="vewModels:ClinicListItemViewModel">
                     <StackPanel>
                         <TextBlock Text="{Binding Text}" Padding="5 6" />
                     </StackPanel>

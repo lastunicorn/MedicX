@@ -22,6 +22,7 @@ using System.Linq;
 using System.Windows.Data;
 using DustInTheWind.MedicX.Common.Entities;
 using DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.Commands;
+using DustInTheWind.MedicX.Wpf.Commands;
 
 namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.VewModels
 {
@@ -85,8 +86,8 @@ namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.VewModels
         }
 
         public AddConsultationCommand AddConsultationCommand { get; }
-
         public AddInvestigationCommand AddInvestigationCommand { get; }
+        public RelayCommand ClearSearchTextCommand { get; }
 
         public MedicalEventsViewModel(MedicXProject medicXProject)
         {
@@ -94,6 +95,7 @@ namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.VewModels
 
             AddConsultationCommand = new AddConsultationCommand(medicXProject);
             AddInvestigationCommand = new AddInvestigationCommand(medicXProject);
+            ClearSearchTextCommand = new RelayCommand(() => { SearchText = string.Empty; });
 
             medicalEventsSource = new CollectionViewSource
             {
@@ -103,9 +105,11 @@ namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.VewModels
                         switch (x)
                         {
                             case Consultation consultation:
+                                consultation.DateChanged += HandleMedicalEventDateChanged;
                                 return new ConsultationListItemViewModel(consultation);
 
                             case Investigation investigation:
+                                investigation.DateChanged += HandleMedicalEventDateChanged;
                                 return new InvestigationListItemViewModel(investigation);
 
                             default:
@@ -115,6 +119,7 @@ namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.VewModels
                     .ToList())
             };
             MedicalEvents = medicalEventsSource.View;
+            MedicalEvents.SortDescriptions.Add(new SortDescription("Date", ListSortDirection.Descending));
             medicXProject.MedicalEvents.Added += HandleMedicalEventAdded;
 
             medicXProject.CurrentItemChanged += HandleCurrentItemChanged;
@@ -129,14 +134,21 @@ namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.VewModels
                     case Consultation consultation:
                         ConsultationListItemViewModel consultationToBeAdded = new ConsultationListItemViewModel(consultation);
                         medicalEvents.Add(consultationToBeAdded);
+                        consultationToBeAdded.DateChanged += HandleMedicalEventDateChanged;
                         break;
 
                     case Investigation investigation:
-                        InvestigationListItemViewModel invetigationToBeAdded = new InvestigationListItemViewModel(investigation);
-                        medicalEvents.Add(invetigationToBeAdded);
+                        InvestigationListItemViewModel investigationToBeAdded = new InvestigationListItemViewModel(investigation);
+                        medicalEvents.Add(investigationToBeAdded);
+                        investigationToBeAdded.DateChanged += HandleMedicalEventDateChanged;
                         break;
                 }
             }
+        }
+
+        private void HandleMedicalEventDateChanged(object sender, EventArgs e)
+        {
+            MedicalEvents.Refresh();
         }
 
         private void HandleCurrentItemChanged(object sender, EventArgs e)

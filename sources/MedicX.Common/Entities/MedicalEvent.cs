@@ -37,6 +37,7 @@ namespace DustInTheWind.MedicX.Common.Entities
             set
             {
                 date = value;
+                OnDateChanged();
                 OnChanged();
             }
         }
@@ -89,6 +90,7 @@ namespace DustInTheWind.MedicX.Common.Entities
             }
         }
 
+        public event EventHandler DateChanged;
         public event EventHandler MedicChanged;
         public event EventHandler Changed;
 
@@ -114,16 +116,6 @@ namespace DustInTheWind.MedicX.Common.Entities
                    (Medic != null && Medic.Contains(text)) ||
                    (Labels != null && Labels.Any(x => x != null && x.IndexOf(text, StringComparison.OrdinalIgnoreCase) >= 0)) ||
                    (Comments != null && Comments.IndexOf(text, StringComparison.OrdinalIgnoreCase) >= 0);
-        }
-
-        protected virtual void OnMedicChanged()
-        {
-            MedicChanged?.Invoke(this, EventArgs.Empty);
-        }
-
-        protected virtual void OnChanged()
-        {
-            Changed?.Invoke(this, EventArgs.Empty);
         }
 
         public bool Equals(MedicalEvent other)
@@ -158,6 +150,21 @@ namespace DustInTheWind.MedicX.Common.Entities
                 hashCode = (hashCode * 397) ^ Id.GetHashCode();
                 return hashCode;
             }
+        }
+
+        protected virtual void OnDateChanged()
+        {
+            DateChanged?.Invoke(this, EventArgs.Empty);
+        }
+
+        protected virtual void OnMedicChanged()
+        {
+            MedicChanged?.Invoke(this, EventArgs.Empty);
+        }
+
+        protected virtual void OnChanged()
+        {
+            Changed?.Invoke(this, EventArgs.Empty);
         }
     }
 }

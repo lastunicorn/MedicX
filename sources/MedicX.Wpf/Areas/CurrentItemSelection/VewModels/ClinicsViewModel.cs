@@ -22,6 +22,7 @@ using System.Linq;
 using System.Windows.Data;
 using DustInTheWind.MedicX.Common.Entities;
 using DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.Commands;
+using DustInTheWind.MedicX.Wpf.Commands;
 
 namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.VewModels
 {
@@ -72,12 +73,14 @@ namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.VewModels
         }
 
         public AddClinicCommand AddClinicCommand { get; }
+        public RelayCommand ClearSearchTextCommand { get; }
 
         public ClinicsViewModel(MedicXProject medicXProject)
         {
             this.medicXProject = medicXProject ?? throw new ArgumentNullException(nameof(medicXProject));
 
             AddClinicCommand = new AddClinicCommand(medicXProject);
+            ClearSearchTextCommand = new RelayCommand(() => { SearchText = string.Empty; });
 
             clinicsSource = new CollectionViewSource
             {

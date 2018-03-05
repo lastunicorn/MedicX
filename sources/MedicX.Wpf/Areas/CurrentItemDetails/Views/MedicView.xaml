@@ -140,7 +140,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                     <Style TargetType="TextBox">
                         <Style.Triggers>
                             <DataTrigger Binding="{Binding IsCommentsChanged}" Value="True">
-                                <Setter Property="Background" Value="Red"></Setter>
+                                <Setter Property="Background" Value="LightGreen"/>
                             </DataTrigger>
                         </Style.Triggers>
                     </Style>

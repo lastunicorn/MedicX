@@ -24,7 +24,7 @@ namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemDetails.ViewModels
     internal class ConsultationViewModel : ViewModelBase
     {
         public Consultation Consultation { get; }
-
+        
         public List<Medic> Medics { get; }
 
         public List<Clinic> Clinics { get; }
@@ -36,7 +36,7 @@ namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemDetails.ViewModels
             if (clinics == null) throw new ArgumentNullException(nameof(clinics));
 
             Consultation = consultation;
-
+            
             Medics = medics
                 .OrderBy(x => x.Name)
                 .ToList();

@@ -26,27 +26,27 @@ namespace DustInTheWind.MedicX.Persistence.Json
     /// </summary>
     internal class JsonFile
     {
-        private readonly string fileName;
+        private readonly string jsonFileName;
 
         public MedicXData Data { get; private set; }
 
-        public JsonFile(string fileName)
+        public JsonFile(string jsonFileName)
         {
-            this.fileName = fileName ?? throw new ArgumentNullException(nameof(fileName));
+            this.jsonFileName = jsonFileName ?? throw new ArgumentNullException(nameof(jsonFileName));
         }
 
         public void Open()
         {
-            if (!File.Exists(fileName))
+            if (!File.Exists(jsonFileName))
                 Data = new MedicXData();
 
-            string json = File.ReadAllText(fileName);
+            string json = File.ReadAllText(jsonFileName);
             Data = JsonConvert.DeserializeObject(json, typeof(MedicXData)) as MedicXData;
         }
 
         public void Save()
         {
-            using (StreamWriter streamWriter = new StreamWriter("medicx.json"))
+            using (StreamWriter streamWriter = new StreamWriter(jsonFileName))
             using (JsonTextWriter jsonTextWriter = new JsonTextWriter(streamWriter))
             {
                 jsonTextWriter.Formatting = Formatting.Indented;
