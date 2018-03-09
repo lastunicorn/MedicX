@@ -65,11 +65,27 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <ListView
             ItemsSource="{Binding Clinics}"
             SelectedItem="{Binding SelectedClinic}">
+            
+            <ListView.Resources>
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="{StaticResource HighlightBrushKeyColor}"/>
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="{StaticResource HighlightTextBrushKeyColor}"/>
+                <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="{StaticResource InactiveSelectionHighlightBrushKeyColor}"/>
+                <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightTextBrushKey}" Color="{StaticResource InactiveSelectionHighlightTextBrushKeyColor}"/>
+
+                <Style TargetType="{x:Type ListViewItem}">
+                    <Setter Property="BorderBrush" Value="White"/>
+                    <Setter Property="BorderThickness" Value="0 0 0 1"/>
+                    <Setter Property="Background" Value="{StaticResource InvestigationBackground}" />
+                </Style>
+            </ListView.Resources>
 
             <ListView.ItemTemplate>
                 <DataTemplate DataType="vewModels:ClinicListItemViewModel">
-                    <StackPanel>
-                        <TextBlock Text="{Binding Text}" Padding="5 6" />
+                    <StackPanel Margin="5 6">
+                        <TextBlock
+                            Text="{Binding Text, Mode=OneWay}"
+                            FontWeight="Bold"/>
+                        <TextBlock Text="{Binding Value.Address, Mode=OneWay}"/>
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
