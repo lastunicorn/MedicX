@@ -15,29 +15,17 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System.Windows;
-using DustInTheWind.MedicX.Wpf.Areas.Calendar.ViewModels;
-using DustInTheWind.MedicX.Wpf.Areas.Calendar.Views;
-using DustInTheWind.MedicX.Wpf.Areas.Main.ViewModels;
 
-namespace DustInTheWind.MedicX.Wpf.Areas.Main.Views
+namespace DustInTheWind.MedicX.Wpf.Areas.Calendar.Views
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for CalendarWindow.xaml
     /// </summary>
-    internal partial class MainWindow : Window
+    internal partial class CalendarWindow : Window
     {
-        public MainWindow()
+        public CalendarWindow()
         {
             InitializeComponent();
-
-            MedicXProject medicXProject = new MedicXProject();
-            DataContext = new MainViewModel(medicXProject);
-
-            CalendarWindow calendarWindow = new CalendarWindow
-            {
-                DataContext = new CalendarViewModel(medicXProject)
-            };
-            calendarWindow.Show();
         }
     }
 }

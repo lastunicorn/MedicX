@@ -55,6 +55,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Areas\Calendar\ViewModels\CalendarViewModel.cs" />
+    <Compile Include="Areas\Calendar\ViewModels\RedLetterDayConverter.cs" />
+    <Compile Include="Areas\Calendar\Views\CalendarWindow.xaml.cs">
+      <DependentUpon>CalendarWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Areas\CurrentItemDetails\ViewModels\MedicViewModel.cs" />
     <Compile Include="ClinicAddedEventArgs.cs" />
     <Compile Include="MedicAddedEventArgs.cs" />
@@ -129,6 +134,10 @@
     <Compile Include="Views\StringListBox.xaml.cs">
       <DependentUpon>StringListBox.xaml</DependentUpon>
     </Compile>
+    <Page Include="Areas\Calendar\Views\CalendarWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Areas\CurrentItemDetails\Views\AddressView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -289,5 +298,6 @@
     <Resource Include="Resources\checkbox\unchecked-disabled-checkbox-16.png" />
     <Resource Include="Resources\checkbox\unchecked-hover-checkbox-16.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

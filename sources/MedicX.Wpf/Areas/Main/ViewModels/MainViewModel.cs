@@ -44,16 +44,16 @@ namespace DustInTheWind.MedicX.Wpf.Areas.Main.ViewModels
 
         public SaveCommand SaveCommand { get; }
 
-        public MainViewModel()
+        public MainViewModel(MedicXProject medicXProject)
         {
-            medicXProject = new MedicXProject();
+            this.medicXProject = medicXProject ?? throw new ArgumentNullException(nameof(medicXProject));
 
-            SelectionViewModel = new SelectionViewModel(medicXProject);
-            DetailsViewModel = new DetailsViewModel(medicXProject);
+            SelectionViewModel = new SelectionViewModel(this.medicXProject);
+            DetailsViewModel = new DetailsViewModel(this.medicXProject);
 
-            SaveCommand = new SaveCommand(medicXProject);
+            SaveCommand = new SaveCommand(this.medicXProject);
 
-            medicXProject.StatusChanged += HandleProjectStatusChanged;
+            this.medicXProject.StatusChanged += HandleProjectStatusChanged;
             UpdateWindowTitle();
         }
 
