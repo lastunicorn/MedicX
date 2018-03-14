@@ -109,6 +109,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <SolidColorBrush x:Key="ListBoxOverBackground" Color="{StaticResource ListBoxOverBackgroundColor}"/>
     <Color x:Key="ListBoxSelectedBackgroundColor">#ffbc83</Color>
     <SolidColorBrush x:Key="ListBoxSelectedBackground" Color="{StaticResource ListBoxSelectedBackgroundColor}"/>
+    
+    <!-- ListView -->
+
+    <Color x:Key="HighlightBrushKeyColor">Magenta</Color>
+    <Color x:Key="HighlightTextBrushKeyColor">White</Color>
+    <Color x:Key="InactiveSelectionHighlightBrushKeyColor">DarkMagenta</Color>
+    <Color x:Key="InactiveSelectionHighlightTextBrushKeyColor">White</Color>
+
+    <SolidColorBrush x:Key="HighlightBrushKey" Color="Magenta"/>
+    <SolidColorBrush x:Key="HighlightTextBrushKey" Color="White"/>
+    <SolidColorBrush x:Key="InactiveSelectionHighlightBrushKey" Color="DarkMagenta"/>
+    <SolidColorBrush x:Key="InactiveSelectionHighlightTextBrushKey" Color="White"/>
 
     <!-- TabControl -->
 
@@ -120,14 +132,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
     <SolidColorBrush x:Key="TabsOverBackground" Color="#009700"/>
 
-    <!-- Consultation -->
-
-    <SolidColorBrush x:Key="DetailsTitleBackground" Color="#007100"/>
-    <SolidColorBrush x:Key="DetailsTitleForeground" Color="#ffffff"/>
-
-    <!-- Consultation -->
+    <!-- ScrollBar -->
 
     <SolidColorBrush x:Key="ScrollBarBackground" Color="#7FBFBFBF"/>
     <SolidColorBrush x:Key="ScrollBarForeground" Color="#007100"/>
+
+    <!-- Consultation -->
+
+    <SolidColorBrush x:Key="ConsultationBackground" Color="DarkSeaGreen"/>
+    <SolidColorBrush x:Key="DetailsTitleBackground" Color="#007100"/>
+    <SolidColorBrush x:Key="DetailsTitleForeground" Color="#ffffff"/>
+    
+    <!-- Investigation -->
+
+    <SolidColorBrush x:Key="InvestigationBackground" Color="LightGreen"/>
 
 </ResourceDictionary>
