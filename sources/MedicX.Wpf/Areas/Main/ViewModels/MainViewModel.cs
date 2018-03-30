@@ -74,11 +74,22 @@ namespace DustInTheWind.MedicX.Wpf.Areas.Main.ViewModels
         private static string BuildName()
         {
             Assembly assembly = Assembly.GetExecutingAssembly();
-            AssemblyName assemblyName = assembly.GetName();
 
-            string version = assemblyName.Version.Build == 0
-                ? assemblyName.Version.ToString(2)
-                : assemblyName.Version.ToString(3);
+            AssemblyInformationalVersionAttribute attribute = assembly.GetCustomAttribute(typeof(AssemblyInformationalVersionAttribute)) as AssemblyInformationalVersionAttribute;
+
+            string version;
+            if (attribute == null)
+            {
+                AssemblyName assemblyName = assembly.GetName();
+
+                version = assemblyName.Version.Build == 0
+                    ? assemblyName.Version.ToString(2)
+                    : assemblyName.Version.ToString(3);
+            }
+            else
+            {
+                version = attribute.InformationalVersion;
+            }
 
             FileVersionInfo fileVersionInfo = FileVersionInfo.GetVersionInfo(assembly.Location);
 
