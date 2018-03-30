@@ -1,0 +1,10 @@
+MedicX
+======
+
+ver 0.0.1-alpha
+---------------
+- first release
+- create and update medics
+- create and update clinics
+- create and update consultations
+- create and update investigations
