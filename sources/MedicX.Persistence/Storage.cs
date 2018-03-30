@@ -43,10 +43,10 @@ namespace DustInTheWind.MedicX.Persistence
         {
             jsonZipFile.Open();
 
-            Medics = jsonZipFile.Data.Medics.Translate();
-            Clinics = jsonZipFile.Data.Clinics.Translate();
-            Consultations = jsonZipFile.Data.Consultations.Translate(Medics, Clinics);
-            Investigations = jsonZipFile.Data.Investigations.Translate(Medics, Clinics);
+            Medics = jsonZipFile.Data.Medics.Translate() ?? new List<Medic>();
+            Clinics = jsonZipFile.Data.Clinics.Translate() ?? new List<Clinic>();
+            Consultations = jsonZipFile.Data.Consultations.Translate(Medics, Clinics) ?? new List<Consultation>();
+            Investigations = jsonZipFile.Data.Investigations.Translate(Medics, Clinics) ?? new List<Investigation>();
         }
 
         public void Save()
