@@ -22,6 +22,9 @@ namespace DustInTheWind.MedicX.Wpf.Areas.Calendar.ViewModels
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
+            if (value is string s && s == string.Empty)
+                return string.Empty;
+
             string text;
 
             if (!dict.TryGetValue((DateTime)value, out text))

@@ -33,11 +33,11 @@ namespace DustInTheWind.MedicX.Wpf.Areas.Main.Views
             MedicXProject medicXProject = new MedicXProject();
             DataContext = new MainViewModel(medicXProject);
 
-            CalendarWindow calendarWindow = new CalendarWindow
-            {
-                DataContext = new CalendarViewModel(medicXProject)
-            };
-            calendarWindow.Show();
+            //CalendarWindow calendarWindow = new CalendarWindow
+            //{
+            //    DataContext = new CalendarViewModel(medicXProject)
+            //};
+            //calendarWindow.Show();
         }
     }
 }

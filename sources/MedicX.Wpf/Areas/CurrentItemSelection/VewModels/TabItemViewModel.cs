@@ -40,5 +40,10 @@ namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.VewModels
                 OnPropertyChanged();
             }
         }
+
+        public override string ToString()
+        {
+            return Header;
+        }
     }
 }

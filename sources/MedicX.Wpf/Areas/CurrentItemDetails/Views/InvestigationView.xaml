@@ -60,6 +60,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                     Margin="8 0"/>
 
                 <TextBlock Text="{Binding Investigation.SentBy.Name, StringFormat=Sent by {0}, Mode=OneWay}" />
+
+                <TextBlock
+                    Text="-"
+                    Margin="8 0"/>
+
+                <TextBlock Text="(investigation)"/>
             </StackPanel>
         </Grid>
 

@@ -37,11 +37,26 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         SelectedItem="{Binding SelectedTab}"
         Background="Transparent">
 
-        <TabControl.ItemTemplate>
+        <!--<TabControl.ItemTemplate>
             <DataTemplate DataType="{x:Type vewModels:TabItemViewModel}">
-                <TextBlock Text="{Binding Header}" />
+                <TextBlock Text="{Binding Header}">
+
+                    <TextBlock.Style>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsSelected, RelativeSource={RelativeSource AncestorType=TabItem}}" Value="True">
+                                    <Setter Property="Foreground" Value="{StaticResource TabsSelectedForeground}" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding IsSelected, RelativeSource={RelativeSource AncestorType=TabItem}}" Value="False">
+                                    <Setter Property="Foreground" Value="{StaticResource TabsNormalForeground}" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+
+                </TextBlock>
             </DataTemplate>
-        </TabControl.ItemTemplate>
+        </TabControl.ItemTemplate>-->
 
         <TabControl.ContentTemplate>
             <DataTemplate DataType="{x:Type vewModels:TabItemViewModel}">

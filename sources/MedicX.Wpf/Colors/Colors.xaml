@@ -112,9 +112,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     
     <!-- ListView -->
 
-    <Color x:Key="HighlightBrushKeyColor">Magenta</Color>
+    <Color x:Key="HighlightBrushKeyColor">#007100</Color>
     <Color x:Key="HighlightTextBrushKeyColor">White</Color>
-    <Color x:Key="InactiveSelectionHighlightBrushKeyColor">DarkMagenta</Color>
+    <Color x:Key="InactiveSelectionHighlightBrushKeyColor">#007100</Color>
     <Color x:Key="InactiveSelectionHighlightTextBrushKeyColor">White</Color>
 
     <SolidColorBrush x:Key="HighlightBrushKey" Color="Magenta"/>
@@ -124,11 +124,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
     <!-- TabControl -->
 
-    <SolidColorBrush x:Key="TabsSelectedBackground" Color="#007100"/>
+    <!--<SolidColorBrush x:Key="TabsSelectedBackground" Color="#007100"/>-->
+    <SolidColorBrush x:Key="TabsSelectedBackground" Color="#00bc00"/>
     <SolidColorBrush x:Key="TabsSelectedForeground" Color="#ffffff"/>
 
-    <SolidColorBrush x:Key="TabsNormalBackground" Color="#00bc00"/>
-    <SolidColorBrush x:Key="TabsNormalForeground" Color="#ffffff"/>
+    <SolidColorBrush x:Key="TabsNormalBackground" Color="LightGreen"/>
+    <SolidColorBrush x:Key="TabsNormalForeground" Color="#000000"/>
 
     <SolidColorBrush x:Key="TabsOverBackground" Color="#009700"/>
 

@@ -70,34 +70,20 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             <Setter.Value>
                 <DataTemplate>
 
-                    <StackPanel Orientation="Horizontal">
-
-                        <TextBlock Text="{TemplateBinding Content}">
-
-                            <TextBlock.Style>
-                                <Style TargetType="{x:Type TextBlock}">
-                                    <Style.Triggers>
-                                        <DataTrigger Binding="{Binding IsSelected, RelativeSource={RelativeSource AncestorType=TabItem}}" Value="True">
-                                            <Setter Property="Foreground" Value="{StaticResource TabsSelectedForeground}" />
-                                        </DataTrigger>
-                                        <DataTrigger Binding="{Binding IsSelected, RelativeSource={RelativeSource AncestorType=TabItem}}" Value="False">
-                                            <Setter Property="Foreground" Value="{StaticResource TabsNormalForeground}" />
-                                        </DataTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </TextBlock.Style>
-
-                        </TextBlock>
-
-                        <!--<Button
-                            Margin="5 0"
-                            Padding="0"
-                            VerticalAlignment="Center"
-                            Content="X"
-                            FontSize="12"
-                            Background="Transparent"/>-->
-
-                    </StackPanel>
+                    <ContentControl Content="{TemplateBinding Content}" FontSize="18">
+                        <ContentControl.Style>
+                            <Style TargetType="{x:Type ContentControl}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsSelected, RelativeSource={RelativeSource AncestorType=TabItem}}" Value="True">
+                                        <Setter Property="Foreground" Value="{StaticResource TabsSelectedForeground}" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding IsSelected, RelativeSource={RelativeSource AncestorType=TabItem}}" Value="False">
+                                        <Setter Property="Foreground" Value="{StaticResource TabsNormalForeground}" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ContentControl.Style>
+                    </ContentControl>
 
                 </DataTemplate>
             </Setter.Value>
