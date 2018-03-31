@@ -1,6 +1,10 @@
 MedicX
 ======
 
+ver 0.1.0-alpha
+---------------
+- updated the design (colors, font size)
+
 ver 0.0.1-alpha
 ---------------
 - first release
