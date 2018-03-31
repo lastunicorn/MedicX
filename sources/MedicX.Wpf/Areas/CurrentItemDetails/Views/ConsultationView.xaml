@@ -39,13 +39,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <currentItemDetails:StringListToCsvConverter x:Key="StringListToCsvConverter"/>
     </UserControl.Resources>
 
-    <StackPanel Margin="8">
-        <Grid Background="{StaticResource DetailsTitleBackground}">
+    <DockPanel>
+
+        <Border
+            DockPanel.Dock="Top"
+            Background="{StaticResource DetailsTitleBackground}"
+            Height="60">
 
             <StackPanel
                 FlowDirection="LeftToRight"
                 Orientation="Horizontal"
-                Margin="5 6">
+                Margin="5 6"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center">
 
                 <StackPanel.Resources>
                     <Style TargetType="TextBlock">
@@ -55,197 +61,187 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 </StackPanel.Resources>
 
                 <TextBlock Text="{Binding Consultation.Date, StringFormat={}{0:yyyy MM dd}, Mode=OneWay}" />
+                <TextBlock Text="{Binding Consultation.Medic.Name, StringFormat={} - {0}, Mode=OneWay}" />
+                <TextBlock Text=" - (consultation)"/>
 
-                <TextBlock
-                    Text="-"
-                    Margin="8 0"/>
-
-                <TextBlock Text="{Binding Consultation.Medic.Name, Mode=OneWay}" />
-
-                <TextBlock
-                    Text="-"
-                    Margin="8 0"/>
-                
-                <TextBlock Text="(consultation)"/>
             </StackPanel>
-        </Grid>
 
-        <Grid>
+        </Border>
 
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
+        <ScrollViewer
+            Margin="8"
+            HorizontalScrollBarVisibility="Auto"
+            VerticalScrollBarVisibility="Auto">
 
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition Height="*"/>
-                <RowDefinition/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
+            <ScrollViewer.Resources>
+                <Style TargetType="TextBlock">
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="FontSize" Value="12"/>
+                </Style>
+                <Style TargetType="TextBox">
+                    <Setter Property="FontSize" Value="18"/>
+                </Style>
+                <Style TargetType="ComboBox">
+                    <Setter Property="FontSize" Value="18"/>
+                </Style>
+            </ScrollViewer.Resources>
 
-            <!-- Medic -->
+            <ItemsControl>
 
-            <TextBlock
-                Grid.Row="0"
-                Grid.Column="0"
-                Text="Medic:"
-                Margin="0 4 10 4"
-                FontWeight="Bold"
-                VerticalAlignment="Center"/>
+                <DockPanel>
 
-            <ComboBox
-                Grid.Row="0"
-                Grid.Column="1"
-                Margin="0 4 0 4"
-                Padding="8 0 8 0"
-                ItemsSource="{Binding Medics}"
-                SelectedItem="{Binding Consultation.Medic, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                VerticalContentAlignment="Center">
+                    <!-- Date -->
 
-                <ComboBox.Resources>
-                    <DataTemplate DataType="{x:Type entities:Medic}">
-                        <StackPanel
-                            Orientation="Horizontal"
-                            Margin="0 8 0 8">
+                    <StackPanel
+                        DockPanel.Dock="Right"
+                        Margin="8 8 0 8">
+
+                        <TextBlock
+                            Text="Date"
+                            Margin="2 0 0 0"/>
+
+                        <Calendar
+                            Margin="0"
+                            Padding="0"
+                            BorderThickness="0"
+                            SelectedDate="{Binding Consultation.Date, Mode=TwoWay}"
+                            DisplayDate="{Binding Consultation.Date, Mode=OneWay}"/>
+
+                    </StackPanel>
+
+                    <ItemsControl>
+
+                        <!-- Medic -->
+
+                        <StackPanel Margin="0 8">
 
                             <TextBlock
-                                FontWeight="Bold"
-                                Text="{Binding Name, Mode=OneWay}"/>
-                            
-                            <TextBlock
-                                Margin="5 0 0 0"
-                                Text="{Binding Specializations, Converter={StaticResource StringListToCsvConverter}, StringFormat= ({0}), Mode=OneWay}"/>
+                                Text="Medic"
+                                Margin="2 0 0 0"/>
+
+                            <ComboBox
+                                ItemsSource="{Binding Medics}"
+                                SelectedItem="{Binding Consultation.Medic, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                VerticalContentAlignment="Center">
+
+                                <ComboBox.Resources>
+                                    <DataTemplate DataType="{x:Type entities:Medic}">
+                                        <StackPanel
+                                            Orientation="Horizontal"
+                                            Margin="8 4 8 4">
+
+                                            <TextBlock
+                                                Text="{Binding Name, Mode=OneWay}"
+                                                VerticalAlignment="Center"/>
+
+                                            <TextBlock
+                                                Margin="5 0 0 0"
+                                                FontSize="12"
+                                                Text="{Binding Specializations, Converter={StaticResource StringListToCsvConverter}, StringFormat= ({0}), Mode=OneWay}"
+                                                VerticalAlignment="Center"/>
+
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ComboBox.Resources>
+
+                            </ComboBox>
 
                         </StackPanel>
-                    </DataTemplate>
-                </ComboBox.Resources>
 
-            </ComboBox>
+                        <!-- Clinic -->
 
-            <!-- Date -->
+                        <StackPanel Margin="0 8">
 
-            <Calendar
-                Grid.Row="0"
-                Grid.Column="2"
-                Grid.RowSpan="3"
-                Margin="8 0 0 8"
-                SelectedDate="{Binding Consultation.Date, Mode=TwoWay}"
-                DisplayDate="{Binding Consultation.Date, Mode=OneWay}"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center"/>
+                            <TextBlock
+                                Text="Clinic"
+                                Margin="2 0 0 0"/>
 
-            <!-- Clinic -->
+                            <ComboBox
+                                ItemsSource="{Binding Clinics}"
+                                SelectedItem="{Binding Consultation.Clinic, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                VerticalContentAlignment="Center">
 
-            <TextBlock
-                Grid.Row="1"
-                Grid.Column="0"
-                Text="Clinic:"
-                Margin="0 4 10 4"
-                FontWeight="Bold"
-                VerticalAlignment="Center"/>
+                                <ComboBox.Resources>
+                                    <DataTemplate DataType="{x:Type entities:Clinic}">
+                                        <StackPanel
+                                            Orientation="Horizontal"
+                                            Margin="8 4 8 4">
 
-            <ComboBox
-                Grid.Row="1"
-                Grid.Column="1"
-                Margin="0 4"
-                Padding="8 0 8 0"
-                ItemsSource="{Binding Clinics}"
-                SelectedItem="{Binding Consultation.Clinic, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                VerticalContentAlignment="Center">
+                                            <TextBlock
+                                                Text="{Binding Name, Mode=OneWay}"
+                                                VerticalAlignment="Center"/>
 
-                <ComboBox.Resources>
-                    <DataTemplate DataType="{x:Type entities:Clinic}">
-                        <TextBlock
-                            FontWeight="Bold"
-                            Margin="0 8 0 8"
-                            Text="{Binding Name, Mode=OneWay}"/>
-                    </DataTemplate>
-                </ComboBox.Resources>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ComboBox.Resources>
 
-            </ComboBox>
+                            </ComboBox>
 
-            <!-- Labels -->
+                        </StackPanel>
 
-            <StackPanel
-                Grid.Row="2"
-                Grid.Column="0"
-                Margin="0 4 10 4"
-                Orientation="Vertical">
+                        <!-- Labels -->
 
-                <TextBlock
-                    Text="Labels:"
-                    FontWeight="Bold"/>
+                        <StackPanel Margin="0 8">
 
-                <TextBlock
-                    Text="(list)"
-                    FontWeight="Bold"/>
+                            <TextBlock
+                                Text="Labels (list)"
+                                Margin="2 0 0 0"/>
 
-            </StackPanel>
+                            <TextBox
+                                Text="{Binding Consultation.Labels, Converter={StaticResource StringListToMultilineStringConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                Height="85"
+                                AcceptsReturn="True"
+                                Padding="4"
+                                VerticalScrollBarVisibility="Auto"
+                                HorizontalScrollBarVisibility="Auto"/>
 
-            <TextBox
-                Grid.Row="2"
-                Grid.Column="1"
-                Height="100"
-                AcceptsReturn="True"
-                VerticalScrollBarVisibility="Auto"
-                HorizontalScrollBarVisibility="Auto"
-                Text="{Binding Consultation.Labels, Converter={StaticResource StringListToMultilineStringConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>
 
-            <!-- Comments -->
+                    </ItemsControl>
 
-            <TextBlock
-                Grid.Row="3"
-                Grid.Column="0"
-                Text="Comments:"
-                Margin="0 4 10 4"
-                FontWeight="Bold"/>
+                </DockPanel>
 
-            <TextBox
-                Grid.Row="3"
-                Grid.Column="1"
-                Grid.ColumnSpan="2"
-                Text="{Binding Consultation.Comments, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                Margin="0 4"
-                Height="200"
-                AcceptsReturn="True"
-                VerticalScrollBarVisibility="Auto"
-                HorizontalScrollBarVisibility="Auto"/>
+                <!-- Comments -->
 
-            <!-- Prescriptions -->
+                <StackPanel Margin="0 8">
 
-            <StackPanel
-                Grid.Row="4"
-                Grid.Column="0"
-                Margin="0 4 10 4"
-                Orientation="Vertical">
+                    <TextBlock
+                        Text="Comments"
+                        Margin="2 0 0 0"/>
 
-                <TextBlock
-                    Text="Prescriptions:"
-                    FontWeight="Bold"/>
+                    <TextBox
+                        Text="{Binding Consultation.Comments, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        Height="200"
+                        AcceptsReturn="True"
+                        Padding="4"
+                        VerticalScrollBarVisibility="Auto"
+                        HorizontalScrollBarVisibility="Auto"/>
 
-                <TextBlock
-                    Text="(list)"
-                    FontWeight="Bold"/>
+                </StackPanel>
 
-            </StackPanel>
+                <!-- Prescriptions -->
 
-            <TextBox
-                Grid.Row="4"
-                Grid.Column="1"
-                Grid.ColumnSpan="2"
-                Text="{Binding Consultation.Prescriptions, Converter={StaticResource PrescriptionListToMultilineStringConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                Margin="0 4"
-                Height="100"
-                AcceptsReturn="True"
-                VerticalScrollBarVisibility="Auto"
-                HorizontalScrollBarVisibility="Auto"/>
+                <StackPanel Margin="0 8">
 
-        </Grid>
+                    <TextBlock
+                        Text="Prescriptions (list)"
+                        Margin="2 0 0 0"/>
 
-    </StackPanel>
+                    <TextBox
+                        Text="{Binding Consultation.Prescriptions, Converter={StaticResource PrescriptionListToMultilineStringConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        Height="150"
+                        AcceptsReturn="True"
+                        Padding="4"
+                        VerticalScrollBarVisibility="Auto"
+                        HorizontalScrollBarVisibility="Auto"/>
+
+                </StackPanel>
+
+            </ItemsControl>
+
+        </ScrollViewer>
+
+    </DockPanel>
 
 </UserControl>
 

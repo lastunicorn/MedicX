@@ -46,34 +46,29 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             FontSize="25"
             Visibility="{Binding IsNoItemPanelVisible, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
-        <ScrollViewer
-            VerticalScrollBarVisibility="Auto"
-            HorizontalScrollBarVisibility="Auto">
+        <ContentControl Content="{Binding Item}">
 
-            <ContentControl Content="{Binding Item}">
+            <ContentControl.Resources>
 
-                <ContentControl.Resources>
+                <DataTemplate DataType="{x:Type viewModels:MedicViewModel}">
+                    <views:MedicView />
+                </DataTemplate>
 
-                    <DataTemplate DataType="{x:Type viewModels:MedicViewModel}">
-                        <views:MedicView />
-                    </DataTemplate>
+                <DataTemplate DataType="{x:Type entities:Clinic}">
+                    <views:ClinicView />
+                </DataTemplate>
 
-                    <DataTemplate DataType="{x:Type entities:Clinic}">
-                        <views:ClinicView />
-                    </DataTemplate>
+                <DataTemplate DataType="{x:Type viewModels:ConsultationViewModel}">
+                    <views:ConsultationView />
+                </DataTemplate>
 
-                    <DataTemplate DataType="{x:Type viewModels:ConsultationViewModel}">
-                        <views:ConsultationView />
-                    </DataTemplate>
+                <DataTemplate DataType="{x:Type viewModels:InvestigationViewModel}">
+                    <views:InvestigationView />
+                </DataTemplate>
 
-                    <DataTemplate DataType="{x:Type viewModels:InvestigationViewModel}">
-                        <views:InvestigationView />
-                    </DataTemplate>
+            </ContentControl.Resources>
 
-                </ContentControl.Resources>
-
-            </ContentControl>
-        </ScrollViewer>
+        </ContentControl>
 
     </Grid>
 

@@ -35,8 +35,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         Orientation="Vertical">
 
         <TextBlock
-            Text="Street:"
-            Margin="0 4 0 0"/>
+            Text="Street"
+            FontSize="12"/>
 
         <TextBox
             Text="{Binding Street, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
@@ -58,31 +58,37 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             <TextBlock
                 Grid.Row="0"
                 Grid.Column="0"
+                FontSize="12"
                 Text="City"/>
 
             <TextBlock
                 Grid.Row="0"
                 Grid.Column="1"
+                FontSize="12"
                 Text="County"/>
 
             <TextBlock
                 Grid.Row="0"
                 Grid.Column="2"
+                FontSize="12"
                 Text="Country"/>
 
             <TextBox
                 Grid.Row="1"
                 Grid.Column="0"
+                Margin="0 0 4 0"
                 Text="{Binding City, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
             <TextBox
                 Grid.Row="1"
                 Grid.Column="1"
+                Margin="4 0 4 0"
                 Text="{Binding County, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
             <TextBox
                 Grid.Row="1"
                 Grid.Column="2"
+                Margin="4 0 0 0"
                 Text="{Binding Country, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
         </Grid>

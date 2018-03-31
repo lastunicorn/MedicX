@@ -37,107 +37,109 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <currentItemDetails:StringListToMultilineStringConverter x:Key="StringListToMultilineStringConverter"/>
     </UserControl.Resources>
 
-    <StackPanel Margin="8">
+    <DockPanel>
 
-        <TextBlock
-            Text="{Binding Name}"
-            Padding="5 6"
+        <Border
+            DockPanel.Dock="Top"
             Background="{StaticResource DetailsTitleBackground}"
-            Foreground="{StaticResource DetailsTitleForeground}"
-            FontSize="20"/>
-
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
+            Height="60">
 
             <TextBlock
-                Grid.Column="0"
-                Grid.Row="0"
-                Text="Name:"
-                Margin="0 4 10 4"
-                FontWeight="Bold"/>
+                Text="{Binding Name}"
+                FontSize="20"
+                Foreground="{StaticResource DetailsTitleForeground}"
+                TextAlignment="Center"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center"/>
 
-            <TextBox
-                Grid.Column="1"
-                Grid.Row="0"
-                Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                Margin="0 4"/>
+        </Border>
 
-            <TextBlock
-                Grid.Column="0"
-                Grid.Row="1"
-                Text="Address:"
-                Margin="0 4 10 4"
-                FontWeight="Bold"/>
+        <ScrollViewer
+            Margin="8"
+            HorizontalScrollBarVisibility="Auto"
+            VerticalScrollBarVisibility="Auto">
 
-            <views:AddressView
-                Grid.Column="1"
-                Grid.Row="1"
-                DataContext="{Binding Address}"
-                Margin="0 4"/>
+            <ScrollViewer.Resources>
+                <Style TargetType="TextBlock">
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="FontSize" Value="12"/>
+                </Style>
+                <Style TargetType="TextBox">
+                    <Setter Property="FontSize" Value="18"/>
+                </Style>
+            </ScrollViewer.Resources>
 
-            <StackPanel
-                Grid.Column="0"
-                Grid.Row="2"
-                Margin="0 4 10 4"
-                Orientation="Vertical">
+            <ItemsControl>
 
-                <TextBlock
-                    Text="Phones:"
-                    FontWeight="Bold"/>
+                <StackPanel Margin="0 8">
 
-                <TextBlock
-                    Text="(list)"
-                    FontWeight="Bold"/>
+                    <TextBlock
+                        Text="Name"
+                        Margin="2 0 0 0"/>
 
-            </StackPanel>
+                    <TextBox
+                        Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        Padding="4"/>
 
-            <TextBox
-                Grid.Column="1"
-                Grid.Row="2"
-                Height="100"
-                AcceptsReturn="True"
-                Text="{Binding Phones, Converter={StaticResource StringListToMultilineStringConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                </StackPanel>
 
-            <TextBlock
-                Grid.Column="0"
-                Grid.Row="3"
-                Text="Program:"
-                Margin="0 4 10 4"
-                FontWeight="Bold"/>
+                <StackPanel Margin="0 8">
 
-            <TextBox
-                Grid.Column="1"
-                Grid.Row="3"
-                Text="{Binding Program, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                Margin="0 4"/>
+                    <views:AddressView
+                        DataContext="{Binding Address}"
+                        Margin="0 4"
+                        Padding="4"/>
 
-            <TextBlock
-                Grid.Column="0"
-                Grid.Row="4"
-                Text="Comments:"
-                Margin="0 4 10 4"
-                FontWeight="Bold"/>
+                </StackPanel>
 
-            <TextBox
-                Grid.Column="1"
-                Grid.Row="4"
-                Text="{Binding Comments, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                Margin="0 4"
-                Height="100"
-                AcceptsReturn="True"/>
-        </Grid>
+                <StackPanel Margin="0 8">
 
-    </StackPanel>
+                    <TextBlock
+                        Text="Phones (list)"
+                        Margin="2 0 0 0"/>
+
+                    <TextBox
+                        Height="100"
+                        AcceptsReturn="True"
+                        Text="{Binding Phones, Converter={StaticResource StringListToMultilineStringConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        Padding="4"
+                        VerticalScrollBarVisibility="Auto"
+                        HorizontalScrollBarVisibility="Auto"/>
+
+                </StackPanel>
+
+                <StackPanel Margin="0 8">
+
+                    <TextBlock
+                        Text="Program"
+                        Margin="2 0 0 0"/>
+
+                    <TextBox
+                        Text="{Binding Program, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        Padding="4"/>
+
+                </StackPanel>
+
+                <StackPanel Margin="0 8">
+
+                    <TextBlock
+                        Text="Comments"
+                        Margin="2 0 0 0"/>
+
+                    <TextBox
+                        Text="{Binding Comments, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        Height="150"
+                        AcceptsReturn="True"
+                        Padding="4"
+                        VerticalScrollBarVisibility="Auto"
+                        HorizontalScrollBarVisibility="Auto"/>
+
+                </StackPanel>
+
+            </ItemsControl>
+
+        </ScrollViewer>
+
+    </DockPanel>
 
 </UserControl>

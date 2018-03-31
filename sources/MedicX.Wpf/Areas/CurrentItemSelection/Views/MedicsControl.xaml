@@ -89,7 +89,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                         <TextBlock
                             Text="{Binding Value.Name, Mode=OneWay}"
                             FontSize="18"/>
-                        <TextBlock Text="{Binding Value.Specializations, Converter={StaticResource StringListToCsvConverter}, StringFormat= ({0}), Mode=OneWay}"/>
+                        <TextBlock Text="{Binding Value.Specializations, Converter={StaticResource StringListToCsvConverter}, Mode=OneWay}"/>
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
