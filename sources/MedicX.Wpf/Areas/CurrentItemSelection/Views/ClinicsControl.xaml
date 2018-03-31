@@ -84,7 +84,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                     <StackPanel Margin="5 6">
                         <TextBlock
                             Text="{Binding Text, Mode=OneWay}"
-                            FontWeight="Bold"/>
+                            FontSize="18"/>
                         <TextBlock Text="{Binding Value.Address, Mode=OneWay}"/>
                     </StackPanel>
                 </DataTemplate>

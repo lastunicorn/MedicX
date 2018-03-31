@@ -109,7 +109,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                     <StackPanel Margin="5 6">
                         <TextBlock
                             Text="{Binding Value.Date, StringFormat={}{0:yyyy MM dd}}"
-                            FontWeight="Bold"/>
+                            FontSize="18"/>
                         <TextBlock Text="{Binding Value.Medic.Name}"/>
                     </StackPanel>
                 </DataTemplate>
@@ -118,7 +118,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                     <StackPanel Margin="5 6">
                         <TextBlock
                             Text="{Binding Value.Date, StringFormat={}{0:yyyy MM dd}}"
-                            FontWeight="Bold"/>
+                            FontSize="18"/>
                         <TextBlock Text="{Binding Value.SentBy.Name, StringFormat=Sent by: {0}}"/>
                     </StackPanel>
                 </DataTemplate>

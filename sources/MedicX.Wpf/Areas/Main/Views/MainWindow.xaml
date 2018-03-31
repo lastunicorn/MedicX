@@ -34,7 +34,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     Width="1280"
     ResizeMode="CanResizeWithGrip"
     d:DataContext="{d:DesignInstance viewModels1:MainViewModel}"
-    Background="{StaticResource MainBackground}">
+    Background="{StaticResource MainBackground}"
+    WindowStartupLocation="CenterScreen">
 
     <Window.Resources>
 
