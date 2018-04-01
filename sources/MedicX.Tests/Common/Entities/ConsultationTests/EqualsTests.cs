@@ -64,8 +64,8 @@ namespace DustInThyeWind.MedicX.Tests.Common.Entities.ConsultationTests
                 Labels = new ObservableCollection<string> { "label1", "label2" },
                 Prescriptions = new ObservableCollection<Prescription>
                 {
-                    new Prescription{ Description = "prescription1", Result = new object() },
-                    new Prescription{ Description = "prescription2", Result = new object() }
+                    new Prescription { Description = "prescription1", Result = new object() },
+                    new Prescription { Description = "prescription2", Result = new object() }
                 },
                 Comments = "some comments"
             };
@@ -84,8 +84,8 @@ namespace DustInThyeWind.MedicX.Tests.Common.Entities.ConsultationTests
                 Labels = new ObservableCollection<string> { "label1", "label2" },
                 Prescriptions = new ObservableCollection<Prescription>
                 {
-                    new Prescription{ Description = "prescription1", Result = new object() },
-                    new Prescription{ Description = "prescription2", Result = new object() }
+                    new Prescription { Description = "prescription1", Result = new object() },
+                    new Prescription { Description = "prescription2", Result = new object() }
                 },
                 Comments = "some comments"
             };
@@ -113,8 +113,8 @@ namespace DustInThyeWind.MedicX.Tests.Common.Entities.ConsultationTests
                 Labels = new ObservableCollection<string> { "label1", "label2" },
                 Prescriptions = new ObservableCollection<Prescription>
                 {
-                    new Prescription{ Description = "prescription1", Result = new object() },
-                    new Prescription{ Description = "prescription2", Result = new object() }
+                    new Prescription { Description = "prescription1", Result = new object() },
+                    new Prescription { Description = "prescription2", Result = new object() }
                 },
                 Comments = "some comments"
             };
@@ -133,8 +133,8 @@ namespace DustInThyeWind.MedicX.Tests.Common.Entities.ConsultationTests
                 Labels = new ObservableCollection<string> { "label1", "label2" },
                 Prescriptions = new ObservableCollection<Prescription>
                 {
-                    new Prescription{ Description = "prescription3", Result = new object() },
-                    new Prescription{ Description = "prescription4", Result = new object() }
+                    new Prescription { Description = "prescription3", Result = new object() },
+                    new Prescription { Description = "prescription4", Result = new object() }
                 },
                 Comments = "some comments"
             };
