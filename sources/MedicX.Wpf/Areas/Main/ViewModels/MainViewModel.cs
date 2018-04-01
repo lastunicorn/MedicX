@@ -19,6 +19,7 @@ using System.Diagnostics;
 using System.Reflection;
 using DustInTheWind.MedicX.Wpf.Areas.CurrentItemDetails.ViewModels;
 using DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.VewModels;
+using DustInTheWind.MedicX.Wpf.Areas.Main.Views;
 using DustInTheWind.MedicX.Wpf.Commands;
 
 namespace DustInTheWind.MedicX.Wpf.Areas.Main.ViewModels
@@ -43,17 +44,21 @@ namespace DustInTheWind.MedicX.Wpf.Areas.Main.ViewModels
         public DetailsViewModel DetailsViewModel { get; }
 
         public SaveCommand SaveCommand { get; }
+        public ExitCommand ExitCommand { get; }
 
-        public MainViewModel(MedicXProject medicXProject)
+        public MainViewModel(MedicXApplication medicXApplication)
         {
-            this.medicXProject = medicXProject ?? throw new ArgumentNullException(nameof(medicXProject));
+            if (medicXApplication == null) throw new ArgumentNullException(nameof(medicXApplication));
 
-            SelectionViewModel = new SelectionViewModel(this.medicXProject);
-            DetailsViewModel = new DetailsViewModel(this.medicXProject);
+            medicXProject = medicXApplication.CurrentProject;
 
-            SaveCommand = new SaveCommand(this.medicXProject);
+            SelectionViewModel = new SelectionViewModel(medicXProject);
+            DetailsViewModel = new DetailsViewModel(medicXProject);
 
-            this.medicXProject.StatusChanged += HandleProjectStatusChanged;
+            SaveCommand = new SaveCommand(medicXProject);
+            ExitCommand = new ExitCommand(medicXApplication);
+
+            medicXProject.StatusChanged += HandleProjectStatusChanged;
             UpdateWindowTitle();
         }
 

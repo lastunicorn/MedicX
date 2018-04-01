@@ -14,6 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+using System;
 using System.Collections.Generic;
 using DustInTheWind.MedicX.Persistence.Json;
 using DustInTheWind.MedicX.Persistence.Json.Entities;
@@ -34,9 +35,11 @@ namespace DustInTheWind.MedicX.Persistence
         public List<Consultation> Consultations { get; set; }
         public List<Investigation> Investigations { get; set; }
 
-        public Storage()
+        public Storage(string connectionString)
         {
-            jsonZipFile = new JsonZipFile("medicx.zip");
+            if (connectionString == null) throw new ArgumentNullException(nameof(connectionString));
+
+            jsonZipFile = new JsonZipFile(connectionString);
         }
 
         public void Open()

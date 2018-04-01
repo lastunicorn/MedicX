@@ -15,29 +15,21 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System.Windows;
-using DustInTheWind.MedicX.Wpf.Areas.Main.ViewModels;
 
-namespace DustInTheWind.MedicX.Wpf.Areas.Main.Views
+namespace DustInTheWind.MedicX.Wpf
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    internal partial class MainWindow : Window
+    internal class MedicXApplication
     {
-        public MainWindow()
+        public MedicXProject CurrentProject { get; private set; }
+
+        public void LoadProject(string connectionString)
         {
-            InitializeComponent();
+            CurrentProject = new MedicXProject(connectionString);
+        }
 
-            MedicXApplication application = new MedicXApplication();
-            application.LoadProject("medicx.zmdx");
-
-            DataContext = new MainViewModel(application);
-
-            //CalendarWindow calendarWindow = new CalendarWindow
-            //{
-            //    DataContext = new CalendarViewModel(medicXProject)
-            //};
-            //calendarWindow.Show();
+        public void Exit()
+        {
+            Application.Current.Shutdown();
         }
     }
 }

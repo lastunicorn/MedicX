@@ -16,40 +16,29 @@
 
 using System;
 using System.Windows.Input;
+using DustInTheWind.MedicX.Wpf.Areas.Main.Views;
 
 namespace DustInTheWind.MedicX.Wpf.Commands
 {
-    internal class SaveCommand : ICommand
+    internal class ExitCommand : ICommand
     {
-        private readonly MedicXProject medicXProject;
+        private readonly MedicXApplication medicXApplication;
 
         public event EventHandler CanExecuteChanged;
 
-        public SaveCommand(MedicXProject medicXProject)
+        public ExitCommand(MedicXApplication medicXApplication)
         {
-            this.medicXProject = medicXProject ?? throw new ArgumentNullException(nameof(medicXProject));
-
-            this.medicXProject.StatusChanged += HandleStatusChanged;
-        }
-
-        private void HandleStatusChanged(object sender, EventArgs eventArgs)
-        {
-            OnCanExecuteChanged();
+            this.medicXApplication = medicXApplication ?? throw new ArgumentNullException(nameof(medicXApplication));
         }
 
         public bool CanExecute(object parameter)
         {
-            return medicXProject.Status != ProjectStatus.Saved;
+            return true;
         }
 
         public void Execute(object parameter)
         {
-            medicXProject.Save();
-        }
-
-        protected virtual void OnCanExecuteChanged()
-        {
-            CanExecuteChanged?.Invoke(this, EventArgs.Empty);
+            medicXApplication.Exit();
         }
     }
 }

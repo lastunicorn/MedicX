@@ -30,7 +30,7 @@ namespace DustInTheWind.MedicX.Cli
             {
                 DisplayAppHeader();
 
-                using (UnitOfWork unitOfWork = new UnitOfWork())
+                using (UnitOfWork unitOfWork = new UnitOfWork("medicx.zmdx"))
                 {
                     MedicXApplication medicXApplication = new MedicXApplication(unitOfWork);
                     medicXApplication.Run();

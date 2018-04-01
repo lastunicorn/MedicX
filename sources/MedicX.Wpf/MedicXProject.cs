@@ -27,6 +27,7 @@ namespace DustInTheWind.MedicX.Wpf
         private ProjectStatus status = ProjectStatus.New;
 
         private object currentItem;
+        private readonly string connectionString;
 
         public MedicsCollection Medics { get; } = new MedicsCollection();
 
@@ -57,8 +58,10 @@ namespace DustInTheWind.MedicX.Wpf
         public event EventHandler CurrentItemChanged;
         public event EventHandler StatusChanged;
 
-        public MedicXProject()
+        public MedicXProject(string connectionString)
         {
+            this.connectionString = connectionString ?? throw new ArgumentNullException(nameof(connectionString));
+
             Medics.Changed += HandleMedicsCollectionChanged;
             Clinics.Changed += HandleClinicsCollectionChanged;
             MedicalEvents.Changed += HandleMedicalEventsCollectionChanged;
@@ -83,7 +86,7 @@ namespace DustInTheWind.MedicX.Wpf
 
         private void LoadData()
         {
-            using (UnitOfWork unitOfWork = new UnitOfWork())
+            using (UnitOfWork unitOfWork = new UnitOfWork(connectionString))
             {
                 IMedicRepository medicRepository = unitOfWork.MedicRepository;
 
@@ -118,7 +121,7 @@ namespace DustInTheWind.MedicX.Wpf
 
         public void Save()
         {
-            using (UnitOfWork unitOfWork = new UnitOfWork())
+            using (UnitOfWork unitOfWork = new UnitOfWork(connectionString))
             {
                 foreach (Medic medic in Medics)
                     unitOfWork.MedicRepository.AddOrUpdate(medic);

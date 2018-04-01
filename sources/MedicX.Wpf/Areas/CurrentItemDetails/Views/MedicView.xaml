@@ -45,7 +45,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
             <TextBlock
                 Text="{Binding Name}"
-                FontSize="20"
+                FontSize="30"
                 Foreground="{StaticResource DetailsTitleForeground}"
                 TextAlignment="Center"
                 VerticalAlignment="Center"
@@ -113,7 +113,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                         Margin="2 0 0 0" />
 
                     <TextBox
-                        Height="150"
+                        Height="85"
                         AcceptsReturn="True"
                         Text="{Binding Specializations, Converter={StaticResource StringListToMultilineStringConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                         Padding="4" />
@@ -128,7 +128,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
                     <TextBox
                         Text="{Binding Comments, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                        Height="150"
+                        Height="200"
                         AcceptsReturn="True"
                         Padding="4"
                         VerticalScrollBarVisibility="Auto"

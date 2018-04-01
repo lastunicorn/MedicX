@@ -61,7 +61,9 @@
       <DependentUpon>CalendarWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Areas\CurrentItemDetails\ViewModels\MedicViewModel.cs" />
+    <Compile Include="MedicXApplication.cs" />
     <Compile Include="ClinicAddedEventArgs.cs" />
+    <Compile Include="Commands\ExitCommand.cs" />
     <Compile Include="MedicAddedEventArgs.cs" />
     <Compile Include="MedicalEventAddedEventArgs.cs" />
     <Compile Include="MedicalEventCollection.cs" />
@@ -267,7 +269,7 @@
     <None Include="medicx.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="medicx.zip" />
+    <None Include="medicx.zmdx" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

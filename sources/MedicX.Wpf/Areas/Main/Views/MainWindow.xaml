@@ -49,6 +49,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
     <Window.InputBindings>
         <KeyBinding Command="{Binding SaveCommand}" Key="S" Modifiers="Control" />
+        <KeyBinding Command="{Binding ExitCommand}" Key="X" Modifiers="Alt" />
     </Window.InputBindings>
 
     <DockPanel>
@@ -56,6 +57,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="_File">
                 <MenuItem Header="_Save" Command="{Binding SaveCommand}" InputGestureText="Ctrl+S" />
+                <Separator/>
+                <MenuItem Header="E_xit" Command="{Binding ExitCommand}" InputGestureText="Alt+X"></MenuItem>
             </MenuItem>
         </Menu>
 

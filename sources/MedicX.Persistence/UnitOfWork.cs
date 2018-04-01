@@ -87,8 +87,10 @@ namespace DustInTheWind.MedicX.Persistence
             }
         }
 
-        public UnitOfWork()
+        public UnitOfWork(string connectionString)
         {
+            if (connectionString == null) throw new ArgumentNullException(nameof(connectionString));
+
             if (instanceCount > 0)
                 throw new Exception("Another instance of the UnitOfWork already exists.");
 
@@ -97,7 +99,7 @@ namespace DustInTheWind.MedicX.Persistence
                 if (instanceCount > 0)
                     throw new Exception("Another instance of the UnitOfWork already exists.");
 
-                storage = new Storage();
+                storage = new Storage(connectionString);
                 storage.Open();
 
                 instanceCount++;
