@@ -99,6 +99,7 @@ namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.VewModels
                             medicXProject.CurrentItem = null;
                             break;
                     }
+
                     break;
 
                 default:

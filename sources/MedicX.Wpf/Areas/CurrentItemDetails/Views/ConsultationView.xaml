@@ -28,15 +28,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     xmlns:viewModels="clr-namespace:DustInTheWind.MedicX.Wpf.Areas.CurrentItemDetails.ViewModels"
     xmlns:currentItemDetails="clr-namespace:DustInTheWind.MedicX.Wpf.Areas.CurrentItemDetails"
 
-    mc:Ignorable="d" 
+    mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="300"
     d:DataContext="{d:DesignInstance viewModels:ConsultationViewModel}">
 
     <UserControl.Resources>
-        <currentItemDetails:StringListToMultilineStringConverter x:Key="StringListToMultilineStringConverter"/>
-        <currentItemDetails:PrescriptionListToMultilineStringConverter x:Key="PrescriptionListToMultilineStringConverter"/>
-        <currentItemDetails:StringListToCsvConverter x:Key="StringListToCsvConverter"/>
+        <currentItemDetails:StringListToMultilineStringConverter x:Key="StringListToMultilineStringConverter" />
+        <currentItemDetails:PrescriptionListToMultilineStringConverter x:Key="PrescriptionListToMultilineStringConverter" />
+        <currentItemDetails:StringListToCsvConverter x:Key="StringListToCsvConverter" />
     </UserControl.Resources>
 
     <DockPanel>
@@ -55,14 +55,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
                 <StackPanel.Resources>
                     <Style TargetType="TextBlock">
-                        <Setter Property="FontSize" Value="20"/>
+                        <Setter Property="FontSize" Value="20" />
                         <Setter Property="Foreground" Value="{StaticResource DetailsTitleForeground}" />
                     </Style>
                 </StackPanel.Resources>
 
                 <TextBlock Text="{Binding Consultation.Date, StringFormat={}{0:yyyy MM dd}, Mode=OneWay}" />
                 <TextBlock Text="{Binding Consultation.Medic.Name, StringFormat={} - {0}, Mode=OneWay}" />
-                <TextBlock Text=" - (consultation)"/>
+                <TextBlock Text=" - (consultation)" />
 
             </StackPanel>
 
@@ -75,14 +75,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
             <ScrollViewer.Resources>
                 <Style TargetType="TextBlock">
-                    <Setter Property="Foreground" Value="White"/>
-                    <Setter Property="FontSize" Value="12"/>
+                    <Setter Property="Foreground" Value="White" />
+                    <Setter Property="FontSize" Value="12" />
                 </Style>
                 <Style TargetType="TextBox">
-                    <Setter Property="FontSize" Value="18"/>
+                    <Setter Property="FontSize" Value="18" />
                 </Style>
                 <Style TargetType="ComboBox">
-                    <Setter Property="FontSize" Value="18"/>
+                    <Setter Property="FontSize" Value="18" />
                 </Style>
             </ScrollViewer.Resources>
 
@@ -98,14 +98,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
                         <TextBlock
                             Text="Date"
-                            Margin="2 0 0 0"/>
+                            Margin="2 0 0 0" />
 
                         <Calendar
                             Margin="0"
                             Padding="0"
                             BorderThickness="0"
                             SelectedDate="{Binding Consultation.Date, Mode=TwoWay}"
-                            DisplayDate="{Binding Consultation.Date, Mode=OneWay}"/>
+                            DisplayDate="{Binding Consultation.Date, Mode=OneWay}" />
 
                     </StackPanel>
 
@@ -117,7 +117,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
                             <TextBlock
                                 Text="Medic"
-                                Margin="2 0 0 0"/>
+                                Margin="2 0 0 0" />
 
                             <ComboBox
                                 ItemsSource="{Binding Medics}"
@@ -132,13 +132,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
                                             <TextBlock
                                                 Text="{Binding Name, Mode=OneWay}"
-                                                VerticalAlignment="Center"/>
+                                                VerticalAlignment="Center" />
 
                                             <TextBlock
                                                 Margin="5 0 0 0"
                                                 FontSize="12"
                                                 Text="{Binding Specializations, Converter={StaticResource StringListToCsvConverter}, StringFormat= ({0}), Mode=OneWay}"
-                                                VerticalAlignment="Center"/>
+                                                VerticalAlignment="Center" />
 
                                         </StackPanel>
                                     </DataTemplate>
@@ -154,7 +154,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
                             <TextBlock
                                 Text="Clinic"
-                                Margin="2 0 0 0"/>
+                                Margin="2 0 0 0" />
 
                             <ComboBox
                                 ItemsSource="{Binding Clinics}"
@@ -169,7 +169,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
                                             <TextBlock
                                                 Text="{Binding Name, Mode=OneWay}"
-                                                VerticalAlignment="Center"/>
+                                                VerticalAlignment="Center" />
 
                                         </StackPanel>
                                     </DataTemplate>
@@ -185,7 +185,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
                             <TextBlock
                                 Text="Labels (list)"
-                                Margin="2 0 0 0"/>
+                                Margin="2 0 0 0" />
 
                             <TextBox
                                 Text="{Binding Consultation.Labels, Converter={StaticResource StringListToMultilineStringConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
@@ -193,7 +193,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                                 AcceptsReturn="True"
                                 Padding="4"
                                 VerticalScrollBarVisibility="Auto"
-                                HorizontalScrollBarVisibility="Auto"/>
+                                HorizontalScrollBarVisibility="Auto" />
 
                         </StackPanel>
 
@@ -207,7 +207,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
                     <TextBlock
                         Text="Comments"
-                        Margin="2 0 0 0"/>
+                        Margin="2 0 0 0" />
 
                     <TextBox
                         Text="{Binding Consultation.Comments, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
@@ -215,7 +215,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                         AcceptsReturn="True"
                         Padding="4"
                         VerticalScrollBarVisibility="Auto"
-                        HorizontalScrollBarVisibility="Auto"/>
+                        HorizontalScrollBarVisibility="Auto" />
 
                 </StackPanel>
 
@@ -225,7 +225,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
                     <TextBlock
                         Text="Prescriptions (list)"
-                        Margin="2 0 0 0"/>
+                        Margin="2 0 0 0" />
 
                     <TextBox
                         Text="{Binding Consultation.Prescriptions, Converter={StaticResource PrescriptionListToMultilineStringConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
@@ -233,7 +233,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                         AcceptsReturn="True"
                         Padding="4"
                         VerticalScrollBarVisibility="Auto"
-                        HorizontalScrollBarVisibility="Auto"/>
+                        HorizontalScrollBarVisibility="Auto" />
 
                 </StackPanel>
 
@@ -244,4 +244,3 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     </DockPanel>
 
 </UserControl>
-

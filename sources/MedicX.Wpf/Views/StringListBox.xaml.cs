@@ -33,7 +33,7 @@ namespace DustInTheWind.MedicX.Wpf.Views
             Box.DataContext = this;
             TitleLabel.DataContext = this;
         }
-        
+
         private void AddClicked(object sender, RoutedEventArgs e)
         {
             ItemsSource.Add(AddStringBox.Text);
@@ -60,19 +60,19 @@ namespace DustInTheWind.MedicX.Wpf.Views
         {
             if (e.Key == Key.Enter) AddClicked(this, e);
         }
-        
+
         public ICollection<string> ItemsSource
         {
-            get => (ICollection<string>) GetValue(ItemsSourceProperty);
+            get => (ICollection<string>)GetValue(ItemsSourceProperty);
             set => SetValue(ItemsSourceProperty, value);
         }
 
         public static readonly DependencyProperty ItemsSourceProperty =
             DependencyProperty.Register("ItemsSource", typeof(ICollection<string>), typeof(StringListBox), null);
-        
+
         public string Title
         {
-            get => (string) GetValue(TitleProperty);
+            get => (string)GetValue(TitleProperty);
             set => SetValue(TitleProperty, value);
         }
 

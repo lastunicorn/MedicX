@@ -28,7 +28,7 @@ namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.VewModels
         public InvestigationListItemViewModel(Investigation investigation)
         {
             Value = investigation ?? throw new ArgumentNullException(nameof(investigation));
-            
+
             UpdateText();
             investigation.DateChanged += HandleDateChanged;
             investigation.SentByChanged += HandleSentByChanged;
@@ -52,7 +52,6 @@ namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.VewModels
             Text = string.IsNullOrEmpty(medicName)
                 ? "<no name>"
                 : medicName;
-
         }
 
         protected virtual void OnDateChanged()

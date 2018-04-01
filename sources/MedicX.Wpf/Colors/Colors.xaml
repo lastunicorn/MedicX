@@ -55,61 +55,61 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
     <!-- Main -->
 
-    <SolidColorBrush x:Key="MainBackground" Color="#00bc00"/>
-    <SolidColorBrush x:Key="MainForeground" Color="#000000"/>
+    <SolidColorBrush x:Key="MainBackground" Color="#00bc00" />
+    <SolidColorBrush x:Key="MainForeground" Color="#000000" />
 
     <!-- Splitter -->
 
-    <SolidColorBrush x:Key="SplitterBackground" Color="#04EA04"/>
+    <SolidColorBrush x:Key="SplitterBackground" Color="#04EA04" />
 
     <!-- Button -->
 
-    <SolidColorBrush x:Key="ButtonNormalBackgroundColor" Color="#009700"/>
-    <SolidColorBrush x:Key="ButtonNormalForegroundColor" Color="#ffffff"/>
-    <SolidColorBrush x:Key="ButtonNormalBorderColor" Color="Transparent"/>
+    <SolidColorBrush x:Key="ButtonNormalBackgroundColor" Color="#009700" />
+    <SolidColorBrush x:Key="ButtonNormalForegroundColor" Color="#ffffff" />
+    <SolidColorBrush x:Key="ButtonNormalBorderColor" Color="Transparent" />
 
-    <SolidColorBrush x:Key="ButtonOverBackgroundColor" Color="#ff9f4d"/>
-    <SolidColorBrush x:Key="ButtonOverForegroundColor" Color="#ffffff"/>
+    <SolidColorBrush x:Key="ButtonOverBackgroundColor" Color="#ff9f4d" />
+    <SolidColorBrush x:Key="ButtonOverForegroundColor" Color="#ffffff" />
 
-    <SolidColorBrush x:Key="ButtonPressedBackgroundColor" Color="#bc5700"/>
-    <SolidColorBrush x:Key="ButtonPressedForegroundColor" Color="#ffffff"/>
+    <SolidColorBrush x:Key="ButtonPressedBackgroundColor" Color="#bc5700" />
+    <SolidColorBrush x:Key="ButtonPressedForegroundColor" Color="#ffffff" />
 
-    <SolidColorBrush x:Key="ButtonCheckedBackgroundColor" Color="#ff9f4d"/>
-    <SolidColorBrush x:Key="ButtonCheckedForegroundColor" Color="#ffffff"/>
+    <SolidColorBrush x:Key="ButtonCheckedBackgroundColor" Color="#ff9f4d" />
+    <SolidColorBrush x:Key="ButtonCheckedForegroundColor" Color="#ffffff" />
 
-    <SolidColorBrush x:Key="ButtonCheckedOverBackgroundColor" Color="#ff9f4d"/>
-    <SolidColorBrush x:Key="ButtonCheckedOverForegroundColor" Color="#ffffff"/>
+    <SolidColorBrush x:Key="ButtonCheckedOverBackgroundColor" Color="#ff9f4d" />
+    <SolidColorBrush x:Key="ButtonCheckedOverForegroundColor" Color="#ffffff" />
 
-    <SolidColorBrush x:Key="ButtonDisabledBackgroundColor" Color="#bc5700"/>
-    <SolidColorBrush x:Key="ButtonDisabledForegroundColor" Color="#8d8d8d"/>
+    <SolidColorBrush x:Key="ButtonDisabledBackgroundColor" Color="#bc5700" />
+    <SolidColorBrush x:Key="ButtonDisabledForegroundColor" Color="#8d8d8d" />
 
     <!-- CheckBox -->
 
-    <SolidColorBrush x:Key="CheckBoxNormalBackgroundColor" Color="Transparent"/>
-    <SolidColorBrush x:Key="CheckBoxNormalForegroundColor" Color="#805400"/>
+    <SolidColorBrush x:Key="CheckBoxNormalBackgroundColor" Color="Transparent" />
+    <SolidColorBrush x:Key="CheckBoxNormalForegroundColor" Color="#805400" />
 
-    <SolidColorBrush x:Key="CheckBoxDisabledBackgroundColor" Color="Transparent"/>
-    <SolidColorBrush x:Key="CheckBoxDisabledForegroundColor" Color="Gray"/>
+    <SolidColorBrush x:Key="CheckBoxDisabledBackgroundColor" Color="Transparent" />
+    <SolidColorBrush x:Key="CheckBoxDisabledForegroundColor" Color="Gray" />
 
-    <SolidColorBrush x:Key="CheckBoxOverBackgroundColor" Color="Transparent"/>
-    <SolidColorBrush x:Key="CheckBoxOverForegroundColor" Color="#805400"/>
+    <SolidColorBrush x:Key="CheckBoxOverBackgroundColor" Color="Transparent" />
+    <SolidColorBrush x:Key="CheckBoxOverForegroundColor" Color="#805400" />
 
     <!-- Status Bar -->
 
-    <SolidColorBrush x:Key="StatusBarBackground" Color="#f97300"/>
-    <SolidColorBrush x:Key="StatusBarForeground" Color="#ffca9d"/>
+    <SolidColorBrush x:Key="StatusBarBackground" Color="#f97300" />
+    <SolidColorBrush x:Key="StatusBarForeground" Color="#ffca9d" />
 
     <!-- Icons -->
 
-    <SolidColorBrush x:Key="IconNormalForeground" Color="#805400"/>
+    <SolidColorBrush x:Key="IconNormalForeground" Color="#805400" />
 
     <!-- ListBox -->
 
     <Color x:Key="ListBoxOverBackgroundColor">#ff9a4e</Color>
-    <SolidColorBrush x:Key="ListBoxOverBackground" Color="{StaticResource ListBoxOverBackgroundColor}"/>
+    <SolidColorBrush x:Key="ListBoxOverBackground" Color="{StaticResource ListBoxOverBackgroundColor}" />
     <Color x:Key="ListBoxSelectedBackgroundColor">#ffbc83</Color>
-    <SolidColorBrush x:Key="ListBoxSelectedBackground" Color="{StaticResource ListBoxSelectedBackgroundColor}"/>
-    
+    <SolidColorBrush x:Key="ListBoxSelectedBackground" Color="{StaticResource ListBoxSelectedBackgroundColor}" />
+
     <!-- ListView -->
 
     <Color x:Key="HighlightBrushKeyColor">#007100</Color>
@@ -117,35 +117,35 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <Color x:Key="InactiveSelectionHighlightBrushKeyColor">#007100</Color>
     <Color x:Key="InactiveSelectionHighlightTextBrushKeyColor">White</Color>
 
-    <SolidColorBrush x:Key="HighlightBrushKey" Color="Magenta"/>
-    <SolidColorBrush x:Key="HighlightTextBrushKey" Color="White"/>
-    <SolidColorBrush x:Key="InactiveSelectionHighlightBrushKey" Color="DarkMagenta"/>
-    <SolidColorBrush x:Key="InactiveSelectionHighlightTextBrushKey" Color="White"/>
+    <SolidColorBrush x:Key="HighlightBrushKey" Color="Magenta" />
+    <SolidColorBrush x:Key="HighlightTextBrushKey" Color="White" />
+    <SolidColorBrush x:Key="InactiveSelectionHighlightBrushKey" Color="DarkMagenta" />
+    <SolidColorBrush x:Key="InactiveSelectionHighlightTextBrushKey" Color="White" />
 
     <!-- TabControl -->
 
     <!--<SolidColorBrush x:Key="TabsSelectedBackground" Color="#007100"/>-->
-    <SolidColorBrush x:Key="TabsSelectedBackground" Color="#00bc00"/>
-    <SolidColorBrush x:Key="TabsSelectedForeground" Color="#ffffff"/>
+    <SolidColorBrush x:Key="TabsSelectedBackground" Color="#00bc00" />
+    <SolidColorBrush x:Key="TabsSelectedForeground" Color="#ffffff" />
 
-    <SolidColorBrush x:Key="TabsNormalBackground" Color="LightGreen"/>
-    <SolidColorBrush x:Key="TabsNormalForeground" Color="#000000"/>
+    <SolidColorBrush x:Key="TabsNormalBackground" Color="LightGreen" />
+    <SolidColorBrush x:Key="TabsNormalForeground" Color="#000000" />
 
-    <SolidColorBrush x:Key="TabsOverBackground" Color="#009700"/>
+    <SolidColorBrush x:Key="TabsOverBackground" Color="#009700" />
 
     <!-- ScrollBar -->
 
-    <SolidColorBrush x:Key="ScrollBarBackground" Color="#7FBFBFBF"/>
-    <SolidColorBrush x:Key="ScrollBarForeground" Color="#007100"/>
+    <SolidColorBrush x:Key="ScrollBarBackground" Color="#7FBFBFBF" />
+    <SolidColorBrush x:Key="ScrollBarForeground" Color="#007100" />
 
     <!-- Consultation -->
 
-    <SolidColorBrush x:Key="ConsultationBackground" Color="DarkSeaGreen"/>
-    <SolidColorBrush x:Key="DetailsTitleBackground" Color="#007100"/>
-    <SolidColorBrush x:Key="DetailsTitleForeground" Color="#ffffff"/>
-    
+    <SolidColorBrush x:Key="ConsultationBackground" Color="DarkSeaGreen" />
+    <SolidColorBrush x:Key="DetailsTitleBackground" Color="#007100" />
+    <SolidColorBrush x:Key="DetailsTitleForeground" Color="#ffffff" />
+
     <!-- Investigation -->
 
-    <SolidColorBrush x:Key="InvestigationBackground" Color="LightGreen"/>
+    <SolidColorBrush x:Key="InvestigationBackground" Color="LightGreen" />
 
 </ResourceDictionary>

@@ -42,7 +42,7 @@ namespace DustInTheWind.MedicX.Wpf.ViewModels
         }
 
         public StringListViewModel()
-        : this(null)
+            : this(null)
         {
         }
 

@@ -22,11 +22,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:vewModels="clr-namespace:DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.VewModels"
 
-    mc:Ignorable="d" 
+    mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="300"
     d:DataContext="{d:DesignInstance vewModels:ClinicsViewModel}">
@@ -38,21 +38,21 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             Margin="0 0 0 4">
 
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
             <TextBox
                 Grid.Column="0"
                 Text="{Binding SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 VerticalContentAlignment="Center"
-                FontSize="20"/>
-            
+                FontSize="20" />
+
             <Button
                 Grid.Column="1"
                 Margin="4 0 0 0"
                 Content="&lt;&lt;"
-                Command="{Binding ClearSearchTextCommand}"/>
+                Command="{Binding ClearSearchTextCommand}" />
 
         </Grid>
 
@@ -60,21 +60,21 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             DockPanel.Dock="Bottom"
             Margin="0 4 0 0"
             Content="New"
-            Command="{Binding AddClinicCommand}"/>
+            Command="{Binding AddClinicCommand}" />
 
         <ListView
             ItemsSource="{Binding Clinics}"
             SelectedItem="{Binding SelectedClinic}">
-            
+
             <ListView.Resources>
-                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="{StaticResource HighlightBrushKeyColor}"/>
-                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="{StaticResource HighlightTextBrushKeyColor}"/>
-                <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="{StaticResource InactiveSelectionHighlightBrushKeyColor}"/>
-                <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightTextBrushKey}" Color="{StaticResource InactiveSelectionHighlightTextBrushKeyColor}"/>
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="{StaticResource HighlightBrushKeyColor}" />
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="{StaticResource HighlightTextBrushKeyColor}" />
+                <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="{StaticResource InactiveSelectionHighlightBrushKeyColor}" />
+                <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightTextBrushKey}" Color="{StaticResource InactiveSelectionHighlightTextBrushKeyColor}" />
 
                 <Style TargetType="{x:Type ListViewItem}">
-                    <Setter Property="BorderBrush" Value="White"/>
-                    <Setter Property="BorderThickness" Value="0 0 0 1"/>
+                    <Setter Property="BorderBrush" Value="White" />
+                    <Setter Property="BorderThickness" Value="0 0 0 1" />
                     <Setter Property="Background" Value="{StaticResource InvestigationBackground}" />
                 </Style>
             </ListView.Resources>
@@ -84,8 +84,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                     <StackPanel Margin="5 6">
                         <TextBlock
                             Text="{Binding Text, Mode=OneWay}"
-                            FontSize="18"/>
-                        <TextBlock Text="{Binding Value.Address, Mode=OneWay}"/>
+                            FontSize="18" />
+                        <TextBlock Text="{Binding Value.Address, Mode=OneWay}" />
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>

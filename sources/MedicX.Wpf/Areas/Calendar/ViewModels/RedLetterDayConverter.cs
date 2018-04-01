@@ -7,7 +7,7 @@ namespace DustInTheWind.MedicX.Wpf.Areas.Calendar.ViewModels
 {
     public class RedLetterDayConverter : IValueConverter
     {
-        static Dictionary<DateTime, string> dict = new Dictionary<DateTime, string>();
+        private static readonly Dictionary<DateTime, string> dict = new Dictionary<DateTime, string>();
 
         static RedLetterDayConverter()
         {

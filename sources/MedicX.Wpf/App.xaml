@@ -25,10 +25,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Colors/Colors.xaml"/>
-                <ResourceDictionary Source="/Styles/ButtonStylesDictionary.xaml"/>
-                <ResourceDictionary Source="/Styles/TabControlStylesDictionary.xaml"/>
-                <ResourceDictionary Source="/Styles/ScrollBarStylesDictionary.xaml"/>
+                <ResourceDictionary Source="/Colors/Colors.xaml" />
+                <ResourceDictionary Source="/Styles/ButtonStylesDictionary.xaml" />
+                <ResourceDictionary Source="/Styles/TabControlStylesDictionary.xaml" />
+                <ResourceDictionary Source="/Styles/ScrollBarStylesDictionary.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
 

@@ -28,13 +28,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     xmlns:views="clr-namespace:DustInTheWind.MedicX.Wpf.Areas.CurrentItemDetails.Views"
     xmlns:currentItemDetails="clr-namespace:DustInTheWind.MedicX.Wpf.Areas.CurrentItemDetails"
 
-    mc:Ignorable="d" 
+    mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="300"
     d:DataContext="{d:DesignInstance entities:Clinic}">
 
     <UserControl.Resources>
-        <currentItemDetails:StringListToMultilineStringConverter x:Key="StringListToMultilineStringConverter"/>
+        <currentItemDetails:StringListToMultilineStringConverter x:Key="StringListToMultilineStringConverter" />
     </UserControl.Resources>
 
     <DockPanel>
@@ -50,7 +50,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 Foreground="{StaticResource DetailsTitleForeground}"
                 TextAlignment="Center"
                 VerticalAlignment="Center"
-                HorizontalAlignment="Center"/>
+                HorizontalAlignment="Center" />
 
         </Border>
 
@@ -61,11 +61,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
             <ScrollViewer.Resources>
                 <Style TargetType="TextBlock">
-                    <Setter Property="Foreground" Value="White"/>
-                    <Setter Property="FontSize" Value="12"/>
+                    <Setter Property="Foreground" Value="White" />
+                    <Setter Property="FontSize" Value="12" />
                 </Style>
                 <Style TargetType="TextBox">
-                    <Setter Property="FontSize" Value="18"/>
+                    <Setter Property="FontSize" Value="18" />
                 </Style>
             </ScrollViewer.Resources>
 
@@ -75,11 +75,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
                     <TextBlock
                         Text="Name"
-                        Margin="2 0 0 0"/>
+                        Margin="2 0 0 0" />
 
                     <TextBox
                         Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                        Padding="4"/>
+                        Padding="4" />
 
                 </StackPanel>
 
@@ -88,7 +88,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                     <views:AddressView
                         DataContext="{Binding Address}"
                         Margin="0 4"
-                        Padding="4"/>
+                        Padding="4" />
 
                 </StackPanel>
 
@@ -96,7 +96,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
                     <TextBlock
                         Text="Phones (list)"
-                        Margin="2 0 0 0"/>
+                        Margin="2 0 0 0" />
 
                     <TextBox
                         Height="100"
@@ -104,7 +104,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                         Text="{Binding Phones, Converter={StaticResource StringListToMultilineStringConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                         Padding="4"
                         VerticalScrollBarVisibility="Auto"
-                        HorizontalScrollBarVisibility="Auto"/>
+                        HorizontalScrollBarVisibility="Auto" />
 
                 </StackPanel>
 
@@ -112,11 +112,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
                     <TextBlock
                         Text="Program"
-                        Margin="2 0 0 0"/>
+                        Margin="2 0 0 0" />
 
                     <TextBox
                         Text="{Binding Program, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                        Padding="4"/>
+                        Padding="4" />
 
                 </StackPanel>
 
@@ -124,7 +124,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
                     <TextBlock
                         Text="Comments"
-                        Margin="2 0 0 0"/>
+                        Margin="2 0 0 0" />
 
                     <TextBox
                         Text="{Binding Comments, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
@@ -132,7 +132,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                         AcceptsReturn="True"
                         Padding="4"
                         VerticalScrollBarVisibility="Auto"
-                        HorizontalScrollBarVisibility="Auto"/>
+                        HorizontalScrollBarVisibility="Auto" />
 
                 </StackPanel>
 

@@ -1,7 +1,7 @@
 ﻿<Window
     x:Class="DustInTheWind.MedicX.Wpf.Areas.Calendar.Views.CalendarWindow"
     x:ClassModifier="internal"
-    
+
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -33,7 +33,7 @@
                             <viewModels:RedLetterDayConverter x:Key="conv" />
                         </DataTemplate.Resources>
                         <Grid>
-                            <TextBlock Text="2"></TextBlock>
+                            <TextBlock Text="2" />
                             <Rectangle x:Name="RedLetterDayBackground" IsHitTestVisible="False" Fill="#80FF0000" />
                         </Grid>
 
@@ -56,83 +56,83 @@
                         <ControlTemplate.Resources>
                             <DataTemplate x:Key="DayTitleTemplate">
                                 <TextBlock Text="{Binding}"
-                                       HorizontalAlignment="Center" />
+                                           HorizontalAlignment="Center" />
                             </DataTemplate>
                         </ControlTemplate.Resources>
 
                         <DockPanel
-                            Name="PART_Root" 
+                            Name="PART_Root"
                             LastChildFill="True">
 
                             <Button
-                                x:Name="PART_PreviousButton" 
+                                x:Name="PART_PreviousButton"
                                 DockPanel.Dock="Left"
                                 Content="&lt;"
-                                Focusable="False" 
-                                Visibility="Hidden"/>
+                                Focusable="False"
+                                Visibility="Hidden" />
 
                             <Button
-                                x:Name="PART_NextButton" 
+                                x:Name="PART_NextButton"
                                 DockPanel.Dock="Right"
-                                Content="&gt;" 
-                                Focusable="False" 
-                                Visibility="Hidden"/>
+                                Content="&gt;"
+                                Focusable="False"
+                                Visibility="Hidden" />
 
                             <Button
-                                x:Name="PART_HeaderButton"                                             
+                                x:Name="PART_HeaderButton"
                                 DockPanel.Dock="Top"
                                 FontWeight="Bold"
                                 Focusable="False"
-                                Visibility="Hidden"/>
+                                Visibility="Hidden" />
 
                             <Grid>
                                 <Grid
-                                    x:Name="PART_MonthView" 
+                                    x:Name="PART_MonthView"
                                     Visibility="Visible">
 
                                     <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
                                     </Grid.RowDefinitions>
 
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
                                     </Grid.ColumnDefinitions>
 
                                 </Grid>
 
                                 <Grid
-                                    x:Name="PART_YearView" 
+                                    x:Name="PART_YearView"
                                     Visibility="Hidden">
 
                                     <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
                                     </Grid.RowDefinitions>
 
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
                                     </Grid.ColumnDefinitions>
 
                                 </Grid>
                             </Grid>
 
-                            <Rectangle x:Name="PART_DisabledVisual" Opacity="0" Visibility="Collapsed" Fill="#A5FFFFFF"/>
+                            <Rectangle x:Name="PART_DisabledVisual" Opacity="0" Visibility="Collapsed" Fill="#A5FFFFFF" />
 
                         </DockPanel>
 
@@ -162,16 +162,16 @@
     <Grid>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <Calendar
@@ -180,21 +180,21 @@
             CalendarDayButtonStyle="{StaticResource aaa}"
             CalendarItemStyle="{DynamicResource calItemStyle}"
             DisplayDate="{Binding JanuaryDate}"
-            SelectionMode="MultipleRange"/>
+            SelectionMode="MultipleRange" />
 
         <Calendar
             Grid.Row="0"
             Grid.Column="1"
             CalendarDayButtonStyle="{StaticResource aaa}"
             CalendarItemStyle="{DynamicResource calItemStyle}"
-            DisplayDate="{Binding FebruaryDate}"/>
+            DisplayDate="{Binding FebruaryDate}" />
 
         <Calendar
             Grid.Row="0"
             Grid.Column="2"
             CalendarDayButtonStyle="{StaticResource aaa}"
             CalendarItemStyle="{DynamicResource calItemStyle}"
-            DisplayDate="{Binding MarchDate}"/>
+            DisplayDate="{Binding MarchDate}" />
 
     </Grid>
 

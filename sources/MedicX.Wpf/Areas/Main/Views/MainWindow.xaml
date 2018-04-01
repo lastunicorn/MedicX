@@ -19,7 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <Window
     x:Class="DustInTheWind.MedicX.Wpf.Areas.Main.Views.MainWindow"
     x:ClassModifier="internal"
-    
+
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -41,21 +41,21 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Colors/Colors.xaml"/>
+                <ResourceDictionary Source="/Colors/Colors.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
 
     </Window.Resources>
 
     <Window.InputBindings>
-        <KeyBinding Command="{Binding SaveCommand}" Key="S" Modifiers="Control"/>
+        <KeyBinding Command="{Binding SaveCommand}" Key="S" Modifiers="Control" />
     </Window.InputBindings>
 
     <DockPanel>
 
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="_File">
-                <MenuItem Header="_Save" Command="{Binding SaveCommand}" InputGestureText="Ctrl+S"/>
+                <MenuItem Header="_Save" Command="{Binding SaveCommand}" InputGestureText="Ctrl+S" />
             </MenuItem>
         </Menu>
 
@@ -69,16 +69,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
             <views1:SelectionControl
                 Grid.Column="0"
-                DataContext="{Binding SelectionViewModel}"/>
+                DataContext="{Binding SelectionViewModel}" />
 
             <GridSplitter
                 Grid.Column="1"
                 HorizontalAlignment="Stretch"
-                Background="{StaticResource SplitterBackground}"/>
+                Background="{StaticResource SplitterBackground}" />
 
             <views3:DetailsControl
                 Grid.Column="2"
-                DataContext="{Binding DetailsViewModel}"/>
+                DataContext="{Binding DetailsViewModel}" />
 
         </Grid>
 

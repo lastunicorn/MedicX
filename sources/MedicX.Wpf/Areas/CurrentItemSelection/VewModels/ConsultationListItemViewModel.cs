@@ -28,7 +28,7 @@ namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.VewModels
         public ConsultationListItemViewModel(Consultation consultation)
         {
             Value = consultation ?? throw new ArgumentNullException(nameof(consultation));
-            
+
             UpdateText();
             consultation.DateChanged += HandleDateChanged;
             consultation.MedicChanged += HandleMedicChanged;
@@ -52,7 +52,6 @@ namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.VewModels
             Text = string.IsNullOrEmpty(medicName)
                 ? "<no name>"
                 : medicName;
-
         }
 
         protected virtual void OnDateChanged()
