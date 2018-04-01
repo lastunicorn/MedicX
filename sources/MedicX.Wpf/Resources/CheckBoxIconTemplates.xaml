@@ -20,12 +20,12 @@
                     StrokeThickness="40"
                     Stroke="{TemplateBinding Foreground}"
                     StrokeMiterLimit="4"
-                    StrokeLineJoin="Round" 
+                    StrokeLineJoin="Round"
                     StrokeStartLineCap="Flat"
                     StrokeEndLineCap="Flat"
-                    Opacity="1"/>
+                    Opacity="1" />
 
-                <Path 
+                <Path
                     StrokeThickness="65"
                     Stroke="{TemplateBinding Foreground}"
                     StrokeMiterLimit="4"
@@ -36,7 +36,7 @@
                     <Path.Data>
                         <PathGeometry
                             Figures="m 113.86148 260.99271 89.15423 82.58537 153.23384 -229.19757"
-                            FillRule="EvenOdd"/>
+                            FillRule="EvenOdd" />
                     </Path.Data>
 
                 </Path>
@@ -48,7 +48,7 @@
 
     <ControlTemplate x:Key="CheckBoxUncheckedIconTemplate">
 
-        <Viewbox 
+        <Viewbox
             Stretch="Uniform"
             Width="{TemplateBinding Width}"
             Height="{TemplateBinding Height}"
@@ -64,10 +64,10 @@
                     StrokeThickness="40"
                     Stroke="{TemplateBinding Foreground}"
                     StrokeMiterLimit="4"
-                    StrokeLineJoin="Round" 
+                    StrokeLineJoin="Round"
                     StrokeStartLineCap="Flat"
                     StrokeEndLineCap="Flat"
-                    Opacity="1"/>
+                    Opacity="1" />
 
             </Canvas>
         </Viewbox>

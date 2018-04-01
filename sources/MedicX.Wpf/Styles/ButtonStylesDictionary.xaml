@@ -25,12 +25,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     </ResourceDictionary.MergedDictionaries>
 
     <Style TargetType="{x:Type Button}">
-        <Setter Property="Background" Value="{StaticResource ButtonNormalBackgroundColor}"/>
-        <Setter Property="Foreground" Value="{StaticResource ButtonNormalForegroundColor}"/>
-        <Setter Property="Margin" Value="0"/>
-        <Setter Property="Padding" Value="8"/>
-        <Setter Property="FontSize" Value="20"/>
-        <Setter Property="BorderBrush" Value="{StaticResource ButtonNormalBorderColor}"/>
+        <Setter Property="Background" Value="{StaticResource ButtonNormalBackgroundColor}" />
+        <Setter Property="Foreground" Value="{StaticResource ButtonNormalForegroundColor}" />
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="Padding" Value="8" />
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="BorderBrush" Value="{StaticResource ButtonNormalBorderColor}" />
 
         <Setter Property="Template">
             <Setter.Value>
@@ -40,31 +40,31 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                         Background="{TemplateBinding Background}"
                         BorderBrush="{TemplateBinding BorderBrush}"
                         BorderThickness="1">
-                        
+
                         <ContentPresenter
                             x:Name="MyContentPresenter"
                             Content="{TemplateBinding Content}"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
-                            Margin="{TemplateBinding Padding}"/>
-                        
+                            Margin="{TemplateBinding Padding}" />
+
                     </Border>
 
                     <ControlTemplate.Triggers>
 
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="{StaticResource ButtonOverBackgroundColor}"/>
-                            <Setter Property="Foreground" Value="{StaticResource ButtonOverForegroundColor}"/>
+                            <Setter Property="Background" Value="{StaticResource ButtonOverBackgroundColor}" />
+                            <Setter Property="Foreground" Value="{StaticResource ButtonOverForegroundColor}" />
                         </Trigger>
 
                         <Trigger Property="IsPressed" Value="True">
-                            <Setter Property="Background" Value="{StaticResource ButtonPressedBackgroundColor}"/>
-                            <Setter Property="Foreground" Value="{StaticResource ButtonPressedForegroundColor}"/>
+                            <Setter Property="Background" Value="{StaticResource ButtonPressedBackgroundColor}" />
+                            <Setter Property="Foreground" Value="{StaticResource ButtonPressedForegroundColor}" />
                         </Trigger>
 
                         <Trigger Property="IsEnabled" Value="False">
                             <!--<Setter Property="Background" Value="{StaticResource ButtonDisabledBackgroundColor}"/>-->
-                            <Setter Property="Foreground" Value="{StaticResource ButtonDisabledForegroundColor}"/>
+                            <Setter Property="Foreground" Value="{StaticResource ButtonDisabledForegroundColor}" />
                         </Trigger>
 
                     </ControlTemplate.Triggers>
