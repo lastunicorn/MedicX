@@ -18,7 +18,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using DustInTheWind.MedicX.Common.Entities;
-using DustInTheWind.MedicX.Persistence.Json;
 
 namespace DustInTheWind.MedicX.Persistence
 {
@@ -34,7 +33,7 @@ namespace DustInTheWind.MedicX.Persistence
         public List<Consultation> GetAll()
         {
             return storage.Consultations
-                .Where(x=>x!= null)
+                .Where(x => x != null)
                 .OrderByDescending(x => x.Date)
                 .ToList();
         }

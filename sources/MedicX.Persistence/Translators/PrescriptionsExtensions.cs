@@ -60,6 +60,7 @@ namespace DustInTheWind.MedicX.Persistence.Translators
             };
         }
     }
+
     internal static class InvestigationResultExtensions
     {
         public static List<InvestigationResult> Translate(this IEnumerable<Json.Entities.InvestigationResult> investigationResults)

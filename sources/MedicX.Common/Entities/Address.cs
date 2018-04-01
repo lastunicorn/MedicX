@@ -139,7 +139,7 @@ namespace DustInTheWind.MedicX.Common.Entities
             if (ReferenceEquals(this, obj)) return true;
             if (obj.GetType() != GetType()) return false;
 
-            return Equals((Address) obj);
+            return Equals((Address)obj);
         }
 
         public override int GetHashCode()

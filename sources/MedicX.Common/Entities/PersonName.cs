@@ -107,8 +107,8 @@ namespace DustInTheWind.MedicX.Common.Entities
         private bool ContainsChunk(string text)
         {
             return (FirstName != null && FirstName.IndexOf(text, StringComparison.OrdinalIgnoreCase) >= 0) ||
-                (MiddleName != null && MiddleName.IndexOf(text, StringComparison.OrdinalIgnoreCase) >= 0) ||
-                (LastName != null && LastName.IndexOf(text, StringComparison.OrdinalIgnoreCase) >= 0);
+                   (MiddleName != null && MiddleName.IndexOf(text, StringComparison.OrdinalIgnoreCase) >= 0) ||
+                   (LastName != null && LastName.IndexOf(text, StringComparison.OrdinalIgnoreCase) >= 0);
         }
 
         public static implicit operator PersonName(string text)
@@ -121,7 +121,7 @@ namespace DustInTheWind.MedicX.Common.Entities
             if (text == null)
                 return null;
 
-            string[] chunks = text.Split(new[] {' '}, StringSplitOptions.RemoveEmptyEntries);
+            string[] chunks = text.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
 
             string firstName = chunks.Length >= 1
                 ? chunks[0]
@@ -188,7 +188,7 @@ namespace DustInTheWind.MedicX.Common.Entities
             if (ReferenceEquals(this, obj)) return true;
             if (obj.GetType() != GetType()) return false;
 
-            return Equals((PersonName) obj);
+            return Equals((PersonName)obj);
         }
 
         public override int GetHashCode()

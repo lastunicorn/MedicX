@@ -18,7 +18,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using DustInTheWind.MedicX.Common.Entities;
-using DustInTheWind.MedicX.Persistence.Json;
 
 namespace DustInTheWind.MedicX.Persistence
 {
@@ -82,8 +81,8 @@ namespace DustInTheWind.MedicX.Persistence
             return storage.Medics
                 .Where(x => x != null)
                 .Where(x => (x.Name != null && x.Name.Contains(text)) ||
-                    (x.Specializations.Any(z => z != null && z.IndexOf(text, StringComparison.OrdinalIgnoreCase) >= 0)) ||
-                    (x.Comments != null && x.Comments.IndexOf(text, StringComparison.InvariantCultureIgnoreCase) >= 0))
+                            (x.Specializations.Any(z => z != null && z.IndexOf(text, StringComparison.OrdinalIgnoreCase) >= 0)) ||
+                            (x.Comments != null && x.Comments.IndexOf(text, StringComparison.InvariantCultureIgnoreCase) >= 0))
                 .ToList();
         }
     }
