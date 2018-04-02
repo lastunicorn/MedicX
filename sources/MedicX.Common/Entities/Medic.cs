@@ -24,7 +24,7 @@ namespace DustInTheWind.MedicX.Common.Entities
     public class Medic : Person, IEquatable<Medic>
     {
         private ObservableCollection<string> specializations;
-
+        
         public ObservableCollection<string> Specializations
         {
             get => specializations;
@@ -38,12 +38,16 @@ namespace DustInTheWind.MedicX.Common.Entities
                 if (specializations != null)
                     specializations.CollectionChanged += HandleSpecializationsCollectionChanged;
 
+                OnSpecializationsChanged();
                 OnChanged();
             }
         }
 
+        public event EventHandler SpecializationsChanged;
+
         private void HandleSpecializationsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
+            OnSpecializationsChanged();
             OnChanged();
         }
 
@@ -95,6 +99,11 @@ namespace DustInTheWind.MedicX.Common.Entities
             {
                 return (base.GetHashCode() * 397) ^ (specializations != null ? specializations.GetHashCode() : 0);
             }
+        }
+
+        protected virtual void OnSpecializationsChanged()
+        {
+            SpecializationsChanged?.Invoke(this, EventArgs.Empty);
         }
     }
 }
