@@ -81,7 +81,7 @@ namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.VewModels
                     break;
 
                 case ClinicsViewModel clinicsViewModel:
-                    medicXProject.CurrentItem = clinicsViewModel.SelectedClinic?.Value;
+                    medicXProject.CurrentItem = clinicsViewModel.SelectedClinic?.Clinic;
                     break;
 
                 case MedicalEventsViewModel medicalEventsViewModel:

@@ -83,9 +83,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 <DataTemplate DataType="vewModels:ClinicListItemViewModel">
                     <StackPanel Margin="5 6">
                         <TextBlock
-                            Text="{Binding Text, Mode=OneWay}"
+                            Text="{Binding Name, Mode=OneWay}"
                             FontSize="18" />
-                        <TextBlock Text="{Binding Value.Address, Mode=OneWay}" />
+                        <TextBlock Text="{Binding Address, Mode=OneWay}" />
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
