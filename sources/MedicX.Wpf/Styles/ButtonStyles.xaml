@@ -31,6 +31,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <Setter Property="Padding" Value="8" />
         <Setter Property="FontSize" Value="20" />
         <Setter Property="BorderBrush" Value="{StaticResource ButtonNormalBorderColor}" />
+        <Setter Property="BorderThickness" Value="1" />
 
         <Setter Property="Template">
             <Setter.Value>
@@ -39,7 +40,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                         CornerRadius="2"
                         Background="{TemplateBinding Background}"
                         BorderBrush="{TemplateBinding BorderBrush}"
-                        BorderThickness="1">
+                        BorderThickness="{TemplateBinding BorderThickness}">
 
                         <ContentPresenter
                             x:Name="MyContentPresenter"

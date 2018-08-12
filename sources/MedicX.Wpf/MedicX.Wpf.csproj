@@ -184,23 +184,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Styles\ButtonStylesDictionary.xaml">
+    <Page Include="Styles\ButtonStyles.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Styles\CheckBoxStylesDictionary.xaml">
+    <Page Include="Styles\CheckBoxStyles.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Styles\ScrollBarStylesDictionary.xaml">
+    <Page Include="Styles\ScrollBarStyles.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Styles\TabControlStylesDictionary.xaml">
+    <Page Include="Styles\TabControlStyles.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Styles\ToggleButtonStylesDictionary.xaml">
+    <Page Include="Styles\ToggleButtonStyles.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -287,6 +287,10 @@
     <ProjectReference Include="..\MedicX.Persistence\MedicX.Persistence.csproj">
       <Project>{6104e0cd-5f5a-4c47-bd41-6d4c58822928}</Project>
       <Name>MedicX.Persistence</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MedicX.Wpf.CustomControls\MedicX.Wpf.CustomControls.csproj">
+      <Project>{fd029e2f-49ab-47d7-b8f5-c9ad185523cb}</Project>
+      <Name>MedicX.Wpf.CustomControls</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
