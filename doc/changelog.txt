@@ -1,6 +1,11 @@
 MedicX
 ======
 
+ver 1.0.0
+---------
+- [data-file] changed the extension of the data file to zmdx
+- [UI] small design updates.
+
 ver 0.1.0-alpha
 ---------------
 - updated the design (colors, font size)
