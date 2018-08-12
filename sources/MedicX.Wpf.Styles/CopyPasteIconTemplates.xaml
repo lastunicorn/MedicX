@@ -1,0 +1,222 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <ControlTemplate x:Key="CopyIconTemplate">
+
+        <Viewbox
+            Stretch="Uniform"
+            Width="{TemplateBinding Width}"
+            Height="{TemplateBinding Height}"
+            SnapsToDevicePixels="True">
+
+            <Canvas Name="svg2" Width="511.99998" Height="511.99998" SnapsToDevicePixels="True">
+                <Canvas.RenderTransform>
+                    <TranslateTransform X="0" Y="0" />
+                </Canvas.RenderTransform>
+                <Canvas.Resources>
+                    <LinearGradientBrush x:Key="linearGradient4217" MappingMode="RelativeToBoundingBox" StartPoint="0,0" EndPoint="1,1">
+                        <LinearGradientBrush.GradientStops>
+                            <GradientStopCollection>
+                                <GradientStop Color="#FF1A1A1A" Offset="0" />
+                                <GradientStop Color="#FF000000" Offset="1" />
+                            </GradientStopCollection>
+                        </LinearGradientBrush.GradientStops>
+                    </LinearGradientBrush>
+                    <LinearGradientBrush x:Key="linearGradient7064" MappingMode="RelativeToBoundingBox" StartPoint="0,0" EndPoint="1,1">
+                        <LinearGradientBrush.GradientStops>
+                            <GradientStopCollection>
+                                <GradientStop Color="#FF000000" Offset="0" />
+                            </GradientStopCollection>
+                        </LinearGradientBrush.GradientStops>
+                    </LinearGradientBrush>
+                    <LinearGradientBrush x:Key="linearGradient7068" MappingMode="Absolute" StartPoint="315,-881" EndPoint="769,-881">
+                        <LinearGradientBrush.GradientStops>
+                            <GradientStopCollection>
+                                <GradientStop Color="#FF000000" Offset="0" />
+                            </GradientStopCollection>
+                        </LinearGradientBrush.GradientStops>
+                    </LinearGradientBrush>
+                    <LinearGradientBrush x:Key="linearGradient4176" MappingMode="Absolute" StartPoint="315,-881" EndPoint="769,-881">
+                        <LinearGradientBrush.GradientStops>
+                            <GradientStopCollection>
+                                <GradientStop Color="#FF1A1A1A" Offset="0" />
+                                <GradientStop Color="#FF000000" Offset="1" />
+                            </GradientStopCollection>
+                        </LinearGradientBrush.GradientStops>
+                        <LinearGradientBrush.Transform>
+                            <MatrixTransform Matrix="0.97236321 0 0 0.97236323 -370.21677 1542.0965" />
+                        </LinearGradientBrush.Transform>
+                    </LinearGradientBrush>
+                </Canvas.Resources>
+                <Canvas Name="layer1">
+                    <Canvas.RenderTransform>
+                        <TranslateTransform X="0.79777274" Y="-222.61751" />
+                    </Canvas.RenderTransform>
+                    <Canvas Name="g4324">
+                        <Rectangle Canvas.Left="24.202227" Canvas.Top="249.61749" Width="280" Height="350" RadiusX="12.540387" RadiusY="12.540387" Name="rect40080" Fill="#FFFFFFFF" StrokeThickness="50" Stroke="#FB805400" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Flat" StrokeEndLineCap="Flat" Opacity="1" />
+                        <Canvas Name="g4235">
+                            <Canvas.RenderTransform>
+                                <TranslateTransform X="-3.6218084" Y="-0.05331574" />
+                            </Canvas.RenderTransform>
+                            <Path Name="path4170" StrokeThickness="35" Stroke="#FB805400" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Square" StrokeEndLineCap="Square">
+                                <Path.Data>
+                                    <PathGeometry Figures="m 100.12518 353.11289 135.39772 -0.9031" FillRule="evenodd" />
+                                </Path.Data>
+                            </Path>
+                            <Path Name="path41701" StrokeThickness="35" Stroke="#FB805400" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Square" StrokeEndLineCap="Square">
+                                <Path.Data>
+                                    <PathGeometry Figures="m 100.12517 425.01572 135.39773 -0.9031" FillRule="evenodd" />
+                                </Path.Data>
+                            </Path>
+                            <Path Name="path41705" StrokeThickness="35" Stroke="#FB805400" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Square" StrokeEndLineCap="Square">
+                                <Path.Data>
+                                    <PathGeometry Figures="m 100.12518 490.91857 135.39772 -0.9031" FillRule="evenodd" />
+                                </Path.Data>
+                            </Path>
+                        </Canvas>
+                    </Canvas>
+                    <Canvas Name="g41903">
+                        <Canvas.RenderTransform>
+                            <TranslateTransform X="173.7996" Y="110.11417" />
+                        </Canvas.RenderTransform>
+                        <Canvas Name="g41856">
+                            <Canvas.RenderTransform>
+                                <TranslateTransform X="0" Y="3.1338585" />
+                            </Canvas.RenderTransform>
+                        </Canvas>
+                    </Canvas>
+                    <Canvas Name="g43244">
+                        <Canvas.RenderTransform>
+                            <TranslateTransform X="182" Y="110" />
+                        </Canvas.RenderTransform>
+                        <Rectangle Canvas.Left="24.202227" Canvas.Top="249.61749" Width="280" Height="350" RadiusX="12.540387" RadiusY="12.540387" Name="rect400807" Fill="#FFFFFFFF" StrokeThickness="50" Stroke="#FB805400" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Flat" StrokeEndLineCap="Flat" Opacity="1" />
+                        <Canvas Name="g42354">
+                            <Canvas.RenderTransform>
+                                <TranslateTransform X="-3.6218084" Y="-0.05331574" />
+                            </Canvas.RenderTransform>
+                            <Path Name="path41708" StrokeThickness="35" Stroke="#FB805400" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Square" StrokeEndLineCap="Square">
+                                <Path.Data>
+                                    <PathGeometry Figures="m 100.12518 353.11289 135.39772 -0.9031" FillRule="evenodd" />
+                                </Path.Data>
+                            </Path>
+                            <Path Name="path417015" StrokeThickness="35" Stroke="#FB805400" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Square" StrokeEndLineCap="Square">
+                                <Path.Data>
+                                    <PathGeometry Figures="m 100.12517 425.01572 135.39773 -0.9031" FillRule="evenodd" />
+                                </Path.Data>
+                            </Path>
+                            <Path Name="path417058" StrokeThickness="35" Stroke="#FB805400" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Square" StrokeEndLineCap="Square">
+                                <Path.Data>
+                                    <PathGeometry Figures="m 100.12518 490.91857 135.39772 -0.9031" FillRule="evenodd" />
+                                </Path.Data>
+                            </Path>
+                        </Canvas>
+                    </Canvas>
+                </Canvas>
+            </Canvas>
+
+        </Viewbox>
+
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="PasteIconTemplate">
+
+        <Viewbox
+            Stretch="Uniform"
+            Width="{TemplateBinding Width}"
+            Height="{TemplateBinding Height}"
+            SnapsToDevicePixels="True">
+
+            <Canvas Name="svg2" Width="511.99998" Height="511.99998" SnapsToDevicePixels="True">
+                <Canvas.RenderTransform>
+                    <TranslateTransform X="0" Y="0" />
+                </Canvas.RenderTransform>
+                <Canvas.Resources>
+                    <LinearGradientBrush x:Key="linearGradient4217" MappingMode="RelativeToBoundingBox" StartPoint="0,0" EndPoint="1,1">
+                        <LinearGradientBrush.GradientStops>
+                            <GradientStopCollection>
+                                <GradientStop Color="#FF1A1A1A" Offset="0" />
+                                <GradientStop Color="#FF000000" Offset="1" />
+                            </GradientStopCollection>
+                        </LinearGradientBrush.GradientStops>
+                    </LinearGradientBrush>
+                    <LinearGradientBrush x:Key="linearGradient7064" MappingMode="RelativeToBoundingBox" StartPoint="0,0" EndPoint="1,1">
+                        <LinearGradientBrush.GradientStops>
+                            <GradientStopCollection>
+                                <GradientStop Color="#FF000000" Offset="0" />
+                            </GradientStopCollection>
+                        </LinearGradientBrush.GradientStops>
+                    </LinearGradientBrush>
+                    <LinearGradientBrush x:Key="linearGradient7068" MappingMode="Absolute" StartPoint="315,-881" EndPoint="769,-881">
+                        <LinearGradientBrush.GradientStops>
+                            <GradientStopCollection>
+                                <GradientStop Color="#FF000000" Offset="0" />
+                            </GradientStopCollection>
+                        </LinearGradientBrush.GradientStops>
+                    </LinearGradientBrush>
+                    <LinearGradientBrush x:Key="linearGradient4176" MappingMode="Absolute" StartPoint="315,-881" EndPoint="769,-881">
+                        <LinearGradientBrush.GradientStops>
+                            <GradientStopCollection>
+                                <GradientStop Color="#FF1A1A1A" Offset="0" />
+                                <GradientStop Color="#FF000000" Offset="1" />
+                            </GradientStopCollection>
+                        </LinearGradientBrush.GradientStops>
+                        <LinearGradientBrush.Transform>
+                            <MatrixTransform Matrix="0.97236321 0 0 0.97236323 -370.21677 1542.0965" />
+                        </LinearGradientBrush.Transform>
+                    </LinearGradientBrush>
+                </Canvas.Resources>
+                <Canvas Name="layer1">
+                    <Canvas.RenderTransform>
+                        <TranslateTransform X="0.79777274" Y="-222.61751" />
+                    </Canvas.RenderTransform>
+                    <Rectangle Canvas.Left="24.202227" Canvas.Top="249.61749" Width="320.83624" Height="401.04529" RadiusX="11.111816" RadiusY="11.111816" Name="rect40080" Fill="#FB805400" StrokeThickness="50" Stroke="#FB805400" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Flat" StrokeEndLineCap="Flat" Opacity="1" />
+                    <Path Name="path4170" StrokeThickness="35" Stroke="#FBFFFFFF" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Flat" StrokeEndLineCap="Flat">
+                        <Path.Data>
+                            <PathGeometry Figures="m 57.262937 291.05957 254.714823 -0.9031" FillRule="evenodd" />
+                        </Path.Data>
+                    </Path>
+                    <Canvas Name="g41903">
+                        <Canvas.RenderTransform>
+                            <TranslateTransform X="173.7996" Y="110.11417" />
+                        </Canvas.RenderTransform>
+                        <Canvas Name="g41856">
+                            <Canvas.RenderTransform>
+                                <TranslateTransform X="0" Y="3.1338585" />
+                            </Canvas.RenderTransform>
+                        </Canvas>
+                    </Canvas>
+                    <Canvas Name="g43244">
+                        <Canvas.RenderTransform>
+                            <TranslateTransform X="182" Y="110" />
+                        </Canvas.RenderTransform>
+                        <Rectangle Canvas.Left="24.202227" Canvas.Top="249.61749" Width="280" Height="350" RadiusX="12.540388" RadiusY="12.540388" Name="rect400807" Fill="#FFFFFFFF" StrokeThickness="50" Stroke="#FB805400" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Flat" StrokeEndLineCap="Flat" Opacity="1" />
+                        <Canvas Name="g42354">
+                            <Canvas.RenderTransform>
+                                <TranslateTransform X="-3.6218084" Y="-0.05331574" />
+                            </Canvas.RenderTransform>
+                            <Path Name="path41708" StrokeThickness="35" Stroke="#FB805400" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Square" StrokeEndLineCap="Square">
+                                <Path.Data>
+                                    <PathGeometry Figures="m 100.12518 353.11289 135.39772 -0.9031" FillRule="evenodd" />
+                                </Path.Data>
+                            </Path>
+                            <Path Name="path417015" StrokeThickness="35" Stroke="#FB805400" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Square" StrokeEndLineCap="Square">
+                                <Path.Data>
+                                    <PathGeometry Figures="m 100.12517 425.01572 135.39773 -0.9031" FillRule="evenodd" />
+                                </Path.Data>
+                            </Path>
+                            <Path Name="path417058" StrokeThickness="35" Stroke="#FB805400" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Square" StrokeEndLineCap="Square">
+                                <Path.Data>
+                                    <PathGeometry Figures="m 100.12518 490.91857 135.39772 -0.9031" FillRule="evenodd" />
+                                </Path.Data>
+                            </Path>
+                        </Canvas>
+                    </Canvas>
+                </Canvas>
+            </Canvas>
+
+        </Viewbox>
+
+    </ControlTemplate>
+
+</ResourceDictionary>

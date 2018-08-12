@@ -172,35 +172,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Colors\Colors.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Resources\CheckBoxIconTemplates.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Resources\CopyPasteIconTemplates.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Styles\ButtonStyles.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Styles\CheckBoxStyles.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Styles\ScrollBarStyles.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Styles\TabControlStyles.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Styles\ToggleButtonStyles.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -290,6 +266,10 @@
     <ProjectReference Include="..\MedicX.Wpf.CustomControls\MedicX.Wpf.CustomControls.csproj">
       <Project>{fd029e2f-49ab-47d7-b8f5-c9ad185523cb}</Project>
       <Name>MedicX.Wpf.CustomControls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MedicX.Wpf.Styles\MedicX.Wpf.Styles.csproj">
+      <Project>{144e5445-9ace-40f3-9ce5-558777b28eb4}</Project>
+      <Name>MedicX.Wpf.Styles</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
