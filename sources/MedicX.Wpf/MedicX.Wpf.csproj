@@ -172,14 +172,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Resources\CheckBoxIconTemplates.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Resources\CopyPasteIconTemplates.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Views\EventItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -271,15 +263,6 @@
       <Project>{144e5445-9ace-40f3-9ce5-558777b28eb4}</Project>
       <Name>MedicX.Wpf.Styles</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\checkbox\all-checkbox-16.png" />
-    <Resource Include="Resources\checkbox\checked-checkbox-16.png" />
-    <Resource Include="Resources\checkbox\checked-disabled-checkbox-16.png" />
-    <Resource Include="Resources\checkbox\checked-hover-checkbox-16.png" />
-    <Resource Include="Resources\checkbox\unchecked-checkbox-16.png" />
-    <Resource Include="Resources\checkbox\unchecked-disabled-checkbox-16.png" />
-    <Resource Include="Resources\checkbox\unchecked-hover-checkbox-16.png" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
