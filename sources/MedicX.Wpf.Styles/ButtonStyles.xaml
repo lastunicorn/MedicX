@@ -24,13 +24,30 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <ResourceDictionary Source="pack://application:,,,/DustInTheWind.MedicX.Wpf.Styles;component/Colors.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
+    <!-- Colors -->
+
+    <SolidColorBrush x:Key="ButtonNormalBackgroundBrush" Color="#009700" />
+    <SolidColorBrush x:Key="ButtonNormalForegroundBrush" Color="#ffffff" />
+    <SolidColorBrush x:Key="ButtonNormalBorderBrush" Color="Transparent" />
+
+    <SolidColorBrush x:Key="ButtonOverBackgroundBrush" Color="#ff9f4d" />
+    <SolidColorBrush x:Key="ButtonOverForegroundBrush" Color="#ffffff" />
+
+    <SolidColorBrush x:Key="ButtonPressedBackgroundBrush" Color="#bc5700" />
+    <SolidColorBrush x:Key="ButtonPressedForegroundBrush" Color="#ffffff" />
+
+    <SolidColorBrush x:Key="ButtonDisabledBackgroundBrush" Color="#bc5700" />
+    <SolidColorBrush x:Key="ButtonDisabledForegroundBrush" Color="#8d8d8d" />
+
+    <!-- Styles -->
+
     <Style TargetType="{x:Type Button}">
-        <Setter Property="Background" Value="{StaticResource ButtonNormalBackgroundColor}" />
-        <Setter Property="Foreground" Value="{StaticResource ButtonNormalForegroundColor}" />
+        <Setter Property="Background" Value="{StaticResource ButtonNormalBackgroundBrush}" />
+        <Setter Property="Foreground" Value="{StaticResource ButtonNormalForegroundBrush}" />
         <Setter Property="Margin" Value="0" />
         <Setter Property="Padding" Value="8" />
         <Setter Property="FontSize" Value="20" />
-        <Setter Property="BorderBrush" Value="{StaticResource ButtonNormalBorderColor}" />
+        <Setter Property="BorderBrush" Value="{StaticResource ButtonNormalBorderBrush}" />
         <Setter Property="BorderThickness" Value="1" />
 
         <Setter Property="Template">
@@ -54,18 +71,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                     <ControlTemplate.Triggers>
 
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="{StaticResource ButtonOverBackgroundColor}" />
-                            <Setter Property="Foreground" Value="{StaticResource ButtonOverForegroundColor}" />
+                            <Setter Property="Background" Value="{StaticResource ButtonOverBackgroundBrush}" />
+                            <Setter Property="Foreground" Value="{StaticResource ButtonOverForegroundBrush}" />
                         </Trigger>
 
                         <Trigger Property="IsPressed" Value="True">
-                            <Setter Property="Background" Value="{StaticResource ButtonPressedBackgroundColor}" />
-                            <Setter Property="Foreground" Value="{StaticResource ButtonPressedForegroundColor}" />
+                            <Setter Property="Background" Value="{StaticResource ButtonPressedBackgroundBrush}" />
+                            <Setter Property="Foreground" Value="{StaticResource ButtonPressedForegroundBrush}" />
                         </Trigger>
 
                         <Trigger Property="IsEnabled" Value="False">
                             <!--<Setter Property="Background" Value="{StaticResource ButtonDisabledBackgroundColor}"/>-->
-                            <Setter Property="Foreground" Value="{StaticResource ButtonDisabledForegroundColor}" />
+                            <Setter Property="Foreground" Value="{StaticResource ButtonDisabledForegroundBrush}" />
                         </Trigger>
 
                     </ControlTemplate.Triggers>

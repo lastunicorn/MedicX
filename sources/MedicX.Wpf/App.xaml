@@ -26,10 +26,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/DustInTheWind.MedicX.Wpf.Styles;component/Colors.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/DustInTheWind.MedicX.Wpf.Styles;component/ButtonStyles.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/DustInTheWind.MedicX.Wpf.Styles;component/TabControlStyles.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/DustInTheWind.MedicX.Wpf.Styles;component/ScrollBarStyles.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/DustInTheWind.MedicX.Wpf.Styles;component/Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
+            
         </ResourceDictionary>
 
     </Application.Resources>
