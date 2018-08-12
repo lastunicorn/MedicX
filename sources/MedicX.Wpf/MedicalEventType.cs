@@ -16,7 +16,7 @@
 
 namespace DustInTheWind.MedicX.Wpf
 {
-    public enum EventType
+    public enum MedicalEventType
     {
         Unknown,
         Consult,

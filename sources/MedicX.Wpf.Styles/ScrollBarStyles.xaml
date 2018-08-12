@@ -170,6 +170,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
         <Setter Property="Width" Value="10" />
         <Setter Property="MinWidth" Value="10" />
+        <Setter Property="Margin" Value="8 0 0 0" />
 
         <Setter Property="Template">
             <Setter.Value>
@@ -211,6 +212,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 <Setter Property="MinWidth" Value="0" />
                 <Setter Property="Height" Value="10" />
                 <Setter Property="MinHeight" Value="10" />
+                <Setter Property="Margin" Value="0 8 0 0" />
 
                 <Setter Property="Template">
                     <Setter.Value>

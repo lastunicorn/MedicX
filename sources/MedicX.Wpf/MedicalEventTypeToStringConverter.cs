@@ -16,28 +16,18 @@
 
 using System;
 using System.Windows.Data;
-using DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.VewModels;
 
 namespace DustInTheWind.MedicX.Wpf
 {
-    public class EventTypeConverter : IValueConverter
+    public class MedicalEventTypeToStringConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            if (value == null)
-                return EventType.Unknown;
+            if (value == null || value.GetType() != typeof(MedicalEventType))
+                return string.Empty;
 
-            switch (value)
-            {
-                case ConsultationListItemViewModel consultation:
-                    return EventType.Consult;
-
-                case InvestigationListItemViewModel investigation:
-                    return EventType.Investigation;
-
-                default:
-                    return EventType.Unknown;
-            }
+            MedicalEventType test = (MedicalEventType)value;
+            return test.ToString();
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)

@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedicX.Wpf.StyleDemo", "Med
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedicX.Wpf.Styles", "MedicX.Wpf.Styles\MedicX.Wpf.Styles.csproj", "{144E5445-9ACE-40F3-9CE5-558777B28EB4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedicX.Business", "MedicX.Business\MedicX.Business.csproj", "{15C02EE3-EB73-45C2-BB5D-0D4AA2678D5F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{144E5445-9ACE-40F3-9CE5-558777B28EB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{144E5445-9ACE-40F3-9CE5-558777B28EB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{144E5445-9ACE-40F3-9CE5-558777B28EB4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15C02EE3-EB73-45C2-BB5D-0D4AA2678D5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15C02EE3-EB73-45C2-BB5D-0D4AA2678D5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15C02EE3-EB73-45C2-BB5D-0D4AA2678D5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15C02EE3-EB73-45C2-BB5D-0D4AA2678D5F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -19,9 +19,9 @@ using System.Collections;
 using System.Collections.Generic;
 using DustInTheWind.MedicX.Common.Entities;
 
-namespace DustInTheWind.MedicX.Wpf
+namespace DustInTheWind.MedicX.Business
 {
-    internal class MedicalEventCollection : ICollection<MedicalEvent>
+    public class MedicalEventCollection : ICollection<MedicalEvent>
     {
         private readonly List<MedicalEvent> medicalEvents = new List<MedicalEvent>();
 

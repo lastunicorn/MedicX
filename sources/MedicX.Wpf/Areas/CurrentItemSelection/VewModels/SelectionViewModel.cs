@@ -16,6 +16,7 @@
 
 using System;
 using System.Collections.Generic;
+using DustInTheWind.MedicX.Business;
 
 namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.VewModels
 {

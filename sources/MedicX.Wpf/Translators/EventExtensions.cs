@@ -35,7 +35,7 @@ namespace DustInTheWind.MedicX.Wpf.Translators
                     return new EventViewModel
                     {
                         Date = ev.Date,
-                        Type = EventType.Unknown,
+                        Type = MedicalEventType.Unknown,
                         Description = ev.Comments
                     };
             }

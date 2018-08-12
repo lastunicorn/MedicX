@@ -16,6 +16,7 @@
 
 using System;
 using System.Windows.Input;
+using DustInTheWind.MedicX.Business;
 
 namespace DustInTheWind.MedicX.Wpf.Commands
 {

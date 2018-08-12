@@ -20,6 +20,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Data;
+using DustInTheWind.MedicX.Business;
 using DustInTheWind.MedicX.Common.Entities;
 using DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.Commands;
 using DustInTheWind.MedicX.Wpf.Commands;

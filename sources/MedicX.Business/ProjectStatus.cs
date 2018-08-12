@@ -14,18 +14,13 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using System;
-using DustInTheWind.MedicX.Common.Entities;
-
-namespace DustInTheWind.MedicX.Wpf
+namespace DustInTheWind.MedicX.Business
 {
-    internal class ClinicAddedEventArgs : EventArgs
+    public enum ProjectStatus
     {
-        public Clinic Clinic { get; }
-
-        public ClinicAddedEventArgs(Clinic clinic)
-        {
-            Clinic = clinic;
-        }
+        None,
+        New,
+        Saved,
+        Modified
     }
 }

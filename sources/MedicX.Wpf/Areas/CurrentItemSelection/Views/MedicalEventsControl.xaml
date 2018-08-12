@@ -33,7 +33,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     d:DataContext="{d:DesignInstance vewModels:MedicalEventsViewModel}">
 
     <UserControl.Resources>
-        <wpf:EventTypeConverter x:Key="EventTypeConverter" />
+        <wpf:MedicalEventTypeConverter x:Key="EventTypeConverter" />
     </UserControl.Resources>
 
     <DockPanel>

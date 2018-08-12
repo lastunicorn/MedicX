@@ -22,7 +22,7 @@ namespace DustInTheWind.MedicX.Wpf.ViewModels
     {
         public DateTime Date { get; set; }
 
-        public EventType Type { get; set; }
+        public MedicalEventType Type { get; set; }
 
         public string Medic { get; set; }
 

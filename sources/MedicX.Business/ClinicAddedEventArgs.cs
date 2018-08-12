@@ -15,24 +15,17 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using System.Windows.Data;
+using DustInTheWind.MedicX.Common.Entities;
 
-namespace DustInTheWind.MedicX.Wpf
+namespace DustInTheWind.MedicX.Business
 {
-    public class EventTypeToStringConverter : IValueConverter
+    public class ClinicAddedEventArgs : EventArgs
     {
-        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
-        {
-            if (value == null || value.GetType() != typeof(EventType))
-                return string.Empty;
+        public Clinic Clinic { get; }
 
-            EventType test = (EventType)value;
-            return test.ToString();
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public ClinicAddedEventArgs(Clinic clinic)
         {
-            throw new NotImplementedException();
+            Clinic = clinic;
         }
     }
 }

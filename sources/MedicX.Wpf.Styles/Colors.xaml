@@ -65,6 +65,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
     <Color x:Key="ListBoxOverBackgroundColor">#ff9a4e</Color>
     <SolidColorBrush x:Key="ListBoxOverBackground" Color="{StaticResource ListBoxOverBackgroundColor}" />
+    
     <Color x:Key="ListBoxSelectedBackgroundColor">#ffbc83</Color>
     <SolidColorBrush x:Key="ListBoxSelectedBackground" Color="{StaticResource ListBoxSelectedBackgroundColor}" />
 

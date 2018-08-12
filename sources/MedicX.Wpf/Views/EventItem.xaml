@@ -33,7 +33,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     d:DataContext="{viewModels:EventViewModel}">
 
     <UserControl.Resources>
-        <local:EventTypeToStringConverter x:Key="EventTypeToStringConverter" />
+        <local:MedicalEventTypeToStringConverter x:Key="EventTypeToStringConverter" />
     </UserControl.Resources>
 
     <Grid Margin="8">

@@ -17,6 +17,7 @@
 using System;
 using System.Diagnostics;
 using System.Reflection;
+using DustInTheWind.MedicX.Business;
 using DustInTheWind.MedicX.Wpf.Areas.CurrentItemDetails.ViewModels;
 using DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.VewModels;
 using DustInTheWind.MedicX.Wpf.Areas.Main.Views;

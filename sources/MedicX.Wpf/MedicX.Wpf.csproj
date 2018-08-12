@@ -62,14 +62,7 @@
     </Compile>
     <Compile Include="Areas\CurrentItemDetails\ViewModels\MedicViewModel.cs" />
     <Compile Include="MedicXApplication.cs" />
-    <Compile Include="ClinicAddedEventArgs.cs" />
     <Compile Include="Commands\ExitCommand.cs" />
-    <Compile Include="MedicAddedEventArgs.cs" />
-    <Compile Include="MedicalEventAddedEventArgs.cs" />
-    <Compile Include="MedicalEventCollection.cs" />
-    <Compile Include="ClinicsCollection.cs" />
-    <Compile Include="MedicsCollection.cs" />
-    <Compile Include="MedicXProject.cs" />
     <Compile Include="Areas\CurrentItemDetails\PrescriptionListToMultilineStringConverter.cs" />
     <Compile Include="Areas\CurrentItemSelection\Commands\AddClinicCommand.cs" />
     <Compile Include="Areas\CurrentItemSelection\Commands\AddConsultationCommand.cs" />
@@ -94,8 +87,7 @@
     <Compile Include="Areas\CurrentItemSelection\Commands\AddMedicCommand.cs" />
     <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="Commands\SaveCommand.cs" />
-    <Compile Include="EventTypeConverter.cs" />
-    <Compile Include="ProjectStatus.cs" />
+    <Compile Include="MedicalEventTypeConverter.cs" />
     <Compile Include="Translators\ConsultationExtensions.cs" />
     <Compile Include="Areas\CurrentItemDetails\ViewModels\ConsultationViewModel.cs" />
     <Compile Include="Areas\CurrentItemDetails\ViewModels\DetailsViewModel.cs" />
@@ -187,12 +179,12 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="EventTypeToStringConverter.cs" />
+    <Compile Include="MedicalEventTypeToStringConverter.cs" />
     <Compile Include="Views\EventItem.xaml.cs">
       <DependentUpon>EventItem.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\EventViewModel.cs" />
-    <Compile Include="EventType.cs" />
+    <Compile Include="MedicalEventType.cs" />
     <Compile Include="Areas\Main\ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModelBase.cs" />
     <Compile Include="Areas\Main\Views\MainWindow.xaml.cs">
@@ -247,6 +239,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MedicX.Business\MedicX.Business.csproj">
+      <Project>{15C02EE3-EB73-45C2-BB5D-0D4AA2678D5F}</Project>
+      <Name>MedicX.Business</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MedicX.Common\MedicX.Common.csproj">
       <Project>{854c77f6-22f9-48a9-ae73-43e19ab9b258}</Project>
       <Name>MedicX.Common</Name>

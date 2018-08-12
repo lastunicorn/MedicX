@@ -29,7 +29,7 @@ namespace DustInTheWind.MedicX.Wpf.Translators
             return new EventViewModel
             {
                 Date = consultation.Date,
-                Type = EventType.Consult,
+                Type = MedicalEventType.Consult,
                 Medic = consultation.Medic?.Name?.ToString(),
                 Description = consultation.Comments
             };

@@ -20,9 +20,9 @@ using System.Linq;
 using DustInTheWind.MedicX.Common.Entities;
 using DustInTheWind.MedicX.Persistence;
 
-namespace DustInTheWind.MedicX.Wpf
+namespace DustInTheWind.MedicX.Business
 {
-    internal class MedicXProject
+    public class MedicXProject
     {
         private ProjectStatus status = ProjectStatus.New;
 

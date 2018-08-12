@@ -19,76 +19,76 @@ using System.Collections;
 using System.Collections.Generic;
 using DustInTheWind.MedicX.Common.Entities;
 
-namespace DustInTheWind.MedicX.Wpf
+namespace DustInTheWind.MedicX.Business
 {
-    internal class ClinicsCollection : ICollection<Clinic>
+    public class MedicsCollection : ICollection<Medic>
     {
-        private readonly List<Clinic> clinics = new List<Clinic>();
+        private readonly List<Medic> medics = new List<Medic>();
 
-        public int Count => clinics.Count;
+        public int Count => medics.Count;
 
         public bool IsReadOnly => false;
 
         public event EventHandler Changed;
-        public event EventHandler<ClinicAddedEventArgs> Added;
+        public event EventHandler<MedicAddedEventArgs> Added;
 
-        public void Add(Clinic clinic)
+        public void Add(Medic medic)
         {
-            if (clinic == null) throw new ArgumentNullException(nameof(clinic));
+            if (medic == null) throw new ArgumentNullException(nameof(medic));
 
-            clinics.Add(clinic);
+            medics.Add(medic);
 
-            clinic.Changed += HandleClinicChanged;
+            medic.Changed += HandleMedicChanged;
 
             OnChanged();
-            OnAdded(new ClinicAddedEventArgs(clinic));
+            OnAdded(new MedicAddedEventArgs(medic));
         }
 
         public void Clear()
         {
-            foreach (Clinic clinic in clinics)
-                clinic.Changed -= HandleClinicChanged;
+            foreach (Medic medic in medics)
+                medic.Changed -= HandleMedicChanged;
 
-            clinics.Clear();
+            medics.Clear();
 
             OnChanged();
         }
 
-        public bool Contains(Clinic clinic)
+        public bool Contains(Medic medic)
         {
-            return clinics.Contains(clinic);
+            return medics.Contains(medic);
         }
 
-        public void CopyTo(Clinic[] array, int arrayIndex)
+        public void CopyTo(Medic[] array, int arrayIndex)
         {
             if (array == null) throw new ArgumentNullException(nameof(array));
             if (arrayIndex < 0) throw new ArgumentOutOfRangeException(nameof(arrayIndex), "arrayIndex is less than 0.");
 
-            if (clinics.Count > array.Length)
+            if (medics.Count > array.Length)
                 throw new ArgumentException("The number of elements in the collection is greater than the available space of the destination array.", nameof(array));
 
-            if (clinics.Count > array.Length - arrayIndex)
+            if (medics.Count > array.Length - arrayIndex)
                 throw new ArgumentException("The number of elements in the collection is greater than the available space from arrayIndex to the end of the destination array.", nameof(arrayIndex));
 
-            clinics.CopyTo(array, arrayIndex);
+            medics.CopyTo(array, arrayIndex);
         }
 
-        public bool Remove(Clinic clinic)
+        public bool Remove(Medic medic)
         {
-            if (clinic == null) throw new ArgumentNullException(nameof(clinic));
+            if (medic == null) throw new ArgumentNullException(nameof(medic));
 
-            clinic.Changed -= HandleClinicChanged;
+            medic.Changed -= HandleMedicChanged;
 
-            bool success = clinics.Remove(clinic);
+            bool success = medics.Remove(medic);
 
             OnChanged();
 
             return success;
         }
 
-        public IEnumerator<Clinic> GetEnumerator()
+        public IEnumerator<Medic> GetEnumerator()
         {
-            return clinics.GetEnumerator();
+            return medics.GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
@@ -96,7 +96,7 @@ namespace DustInTheWind.MedicX.Wpf
             return GetEnumerator();
         }
 
-        private void HandleClinicChanged(object sender, EventArgs e)
+        private void HandleMedicChanged(object sender, EventArgs e)
         {
             OnChanged();
         }
@@ -106,7 +106,7 @@ namespace DustInTheWind.MedicX.Wpf
             Changed?.Invoke(this, EventArgs.Empty);
         }
 
-        protected virtual void OnAdded(ClinicAddedEventArgs e)
+        protected virtual void OnAdded(MedicAddedEventArgs e)
         {
             Added?.Invoke(this, e);
         }

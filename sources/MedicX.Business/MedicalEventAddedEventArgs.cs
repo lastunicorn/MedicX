@@ -17,15 +17,15 @@
 using System;
 using DustInTheWind.MedicX.Common.Entities;
 
-namespace DustInTheWind.MedicX.Wpf
+namespace DustInTheWind.MedicX.Business
 {
-    internal class MedicAddedEventArgs : EventArgs
+    public class MedicalEventAddedEventArgs : EventArgs
     {
-        public Medic Medic { get; }
+        public MedicalEvent MedicalEvent { get; }
 
-        public MedicAddedEventArgs(Medic medic)
+        public MedicalEventAddedEventArgs(MedicalEvent medicalEvent)
         {
-            Medic = medic;
+            MedicalEvent = medicalEvent;
         }
     }
 }
