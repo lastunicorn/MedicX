@@ -19,28 +19,66 @@ using DustInTheWind.MedicX.Common.Entities;
 
 namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.VewModels
 {
-    internal class ClinicListItemViewModel : ListItemViewModel<Clinic>
+    internal class ClinicListItemViewModel : ViewModelBase
     {
+        private string name;
+        private string address;
+
+        public Clinic Clinic { get; }
+
+        public string Name
+        {
+            get => name;
+            private set
+            {
+                name = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string Address
+        {
+            get => address;
+            private set
+            {
+                address = value;
+                OnPropertyChanged();
+            }
+        }
+
         public ClinicListItemViewModel(Clinic clinic)
         {
-            Value = clinic ?? throw new ArgumentNullException(nameof(clinic));
+            Clinic = clinic ?? throw new ArgumentNullException(nameof(clinic));
 
-            UpdateText();
+            UpdateDisplayedText();
+            UpdateDisplayedAddress();
+
             clinic.NameChanged += HandleMedicNameChanged;
+            clinic.AddressChanged += HandleAddressChanged;
         }
 
         private void HandleMedicNameChanged(object sender, EventArgs e)
         {
-            UpdateText();
+            UpdateDisplayedText();
         }
 
-        private void UpdateText()
+        private void HandleAddressChanged(object sender, EventArgs eventArgs)
         {
-            string name = Value.Name;
+            UpdateDisplayedAddress();
+        }
 
-            Text = string.IsNullOrEmpty(name)
+        private void UpdateDisplayedText()
+        {
+            string name = Clinic.Name;
+
+            Name = string.IsNullOrEmpty(name)
                 ? "<no name>"
                 : name;
+        }
+
+        private void UpdateDisplayedAddress()
+        {
+            Address = Clinic.Address.ToString();
         }
     }
 }

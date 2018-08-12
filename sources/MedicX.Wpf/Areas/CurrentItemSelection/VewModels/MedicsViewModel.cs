@@ -46,7 +46,7 @@ namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.VewModels
                 selectedMedic = value;
                 OnPropertyChanged();
 
-                medicXProject.CurrentItem = selectedMedic?.Value;
+                medicXProject.CurrentItem = selectedMedic?.Medic;
             }
         }
 
@@ -115,7 +115,7 @@ namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.VewModels
             if (medicsViewModels == null)
                 return;
 
-            SelectedMedic = medicsViewModels.FirstOrDefault(x => x.Value == medic);
+            SelectedMedic = medicsViewModels.FirstOrDefault(x => x.Medic == medic);
         }
 
         private bool FilterMedic(object o)
@@ -125,7 +125,7 @@ namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.VewModels
 
             MedicListItemViewModel medicListItemViewModel = o as MedicListItemViewModel;
 
-            return medicListItemViewModel?.Value?.Contains(searchText) ?? false;
+            return medicListItemViewModel?.Medic?.Contains(searchText) ?? false;
         }
     }
 }

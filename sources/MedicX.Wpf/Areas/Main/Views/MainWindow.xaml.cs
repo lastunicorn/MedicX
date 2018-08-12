@@ -14,6 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+using System.ComponentModel;
 using System.Windows;
 using DustInTheWind.MedicX.Wpf.Areas.Main.ViewModels;
 
@@ -24,14 +25,16 @@ namespace DustInTheWind.MedicX.Wpf.Areas.Main.Views
     /// </summary>
     internal partial class MainWindow : Window
     {
+        private MedicXApplication medicXApplication;
+
         public MainWindow()
         {
             InitializeComponent();
 
-            MedicXApplication application = new MedicXApplication();
-            application.LoadProject("medicx.zmdx");
+            medicXApplication = new MedicXApplication();
+            medicXApplication.LoadProject("medicx.zmdx");
 
-            DataContext = new MainViewModel(application);
+            DataContext = new MainViewModel(medicXApplication);
 
             //CalendarWindow calendarWindow = new CalendarWindow
             //{

@@ -14,6 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+using System;
 using System.Windows;
 
 namespace DustInTheWind.MedicX.Wpf
@@ -29,7 +30,34 @@ namespace DustInTheWind.MedicX.Wpf
 
         public void Exit()
         {
-            Application.Current.Shutdown();
+            bool allowToContinue = EnsureSave();
+
+            if (allowToContinue)
+                Application.Current.Shutdown();
+        }
+
+        private bool EnsureSave()
+        {
+            if (CurrentProject.Status == ProjectStatus.Saved)
+                return true;
+
+            MessageBoxResult result = MessageBox.Show("Do you want to save the project before closing?", "Save", MessageBoxButton.YesNoCancel, MessageBoxImage.Question, MessageBoxResult.Yes);
+
+            switch (result)
+            {
+                case MessageBoxResult.Yes:
+                    CurrentProject.Save();
+                    return true;
+
+                case MessageBoxResult.No:
+                    return true;
+
+                case MessageBoxResult.Cancel:
+                    return false;
+
+                default:
+                    throw new Exception("Invalid answer received when asking for saving the project.");
+            }
         }
     }
 }

@@ -124,6 +124,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                                 VerticalContentAlignment="Center">
 
                                 <ComboBox.Resources>
+                                    <!--Selected color when the ComboBox is focused-->
+                                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="{StaticResource HighlightBrushKeyColor}" />
+
+                                    <!--selected text-->
+                                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="{StaticResource HighlightTextBrushKeyColor}" />
+                                
                                     <DataTemplate DataType="{x:Type entities:Medic}">
                                         <StackPanel
                                             Orientation="Horizontal"
@@ -161,6 +167,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                                 VerticalContentAlignment="Center">
 
                                 <ComboBox.Resources>
+                                    <!--Selected color when the ComboBox is focused-->
+                                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="{StaticResource HighlightBrushKeyColor}" />
+
+                                    <!--selected text-->
+                                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="{StaticResource HighlightTextBrushKeyColor}" />
+
                                     <DataTemplate DataType="{x:Type entities:Medic}">
                                         <StackPanel
                                             Orientation="Horizontal"
@@ -198,6 +210,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                                 VerticalContentAlignment="Center">
 
                                 <ComboBox.Resources>
+                                    <!--Selected color when the ComboBox is focused-->
+                                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="{StaticResource HighlightBrushKeyColor}" />
+
+                                    <!--selected text-->
+                                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="{StaticResource HighlightTextBrushKeyColor}" />
+
                                     <DataTemplate DataType="{x:Type entities:Clinic}">
                                         <StackPanel
                                             Orientation="Horizontal"

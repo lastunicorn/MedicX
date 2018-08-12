@@ -46,7 +46,7 @@ namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.VewModels
                 selectedClinic = value;
                 OnPropertyChanged();
 
-                medicXProject.CurrentItem = selectedClinic?.Value;
+                medicXProject.CurrentItem = selectedClinic?.Clinic;
             }
         }
 
@@ -115,7 +115,7 @@ namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.VewModels
             if (clinicsViewModels == null)
                 return;
 
-            SelectedClinic = clinicsViewModels.FirstOrDefault(x => x.Value == clinic);
+            SelectedClinic = clinicsViewModels.FirstOrDefault(x => x.Clinic == clinic);
         }
 
         private bool FilterClinic(object o)
@@ -125,7 +125,7 @@ namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.VewModels
 
             ClinicListItemViewModel clinicListItemViewModel = o as ClinicListItemViewModel;
 
-            return clinicListItemViewModel?.Value?.Contains(searchText) ?? false;
+            return clinicListItemViewModel?.Clinic?.Contains(searchText) ?? false;
         }
     }
 }

@@ -15,32 +15,72 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using DustInTheWind.MedicX.Common.Entities;
 
 namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.VewModels
 {
-    internal class MedicListItemViewModel : ListItemViewModel<Medic>
+    internal class MedicListItemViewModel : ViewModelBase
     {
+        private string name;
+        private List<string> specializations;
+
+        public Medic Medic { get; }
+
+        public string Name
+        {
+            get => name;
+            private set
+            {
+                name = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public List<string> Specializations
+        {
+            get => specializations;
+            private set
+            {
+                specializations = value;
+                OnPropertyChanged();
+            }
+        }
+
         public MedicListItemViewModel(Medic medic)
         {
-            Value = medic ?? throw new ArgumentNullException(nameof(medic));
+            this.Medic = medic ?? throw new ArgumentNullException(nameof(medic));
 
-            UpdateText();
+            UpdateDsplayedName();
+            UpdateDsplayedSpecializations();
+
             medic.NameChanged += HandleMedicNameChanged;
+            medic.SpecializationsChanged += HandleSpecializationsChanged;
         }
 
         private void HandleMedicNameChanged(object sender, EventArgs e)
         {
-            UpdateText();
+            UpdateDsplayedName();
         }
 
-        private void UpdateText()
+        private void HandleSpecializationsChanged(object sender, EventArgs e)
         {
-            string personName = Value.Name?.ToString();
+            UpdateDsplayedSpecializations();
+        }
 
-            Text = string.IsNullOrEmpty(personName)
+        private void UpdateDsplayedName()
+        {
+            string personName = Medic.Name?.ToString();
+
+            Name = string.IsNullOrEmpty(personName)
                 ? "<no name>"
                 : personName;
+        }
+
+        private void UpdateDsplayedSpecializations()
+        {
+            Specializations = Medic.Specializations.ToList();
         }
     }
 }

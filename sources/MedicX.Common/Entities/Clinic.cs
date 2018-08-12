@@ -56,6 +56,7 @@ namespace DustInTheWind.MedicX.Common.Entities
                 if (address != null)
                     address.Changed += HandleAddressChanged;
 
+                OnAddressChanged();
                 OnChanged();
             }
         }
@@ -98,10 +99,12 @@ namespace DustInTheWind.MedicX.Common.Entities
         }
 
         public event EventHandler NameChanged;
+        public event EventHandler AddressChanged;
         public event EventHandler Changed;
 
         private void HandleAddressChanged(object sender, EventArgs e)
         {
+            OnAddressChanged();
             OnChanged();
         }
 
@@ -132,11 +135,6 @@ namespace DustInTheWind.MedicX.Common.Entities
         protected virtual void OnNameChanged()
         {
             NameChanged?.Invoke(this, EventArgs.Empty);
-        }
-
-        protected virtual void OnChanged()
-        {
-            Changed?.Invoke(this, EventArgs.Empty);
         }
 
         public bool Equals(Clinic other)
@@ -173,6 +171,16 @@ namespace DustInTheWind.MedicX.Common.Entities
                 hashCode = (hashCode * 397) ^ Id.GetHashCode();
                 return hashCode;
             }
+        }
+
+        protected virtual void OnChanged()
+        {
+            Changed?.Invoke(this, EventArgs.Empty);
+        }
+
+        protected virtual void OnAddressChanged()
+        {
+            AddressChanged?.Invoke(this, EventArgs.Empty);
         }
     }
 }
