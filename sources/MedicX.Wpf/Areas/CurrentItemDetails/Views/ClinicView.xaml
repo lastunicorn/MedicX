@@ -27,6 +27,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     xmlns:entities="clr-namespace:DustInTheWind.MedicX.Common.Entities;assembly=DustInTheWind.MedicX.Common"
     xmlns:views="clr-namespace:DustInTheWind.MedicX.Wpf.Areas.CurrentItemDetails.Views"
     xmlns:currentItemDetails="clr-namespace:DustInTheWind.MedicX.Wpf.Areas.CurrentItemDetails"
+    xmlns:customControls="clr-namespace:DustInTheWind.MedicX.Wpf.CustomControls;assembly=DustInTheWind.MedicX.Wpf.CustomControls"
 
     mc:Ignorable="d"
     d:DesignHeight="300"
@@ -34,71 +35,51 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     d:DataContext="{d:DesignInstance entities:Clinic}">
 
     <UserControl.Resources>
+
         <currentItemDetails:StringListToMultilineStringConverter x:Key="StringListToMultilineStringConverter" />
+
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontSize" Value="12" />
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="FontSize" Value="18" />
+        </Style>
+
     </UserControl.Resources>
 
-    <DockPanel>
+    <customControls:TitledPanel Title="{Binding Name}">
 
-        <Border
-            DockPanel.Dock="Top"
-            Background="{StaticResource DetailsTitleBackground}"
-            Height="60">
+        <ItemsControl>
 
-            <TextBlock
-                Text="{Binding Name}"
-                FontSize="30"
-                Foreground="{StaticResource DetailsTitleForeground}"
-                TextAlignment="Center"
-                VerticalAlignment="Center"
-                HorizontalAlignment="Center" />
+            <StackPanel Margin="0 8">
 
-        </Border>
-
-        <ScrollViewer
-            Margin="8"
-            HorizontalScrollBarVisibility="Auto"
-            VerticalScrollBarVisibility="Auto">
-
-            <ScrollViewer.Resources>
-                <Style TargetType="TextBlock">
-                    <Setter Property="Foreground" Value="White" />
-                    <Setter Property="FontSize" Value="12" />
-                </Style>
-                <Style TargetType="TextBox">
-                    <Setter Property="FontSize" Value="18" />
-                </Style>
-            </ScrollViewer.Resources>
-
-            <ItemsControl>
-
-                <StackPanel Margin="0 8">
-
-                    <TextBlock
+                <TextBlock
                         Text="Name"
                         Margin="2 0 0 0" />
 
-                    <TextBox
+                <TextBox
                         Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                         Padding="4" />
 
-                </StackPanel>
+            </StackPanel>
 
-                <StackPanel Margin="0 8">
+            <StackPanel Margin="0 8">
 
-                    <views:AddressView
+                <views:AddressView
                         DataContext="{Binding Address}"
                         Margin="0 4"
                         Padding="4" />
 
-                </StackPanel>
+            </StackPanel>
 
-                <StackPanel Margin="0 8">
+            <StackPanel Margin="0 8">
 
-                    <TextBlock
+                <TextBlock
                         Text="Phones (list)"
                         Margin="2 0 0 0" />
 
-                    <TextBox
+                <TextBox
                         Height="85"
                         AcceptsReturn="True"
                         Text="{Binding Phones, Converter={StaticResource StringListToMultilineStringConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
@@ -106,27 +87,27 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                         VerticalScrollBarVisibility="Auto"
                         HorizontalScrollBarVisibility="Auto" />
 
-                </StackPanel>
+            </StackPanel>
 
-                <StackPanel Margin="0 8">
+            <StackPanel Margin="0 8">
 
-                    <TextBlock
+                <TextBlock
                         Text="Program"
                         Margin="2 0 0 0" />
 
-                    <TextBox
+                <TextBox
                         Text="{Binding Program, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                         Padding="4" />
 
-                </StackPanel>
+            </StackPanel>
 
-                <StackPanel Margin="0 8">
+            <StackPanel Margin="0 8">
 
-                    <TextBlock
+                <TextBlock
                         Text="Comments"
                         Margin="2 0 0 0" />
 
-                    <TextBox
+                <TextBox
                         Text="{Binding Comments, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                         Height="170"
                         AcceptsReturn="True"
@@ -134,12 +115,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                         VerticalScrollBarVisibility="Auto"
                         HorizontalScrollBarVisibility="Auto" />
 
-                </StackPanel>
+            </StackPanel>
 
-            </ItemsControl>
+        </ItemsControl>
 
-        </ScrollViewer>
-
-    </DockPanel>
+    </customControls:TitledPanel>
 
 </UserControl>

@@ -27,6 +27,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     xmlns:entities="clr-namespace:DustInTheWind.MedicX.Common.Entities;assembly=DustInTheWind.MedicX.Common"
     xmlns:viewModels="clr-namespace:DustInTheWind.MedicX.Wpf.Areas.CurrentItemDetails.ViewModels"
     xmlns:currentItemDetails="clr-namespace:DustInTheWind.MedicX.Wpf.Areas.CurrentItemDetails"
+    xmlns:customControls="clr-namespace:DustInTheWind.MedicX.Wpf.CustomControls;assembly=DustInTheWind.MedicX.Wpf.CustomControls"
 
     mc:Ignorable="d"
     d:DesignHeight="300"
@@ -34,218 +35,188 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     d:DataContext="{d:DesignInstance viewModels:InvestigationViewModel}">
 
     <UserControl.Resources>
+
         <currentItemDetails:StringListToMultilineStringConverter x:Key="StringListToMultilineStringConverter" />
         <currentItemDetails:StringListToCsvConverter x:Key="StringListToCsvConverter" />
+
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontSize" Value="12" />
+        </Style>
+
+        <Style TargetType="TextBox">
+            <Setter Property="FontSize" Value="18" />
+        </Style>
+
+        <Style TargetType="ComboBox">
+            <Setter Property="FontSize" Value="18" />
+        </Style>
+
     </UserControl.Resources>
 
-    <DockPanel>
+    <customControls:TitledPanel Title="{Binding Title}">
 
-        <Border
-            DockPanel.Dock="Top"
-            Background="{StaticResource DetailsTitleBackground}"
-            Height="60">
+        <ItemsControl>
 
-            <StackPanel
-                FlowDirection="LeftToRight"
-                Orientation="Horizontal"
-                Margin="5 6"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center">
+            <DockPanel>
 
-                <StackPanel.Resources>
-                    <Style TargetType="TextBlock">
-                        <Setter Property="FontSize" Value="30" />
-                        <Setter Property="Foreground" Value="{StaticResource DetailsTitleForeground}" />
-                    </Style>
-                </StackPanel.Resources>
+                <!-- Date -->
 
-                <TextBlock Text="{Binding Investigation.Date, StringFormat={}{0:yyyy MM dd}, Mode=OneWay}" />
-                <TextBlock Text="{Binding Investigation.SentBy.Name, StringFormat={} - Sent by {0}, Mode=OneWay}" />
-                <TextBlock Text=" - (investigation)" />
-
-            </StackPanel>
-
-        </Border>
-
-        <ScrollViewer
-            Margin="8"
-            HorizontalScrollBarVisibility="Auto"
-            VerticalScrollBarVisibility="Auto">
-
-            <ScrollViewer.Resources>
-                <Style TargetType="TextBlock">
-                    <Setter Property="Foreground" Value="White" />
-                    <Setter Property="FontSize" Value="12" />
-                </Style>
-                <Style TargetType="TextBox">
-                    <Setter Property="FontSize" Value="18" />
-                </Style>
-                <Style TargetType="ComboBox">
-                    <Setter Property="FontSize" Value="18" />
-                </Style>
-            </ScrollViewer.Resources>
-
-            <ItemsControl>
-
-                <DockPanel>
-
-                    <!-- Date -->
-
-                    <StackPanel
+                <StackPanel
                         DockPanel.Dock="Right"
                         Margin="8 8 0 8">
 
-                        <TextBlock
+                    <TextBlock
                             Text="Date"
                             Margin="2 0 0 0" />
 
-                        <Calendar
+                    <Calendar
                             Margin="0"
                             Padding="0"
                             BorderThickness="0"
                             SelectedDate="{Binding Investigation.Date, Mode=TwoWay}"
                             DisplayDate="{Binding Investigation.Date, Mode=OneWay}" />
 
-                    </StackPanel>
+                </StackPanel>
 
-                    <ItemsControl>
+                <ItemsControl>
 
-                        <!-- Sent By -->
+                    <!-- Sent By -->
 
-                        <StackPanel Margin="0 8">
+                    <StackPanel Margin="0 8">
 
-                            <TextBlock
+                        <TextBlock
                                 Text="Sent by"
                                 Margin="2 0 0 0" />
 
-                            <ComboBox
+                        <ComboBox
                                 ItemsSource="{Binding Medics}"
                                 SelectedItem="{Binding Investigation.SentBy, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                 VerticalContentAlignment="Center">
 
-                                <ComboBox.Resources>
-                                    <!--Selected color when the ComboBox is focused-->
-                                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="{StaticResource HighlightBrushKeyColor}" />
+                            <ComboBox.Resources>
+                                <!--Selected color when the ComboBox is focused-->
+                                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="{StaticResource HighlightBrushKeyColor}" />
 
-                                    <!--selected text-->
-                                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="{StaticResource HighlightTextBrushKeyColor}" />
-                                
-                                    <DataTemplate DataType="{x:Type entities:Medic}">
-                                        <StackPanel
+                                <!--selected text-->
+                                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="{StaticResource HighlightTextBrushKeyColor}" />
+
+                                <DataTemplate DataType="{x:Type entities:Medic}">
+                                    <StackPanel
                                             Orientation="Horizontal"
                                             Margin="8 4 8 4">
 
-                                            <TextBlock
+                                        <TextBlock
                                                 Text="{Binding Name}"
                                                 VerticalAlignment="Center" />
 
-                                            <TextBlock
+                                        <TextBlock
                                                 Margin="5 0 0 0"
                                                 FontSize="12"
                                                 Text="{Binding Specializations, Converter={StaticResource StringListToCsvConverter}, StringFormat= ({0})}"
                                                 VerticalAlignment="Center" />
 
-                                        </StackPanel>
-                                    </DataTemplate>
-                                </ComboBox.Resources>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ComboBox.Resources>
 
-                            </ComboBox>
+                        </ComboBox>
 
-                        </StackPanel>
+                    </StackPanel>
 
-                        <!-- Medic -->
+                    <!-- Medic -->
 
-                        <StackPanel Margin="0 8">
+                    <StackPanel Margin="0 8">
 
-                            <TextBlock
+                        <TextBlock
                                 Text="Medic"
                                 Margin="2 0 0 0" />
 
-                            <ComboBox
+                        <ComboBox
                                 ItemsSource="{Binding Medics}"
                                 SelectedItem="{Binding Investigation.Medic, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                 VerticalContentAlignment="Center">
 
-                                <ComboBox.Resources>
-                                    <!--Selected color when the ComboBox is focused-->
-                                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="{StaticResource HighlightBrushKeyColor}" />
+                            <ComboBox.Resources>
+                                <!--Selected color when the ComboBox is focused-->
+                                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="{StaticResource HighlightBrushKeyColor}" />
 
-                                    <!--selected text-->
-                                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="{StaticResource HighlightTextBrushKeyColor}" />
+                                <!--selected text-->
+                                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="{StaticResource HighlightTextBrushKeyColor}" />
 
-                                    <DataTemplate DataType="{x:Type entities:Medic}">
-                                        <StackPanel
+                                <DataTemplate DataType="{x:Type entities:Medic}">
+                                    <StackPanel
                                             Orientation="Horizontal"
                                             Margin="8 4 8 4">
 
-                                            <TextBlock
+                                        <TextBlock
                                                 Text="{Binding Name}"
                                                 VerticalAlignment="Center" />
 
-                                            <TextBlock
+                                        <TextBlock
                                                 Margin="5 0 0 0"
                                                 FontSize="12"
                                                 Text="{Binding Specializations, Converter={StaticResource StringListToCsvConverter}, StringFormat= ({0})}"
                                                 VerticalAlignment="Center" />
 
-                                        </StackPanel>
-                                    </DataTemplate>
-                                </ComboBox.Resources>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ComboBox.Resources>
 
-                            </ComboBox>
+                        </ComboBox>
 
-                        </StackPanel>
+                    </StackPanel>
 
-                        <!-- Clinic -->
+                    <!-- Clinic -->
 
-                        <StackPanel Margin="0 8">
+                    <StackPanel Margin="0 8">
 
-                            <TextBlock
+                        <TextBlock
                                 Text="Clinic"
                                 Margin="2 0 0 0" />
 
-                            <ComboBox
+                        <ComboBox
                                 ItemsSource="{Binding Clinics}"
                                 SelectedItem="{Binding Investigation.Clinic, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                 VerticalContentAlignment="Center">
 
-                                <ComboBox.Resources>
-                                    <!--Selected color when the ComboBox is focused-->
-                                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="{StaticResource HighlightBrushKeyColor}" />
+                            <ComboBox.Resources>
+                                <!--Selected color when the ComboBox is focused-->
+                                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="{StaticResource HighlightBrushKeyColor}" />
 
-                                    <!--selected text-->
-                                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="{StaticResource HighlightTextBrushKeyColor}" />
+                                <!--selected text-->
+                                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="{StaticResource HighlightTextBrushKeyColor}" />
 
-                                    <DataTemplate DataType="{x:Type entities:Clinic}">
-                                        <StackPanel
+                                <DataTemplate DataType="{x:Type entities:Clinic}">
+                                    <StackPanel
                                             Orientation="Horizontal"
                                             Margin="8 4 8 4">
 
-                                            <TextBlock
+                                        <TextBlock
                                                 Text="{Binding Name}"
                                                 VerticalAlignment="Center" />
 
-                                        </StackPanel>
-                                    </DataTemplate>
-                                </ComboBox.Resources>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ComboBox.Resources>
 
-                            </ComboBox>
+                        </ComboBox>
 
-                        </StackPanel>
+                    </StackPanel>
 
-                    </ItemsControl>
+                </ItemsControl>
 
-                </DockPanel>
+            </DockPanel>
 
-                <!-- Labels -->
+            <!-- Labels -->
 
-                <StackPanel Margin="0 8">
+            <StackPanel Margin="0 8">
 
-                    <TextBlock
+                <TextBlock
                         Text="Labels (list)"
                         Margin="2 0 0 0" />
 
-                    <TextBox
+                <TextBox
                         Text="{Binding Investigation.Labels, Converter={StaticResource StringListToMultilineStringConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                         Height="85"
                         AcceptsReturn="True"
@@ -253,17 +224,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                         VerticalScrollBarVisibility="Auto"
                         HorizontalScrollBarVisibility="Auto" />
 
-                </StackPanel>
+            </StackPanel>
 
-                <!-- Comments -->
+            <!-- Comments -->
 
-                <StackPanel Margin="0 8">
+            <StackPanel Margin="0 8">
 
-                    <TextBlock
+                <TextBlock
                         Text="Comments"
                         Margin="2 0 0 0" />
 
-                    <TextBox
+                <TextBox
                         Text="{Binding Investigation.Comments, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                         Height="200"
                         AcceptsReturn="True"
@@ -271,12 +242,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                         VerticalScrollBarVisibility="Auto"
                         HorizontalScrollBarVisibility="Auto" />
 
-                </StackPanel>
+            </StackPanel>
 
-            </ItemsControl>
+        </ItemsControl>
 
-        </ScrollViewer>
-
-    </DockPanel>
+    </customControls:TitledPanel>
 
 </UserControl>

@@ -48,6 +48,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="TitledPanelPage.xaml.cs">
+      <DependentUpon>TitledPanelPage.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -60,6 +63,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="TitledPanelPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -91,6 +98,10 @@
     <ProjectReference Include="..\MedicX.Wpf.CustomControls\MedicX.Wpf.CustomControls.csproj">
       <Project>{fd029e2f-49ab-47d7-b8f5-c9ad185523cb}</Project>
       <Name>MedicX.Wpf.CustomControls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MedicX.Wpf.Styles\MedicX.Wpf.Styles.csproj">
+      <Project>{144e5445-9ace-40f3-9ce5-558777b28eb4}</Project>
+      <Name>MedicX.Wpf.Styles</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

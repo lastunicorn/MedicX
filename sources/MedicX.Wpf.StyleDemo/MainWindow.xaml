@@ -23,20 +23,24 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:customControls="clr-namespace:MedicX.Wpf.CustomControls;assembly=MedicX.Wpf.CustomControls"
+    xmlns:styleDemo="clr-namespace:MedicX.StyleDemo"
+    xmlns:customControls="clr-namespace:DustInTheWind.MedicX.Wpf.CustomControls;assembly=DustInTheWind.MedicX.Wpf.CustomControls"
 
     mc:Ignorable="d"
     Title="MainWindow"
     Height="350"
     Width="525">
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
+    <TabControl>
+        
+        <TabItem Header="TitledPanel">
+            <styleDemo:TitledPanelPage/>
+        </TabItem>
 
-        <customControls:LabeledTextBox Grid.Row="0" />
-    </Grid>
+        <TabItem Header="LabeledTextBox">
+            <customControls:LabeledTextBox />
+        </TabItem>
+
+    </TabControl>
 
 </Window>

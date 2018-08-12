@@ -17,7 +17,7 @@
 using System.Windows;
 using System.Windows.Controls;
 
-namespace MedicX.Wpf.CustomControls
+namespace DustInTheWind.MedicX.Wpf.CustomControls
 {
     public class LabeledTextBox : TextBox
     {

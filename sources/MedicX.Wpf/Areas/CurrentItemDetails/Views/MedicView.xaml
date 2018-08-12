@@ -26,6 +26,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:currentItemDetails="clr-namespace:DustInTheWind.MedicX.Wpf.Areas.CurrentItemDetails"
     xmlns:viewModels="clr-namespace:DustInTheWind.MedicX.Wpf.Areas.CurrentItemDetails.ViewModels"
+    xmlns:customControls="clr-namespace:DustInTheWind.MedicX.Wpf.CustomControls;assembly=DustInTheWind.MedicX.Wpf.CustomControls"
 
     mc:Ignorable="d"
     d:DesignHeight="300"
@@ -33,100 +34,82 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     d:DataContext="{d:DesignInstance viewModels:MedicViewModel}">
 
     <UserControl.Resources>
+
         <currentItemDetails:StringListToMultilineStringConverter x:Key="StringListToMultilineStringConverter" />
+
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontSize" Value="12" />
+        </Style>
+
+        <Style TargetType="TextBox">
+            <Setter Property="FontSize" Value="18" />
+        </Style>
+
     </UserControl.Resources>
 
-    <DockPanel>
+    <customControls:TitledPanel
+        Title="{Binding Name}">
 
-        <Border
-            DockPanel.Dock="Top"
-            Background="{StaticResource DetailsTitleBackground}"
-            Height="60">
+        <ItemsControl>
 
-            <TextBlock
-                Text="{Binding Name}"
-                FontSize="30"
-                Foreground="{StaticResource DetailsTitleForeground}"
-                TextAlignment="Center"
-                VerticalAlignment="Center"
-                HorizontalAlignment="Center" />
+            <StackPanel Margin="0 8">
 
-        </Border>
-
-        <ScrollViewer
-            Margin="8"
-            HorizontalScrollBarVisibility="Auto"
-            VerticalScrollBarVisibility="Auto">
-
-            <ScrollViewer.Resources>
-                <Style TargetType="TextBlock">
-                    <Setter Property="Foreground" Value="White" />
-                    <Setter Property="FontSize" Value="12" />
-                </Style>
-                <Style TargetType="TextBox">
-                    <Setter Property="FontSize" Value="18" />
-                </Style>
-            </ScrollViewer.Resources>
-
-            <ItemsControl>
-
-                <StackPanel Margin="0 8">
-
-                    <TextBlock
+                <TextBlock
                         Text="First Name"
                         Margin="2 0 0 0" />
 
-                    <TextBox
+                <TextBox
                         Text="{Binding Name.FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                         Padding="4" />
 
-                </StackPanel>
+            </StackPanel>
 
-                <StackPanel Margin="0 8">
+            <StackPanel Margin="0 8">
 
-                    <TextBlock
+                <TextBlock
                         Text="Middle Name"
                         Margin="2 0 0 0" />
 
-                    <TextBox
+                <TextBox
                         Text="{Binding Name.MiddleName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                         Padding="4" />
 
-                </StackPanel>
+            </StackPanel>
 
-                <StackPanel Margin="0 8">
+            <StackPanel Margin="0 8">
 
-                    <TextBlock
+                <TextBlock
                         Text="Last Name"
                         Margin="2 0 0 0" />
 
-                    <TextBox
+                <TextBox
                         Text="{Binding Name.LastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                         Padding="4" />
 
-                </StackPanel>
+            </StackPanel>
 
-                <StackPanel Margin="0 8">
+            <StackPanel Margin="0 8">
 
-                    <TextBlock
+                <TextBlock
                         Text="Specializations (list)"
                         Margin="2 0 0 0" />
 
-                    <TextBox
+                <TextBox
                         Height="85"
                         AcceptsReturn="True"
                         Text="{Binding Specializations, Converter={StaticResource StringListToMultilineStringConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                         Padding="4" />
 
-                </StackPanel>
+            </StackPanel>
 
-                <StackPanel Margin="0 8">
+            <StackPanel Margin="0 8">
 
-                    <TextBlock
+                <TextBlock
                         Text="Comments"
                         Margin="2 0 0 0" />
 
-                    <TextBox
+                <TextBox
                         Text="{Binding Comments, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                         Height="200"
                         AcceptsReturn="True"
@@ -134,24 +117,22 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                         VerticalScrollBarVisibility="Auto"
                         HorizontalScrollBarVisibility="Auto">
 
-                        <TextBox.Style>
-                            <Style TargetType="TextBox">
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding IsCommentsChanged}" Value="True">
-                                        <Setter Property="Background" Value="LightGreen" />
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </TextBox.Style>
+                    <TextBox.Style>
+                        <Style TargetType="TextBox">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsCommentsChanged}" Value="True">
+                                    <Setter Property="Background" Value="LightGreen" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBox.Style>
 
-                    </TextBox>
+                </TextBox>
 
-                </StackPanel>
+            </StackPanel>
 
-            </ItemsControl>
+        </ItemsControl>
 
-        </ScrollViewer>
-
-    </DockPanel>
+    </customControls:TitledPanel>
 
 </UserControl>

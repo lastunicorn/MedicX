@@ -23,6 +23,18 @@ namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemDetails.ViewModels
 {
     internal class InvestigationViewModel : ViewModelBase
     {
+        private string title;
+
+        public string Title
+        {
+            get => title;
+            set
+            {
+                title = value;
+                OnPropertyChanged();
+            }
+        }
+
         public Investigation Investigation { get; }
 
         public List<Medic> Medics { get; }
@@ -37,6 +49,9 @@ namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemDetails.ViewModels
 
             Investigation = investigation;
 
+            Investigation.DateChanged += HandleInvestigationDateChanged;
+            Investigation.SentByChanged += HandleInvestigationSentByChanged;
+
             Medics = medics
                 .OrderBy(x => x.Name)
                 .ToList();
@@ -44,6 +59,23 @@ namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemDetails.ViewModels
             Clinics = clinics
                 .OrderBy(x => x.Name)
                 .ToList();
+
+            UpdateTitle();
+        }
+
+        private void HandleInvestigationDateChanged(object sender, EventArgs e)
+        {
+            UpdateTitle();
+        }
+
+        private void HandleInvestigationSentByChanged(object sender, EventArgs e)
+        {
+            UpdateTitle();
+        }
+
+        private void UpdateTitle()
+        {
+            Title = string.Format("{0:yyyy MM dd} - Sent by {1} - (investigation)", Investigation.Date, Investigation.SentBy.Name);
         }
     }
 }
