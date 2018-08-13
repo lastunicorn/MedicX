@@ -20,10 +20,90 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/DustInTheWind.MedicX.Wpf.Styles;component/Colors.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <!-- Colors -->
+
+    <Color x:Key="TextBoxNormalBackgroundColor">#ffffff</Color>
+    <SolidColorBrush x:Key="TextBoxNormalBackgroundBrush" Color="{StaticResource TextBoxNormalBackgroundColor}" />
+
+    <Color x:Key="TextBoxNormalBorderColor">#ffffff</Color>
+    <SolidColorBrush x:Key="TextBoxNormalBorderBrush" Color="{StaticResource TextBoxNormalBorderColor}" />
+
+    <Color x:Key="TextBoxSelectedBorderColor">#509050</Color>
+    <SolidColorBrush x:Key="TextBoxSelectedBorderBrush" Color="{StaticResource TextBoxSelectedBorderColor}" />
+
+    <!--<Color x:Key="TextBoxSelectedBackgroundColor">#d0ffd0</Color>
+    <SolidColorBrush x:Key="TextBoxSelectedBackgroundBrush" Color="{StaticResource TextBoxSelectedBackgroundColor}" />-->
+
     <!-- TextBox -->
 
     <Style TargetType="{x:Type TextBox}">
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="OverridesDefaultStyle" Value="True"/>
         <Setter Property="FontSize" Value="18"/>
+        <Setter Property="Padding" Value="10 5"/>
+        <Setter Property="Background" Value="{StaticResource TextBoxNormalBackgroundBrush}"/>
+        <Setter Property="BorderThickness" Value="2"/>
+        <Setter Property="BorderBrush" Value="{StaticResource TextBoxNormalBorderBrush}"/>
+        <Setter Property="Foreground" Value="{StaticResource MainForegroundBrush}"/>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TextBoxBase}">
+
+                    <Border
+                        Name="Border"
+                        CornerRadius="1"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}">
+
+                        <ScrollViewer
+                            x:Name="PART_ContentHost"
+                            Margin="0"/>
+
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+
+                        <!-- Selected -->
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsSelectionActive" Value="True"/>
+                                <Condition Property="IsReadOnly" Value="False"/>
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter Property="BorderBrush" Value="{StaticResource TextBoxSelectedBorderBrush}"/>
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+
+                        <!-- Mouse over -->
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsMouseOver" Value="True"/>
+                                <Condition Property="IsSelectionActive" Value="False"/>
+                                <Condition Property="IsReadOnly" Value="False"/>
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter Property="BorderBrush" Value="{StaticResource TextBoxSelectedBorderBrush}"/>
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+
+                        <!-- Disabled -->
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="BorderBrush" Value="{StaticResource DisabledForegroundBrush}"/>
+                            <Setter Property="Foreground" Value="{StaticResource DisabledForegroundBrush}"/>
+                            <Setter Property="Background" Value="{StaticResource DisabledBackgroundBrush}"/>
+                        </Trigger>
+
+                    </ControlTemplate.Triggers>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
 
 </ResourceDictionary>

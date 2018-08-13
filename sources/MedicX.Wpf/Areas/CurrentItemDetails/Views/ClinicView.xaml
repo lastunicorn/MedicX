@@ -43,28 +43,22 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <ItemsControl>
 
             <customControls:LabeledContent Label="Name">
-                <TextBox
-                    Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                    Padding="4" />
+                <TextBox Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             </customControls:LabeledContent>
 
-            <views:AddressView
-                DataContext="{Binding Address}"/>
+            <views:AddressView DataContext="{Binding Address}"/>
 
             <customControls:LabeledContent Label="Phones (list)">
                 <TextBox
                     Height="85"
                     AcceptsReturn="True"
                     Text="{Binding Phones, Converter={StaticResource StringListToMultilineStringConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                    Padding="4"
                     VerticalScrollBarVisibility="Auto"
                     HorizontalScrollBarVisibility="Auto" />
             </customControls:LabeledContent>
 
             <customControls:LabeledContent Label="Program">
-                <TextBox
-                    Text="{Binding Program, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                    Padding="4" />
+                <TextBox Text="{Binding Program, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             </customControls:LabeledContent>
 
             <customControls:LabeledContent Label="Comments">
@@ -72,7 +66,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                     Text="{Binding Comments, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                     Height="170"
                     AcceptsReturn="True"
-                    Padding="4"
                     VerticalScrollBarVisibility="Auto"
                     HorizontalScrollBarVisibility="Auto" />
             </customControls:LabeledContent>

@@ -145,7 +145,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                             Text="{Binding Consultation.Labels, Converter={StaticResource StringListToMultilineStringConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                             Height="85"
                             AcceptsReturn="True"
-                            Padding="4"
                             VerticalScrollBarVisibility="Auto"
                             HorizontalScrollBarVisibility="Auto" />
                     </customControls:LabeledContent>
@@ -161,7 +160,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                     Text="{Binding Consultation.Comments, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                     Height="200"
                     AcceptsReturn="True"
-                    Padding="4"
                     VerticalScrollBarVisibility="Auto"
                     HorizontalScrollBarVisibility="Auto" />
             </customControls:LabeledContent>
@@ -173,7 +171,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                     Text="{Binding Consultation.Prescriptions, Converter={StaticResource PrescriptionListToMultilineStringConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                     Height="150"
                     AcceptsReturn="True"
-                    Padding="4"
                     VerticalScrollBarVisibility="Auto"
                     HorizontalScrollBarVisibility="Auto" />
             </customControls:LabeledContent>

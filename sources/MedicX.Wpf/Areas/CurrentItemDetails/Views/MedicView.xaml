@@ -42,39 +42,31 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <ItemsControl>
 
             <customControls:LabeledContent Label="First Name">
-                <TextBox
-                    Text="{Binding Name.FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                    Padding="4" />
+                <TextBox Text="{Binding Name.FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             </customControls:LabeledContent>
 
             <customControls:LabeledContent Label="Middle Name">
-                <TextBox
-                    Text="{Binding Name.MiddleName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                    Padding="4" />
+                <TextBox Text="{Binding Name.MiddleName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             </customControls:LabeledContent>
 
             <customControls:LabeledContent Label="Last Name">
-                <TextBox
-                    Text="{Binding Name.LastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                    Padding="4" />
+                <TextBox Text="{Binding Name.LastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             </customControls:LabeledContent>
 
             <customControls:LabeledContent Label="Specializations (list)">
                 <TextBox
                     Height="85"
                     AcceptsReturn="True"
-                    Text="{Binding Specializations, Converter={StaticResource StringListToMultilineStringConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                    Padding="4" />
+                    Text="{Binding Specializations, Converter={StaticResource StringListToMultilineStringConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             </customControls:LabeledContent>
 
             <customControls:LabeledContent Label="Comments">
                 <TextBox
-                        Text="{Binding Comments, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                        Height="200"
-                        AcceptsReturn="True"
-                        Padding="4"
-                        VerticalScrollBarVisibility="Auto"
-                        HorizontalScrollBarVisibility="Auto">
+                    Text="{Binding Comments, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    Height="200"
+                    AcceptsReturn="True"
+                    VerticalScrollBarVisibility="Auto"
+                    HorizontalScrollBarVisibility="Auto">
 
                     <TextBox.Style>
                         <Style TargetType="TextBox">

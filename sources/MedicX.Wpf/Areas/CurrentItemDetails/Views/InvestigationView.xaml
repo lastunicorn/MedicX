@@ -35,10 +35,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     d:DataContext="{d:DesignInstance viewModels:InvestigationViewModel}">
 
     <UserControl.Resources>
-
         <currentItemDetails:StringListToMultilineStringConverter x:Key="StringListToMultilineStringConverter" />
         <currentItemDetails:StringListToCsvConverter x:Key="StringListToCsvConverter" />
-
     </UserControl.Resources>
 
     <customControls:TitledPanel Title="{Binding Title}">
@@ -66,7 +64,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 <ItemsControl>
 
                     <!-- Sent By -->
-                    
+
                     <customControls:LabeledContent Label="Sent by">
 
                         <ComboBox
@@ -105,7 +103,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                     </customControls:LabeledContent>
 
                     <!-- Medic -->
-                    
+
                     <customControls:LabeledContent Label="Medic">
 
                         <ComboBox
@@ -187,7 +185,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                     Text="{Binding Investigation.Labels, Converter={StaticResource StringListToMultilineStringConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                     Height="85"
                     AcceptsReturn="True"
-                    Padding="4"
                     VerticalScrollBarVisibility="Auto"
                     HorizontalScrollBarVisibility="Auto" />
             </customControls:LabeledContent>
@@ -199,7 +196,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                     Text="{Binding Investigation.Comments, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                     Height="200"
                     AcceptsReturn="True"
-                    Padding="4"
                     VerticalScrollBarVisibility="Auto"
                     HorizontalScrollBarVisibility="Auto" />
             </customControls:LabeledContent>

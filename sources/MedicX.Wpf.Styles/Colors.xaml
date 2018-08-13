@@ -61,6 +61,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <Color x:Key="MainForegroundColor">#000000</Color>
     <SolidColorBrush x:Key="MainForegroundBrush" Color="{StaticResource MainForegroundColor}" />
 
+    <Color x:Key="DisabledBackgroundColor">#e5e5e5</Color>
+    <SolidColorBrush x:Key="DisabledBackgroundBrush" Color="{StaticResource DisabledBackgroundColor}" />
+
+    <Color x:Key="DisabledForegroundColor">#8F8F8F</Color>
+    <SolidColorBrush x:Key="DisabledForegroundBrush" Color="{StaticResource DisabledForegroundColor}" />
+
     <!-- ListBox -->
 
     <Color x:Key="ListBoxOverBackgroundColor">#ff9a4e</Color>
