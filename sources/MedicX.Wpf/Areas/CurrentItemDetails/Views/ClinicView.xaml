@@ -35,88 +35,47 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     d:DataContext="{d:DesignInstance entities:Clinic}">
 
     <UserControl.Resources>
-
         <currentItemDetails:StringListToMultilineStringConverter x:Key="StringListToMultilineStringConverter" />
-
-        <Style TargetType="TextBlock">
-            <Setter Property="Foreground" Value="White" />
-            <Setter Property="FontSize" Value="12" />
-        </Style>
-
-        <Style TargetType="TextBox">
-            <Setter Property="FontSize" Value="18" />
-        </Style>
-
     </UserControl.Resources>
 
     <customControls:TitledPanel Title="{Binding Name}">
 
         <ItemsControl>
 
-            <StackPanel Margin="0 8">
-
-                <TextBlock
-                        Text="Name"
-                        Margin="2 0 0 0" />
-
+            <customControls:LabeledContent Label="Name">
                 <TextBox
-                        Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                        Padding="4" />
+                    Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    Padding="4" />
+            </customControls:LabeledContent>
 
-            </StackPanel>
+            <views:AddressView
+                DataContext="{Binding Address}"/>
 
-            <StackPanel Margin="0 8">
-
-                <views:AddressView
-                        DataContext="{Binding Address}"
-                        Margin="0 4"
-                        Padding="4" />
-
-            </StackPanel>
-
-            <StackPanel Margin="0 8">
-
-                <TextBlock
-                        Text="Phones (list)"
-                        Margin="2 0 0 0" />
-
+            <customControls:LabeledContent Label="Phones (list)">
                 <TextBox
-                        Height="85"
-                        AcceptsReturn="True"
-                        Text="{Binding Phones, Converter={StaticResource StringListToMultilineStringConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                        Padding="4"
-                        VerticalScrollBarVisibility="Auto"
-                        HorizontalScrollBarVisibility="Auto" />
+                    Height="85"
+                    AcceptsReturn="True"
+                    Text="{Binding Phones, Converter={StaticResource StringListToMultilineStringConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    Padding="4"
+                    VerticalScrollBarVisibility="Auto"
+                    HorizontalScrollBarVisibility="Auto" />
+            </customControls:LabeledContent>
 
-            </StackPanel>
-
-            <StackPanel Margin="0 8">
-
-                <TextBlock
-                        Text="Program"
-                        Margin="2 0 0 0" />
-
+            <customControls:LabeledContent Label="Program">
                 <TextBox
-                        Text="{Binding Program, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                        Padding="4" />
+                    Text="{Binding Program, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    Padding="4" />
+            </customControls:LabeledContent>
 
-            </StackPanel>
-
-            <StackPanel Margin="0 8">
-
-                <TextBlock
-                        Text="Comments"
-                        Margin="2 0 0 0" />
-
+            <customControls:LabeledContent Label="Comments">
                 <TextBox
-                        Text="{Binding Comments, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                        Height="170"
-                        AcceptsReturn="True"
-                        Padding="4"
-                        VerticalScrollBarVisibility="Auto"
-                        HorizontalScrollBarVisibility="Auto" />
-
-            </StackPanel>
+                    Text="{Binding Comments, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    Height="170"
+                    AcceptsReturn="True"
+                    Padding="4"
+                    VerticalScrollBarVisibility="Auto"
+                    HorizontalScrollBarVisibility="Auto" />
+            </customControls:LabeledContent>
 
         </ItemsControl>
 

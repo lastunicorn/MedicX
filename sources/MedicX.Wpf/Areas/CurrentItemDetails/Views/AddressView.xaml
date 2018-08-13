@@ -24,6 +24,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:entities="clr-namespace:DustInTheWind.MedicX.Common.Entities;assembly=DustInTheWind.MedicX.Common"
+    xmlns:customControls="clr-namespace:DustInTheWind.MedicX.Wpf.CustomControls;assembly=DustInTheWind.MedicX.Wpf.CustomControls"
 
     mc:Ignorable="d"
     d:DesignHeight="300"
@@ -34,64 +35,37 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         FlowDirection="LeftToRight"
         Orientation="Vertical">
 
-        <TextBlock
-            Text="Street"
-            FontSize="12" />
+        <customControls:LabeledContent Label="Street">
+            <TextBox Text="{Binding Street, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        </customControls:LabeledContent>
 
-        <TextBox
-            Text="{Binding Street, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-            Margin="0" />
+        <UniformGrid Columns="3">
 
-        <Grid>
+            <customControls:LabeledContent
+                Label="City"
+                Margin="0 0 8 0">
 
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*" />
-                <ColumnDefinition Width="1*" />
-                <ColumnDefinition Width="1*" />
-            </Grid.ColumnDefinitions>
+                <TextBox Text="{Binding City, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
+            </customControls:LabeledContent>
 
-            <TextBlock
-                Grid.Row="0"
-                Grid.Column="0"
-                FontSize="12"
-                Text="City" />
+            <customControls:LabeledContent
+                Label="County"
+                Margin="4 0 4 0">
 
-            <TextBlock
-                Grid.Row="0"
-                Grid.Column="1"
-                FontSize="12"
-                Text="County" />
+                <TextBox Text="{Binding County, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
-            <TextBlock
-                Grid.Row="0"
-                Grid.Column="2"
-                FontSize="12"
-                Text="Country" />
+            </customControls:LabeledContent>
 
-            <TextBox
-                Grid.Row="1"
-                Grid.Column="0"
-                Margin="0 0 4 0"
-                Text="{Binding City, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <customControls:LabeledContent
+                Label="Country"
+                Margin="8 0 0 0">
 
-            <TextBox
-                Grid.Row="1"
-                Grid.Column="1"
-                Margin="4 0 4 0"
-                Text="{Binding County, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBox Text="{Binding Country, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
-            <TextBox
-                Grid.Row="1"
-                Grid.Column="2"
-                Margin="4 0 0 0"
-                Text="{Binding Country, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            </customControls:LabeledContent>
 
-        </Grid>
+        </UniformGrid>
 
     </StackPanel>
 
