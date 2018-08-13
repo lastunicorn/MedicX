@@ -45,7 +45,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Themes\LabeledTextBoxStyles.xaml">
+    <Page Include="Themes\LabeledContentStyles.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -55,7 +55,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="LabeledTextBox.cs" />
+    <Compile Include="LabeledContent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

@@ -19,9 +19,9 @@ using System.Windows.Controls;
 
 namespace DustInTheWind.MedicX.Wpf.CustomControls
 {
-    public class LabeledTextBox : TextBox
+    public class LabeledContent : ContentControl
     {
-        public static readonly DependencyProperty LabelProperty = DependencyProperty.Register("Label", typeof(object), typeof(LabeledTextBox));
+        public static readonly DependencyProperty LabelProperty = DependencyProperty.Register("Label", typeof(object), typeof(LabeledContent));
 
         public object Label
         {
@@ -29,9 +29,9 @@ namespace DustInTheWind.MedicX.Wpf.CustomControls
             set => SetValue(LabelProperty, value);
         }
 
-        static LabeledTextBox()
+        static LabeledContent()
         {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(LabeledTextBox), new FrameworkPropertyMetadata(typeof(LabeledTextBox)));
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(LabeledContent), new FrameworkPropertyMetadata(typeof(LabeledContent)));
         }
     }
 }

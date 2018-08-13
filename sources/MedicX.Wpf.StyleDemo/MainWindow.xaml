@@ -37,8 +37,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             <styleDemo:TitledPanelPage/>
         </TabItem>
 
-        <TabItem Header="LabeledTextBox">
-            <customControls:LabeledTextBox />
+        <TabItem Header="LabeledContent">
+            <customControls:LabeledContent />
         </TabItem>
 
     </TabControl>

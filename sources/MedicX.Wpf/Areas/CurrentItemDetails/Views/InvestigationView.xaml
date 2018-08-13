@@ -39,19 +39,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <currentItemDetails:StringListToMultilineStringConverter x:Key="StringListToMultilineStringConverter" />
         <currentItemDetails:StringListToCsvConverter x:Key="StringListToCsvConverter" />
 
-        <Style TargetType="TextBlock">
-            <Setter Property="Foreground" Value="White" />
-            <Setter Property="FontSize" Value="12" />
-        </Style>
-
-        <Style TargetType="TextBox">
-            <Setter Property="FontSize" Value="18" />
-        </Style>
-
-        <Style TargetType="ComboBox">
-            <Setter Property="FontSize" Value="18" />
-        </Style>
-
     </UserControl.Resources>
 
     <customControls:TitledPanel Title="{Binding Title}">
@@ -62,37 +49,30 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
                 <!-- Date -->
 
-                <StackPanel
-                        DockPanel.Dock="Right"
-                        Margin="8 8 0 8">
-
-                    <TextBlock
-                            Text="Date"
-                            Margin="2 0 0 0" />
+                <customControls:LabeledContent
+                    Label="Date"
+                    DockPanel.Dock="Right"
+                    Margin="15 0 0 15">
 
                     <Calendar
-                            Margin="0"
-                            Padding="0"
-                            BorderThickness="0"
-                            SelectedDate="{Binding Investigation.Date, Mode=TwoWay}"
-                            DisplayDate="{Binding Investigation.Date, Mode=OneWay}" />
+                        Margin="0"
+                        Padding="0"
+                        BorderThickness="0"
+                        SelectedDate="{Binding Investigation.Date, Mode=TwoWay}"
+                        DisplayDate="{Binding Investigation.Date, Mode=OneWay}" />
 
-                </StackPanel>
+                </customControls:LabeledContent>
 
                 <ItemsControl>
 
                     <!-- Sent By -->
-
-                    <StackPanel Margin="0 8">
-
-                        <TextBlock
-                                Text="Sent by"
-                                Margin="2 0 0 0" />
+                    
+                    <customControls:LabeledContent Label="Sent by">
 
                         <ComboBox
-                                ItemsSource="{Binding Medics}"
-                                SelectedItem="{Binding Investigation.SentBy, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                VerticalContentAlignment="Center">
+                            ItemsSource="{Binding Medics}"
+                            SelectedItem="{Binding Investigation.SentBy, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            VerticalContentAlignment="Center">
 
                             <ComboBox.Resources>
                                 <!--Selected color when the ComboBox is focused-->
@@ -103,18 +83,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
                                 <DataTemplate DataType="{x:Type entities:Medic}">
                                     <StackPanel
-                                            Orientation="Horizontal"
-                                            Margin="8 4 8 4">
+                                        Orientation="Horizontal"
+                                        Margin="8 4 8 4">
 
                                         <TextBlock
-                                                Text="{Binding Name}"
-                                                VerticalAlignment="Center" />
+                                            Text="{Binding Name}"
+                                            VerticalAlignment="Center" />
 
                                         <TextBlock
-                                                Margin="5 0 0 0"
-                                                FontSize="12"
-                                                Text="{Binding Specializations, Converter={StaticResource StringListToCsvConverter}, StringFormat= ({0})}"
-                                                VerticalAlignment="Center" />
+                                            Margin="5 0 0 0"
+                                            FontSize="12"
+                                            Text="{Binding Specializations, Converter={StaticResource StringListToCsvConverter}, StringFormat= ({0})}"
+                                            VerticalAlignment="Center" />
 
                                     </StackPanel>
                                 </DataTemplate>
@@ -122,20 +102,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
                         </ComboBox>
 
-                    </StackPanel>
+                    </customControls:LabeledContent>
 
                     <!-- Medic -->
-
-                    <StackPanel Margin="0 8">
-
-                        <TextBlock
-                                Text="Medic"
-                                Margin="2 0 0 0" />
+                    
+                    <customControls:LabeledContent Label="Medic">
 
                         <ComboBox
-                                ItemsSource="{Binding Medics}"
-                                SelectedItem="{Binding Investigation.Medic, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                VerticalContentAlignment="Center">
+                            ItemsSource="{Binding Medics}"
+                            SelectedItem="{Binding Investigation.Medic, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            VerticalContentAlignment="Center">
 
                             <ComboBox.Resources>
                                 <!--Selected color when the ComboBox is focused-->
@@ -146,18 +122,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
                                 <DataTemplate DataType="{x:Type entities:Medic}">
                                     <StackPanel
-                                            Orientation="Horizontal"
-                                            Margin="8 4 8 4">
+                                        Orientation="Horizontal"
+                                        Margin="8 4 8 4">
 
                                         <TextBlock
-                                                Text="{Binding Name}"
-                                                VerticalAlignment="Center" />
+                                            Text="{Binding Name}"
+                                            VerticalAlignment="Center" />
 
                                         <TextBlock
-                                                Margin="5 0 0 0"
-                                                FontSize="12"
-                                                Text="{Binding Specializations, Converter={StaticResource StringListToCsvConverter}, StringFormat= ({0})}"
-                                                VerticalAlignment="Center" />
+                                            Margin="5 0 0 0"
+                                            FontSize="12"
+                                            Text="{Binding Specializations, Converter={StaticResource StringListToCsvConverter}, StringFormat= ({0})}"
+                                            VerticalAlignment="Center" />
 
                                     </StackPanel>
                                 </DataTemplate>
@@ -165,20 +141,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
                         </ComboBox>
 
-                    </StackPanel>
+                    </customControls:LabeledContent>
 
                     <!-- Clinic -->
 
-                    <StackPanel Margin="0 8">
-
-                        <TextBlock
-                                Text="Clinic"
-                                Margin="2 0 0 0" />
+                    <customControls:LabeledContent Label="Clinic">
 
                         <ComboBox
-                                ItemsSource="{Binding Clinics}"
-                                SelectedItem="{Binding Investigation.Clinic, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                VerticalContentAlignment="Center">
+                            ItemsSource="{Binding Clinics}"
+                            SelectedItem="{Binding Investigation.Clinic, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            VerticalContentAlignment="Center">
 
                             <ComboBox.Resources>
                                 <!--Selected color when the ComboBox is focused-->
@@ -189,12 +161,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
                                 <DataTemplate DataType="{x:Type entities:Clinic}">
                                     <StackPanel
-                                            Orientation="Horizontal"
-                                            Margin="8 4 8 4">
+                                        Orientation="Horizontal"
+                                        Margin="8 4 8 4">
 
                                         <TextBlock
-                                                Text="{Binding Name}"
-                                                VerticalAlignment="Center" />
+                                            Text="{Binding Name}"
+                                            VerticalAlignment="Center" />
 
                                     </StackPanel>
                                 </DataTemplate>
@@ -202,7 +174,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
                         </ComboBox>
 
-                    </StackPanel>
+                    </customControls:LabeledContent>
 
                 </ItemsControl>
 
@@ -210,39 +182,27 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
             <!-- Labels -->
 
-            <StackPanel Margin="0 8">
-
-                <TextBlock
-                        Text="Labels (list)"
-                        Margin="2 0 0 0" />
-
+            <customControls:LabeledContent Label="Labels (list)">
                 <TextBox
-                        Text="{Binding Investigation.Labels, Converter={StaticResource StringListToMultilineStringConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                        Height="85"
-                        AcceptsReturn="True"
-                        Padding="4"
-                        VerticalScrollBarVisibility="Auto"
-                        HorizontalScrollBarVisibility="Auto" />
-
-            </StackPanel>
+                    Text="{Binding Investigation.Labels, Converter={StaticResource StringListToMultilineStringConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    Height="85"
+                    AcceptsReturn="True"
+                    Padding="4"
+                    VerticalScrollBarVisibility="Auto"
+                    HorizontalScrollBarVisibility="Auto" />
+            </customControls:LabeledContent>
 
             <!-- Comments -->
 
-            <StackPanel Margin="0 8">
-
-                <TextBlock
-                        Text="Comments"
-                        Margin="2 0 0 0" />
-
+            <customControls:LabeledContent Label="Comments">
                 <TextBox
-                        Text="{Binding Investigation.Comments, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                        Height="200"
-                        AcceptsReturn="True"
-                        Padding="4"
-                        VerticalScrollBarVisibility="Auto"
-                        HorizontalScrollBarVisibility="Auto" />
-
-            </StackPanel>
+                    Text="{Binding Investigation.Comments, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    Height="200"
+                    AcceptsReturn="True"
+                    Padding="4"
+                    VerticalScrollBarVisibility="Auto"
+                    HorizontalScrollBarVisibility="Auto" />
+            </customControls:LabeledContent>
 
         </ItemsControl>
 
