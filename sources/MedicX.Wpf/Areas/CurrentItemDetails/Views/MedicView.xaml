@@ -34,81 +34,40 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     d:DataContext="{d:DesignInstance viewModels:MedicViewModel}">
 
     <UserControl.Resources>
-
         <currentItemDetails:StringListToMultilineStringConverter x:Key="StringListToMultilineStringConverter" />
-
-        <Style TargetType="TextBlock">
-            <Setter Property="Foreground" Value="White" />
-            <Setter Property="FontSize" Value="12" />
-        </Style>
-
-        <Style TargetType="TextBox">
-            <Setter Property="FontSize" Value="18" />
-        </Style>
-
     </UserControl.Resources>
 
-    <customControls:TitledPanel
-        Title="{Binding Name}">
+    <customControls:TitledPanel Title="{Binding Name}">
 
         <ItemsControl>
 
-            <StackPanel Margin="0 8">
-
-                <TextBlock
-                        Text="First Name"
-                        Margin="2 0 0 0" />
-
+            <customControls:LabeledContent Label="First Name">
                 <TextBox
-                        Text="{Binding Name.FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                        Padding="4" />
+                    Text="{Binding Name.FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    Padding="4" />
+            </customControls:LabeledContent>
 
-            </StackPanel>
-
-            <StackPanel Margin="0 8">
-
-                <TextBlock
-                        Text="Middle Name"
-                        Margin="2 0 0 0" />
-
+            <customControls:LabeledContent Label="Middle Name">
                 <TextBox
-                        Text="{Binding Name.MiddleName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                        Padding="4" />
+                    Text="{Binding Name.MiddleName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    Padding="4" />
+            </customControls:LabeledContent>
 
-            </StackPanel>
-
-            <StackPanel Margin="0 8">
-
-                <TextBlock
-                        Text="Last Name"
-                        Margin="2 0 0 0" />
-
+            <customControls:LabeledContent Label="Last Name">
                 <TextBox
-                        Text="{Binding Name.LastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                        Padding="4" />
+                    Text="{Binding Name.LastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    Padding="4" />
+            </customControls:LabeledContent>
 
-            </StackPanel>
-
-            <StackPanel Margin="0 8">
-
-                <TextBlock
-                        Text="Specializations (list)"
-                        Margin="2 0 0 0" />
-
+            <customControls:LabeledContent Label="Specializations (list)">
                 <TextBox
-                        Height="85"
-                        AcceptsReturn="True"
-                        Text="{Binding Specializations, Converter={StaticResource StringListToMultilineStringConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                        Padding="4" />
+                    Height="85"
+                    AcceptsReturn="True"
+                    Text="{Binding Specializations, Converter={StaticResource StringListToMultilineStringConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    Padding="4" />
+            </customControls:LabeledContent>
 
-            </StackPanel>
-
-            <StackPanel Margin="0 8">
-
-                <TextBlock
-                        Text="Comments"
-                        Margin="2 0 0 0" />
-
+            <customControls:LabeledContent Label="Comments">
                 <TextBox
                         Text="{Binding Comments, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                         Height="200"
@@ -128,8 +87,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                     </TextBox.Style>
 
                 </TextBox>
-
-            </StackPanel>
+            </customControls:LabeledContent>
 
         </ItemsControl>
 
