@@ -88,18 +88,13 @@
     <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="Commands\SaveCommand.cs" />
     <Compile Include="MedicalEventTypeConverter.cs" />
-    <Compile Include="Translators\ConsultationExtensions.cs" />
     <Compile Include="Areas\CurrentItemDetails\ViewModels\ConsultationViewModel.cs" />
     <Compile Include="Areas\CurrentItemDetails\ViewModels\DetailsViewModel.cs" />
-    <Compile Include="Translators\EventExtensions.cs" />
-    <Compile Include="ViewModels\ObservableCollectionWithSource.cs" />
-    <Compile Include="Translators\InvestigationInstanceExcensions.cs" />
     <Compile Include="Areas\CurrentItemDetails\ViewModels\InvestigationViewModel.cs" />
     <Compile Include="Areas\CurrentItemSelection\VewModels\MedicListItemViewModel.cs" />
     <Compile Include="Areas\CurrentItemSelection\VewModels\SelectionViewModel.cs" />
     <Compile Include="Areas\CurrentItemDetails\StringListToCsvConverter.cs" />
     <Compile Include="Areas\CurrentItemDetails\StringListToMultilineStringConverter.cs" />
-    <Compile Include="StringListViewModelConverter.cs" />
     <Compile Include="Areas\CurrentItemDetails\Views\AddressView.xaml.cs">
       <DependentUpon>AddressView.xaml</DependentUpon>
     </Compile>
@@ -118,15 +113,8 @@
     <Compile Include="Areas\CurrentItemDetails\Views\MedicView.xaml.cs">
       <DependentUpon>MedicView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\StringListView.xaml.cs">
-      <DependentUpon>StringListView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Areas\CurrentItemSelection\Views\SelectionControl.xaml.cs">
       <DependentUpon>SelectionControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ViewModels\StringListViewModel.cs" />
-    <Compile Include="Views\StringListBox.xaml.cs">
-      <DependentUpon>StringListBox.xaml</DependentUpon>
     </Compile>
     <Page Include="Areas\Calendar\Views\CalendarWindow.xaml">
       <SubType>Designer</SubType>
@@ -164,10 +152,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\EventItem.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Areas\Main\Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -179,11 +163,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MedicalEventTypeToStringConverter.cs" />
-    <Compile Include="Views\EventItem.xaml.cs">
-      <DependentUpon>EventItem.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ViewModels\EventViewModel.cs" />
     <Compile Include="MedicalEventType.cs" />
     <Compile Include="Areas\Main\ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModelBase.cs" />
@@ -195,15 +174,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\StringListView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Areas\CurrentItemSelection\Views\SelectionControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\StringListBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
