@@ -22,6 +22,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/DustInTheWind.MedicX.Wpf.CustomControls;component/Themes/LabeledContentStyles.xaml" />
         <ResourceDictionary Source="pack://application:,,,/DustInTheWind.MedicX.Wpf.CustomControls;component/Themes/TitledPanelStyles.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/DustInTheWind.MedicX.Wpf.CustomControls;component/Themes/BigListItemStyles.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
 </ResourceDictionary>

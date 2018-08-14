@@ -29,10 +29,10 @@ namespace DustInTheWind.MedicX.Wpf
 
             switch (value)
             {
-                case ConsultationListItemViewModel consultation:
+                case ConsultationListItemViewModel _:
                     return MedicalEventType.Consult;
 
-                case InvestigationListItemViewModel investigation:
+                case InvestigationListItemViewModel _:
                     return MedicalEventType.Investigation;
 
                 default:
