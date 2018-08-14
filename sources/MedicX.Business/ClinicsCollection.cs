@@ -17,6 +17,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using DustInTheWind.MedicX.Common.Entities;
 
 namespace DustInTheWind.MedicX.Business
@@ -32,10 +33,29 @@ namespace DustInTheWind.MedicX.Business
         public event EventHandler Changed;
         public event EventHandler<ClinicAddedEventArgs> Added;
 
+        public Clinic AddNew()
+        {
+            Clinic clinic = new Clinic
+            {
+                Id = Guid.NewGuid(),
+                Address = new Address(),
+                Phones = new ObservableCollection<string>()
+            };
+
+            AddInternal(clinic);
+
+            return clinic;
+        }
+
         public void Add(Clinic clinic)
         {
             if (clinic == null) throw new ArgumentNullException(nameof(clinic));
 
+            AddInternal(clinic);
+        }
+
+        private void AddInternal(Clinic clinic)
+        {
             clinics.Add(clinic);
 
             clinic.Changed += HandleClinicChanged;

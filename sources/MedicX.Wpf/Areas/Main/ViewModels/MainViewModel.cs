@@ -20,7 +20,6 @@ using System.Reflection;
 using DustInTheWind.MedicX.Business;
 using DustInTheWind.MedicX.Wpf.Areas.CurrentItemDetails.ViewModels;
 using DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.VewModels;
-using DustInTheWind.MedicX.Wpf.Areas.Main.Views;
 using DustInTheWind.MedicX.Wpf.Commands;
 
 namespace DustInTheWind.MedicX.Wpf.Areas.Main.ViewModels
