@@ -21,12 +21,12 @@ namespace DustInTheWind.MedicX.Wpf.CustomControls
 {
     public class BigListItem : Control
     {
-        public static readonly DependencyProperty TextProperty = DependencyProperty.Register("Text", typeof(object), typeof(BigListItem));
+        public static readonly DependencyProperty TitleProperty = DependencyProperty.Register("Title", typeof(object), typeof(BigListItem));
 
-        public object Text
+        public object Title
         {
-            get => GetValue(TextProperty);
-            set => SetValue(TextProperty, value);
+            get => GetValue(TitleProperty);
+            set => SetValue(TitleProperty, value);
         }
 
         public static readonly DependencyProperty DescriptionProperty = DependencyProperty.Register("Description", typeof(object), typeof(BigListItem));
