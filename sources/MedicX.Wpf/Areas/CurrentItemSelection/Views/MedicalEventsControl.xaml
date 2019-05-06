@@ -107,27 +107,25 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 </Style>
 
                 <DataTemplate DataType="{x:Type vewModels:ConsultationListItemViewModel}">
-                    <!--<customControls:BigListItem
-                        Text="{Binding Value.Date, StringFormat={}{0:yyyy MM dd}}"
-                        Description="{Binding Value.Medic.Name}"/>-->
-                    <StackPanel Margin="5 6">
-                        <TextBlock
-                            Text="{Binding Value.Date, StringFormat={}{0:yyyy MM dd}}"
-                            FontSize="18" />
-                        <TextBlock Text="{Binding Value.Medic.Name}" />
-                    </StackPanel>
+                    <customControls:BigListItem
+                        Description="{Binding Value.Medic.Name}">
+                        
+                        <customControls:BigListItem.Title>
+                            <TextBlock Text="{Binding Value.Date, StringFormat={}{0:yyyy MM dd}}"/>
+                        </customControls:BigListItem.Title>
+
+                    </customControls:BigListItem>
                 </DataTemplate>
 
                 <DataTemplate DataType="{x:Type vewModels:InvestigationListItemViewModel}">
-                    <!--<customControls:BigListItem
-                        Text="{Binding Value.Date, StringFormat={}{0:yyyy MM dd}}"
-                        Description="{Binding Value.SentBy.Name, StringFormat=Sent by: {0}}"/>-->
-                    <StackPanel Margin="5 6">
-                        <TextBlock
-                            Text="{Binding Value.Date, StringFormat={}{0:yyyy MM dd}}"
-                            FontSize="18" />
-                        <TextBlock Text="{Binding Value.SentBy.Name, StringFormat=Sent by: {0}}" />
-                    </StackPanel>
+                    <customControls:BigListItem
+                        Description="{Binding Value.SentBy.Name, StringFormat=Sent by: {0}}">
+
+                        <customControls:BigListItem.Title>
+                            <TextBlock Text="{Binding Value.Date, StringFormat={}{0:yyyy MM dd}}"/>
+                        </customControls:BigListItem.Title>
+
+                    </customControls:BigListItem>
                 </DataTemplate>
 
             </ListView.Resources>

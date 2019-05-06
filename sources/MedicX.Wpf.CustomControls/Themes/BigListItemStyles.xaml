@@ -21,17 +21,23 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:customControls="clr-namespace:DustInTheWind.MedicX.Wpf.CustomControls">
 
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/DustInTheWind.MedicX.Wpf.Styles;component/Colors.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
     <Style TargetType="{x:Type customControls:BigListItem}">
-        <Setter Property="Foreground" Value="Black"/>
 
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type customControls:BigListItem}">
                     <StackPanel Margin="5 6">
+
                         <ContentPresenter
-                            Content="{TemplateBinding Text}"
+                            Content="{TemplateBinding Title}"
                             TextBlock.FontSize="18" />
+
                         <ContentPresenter Content="{TemplateBinding Description}" />
+
                     </StackPanel>
                 </ControlTemplate>
             </Setter.Value>

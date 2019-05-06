@@ -15,7 +15,6 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using System.Collections.ObjectModel;
 using System.Windows.Input;
 using DustInTheWind.MedicX.Business;
 using DustInTheWind.MedicX.Common.Entities;
@@ -40,14 +39,7 @@ namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.Commands
 
         public void Execute(object parameter)
         {
-            Clinic clinic = new Clinic
-            {
-                Id = Guid.NewGuid(),
-                Address = new Address(),
-                Phones = new ObservableCollection<string>()
-            };
-
-            medicXProject.Clinics.Add(clinic);
+            Clinic clinic = medicXProject.Clinics.AddNew();
             medicXProject.CurrentItem = clinic;
         }
     }
