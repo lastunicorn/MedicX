@@ -76,7 +76,7 @@ namespace DustInTheWind.MedicX.Wpf.Areas.CurrentItemDetails.ViewModels
 
         private void UpdateTitle()
         {
-            Title = string.Format("{0:yyyy MM dd} - {1} - (consultation)", Consultation.Date, Consultation.Medic.Name);
+            Title = string.Format("{0:yyyy MM dd} - {1} - (consultation)", Consultation.Date, Consultation.Medic?.Name);
         }
     }
 }
