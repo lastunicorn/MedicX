@@ -37,6 +37,9 @@
     <Reference Include="Microsoft.Expression.Interactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\Microsoft.Expression.Interactions.dll</HintPath>
     </Reference>
+    <Reference Include="Ninject, Version=3.3.4.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.3.4\lib\net45\Ninject.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationFramework.Aero" />
     <Reference Include="System" />
     <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -61,7 +64,8 @@
       <DependentUpon>CalendarWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Areas\CurrentItemDetails\ViewModels\MedicViewModel.cs" />
-    <Compile Include="MedicXApplication.cs" />
+    <Compile Include="AsyncUtil.cs" />
+    <Compile Include="Bindings.cs" />
     <Compile Include="Commands\ExitCommand.cs" />
     <Compile Include="Areas\CurrentItemDetails\PrescriptionListToMultilineStringConverter.cs" />
     <Compile Include="Areas\CurrentItemSelection\Commands\AddClinicCommand.cs" />
@@ -87,6 +91,7 @@
     <Compile Include="Areas\CurrentItemSelection\Commands\AddMedicCommand.cs" />
     <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="Commands\SaveCommand.cs" />
+    <Compile Include="Commands\SaveConfirmationQuestion.cs" />
     <Compile Include="MedicalEventTypeConverter.cs" />
     <Compile Include="Areas\CurrentItemDetails\ViewModels\ConsultationViewModel.cs" />
     <Compile Include="Areas\CurrentItemDetails\ViewModels\DetailsViewModel.cs" />
@@ -165,6 +170,7 @@
     </Compile>
     <Compile Include="MedicalEventType.cs" />
     <Compile Include="Areas\Main\ViewModels\MainViewModel.cs" />
+    <Compile Include="NinjectRequestHandlerFactory.cs" />
     <Compile Include="ViewModelBase.cs" />
     <Compile Include="Areas\Main\Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -210,6 +216,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MedicX.Application\MedicX.Application.csproj">
+      <Project>{483072F7-D4D6-4CA9-8E3F-EB806AF2A7C3}</Project>
+      <Name>MedicX.Application</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MedicX.Business\MedicX.Business.csproj">
       <Project>{15C02EE3-EB73-45C2-BB5D-0D4AA2678D5F}</Project>
       <Name>MedicX.Business</Name>
@@ -221,6 +231,10 @@
     <ProjectReference Include="..\MedicX.Persistence\MedicX.Persistence.csproj">
       <Project>{6104e0cd-5f5a-4c47-bd41-6d4c58822928}</Project>
       <Name>MedicX.Persistence</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MedicX.RequestBusModel\MedicX.RequestBusModel.csproj">
+      <Project>{791F8A5F-0520-4748-BC64-53D04B7DA669}</Project>
+      <Name>MedicX.RequestBusModel</Name>
     </ProjectReference>
     <ProjectReference Include="..\MedicX.Wpf.CustomControls\MedicX.Wpf.CustomControls.csproj">
       <Project>{fd029e2f-49ab-47d7-b8f5-c9ad185523cb}</Project>

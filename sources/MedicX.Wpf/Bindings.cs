@@ -14,18 +14,19 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using System.Windows;
+using DustInTheWind.MedicX.Application;
+using DustInTheWind.MedicX.RequestBusModel;
+using Ninject.Modules;
 
-namespace DustInTheWind.MedicX.Wpf.Areas.Main.Views
+namespace DustInTheWind.MedicX.Wpf
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    internal partial class MainWindow : Window
+    public class Bindings : NinjectModule
     {
-        public MainWindow()
+        public override void Load()
         {
-            InitializeComponent();
+            Bind<MedicXApplication>().ToSelf().InSingletonScope();
+            Bind<RequestBus>().ToSelf().InSingletonScope();
+            Bind<IRequestHandlerFactory>().To<NinjectRequestHandlerFactory>();
         }
     }
 }

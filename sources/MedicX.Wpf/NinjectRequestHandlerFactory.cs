@@ -14,18 +14,29 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using System.Windows;
+using System;
+using DustInTheWind.MedicX.RequestBusModel;
+using Ninject;
 
-namespace DustInTheWind.MedicX.Wpf.Areas.Main.Views
+namespace DustInTheWind.MedicX.Wpf
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    internal partial class MainWindow : Window
+    public class NinjectRequestHandlerFactory : IRequestHandlerFactory
     {
-        public MainWindow()
+        private readonly IKernel kernel;
+
+        public NinjectRequestHandlerFactory(IKernel serviceProvider)
         {
-            InitializeComponent();
+            this.kernel = serviceProvider ?? throw new ArgumentNullException(nameof(serviceProvider));
+        }
+
+        public T Create<T>()
+        {
+            return kernel.Get<T>();
+        }
+
+        public object Create(Type type)
+        {
+            return kernel.Get(type);
         }
     }
 }

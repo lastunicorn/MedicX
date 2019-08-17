@@ -16,41 +16,57 @@
 
 using System;
 using System.Windows.Input;
+using DustInTheWind.MedicX.Application.GetCurrentProject;
+using DustInTheWind.MedicX.Application.SaveProject;
 using DustInTheWind.MedicX.Business;
+using DustInTheWind.MedicX.RequestBusModel;
 
 namespace DustInTheWind.MedicX.Wpf.Commands
 {
     internal class SaveCommand : ICommand
     {
-        private readonly MedicXProject medicXProject;
+        private readonly RequestBus requestBus;
+        private MedicXProject medicXProject;
 
         public event EventHandler CanExecuteChanged;
 
-        public SaveCommand(MedicXProject medicXProject)
+        public SaveCommand(RequestBus requestBus)
         {
-            this.medicXProject = medicXProject ?? throw new ArgumentNullException(nameof(medicXProject));
+            this.requestBus = requestBus ?? throw new ArgumentNullException(nameof(requestBus));
 
-            this.medicXProject.StatusChanged += HandleStatusChanged;
+            WatchCurrentProject();
+        }
+
+        private async void WatchCurrentProject()
+        {
+            GetCurrentProjectRequest request = new GetCurrentProjectRequest();
+            medicXProject = await requestBus.ProcessRequest<GetCurrentProjectRequest, MedicXProject>(request);
+            medicXProject.StatusChanged += HandleStatusChanged;
         }
 
         private void HandleStatusChanged(object sender, EventArgs eventArgs)
         {
-            OnCanExecuteChanged();
+            System.Windows.Application.Current?.Dispatcher?.InvokeAsync(OnCanExecuteChanged);
         }
 
         public bool CanExecute(object parameter)
         {
-            return medicXProject.Status != ProjectStatus.Saved;
+            return medicXProject?.Status != ProjectStatus.Saved;
         }
 
-        public void Execute(object parameter)
+        public async void Execute(object parameter)
         {
-            medicXProject.Save();
+            SaveProjectRequest request = new SaveProjectRequest();
+            await requestBus.ProcessRequest(request);
         }
 
         protected virtual void OnCanExecuteChanged()
         {
             CanExecuteChanged?.Invoke(this, EventArgs.Empty);
         }
+    }
+
+    internal class MyEventData
+    {
     }
 }

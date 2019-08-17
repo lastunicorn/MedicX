@@ -14,18 +14,9 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using System.Windows;
-
-namespace DustInTheWind.MedicX.Wpf.Areas.Main.Views
+namespace DustInTheWind.MedicX.Application.GetCurrentProject
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    internal partial class MainWindow : Window
+    public class GetCurrentProjectRequest
     {
-        public MainWindow()
-        {
-            InitializeComponent();
-        }
     }
 }

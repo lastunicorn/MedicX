@@ -16,18 +16,20 @@
 
 using System;
 using System.Windows.Input;
+using DustInTheWind.MedicX.Application.ExitApplication;
+using DustInTheWind.MedicX.RequestBusModel;
 
 namespace DustInTheWind.MedicX.Wpf.Commands
 {
     internal class ExitCommand : ICommand
     {
-        private readonly MedicXApplication medicXApplication;
+        private readonly RequestBus requestBus;
 
         public event EventHandler CanExecuteChanged;
 
-        public ExitCommand(MedicXApplication medicXApplication)
+        public ExitCommand(RequestBus requestBus)
         {
-            this.medicXApplication = medicXApplication ?? throw new ArgumentNullException(nameof(medicXApplication));
+            this.requestBus = requestBus ?? throw new ArgumentNullException(nameof(requestBus));
         }
 
         public bool CanExecute(object parameter)
@@ -37,7 +39,18 @@ namespace DustInTheWind.MedicX.Wpf.Commands
 
         public void Execute(object parameter)
         {
-            medicXApplication.Exit();
+            bool allowToContinue = AsyncUtil.RunSync(() =>
+            {
+                ExitApplicationRequest request = new ExitApplicationRequest
+                {
+                    SaveConfirmationQuestion = new SaveConfirmationQuestion()
+                };
+
+                return requestBus.ProcessRequest<ExitApplicationRequest, bool>(request);
+            });
+
+            if (allowToContinue)
+                System.Windows.Application.Current.Shutdown();
         }
     }
 }

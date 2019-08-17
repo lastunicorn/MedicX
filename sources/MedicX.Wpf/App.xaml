@@ -22,7 +22,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     
-    StartupUri="Areas/Main/Views/MainWindow.xaml">
+    ShutdownMode="OnMainWindowClose">
 
     <Application.Resources>
 
