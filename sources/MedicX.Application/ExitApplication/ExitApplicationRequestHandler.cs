@@ -16,7 +16,7 @@
 
 using System;
 using System.Threading.Tasks;
-using DustInTheWind.MedicX.Business;
+using DustInTheWind.MedicX.Common;
 using DustInTheWind.MedicX.RequestBusModel;
 
 namespace DustInTheWind.MedicX.Application.ExitApplication
@@ -52,7 +52,7 @@ namespace DustInTheWind.MedicX.Application.ExitApplication
             switch (response)
             {
                 case ConfirmationResponse.Yes:
-                    medicXApplication.CurrentProject.Save();
+                    medicXApplication.SaveCurrentProject();
                     return true;
 
                 case ConfirmationResponse.No:

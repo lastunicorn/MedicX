@@ -14,18 +14,15 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using System;
 using System.Collections.Generic;
 using DustInTheWind.MedicX.Common.Entities;
 
-namespace DustInTheWind.MedicX.Persistence
+namespace DustInTheWind.MedicX.Common.DataAccess
 {
-    public interface IClinicRepository
+    public interface IConsultationRepository
     {
-        List<Clinic> GetAll();
-        Clinic GetById(Guid id);
-        List<Clinic> GetByName(string clinicName);
-        List<Clinic> Search(string text);
-        void AddOrUpdate(Clinic clinic);
+        List<Consultation> GetAll();
+        List<Consultation> Search(string text);
+        void AddOrUpdate(Consultation consultation);
     }
 }

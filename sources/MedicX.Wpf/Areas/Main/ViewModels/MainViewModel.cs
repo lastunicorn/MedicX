@@ -18,7 +18,7 @@ using System;
 using System.Diagnostics;
 using System.Reflection;
 using DustInTheWind.MedicX.Application.GetCurrentProjectStatus;
-using DustInTheWind.MedicX.Business;
+using DustInTheWind.MedicX.Common;
 using DustInTheWind.MedicX.RequestBusModel;
 using DustInTheWind.MedicX.Wpf.Commands;
 

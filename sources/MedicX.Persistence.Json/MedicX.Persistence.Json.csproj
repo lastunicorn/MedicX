@@ -63,9 +63,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MedicX.Common\MedicX.Common.csproj">
+    <ProjectReference Include="..\MedicX.Common\MedicX.Domain.csproj">
       <Project>{854c77f6-22f9-48a9-ae73-43e19ab9b258}</Project>
-      <Name>MedicX.Common</Name>
+      <Name>MedicX.Domain</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

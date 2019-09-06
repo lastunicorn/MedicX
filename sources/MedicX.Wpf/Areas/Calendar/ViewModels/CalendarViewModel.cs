@@ -18,7 +18,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using DustInTheWind.MedicX.Business;
+using DustInTheWind.MedicX.Common;
 
 namespace DustInTheWind.MedicX.Wpf.Areas.Calendar.ViewModels
 {

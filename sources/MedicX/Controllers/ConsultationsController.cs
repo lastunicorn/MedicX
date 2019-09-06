@@ -19,6 +19,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DustInTheWind.ConsoleTools;
 using DustInTheWind.ConsoleTools.InputControls;
+using DustInTheWind.MedicX.Common.DataAccess;
 using DustInTheWind.MedicX.Common.Entities;
 using DustInTheWind.MedicX.Persistence;
 

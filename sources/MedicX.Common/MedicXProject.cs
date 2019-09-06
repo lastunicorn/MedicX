@@ -17,17 +17,16 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using DustInTheWind.MedicX.Common.DataAccess;
 using DustInTheWind.MedicX.Common.Entities;
-using DustInTheWind.MedicX.Persistence;
 
-namespace DustInTheWind.MedicX.Business
+namespace DustInTheWind.MedicX.Common
 {
     public class MedicXProject
     {
         private ProjectStatus status = ProjectStatus.New;
 
         private object currentItem;
-        private readonly string connectionString;
 
         public MedicsCollection Medics { get; } = new MedicsCollection();
 
@@ -58,15 +57,11 @@ namespace DustInTheWind.MedicX.Business
         public event EventHandler CurrentItemChanged;
         public event EventHandler StatusChanged;
 
-        public MedicXProject(string connectionString)
+        public MedicXProject()
         {
-            this.connectionString = connectionString ?? throw new ArgumentNullException(nameof(connectionString));
-
             Medics.Changed += HandleMedicsCollectionChanged;
             Clinics.Changed += HandleClinicsCollectionChanged;
             MedicalEvents.Changed += HandleMedicalEventsCollectionChanged;
-
-            LoadData();
         }
 
         private void HandleMedicsCollectionChanged(object sender, EventArgs e)
@@ -84,68 +79,67 @@ namespace DustInTheWind.MedicX.Business
             Status = ProjectStatus.Modified;
         }
 
-        private void LoadData()
+        public void LoadData(IUnitOfWork unitOfWork)
         {
-            using (UnitOfWork unitOfWork = new UnitOfWork(connectionString))
-            {
-                IMedicRepository medicRepository = unitOfWork.MedicRepository;
+            IMedicRepository medicRepository = unitOfWork.MedicRepository;
 
-                List<Medic> medicsFromRepository = medicRepository.GetAll();
+            List<Medic> medicsFromRepository = medicRepository.GetAll();
 
-                foreach (Medic medic in medicsFromRepository)
-                    Medics.Add(medic);
+            foreach (Medic medic in medicsFromRepository)
+                Medics.Add(medic);
 
-                IClinicRepository clinicRepository = unitOfWork.ClinicRepository;
+            IClinicRepository clinicRepository = unitOfWork.ClinicRepository;
 
-                List<Clinic> clinicsFromRepository = clinicRepository.GetAll();
+            List<Clinic> clinicsFromRepository = clinicRepository.GetAll();
 
-                foreach (Clinic clinic in clinicsFromRepository)
-                    Clinics.Add(clinic);
+            foreach (Clinic clinic in clinicsFromRepository)
+                Clinics.Add(clinic);
 
-                IConsultationRepository consultationRepository = unitOfWork.ConsultationRepository;
-                IInvestigationRepository investigationsRepository = unitOfWork.InvestigationRepository;
+            IConsultationRepository consultationRepository = unitOfWork.ConsultationRepository;
+            IInvestigationRepository investigationsRepository = unitOfWork.InvestigationRepository;
 
-                List<Consultation> consultationsFromRepository = consultationRepository.GetAll();
-                List<Investigation> investigationsFromRepository = investigationsRepository.GetAll();
+            List<Consultation> consultationsFromRepository = consultationRepository.GetAll();
+            List<Investigation> investigationsFromRepository = investigationsRepository.GetAll();
 
-                IEnumerable<MedicalEvent> medicalEvents = investigationsFromRepository
-                    .Cast<MedicalEvent>()
-                    .Concat(consultationsFromRepository);
+            IEnumerable<MedicalEvent> medicalEvents = investigationsFromRepository
+                .Cast<MedicalEvent>()
+                .Concat(consultationsFromRepository);
 
-                foreach (MedicalEvent medicalEvent in medicalEvents)
-                    MedicalEvents.Add(medicalEvent);
-            }
+            foreach (MedicalEvent medicalEvent in medicalEvents)
+                MedicalEvents.Add(medicalEvent);
 
             Status = ProjectStatus.Saved;
         }
 
-        public void Save()
+        public void Save(IUnitOfWork unitOfWork)
         {
-            using (UnitOfWork unitOfWork = new UnitOfWork(connectionString))
+            foreach (Medic medic in Medics)
+                unitOfWork.MedicRepository.AddOrUpdate(medic);
+
+            foreach (Clinic clinic in Clinics)
+                unitOfWork.ClinicRepository.AddOrUpdate(clinic);
+
+            foreach (MedicalEvent medicalEvent in MedicalEvents)
             {
-                foreach (Medic medic in Medics)
-                    unitOfWork.MedicRepository.AddOrUpdate(medic);
-
-                foreach (Clinic clinic in Clinics)
-                    unitOfWork.ClinicRepository.AddOrUpdate(clinic);
-
-                foreach (MedicalEvent medicalEvent in MedicalEvents)
+                switch (medicalEvent)
                 {
-                    switch (medicalEvent)
-                    {
-                        case Consultation consultation:
-                            unitOfWork.ConsultationRepository.AddOrUpdate(consultation);
-                            break;
+                    case Consultation consultation:
+                        unitOfWork.ConsultationRepository.AddOrUpdate(consultation);
+                        break;
 
-                        case Investigation investigation:
-                            unitOfWork.InvestigationRepository.AddOrUpdate(investigation);
-                            break;
-                    }
+                    case Investigation investigation:
+                        unitOfWork.InvestigationRepository.AddOrUpdate(investigation);
+                        break;
                 }
-
-                unitOfWork.Save();
             }
 
+            unitOfWork.Save();
+
+            Status = ProjectStatus.Saved;
+        }
+
+        public void SetAsSaved()
+        {
             Status = ProjectStatus.Saved;
         }
 

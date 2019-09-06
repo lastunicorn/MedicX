@@ -14,15 +14,18 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using System.Collections.Generic;
+using System;
 using DustInTheWind.MedicX.Common.Entities;
 
-namespace DustInTheWind.MedicX.Persistence
+namespace DustInTheWind.MedicX.Common
 {
-    public interface IInvestigationRepository
+    public class ClinicAddedEventArgs : EventArgs
     {
-        List<Investigation> GetAll();
-        List<Investigation> Search(string text);
-        void AddOrUpdate(Investigation investigation);
+        public Clinic Clinic { get; }
+
+        public ClinicAddedEventArgs(Clinic clinic)
+        {
+            Clinic = clinic;
+        }
     }
 }

@@ -17,98 +17,78 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using DustInTheWind.MedicX.Common.Entities;
 
-namespace DustInTheWind.MedicX.Business
+namespace DustInTheWind.MedicX.Common
 {
-    public class MedicsCollection : ICollection<Medic>
+    public class MedicalEventCollection : ICollection<MedicalEvent>
     {
-        private readonly List<Medic> medics = new List<Medic>();
+        private readonly List<MedicalEvent> medicalEvents = new List<MedicalEvent>();
 
-        public int Count => medics.Count;
+        public int Count => medicalEvents.Count;
 
         public bool IsReadOnly => false;
 
         public event EventHandler Changed;
-        public event EventHandler<MedicAddedEventArgs> Added;
+        public event EventHandler<MedicalEventAddedEventArgs> Added;
 
-        public Medic AddNew()
+        public void Add(MedicalEvent medicalEvent)
         {
-            Medic medic = new Medic
-            {
-                Id = Guid.NewGuid(),
-                Name = new PersonName(),
-                Specializations = new ObservableCollection<string>()
-            };
+            if (medicalEvent == null) throw new ArgumentNullException(nameof(medicalEvent));
 
-            AddInternal(medic);
+            medicalEvents.Add(medicalEvent);
 
-            return medic;
-        }
-
-        public void Add(Medic medic)
-        {
-            if (medic == null) throw new ArgumentNullException(nameof(medic));
-
-            AddInternal(medic);
-        }
-
-        private void AddInternal(Medic medic)
-        {
-            medics.Add(medic);
-
-            medic.Changed += HandleMedicChanged;
+            medicalEvent.Changed += HandleMedicChanged;
 
             OnChanged();
-            OnAdded(new MedicAddedEventArgs(medic));
+            OnAdded(new MedicalEventAddedEventArgs(medicalEvent));
         }
 
         public void Clear()
         {
-            foreach (Medic medic in medics)
-                medic.Changed -= HandleMedicChanged;
+            foreach (MedicalEvent medicalEvent in medicalEvents)
+                medicalEvent.Changed -= HandleMedicChanged;
 
-            medics.Clear();
+            medicalEvents.Clear();
 
             OnChanged();
         }
 
-        public bool Contains(Medic medic)
+        public bool Contains(MedicalEvent medicalEvent)
         {
-            return medics.Contains(medic);
+            return medicalEvents.Contains(medicalEvent);
         }
 
-        public void CopyTo(Medic[] array, int arrayIndex)
+        public void CopyTo(MedicalEvent[] array, int arrayIndex)
         {
             if (array == null) throw new ArgumentNullException(nameof(array));
             if (arrayIndex < 0) throw new ArgumentOutOfRangeException(nameof(arrayIndex), "arrayIndex is less than 0.");
 
-            if (medics.Count > array.Length)
+            if (medicalEvents.Count > array.Length)
                 throw new ArgumentException("The number of elements in the collection is greater than the available space of the destination array.", nameof(array));
 
-            if (medics.Count > array.Length - arrayIndex)
+            if (medicalEvents.Count > array.Length - arrayIndex)
                 throw new ArgumentException("The number of elements in the collection is greater than the available space from arrayIndex to the end of the destination array.", nameof(arrayIndex));
 
-            medics.CopyTo(array, arrayIndex);
+            medicalEvents.CopyTo(array, arrayIndex);
         }
 
-        public bool Remove(Medic medic)
+        public bool Remove(MedicalEvent medicalEvent)
         {
-            if (medic == null) throw new ArgumentNullException(nameof(medic));
+            if (medicalEvent == null) throw new ArgumentNullException(nameof(medicalEvent));
 
-            medic.Changed -= HandleMedicChanged;
+            medicalEvent.Changed -= HandleMedicChanged;
 
-            bool success = medics.Remove(medic);
+            bool success = medicalEvents.Remove(medicalEvent);
 
             OnChanged();
 
             return success;
         }
 
-        public IEnumerator<Medic> GetEnumerator()
+        public IEnumerator<MedicalEvent> GetEnumerator()
         {
-            return medics.GetEnumerator();
+            return medicalEvents.GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
@@ -126,7 +106,7 @@ namespace DustInTheWind.MedicX.Business
             Changed?.Invoke(this, EventArgs.Empty);
         }
 
-        protected virtual void OnAdded(MedicAddedEventArgs e)
+        protected virtual void OnAdded(MedicalEventAddedEventArgs e)
         {
             Added?.Invoke(this, e);
         }

@@ -47,10 +47,6 @@
     <Compile Include="ClinicRepository.cs" />
     <Compile Include="ConsultationRepository.cs" />
     <Compile Include="IClinicLocationRepository.cs" />
-    <Compile Include="IClinicRepository.cs" />
-    <Compile Include="IConsultationRepository.cs" />
-    <Compile Include="IInvestigationRepository.cs" />
-    <Compile Include="IMedicRepository.cs" />
     <Compile Include="InvestigationRepository.cs" />
     <Compile Include="MedicRepository.cs" />
     <Compile Include="Storage.cs" />
@@ -67,9 +63,9 @@
     <Compile Include="UnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MedicX.Common\MedicX.Common.csproj">
+    <ProjectReference Include="..\MedicX.Common\MedicX.Domain.csproj">
       <Project>{854c77f6-22f9-48a9-ae73-43e19ab9b258}</Project>
-      <Name>MedicX.Common</Name>
+      <Name>MedicX.Domain</Name>
     </ProjectReference>
     <ProjectReference Include="..\MedicX.Persistence.Json\MedicX.Persistence.Json.csproj">
       <Project>{9684b41d-c429-4b04-8cf0-0612785b398a}</Project>

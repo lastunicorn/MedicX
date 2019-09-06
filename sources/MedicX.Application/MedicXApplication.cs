@@ -1,24 +1,41 @@
-﻿using DustInTheWind.MedicX.Business;
+﻿using DustInTheWind.MedicX.Common;
+using DustInTheWind.MedicX.Persistence;
 
 namespace DustInTheWind.MedicX.Application
 {
     public class MedicXApplication
     {
-        // keeps the state
-
-        // manages  the project (load, save)
-        // it is singleton
+        private string connectionString;
 
         public MedicXProject CurrentProject { get; private set; }
 
         public void LoadProject(string connectionString)
         {
-            CurrentProject = new MedicXProject(connectionString);
+            using (UnitOfWork unitOfWork = new UnitOfWork(connectionString))
+            {
+                MedicXProject medicXProject = new MedicXProject();
+                medicXProject.LoadData(unitOfWork);
+                this.connectionString = connectionString;
+
+                CurrentProject = medicXProject;
+            }
         }
 
         public void UnloadProject()
         {
             CurrentProject = null;
+            connectionString = null;
+        }
+
+        public void SaveCurrentProject()
+        {
+            if (CurrentProject == null)
+                return;
+
+            using (UnitOfWork unitOfWork = new UnitOfWork(connectionString))
+            {
+                CurrentProject.Save(unitOfWork);
+            }
         }
     }
 }

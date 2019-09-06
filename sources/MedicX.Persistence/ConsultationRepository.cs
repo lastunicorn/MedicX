@@ -17,6 +17,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using DustInTheWind.MedicX.Common.DataAccess;
 using DustInTheWind.MedicX.Common.Entities;
 
 namespace DustInTheWind.MedicX.Persistence

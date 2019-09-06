@@ -16,7 +16,7 @@
 
 using System;
 using System.Collections.Generic;
-using DustInTheWind.MedicX.Business;
+using DustInTheWind.MedicX.Common;
 using DustInTheWind.MedicX.Wpf.Areas.Clinics.ViewModels;
 using DustInTheWind.MedicX.Wpf.Areas.MedicalEvents.ViewModels;
 using DustInTheWind.MedicX.Wpf.Areas.Medics.ViewModels;

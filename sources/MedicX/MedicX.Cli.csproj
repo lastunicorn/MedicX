@@ -63,9 +63,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MedicX.Common\MedicX.Common.csproj">
+    <ProjectReference Include="..\MedicX.Common\MedicX.Domain.csproj">
       <Project>{854c77f6-22f9-48a9-ae73-43e19ab9b258}</Project>
-      <Name>MedicX.Common</Name>
+      <Name>MedicX.Domain</Name>
     </ProjectReference>
     <ProjectReference Include="..\MedicX.Persistence\MedicX.Persistence.csproj">
       <Project>{6104e0cd-5f5a-4c47-bd41-6d4c58822928}</Project>

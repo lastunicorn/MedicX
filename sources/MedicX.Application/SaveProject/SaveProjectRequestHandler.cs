@@ -33,7 +33,7 @@ namespace DustInTheWind.MedicX.Application.SaveProject
         {
             return Task.Run(() =>
             {
-                medicXApplication.CurrentProject?.Save();
+                medicXApplication.SaveCurrentProject();
             });
         }
     }

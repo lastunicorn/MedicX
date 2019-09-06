@@ -15,8 +15,12 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
-using DustInTheWind.MedicX.Business;
+using DustInTheWind.MedicX.Common;
+using DustInTheWind.MedicX.Common.Entities;
+using DustInTheWind.MedicX.Persistence;
 using DustInTheWind.MedicX.RequestBusModel;
 
 namespace DustInTheWind.MedicX.Application.LoadProject

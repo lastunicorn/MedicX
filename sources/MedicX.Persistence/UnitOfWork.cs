@@ -15,10 +15,11 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
+using DustInTheWind.MedicX.Common.DataAccess;
 
 namespace DustInTheWind.MedicX.Persistence
 {
-    public class UnitOfWork : IDisposable
+    public class UnitOfWork : IUnitOfWork, IDisposable
     {
         private static int instanceCount;
         private static readonly object SyncObject = new object();

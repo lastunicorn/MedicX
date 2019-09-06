@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using DustInTheWind.ConsoleTools;
 using DustInTheWind.ConsoleTools.TabularData;
+using DustInTheWind.MedicX.Common.DataAccess;
 using DustInTheWind.MedicX.Common.Entities;
 using DustInTheWind.MedicX.Persistence;
 

@@ -17,78 +17,98 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using DustInTheWind.MedicX.Common.Entities;
 
-namespace DustInTheWind.MedicX.Business
+namespace DustInTheWind.MedicX.Common
 {
-    public class MedicalEventCollection : ICollection<MedicalEvent>
+    public class ClinicsCollection : ICollection<Clinic>
     {
-        private readonly List<MedicalEvent> medicalEvents = new List<MedicalEvent>();
+        private readonly List<Clinic> clinics = new List<Clinic>();
 
-        public int Count => medicalEvents.Count;
+        public int Count => clinics.Count;
 
         public bool IsReadOnly => false;
 
         public event EventHandler Changed;
-        public event EventHandler<MedicalEventAddedEventArgs> Added;
+        public event EventHandler<ClinicAddedEventArgs> Added;
 
-        public void Add(MedicalEvent medicalEvent)
+        public Clinic AddNew()
         {
-            if (medicalEvent == null) throw new ArgumentNullException(nameof(medicalEvent));
+            Clinic clinic = new Clinic
+            {
+                Id = Guid.NewGuid(),
+                Address = new Address(),
+                Phones = new ObservableCollection<string>()
+            };
 
-            medicalEvents.Add(medicalEvent);
+            AddInternal(clinic);
 
-            medicalEvent.Changed += HandleMedicChanged;
+            return clinic;
+        }
+
+        public void Add(Clinic clinic)
+        {
+            if (clinic == null) throw new ArgumentNullException(nameof(clinic));
+
+            AddInternal(clinic);
+        }
+
+        private void AddInternal(Clinic clinic)
+        {
+            clinics.Add(clinic);
+
+            clinic.Changed += HandleClinicChanged;
 
             OnChanged();
-            OnAdded(new MedicalEventAddedEventArgs(medicalEvent));
+            OnAdded(new ClinicAddedEventArgs(clinic));
         }
 
         public void Clear()
         {
-            foreach (MedicalEvent medicalEvent in medicalEvents)
-                medicalEvent.Changed -= HandleMedicChanged;
+            foreach (Clinic clinic in clinics)
+                clinic.Changed -= HandleClinicChanged;
 
-            medicalEvents.Clear();
+            clinics.Clear();
 
             OnChanged();
         }
 
-        public bool Contains(MedicalEvent medicalEvent)
+        public bool Contains(Clinic clinic)
         {
-            return medicalEvents.Contains(medicalEvent);
+            return clinics.Contains(clinic);
         }
 
-        public void CopyTo(MedicalEvent[] array, int arrayIndex)
+        public void CopyTo(Clinic[] array, int arrayIndex)
         {
             if (array == null) throw new ArgumentNullException(nameof(array));
             if (arrayIndex < 0) throw new ArgumentOutOfRangeException(nameof(arrayIndex), "arrayIndex is less than 0.");
 
-            if (medicalEvents.Count > array.Length)
+            if (clinics.Count > array.Length)
                 throw new ArgumentException("The number of elements in the collection is greater than the available space of the destination array.", nameof(array));
 
-            if (medicalEvents.Count > array.Length - arrayIndex)
+            if (clinics.Count > array.Length - arrayIndex)
                 throw new ArgumentException("The number of elements in the collection is greater than the available space from arrayIndex to the end of the destination array.", nameof(arrayIndex));
 
-            medicalEvents.CopyTo(array, arrayIndex);
+            clinics.CopyTo(array, arrayIndex);
         }
 
-        public bool Remove(MedicalEvent medicalEvent)
+        public bool Remove(Clinic clinic)
         {
-            if (medicalEvent == null) throw new ArgumentNullException(nameof(medicalEvent));
+            if (clinic == null) throw new ArgumentNullException(nameof(clinic));
 
-            medicalEvent.Changed -= HandleMedicChanged;
+            clinic.Changed -= HandleClinicChanged;
 
-            bool success = medicalEvents.Remove(medicalEvent);
+            bool success = clinics.Remove(clinic);
 
             OnChanged();
 
             return success;
         }
 
-        public IEnumerator<MedicalEvent> GetEnumerator()
+        public IEnumerator<Clinic> GetEnumerator()
         {
-            return medicalEvents.GetEnumerator();
+            return clinics.GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
@@ -96,7 +116,7 @@ namespace DustInTheWind.MedicX.Business
             return GetEnumerator();
         }
 
-        private void HandleMedicChanged(object sender, EventArgs e)
+        private void HandleClinicChanged(object sender, EventArgs e)
         {
             OnChanged();
         }
@@ -106,7 +126,7 @@ namespace DustInTheWind.MedicX.Business
             Changed?.Invoke(this, EventArgs.Empty);
         }
 
-        protected virtual void OnAdded(MedicalEventAddedEventArgs e)
+        protected virtual void OnAdded(ClinicAddedEventArgs e)
         {
             Added?.Invoke(this, e);
         }

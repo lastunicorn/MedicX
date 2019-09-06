@@ -15,17 +15,17 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
+using System.Collections.Generic;
 using DustInTheWind.MedicX.Common.Entities;
 
-namespace DustInTheWind.MedicX.Business
+namespace DustInTheWind.MedicX.Common.DataAccess
 {
-    public class MedicAddedEventArgs : EventArgs
+    public interface IClinicRepository
     {
-        public Medic Medic { get; }
-
-        public MedicAddedEventArgs(Medic medic)
-        {
-            Medic = medic;
-        }
+        List<Clinic> GetAll();
+        Clinic GetById(Guid id);
+        List<Clinic> GetByName(string clinicName);
+        List<Clinic> Search(string text);
+        void AddOrUpdate(Clinic clinic);
     }
 }

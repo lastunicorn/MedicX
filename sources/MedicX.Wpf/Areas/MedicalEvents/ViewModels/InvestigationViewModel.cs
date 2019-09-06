@@ -17,7 +17,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using DustInTheWind.MedicX.Business;
+using DustInTheWind.MedicX.Common;
 using DustInTheWind.MedicX.Common.Entities;
 
 namespace DustInTheWind.MedicX.Wpf.Areas.MedicalEvents.ViewModels

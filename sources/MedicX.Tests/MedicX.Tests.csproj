@@ -59,9 +59,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MedicX.Common\MedicX.Common.csproj">
+    <ProjectReference Include="..\MedicX.Common\MedicX.Domain.csproj">
       <Project>{854C77F6-22F9-48A9-AE73-43E19AB9B258}</Project>
-      <Name>MedicX.Common</Name>
+      <Name>MedicX.Domain</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />
