@@ -14,22 +14,31 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using DustInTheWind.MedicX.Application;
-using DustInTheWind.MedicX.Application.ExitApplication;
-using DustInTheWind.MedicX.RequestBusModel;
-using DustInTheWind.MedicX.Wpf.Commands;
-using Ninject.Modules;
-
-namespace DustInTheWind.MedicX.Wpf
+namespace DustInTheWind.MedicX.Wpf.Areas.Main.ViewModels
 {
-    public class Bindings : NinjectModule
+    internal class ListItemViewModel<T> : ViewModelBase
     {
-        public override void Load()
+        private string text;
+        private T value;
+
+        public string Text
         {
-            Bind<MedicXApplication>().ToSelf().InSingletonScope();
-            Bind<RequestBus>().ToSelf().InSingletonScope();
-            Bind<IRequestHandlerFactory>().To<NinjectRequestHandlerFactory>();
-            Bind<ISaveConfirmationQuestion>().To<SaveConfirmationQuestion>();
+            get => text;
+            protected set
+            {
+                text = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public T Value
+        {
+            get => value;
+            protected set
+            {
+                this.value = value;
+                OnPropertyChanged();
+            }
         }
     }
 }

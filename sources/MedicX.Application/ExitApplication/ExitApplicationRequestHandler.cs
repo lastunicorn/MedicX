@@ -24,15 +24,17 @@ namespace DustInTheWind.MedicX.Application.ExitApplication
     public class ExitApplicationRequestHandler : IRequestHandler<ExitApplicationRequest, bool>
     {
         private readonly MedicXApplication medicXApplication;
+        private readonly ISaveConfirmationQuestion saveConfirmationQuestion;
 
-        public ExitApplicationRequestHandler(MedicXApplication medicXApplication)
+        public ExitApplicationRequestHandler(MedicXApplication medicXApplication, ISaveConfirmationQuestion saveConfirmationQuestion)
         {
             this.medicXApplication = medicXApplication ?? throw new ArgumentNullException(nameof(medicXApplication));
+            this.saveConfirmationQuestion = saveConfirmationQuestion ?? throw new ArgumentNullException(nameof(saveConfirmationQuestion));
         }
 
         public Task<bool> Handle(ExitApplicationRequest request)
         {
-            bool allowToContinue = EnsureSave(request.SaveConfirmationQuestion);
+            bool allowToContinue = EnsureSave();
 
             if (allowToContinue)
                 medicXApplication.UnloadProject();
@@ -40,7 +42,7 @@ namespace DustInTheWind.MedicX.Application.ExitApplication
             return Task.FromResult(allowToContinue);
         }
 
-        private bool EnsureSave(ISaveConfirmationQuestion saveConfirmationQuestion)
+        private bool EnsureSave()
         {
             if (medicXApplication.CurrentProject.Status == ProjectStatus.Saved)
                 return true;

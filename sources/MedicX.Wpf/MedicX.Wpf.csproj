@@ -63,97 +63,97 @@
     <Compile Include="Areas\Calendar\Views\CalendarWindow.xaml.cs">
       <DependentUpon>CalendarWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Areas\CurrentItemDetails\ViewModels\MedicViewModel.cs" />
+    <Compile Include="Areas\Medics\ViewModels\MedicViewModel.cs" />
     <Compile Include="AsyncUtil.cs" />
     <Compile Include="Bindings.cs" />
     <Compile Include="Commands\ExitCommand.cs" />
-    <Compile Include="Areas\CurrentItemDetails\PrescriptionListToMultilineStringConverter.cs" />
-    <Compile Include="Areas\CurrentItemSelection\Commands\AddClinicCommand.cs" />
-    <Compile Include="Areas\CurrentItemSelection\Commands\AddConsultationCommand.cs" />
-    <Compile Include="Areas\CurrentItemSelection\Commands\AddInvestigationCommand.cs" />
-    <Compile Include="Areas\CurrentItemSelection\VewModels\ClinicListItemViewModel.cs" />
-    <Compile Include="Areas\CurrentItemSelection\VewModels\ClinicsViewModel.cs" />
-    <Compile Include="Areas\CurrentItemSelection\VewModels\ConsultationListItemViewModel.cs" />
-    <Compile Include="Areas\CurrentItemSelection\VewModels\InvestigationListItemViewModel.cs" />
-    <Compile Include="Areas\CurrentItemSelection\VewModels\ListItemViewModel.cs" />
-    <Compile Include="Areas\CurrentItemSelection\VewModels\MedicalEventsViewModel.cs" />
-    <Compile Include="Areas\CurrentItemSelection\VewModels\MedicsViewModel.cs" />
-    <Compile Include="Areas\CurrentItemSelection\VewModels\TabItemViewModel.cs" />
-    <Compile Include="Areas\CurrentItemSelection\Views\ClinicsControl.xaml.cs">
+    <Compile Include="Converters\PrescriptionListToMultilineStringConverter.cs" />
+    <Compile Include="Areas\Clinics\AddClinicCommand.cs" />
+    <Compile Include="Areas\MedicalEvents\AddConsultationCommand.cs" />
+    <Compile Include="Areas\MedicalEvents\AddInvestigationCommand.cs" />
+    <Compile Include="Areas\Clinics\ViewModels\ClinicListItemViewModel.cs" />
+    <Compile Include="Areas\Clinics\ViewModels\ClinicsViewModel.cs" />
+    <Compile Include="Areas\MedicalEvents\ViewModels\ConsultationListItemViewModel.cs" />
+    <Compile Include="Areas\MedicalEvents\ViewModels\InvestigationListItemViewModel.cs" />
+    <Compile Include="Areas\Main\ViewModels\ListItemViewModel.cs" />
+    <Compile Include="Areas\MedicalEvents\ViewModels\MedicalEventsViewModel.cs" />
+    <Compile Include="Areas\Medics\ViewModels\MedicsViewModel.cs" />
+    <Compile Include="Areas\Main\ViewModels\TabItemViewModel.cs" />
+    <Compile Include="Areas\Clinics\Views\ClinicsControl.xaml.cs">
       <DependentUpon>ClinicsControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Areas\CurrentItemSelection\Views\MedicalEventsControl.xaml.cs">
+    <Compile Include="Areas\MedicalEvents\Views\MedicalEventsControl.xaml.cs">
       <DependentUpon>MedicalEventsControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Areas\CurrentItemSelection\Views\MedicsControl.xaml.cs">
+    <Compile Include="Areas\Medics\Views\MedicsControl.xaml.cs">
       <DependentUpon>MedicsControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Areas\CurrentItemSelection\Commands\AddMedicCommand.cs" />
+    <Compile Include="Areas\Medics\AddMedicCommand.cs" />
     <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="Commands\SaveCommand.cs" />
     <Compile Include="Commands\SaveConfirmationQuestion.cs" />
     <Compile Include="MedicalEventTypeConverter.cs" />
-    <Compile Include="Areas\CurrentItemDetails\ViewModels\ConsultationViewModel.cs" />
-    <Compile Include="Areas\CurrentItemDetails\ViewModels\DetailsViewModel.cs" />
-    <Compile Include="Areas\CurrentItemDetails\ViewModels\InvestigationViewModel.cs" />
-    <Compile Include="Areas\CurrentItemSelection\VewModels\MedicListItemViewModel.cs" />
-    <Compile Include="Areas\CurrentItemSelection\VewModels\SelectionViewModel.cs" />
-    <Compile Include="Areas\CurrentItemDetails\StringListToCsvConverter.cs" />
-    <Compile Include="Areas\CurrentItemDetails\StringListToMultilineStringConverter.cs" />
-    <Compile Include="Areas\CurrentItemDetails\Views\AddressView.xaml.cs">
+    <Compile Include="Areas\MedicalEvents\ViewModels\ConsultationViewModel.cs" />
+    <Compile Include="Areas\Main\ViewModels\DetailsViewModel.cs" />
+    <Compile Include="Areas\MedicalEvents\ViewModels\InvestigationViewModel.cs" />
+    <Compile Include="Areas\Medics\ViewModels\MedicListItemViewModel.cs" />
+    <Compile Include="Areas\Main\ViewModels\SelectionViewModel.cs" />
+    <Compile Include="Converters\StringListToCsvConverter.cs" />
+    <Compile Include="Converters\StringListToMultilineStringConverter.cs" />
+    <Compile Include="Areas\Clinics\Views\AddressView.xaml.cs">
       <DependentUpon>AddressView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Areas\CurrentItemDetails\Views\ClinicView.xaml.cs">
+    <Compile Include="Areas\Clinics\Views\ClinicView.xaml.cs">
       <DependentUpon>ClinicView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Areas\CurrentItemDetails\Views\InvestigationView.xaml.cs">
+    <Compile Include="Areas\MedicalEvents\Views\InvestigationView.xaml.cs">
       <DependentUpon>InvestigationView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Areas\CurrentItemDetails\Views\ConsultationView.xaml.cs">
+    <Compile Include="Areas\MedicalEvents\Views\ConsultationView.xaml.cs">
       <DependentUpon>ConsultationView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Areas\CurrentItemDetails\Views\DetailsControl.xaml.cs">
+    <Compile Include="Areas\Main\Views\DetailsControl.xaml.cs">
       <DependentUpon>DetailsControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Areas\CurrentItemDetails\Views\MedicView.xaml.cs">
+    <Compile Include="Areas\Medics\Views\MedicView.xaml.cs">
       <DependentUpon>MedicView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Areas\CurrentItemSelection\Views\SelectionControl.xaml.cs">
+    <Compile Include="Areas\Main\Views\SelectionControl.xaml.cs">
       <DependentUpon>SelectionControl.xaml</DependentUpon>
     </Compile>
     <Page Include="Areas\Calendar\Views\CalendarWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Areas\CurrentItemDetails\Views\AddressView.xaml">
+    <Page Include="Areas\Clinics\Views\AddressView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Areas\CurrentItemDetails\Views\ClinicView.xaml">
+    <Page Include="Areas\Clinics\Views\ClinicView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Areas\CurrentItemDetails\Views\InvestigationView.xaml">
+    <Page Include="Areas\MedicalEvents\Views\InvestigationView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Areas\CurrentItemDetails\Views\ConsultationView.xaml">
+    <Page Include="Areas\MedicalEvents\Views\ConsultationView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Areas\CurrentItemDetails\Views\DetailsControl.xaml">
+    <Page Include="Areas\Main\Views\DetailsControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Areas\CurrentItemSelection\Views\ClinicsControl.xaml">
+    <Page Include="Areas\Clinics\Views\ClinicsControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Areas\CurrentItemSelection\Views\MedicalEventsControl.xaml">
+    <Page Include="Areas\MedicalEvents\Views\MedicalEventsControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Areas\CurrentItemSelection\Views\MedicsControl.xaml">
+    <Page Include="Areas\Medics\Views\MedicsControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -176,11 +176,11 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Areas\CurrentItemDetails\Views\MedicView.xaml">
+    <Page Include="Areas\Medics\Views\MedicView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Areas\CurrentItemSelection\Views\SelectionControl.xaml">
+    <Page Include="Areas\Main\Views\SelectionControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

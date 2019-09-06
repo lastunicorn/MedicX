@@ -27,6 +27,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedicX.Application", "Medic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedicX.RequestBusModel", "MedicX.RequestBusModel\MedicX.RequestBusModel.csproj", "{791F8A5F-0520-4748-BC64-53D04B7DA669}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventBusModel", "EventBusModel\EventBusModel.csproj", "{09FEED84-EFCF-4438-8A8F-5D195712779E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -81,6 +83,10 @@ Global
 		{791F8A5F-0520-4748-BC64-53D04B7DA669}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{791F8A5F-0520-4748-BC64-53D04B7DA669}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{791F8A5F-0520-4748-BC64-53D04B7DA669}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09FEED84-EFCF-4438-8A8F-5D195712779E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09FEED84-EFCF-4438-8A8F-5D195712779E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09FEED84-EFCF-4438-8A8F-5D195712779E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09FEED84-EFCF-4438-8A8F-5D195712779E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

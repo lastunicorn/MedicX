@@ -17,7 +17,7 @@
 using System.Reflection;
 using System.Windows;
 using DustInTheWind.MedicX.Application.ExitApplication;
-using DustInTheWind.MedicX.Application.GetCurrentProject;
+using DustInTheWind.MedicX.Application.GetCurrentProjectStatus;
 using DustInTheWind.MedicX.Application.LoadProject;
 using DustInTheWind.MedicX.Application.SaveProject;
 using DustInTheWind.MedicX.Business;
@@ -74,7 +74,7 @@ namespace DustInTheWind.MedicX.Wpf
 
             requestBus.Register<LoadProjectRequest, LoadProjectRequestHandler>();
             requestBus.Register<SaveProjectRequest, SaveProjectRequestHandler>();
-            requestBus.Register<GetCurrentProjectRequest, GetCurrentProjectRequestHandler>();
+            requestBus.Register<GetCurrentProjectStatusRequest, GetCurrentProjectStatusRequestHandler>();
             requestBus.Register<ExitApplicationRequest, ExitApplicationRequestHandler>();
         }
 

@@ -14,22 +14,18 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using DustInTheWind.MedicX.Application;
-using DustInTheWind.MedicX.Application.ExitApplication;
-using DustInTheWind.MedicX.RequestBusModel;
-using DustInTheWind.MedicX.Wpf.Commands;
-using Ninject.Modules;
+using System.Windows.Controls;
 
-namespace DustInTheWind.MedicX.Wpf
+namespace DustInTheWind.MedicX.Wpf.Areas.Clinics.Views
 {
-    public class Bindings : NinjectModule
+    /// <summary>
+    /// Interaction logic for ClinicView.xaml
+    /// </summary>
+    internal partial class ClinicView : UserControl
     {
-        public override void Load()
+        public ClinicView()
         {
-            Bind<MedicXApplication>().ToSelf().InSingletonScope();
-            Bind<RequestBus>().ToSelf().InSingletonScope();
-            Bind<IRequestHandlerFactory>().To<NinjectRequestHandlerFactory>();
-            Bind<ISaveConfirmationQuestion>().To<SaveConfirmationQuestion>();
+            InitializeComponent();
         }
     }
 }

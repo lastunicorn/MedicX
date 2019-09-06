@@ -14,22 +14,9 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using DustInTheWind.MedicX.Application;
-using DustInTheWind.MedicX.Application.ExitApplication;
-using DustInTheWind.MedicX.RequestBusModel;
-using DustInTheWind.MedicX.Wpf.Commands;
-using Ninject.Modules;
-
-namespace DustInTheWind.MedicX.Wpf
+namespace DustInTheWind.MedicX.Application.GetCurrentProjectStatus
 {
-    public class Bindings : NinjectModule
+    public class GetCurrentProjectStatusRequest
     {
-        public override void Load()
-        {
-            Bind<MedicXApplication>().ToSelf().InSingletonScope();
-            Bind<RequestBus>().ToSelf().InSingletonScope();
-            Bind<IRequestHandlerFactory>().To<NinjectRequestHandlerFactory>();
-            Bind<ISaveConfirmationQuestion>().To<SaveConfirmationQuestion>();
-        }
     }
 }

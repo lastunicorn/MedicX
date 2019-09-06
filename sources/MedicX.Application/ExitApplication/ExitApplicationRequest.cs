@@ -18,6 +18,5 @@ namespace DustInTheWind.MedicX.Application.ExitApplication
 {
     public class ExitApplicationRequest
     {
-        public ISaveConfirmationQuestion SaveConfirmationQuestion { get; set; }
     }
 }

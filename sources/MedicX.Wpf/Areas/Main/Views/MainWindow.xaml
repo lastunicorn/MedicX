@@ -24,9 +24,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:views1="clr-namespace:DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.Views"
-    xmlns:views3="clr-namespace:DustInTheWind.MedicX.Wpf.Areas.CurrentItemDetails.Views"
     xmlns:viewModels1="clr-namespace:DustInTheWind.MedicX.Wpf.Areas.Main.ViewModels"
+    xmlns:views="clr-namespace:DustInTheWind.MedicX.Wpf.Areas.Main.Views"
 
     mc:Ignorable="d"
     Title="{Binding Title}"
@@ -60,7 +59,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 <ColumnDefinition Width="8*" />
             </Grid.ColumnDefinitions>
 
-            <views1:SelectionControl
+            <views:SelectionControl
                 Grid.Column="0"
                 DataContext="{Binding SelectionViewModel}" />
 
@@ -68,7 +67,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 Grid.Column="1"
                 HorizontalAlignment="Stretch" />
 
-            <views3:DetailsControl
+            <views:DetailsControl
                 Grid.Column="2"
                 DataContext="{Binding DetailsViewModel}" />
 

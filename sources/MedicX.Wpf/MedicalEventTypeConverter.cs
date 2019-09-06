@@ -16,7 +16,7 @@
 
 using System;
 using System.Windows.Data;
-using DustInTheWind.MedicX.Wpf.Areas.CurrentItemSelection.VewModels;
+using DustInTheWind.MedicX.Wpf.Areas.MedicalEvents.ViewModels;
 
 namespace DustInTheWind.MedicX.Wpf
 {

@@ -15,21 +15,22 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
-using DustInTheWind.MedicX.Application.ExitApplication;
-using DustInTheWind.MedicX.RequestBusModel;
+using DustInTheWind.MedicX.Business;
+using DustInTheWind.MedicX.Common.Entities;
 
-namespace DustInTheWind.MedicX.Wpf.Commands
+namespace DustInTheWind.MedicX.Wpf.Areas.MedicalEvents
 {
-    internal class ExitCommand : ICommand
+    internal class AddConsultationCommand : ICommand
     {
-        private readonly RequestBus requestBus;
+        private readonly MedicXProject medicXProject;
 
         public event EventHandler CanExecuteChanged;
 
-        public ExitCommand(RequestBus requestBus)
+        public AddConsultationCommand(MedicXProject medicXProject)
         {
-            this.requestBus = requestBus ?? throw new ArgumentNullException(nameof(requestBus));
+            this.medicXProject = medicXProject ?? throw new ArgumentNullException(nameof(medicXProject));
         }
 
         public bool CanExecute(object parameter)
@@ -39,14 +40,15 @@ namespace DustInTheWind.MedicX.Wpf.Commands
 
         public void Execute(object parameter)
         {
-            bool allowToContinue = AsyncUtil.RunSync(() =>
+            Consultation consultation = new Consultation
             {
-                ExitApplicationRequest request = new ExitApplicationRequest();
-                return requestBus.ProcessRequest<ExitApplicationRequest, bool>(request);
-            });
+                Id = Guid.NewGuid(),
+                Date = DateTime.Today,
+                Labels = new ObservableCollection<string>()
+            };
 
-            if (allowToContinue)
-                System.Windows.Application.Current.Shutdown();
+            medicXProject.MedicalEvents.Add(consultation);
+            medicXProject.CurrentItem = consultation;
         }
     }
 }

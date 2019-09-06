@@ -49,8 +49,9 @@
     <Compile Include="ExitApplication\ExitApplicationRequest.cs" />
     <Compile Include="ExitApplication\ExitApplicationRequestHandler.cs" />
     <Compile Include="ExitApplication\ISaveConfirmationQuestion.cs" />
-    <Compile Include="GetCurrentProject\GetCurrentProjectRequest.cs" />
-    <Compile Include="GetCurrentProject\GetCurrentProjectRequestHandler.cs" />
+    <Compile Include="GetCurrentProjectStatus\GetCurrentProjectStatusRequest.cs" />
+    <Compile Include="GetCurrentProjectStatus\GetCurrentProjectStatusRequestHandler.cs" />
+    <Compile Include="GetCurrentProjectStatus\ProjectStatusInfo.cs" />
     <Compile Include="LoadProject\LoadProjectRequest.cs" />
     <Compile Include="LoadProject\LoadProjectRequestHandler.cs" />
     <Compile Include="MedicXApplication.cs" />
