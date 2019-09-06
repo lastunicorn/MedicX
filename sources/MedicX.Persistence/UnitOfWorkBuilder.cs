@@ -14,22 +14,15 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using System;
+using DustInTheWind.MedicX.Common.DataAccess;
 
-namespace DustInTheWind.MedicX.RequestBusModel
+namespace DustInTheWind.MedicX.Persistence
 {
-    public class UnusableRequestHandlerException : Exception
+    public class UnitOfWorkBuilder : IUnitOfWorkBuilder
     {
-        public UnusableRequestHandlerException()
-            : base("There is no requestHandler for the specified request.")
+        public IUnitOfWork Build(string connectionString)
         {
-
-        }
-
-        public UnusableRequestHandlerException(Type requestType)
-            : base($"There is no requestHandler for the specified request. Request type: {requestType}")
-        {
-
+            return new UnitOfWork(connectionString);
         }
     }
 }

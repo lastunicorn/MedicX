@@ -14,22 +14,9 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using System;
-
-namespace DustInTheWind.MedicX.RequestBusModel
+namespace DustInTheWind.MedicX.Application.GetCurrentProject
 {
-    public class UnusableRequestHandlerException : Exception
+    public class GetCurrentProjectRequest
     {
-        public UnusableRequestHandlerException()
-            : base("There is no requestHandler for the specified request.")
-        {
-
-        }
-
-        public UnusableRequestHandlerException(Type requestType)
-            : base($"There is no requestHandler for the specified request. Request type: {requestType}")
-        {
-
-        }
     }
 }

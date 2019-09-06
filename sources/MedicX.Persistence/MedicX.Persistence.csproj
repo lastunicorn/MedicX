@@ -47,6 +47,7 @@
     <Compile Include="ClinicRepository.cs" />
     <Compile Include="ConsultationRepository.cs" />
     <Compile Include="IClinicLocationRepository.cs" />
+    <Compile Include="InitializationStatus.cs" />
     <Compile Include="InvestigationRepository.cs" />
     <Compile Include="MedicRepository.cs" />
     <Compile Include="Storage.cs" />
@@ -61,6 +62,7 @@
     <Compile Include="Translators\NameExtensions.cs" />
     <Compile Include="Translators\PrescriptionsExtensions.cs" />
     <Compile Include="UnitOfWork.cs" />
+    <Compile Include="UnitOfWorkBuilder.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MedicX.Common\MedicX.Domain.csproj">

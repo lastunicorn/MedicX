@@ -15,21 +15,24 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
+using System.Threading.Tasks;
+using DustInTheWind.MedicX.Common;
+using DustInTheWind.MedicX.RequestBusModel;
 
-namespace DustInTheWind.MedicX.RequestBusModel
+namespace DustInTheWind.MedicX.Application.GetCurrentProject
 {
-    public class UnusableRequestHandlerException : Exception
+    public class GetCurrentProjectRequestHandler : IRequestHandler<GetCurrentProjectRequest, MedicXProject>
     {
-        public UnusableRequestHandlerException()
-            : base("There is no requestHandler for the specified request.")
-        {
+        private readonly MedicXApplication medicXApplication;
 
+        public GetCurrentProjectRequestHandler(MedicXApplication medicXApplication)
+        {
+            this.medicXApplication = medicXApplication ?? throw new ArgumentNullException(nameof(medicXApplication));
         }
 
-        public UnusableRequestHandlerException(Type requestType)
-            : base($"There is no requestHandler for the specified request. Request type: {requestType}")
+        public Task<MedicXProject> Handle(GetCurrentProjectRequest request)
         {
-
+            return Task.FromResult(medicXApplication.CurrentProject);
         }
     }
 }

@@ -26,7 +26,7 @@ using Medic = DustInTheWind.MedicX.Common.Entities.Medic;
 
 namespace DustInTheWind.MedicX.Persistence
 {
-    public class Storage
+    internal class Storage
     {
         private readonly JsonZipFile jsonZipFile;
 

@@ -1,17 +1,24 @@
-﻿using DustInTheWind.MedicX.Common;
-using DustInTheWind.MedicX.Persistence;
+﻿using System;
+using DustInTheWind.MedicX.Common;
+using DustInTheWind.MedicX.Common.DataAccess;
 
 namespace DustInTheWind.MedicX.Application
 {
     public class MedicXApplication
     {
+        private readonly IUnitOfWorkBuilder unitOfWorkBuilder;
         private string connectionString;
 
         public MedicXProject CurrentProject { get; private set; }
 
+        public MedicXApplication(IUnitOfWorkBuilder unitOfWorkBuilder)
+        {
+            this.unitOfWorkBuilder = unitOfWorkBuilder ?? throw new ArgumentNullException(nameof(unitOfWorkBuilder));
+        }
+
         public void LoadProject(string connectionString)
         {
-            using (UnitOfWork unitOfWork = new UnitOfWork(connectionString))
+            using (IUnitOfWork unitOfWork = unitOfWorkBuilder.Build(connectionString))
             {
                 MedicXProject medicXProject = new MedicXProject();
                 medicXProject.LoadData(unitOfWork);
@@ -32,10 +39,8 @@ namespace DustInTheWind.MedicX.Application
             if (CurrentProject == null)
                 return;
 
-            using (UnitOfWork unitOfWork = new UnitOfWork(connectionString))
-            {
+            using (IUnitOfWork unitOfWork = unitOfWorkBuilder.Build(connectionString))
                 CurrentProject.Save(unitOfWork);
-            }
         }
     }
 }

@@ -69,7 +69,7 @@ namespace DustInTheWind.MedicX.RequestBusModel
                 return default(TResponse);
             }
 
-            throw new UnusableRequestHandlerException();
+            throw new UnusableRequestHandlerException(requestType);
         }
 
         public async Task ProcessRequest<TRequest>(TRequest request)
@@ -90,7 +90,7 @@ namespace DustInTheWind.MedicX.RequestBusModel
                 await requestHandlerWithoutResponse.Handle(request);
             else if (requestHandlerFactory.Create(requestHandlerType) is IRequestHandler<TRequest, object> requestHandlerWithResponse)
                 await requestHandlerWithResponse.Handle(request);
-            else throw new UnusableRequestHandlerException();
+            else throw new UnusableRequestHandlerException(requestType);
         }
     }
 }

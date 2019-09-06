@@ -19,7 +19,7 @@ using DustInTheWind.MedicX.Common.DataAccess;
 
 namespace DustInTheWind.MedicX.Persistence
 {
-    public class UnitOfWork : IUnitOfWork, IDisposable
+    public class UnitOfWork : IUnitOfWork
     {
         private static int instanceCount;
         private static readonly object SyncObject = new object();
