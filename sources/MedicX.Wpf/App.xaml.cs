@@ -21,6 +21,7 @@ using DustInTheWind.MedicX.Application.GetCurrentProject;
 using DustInTheWind.MedicX.Application.GetCurrentProjectStatus;
 using DustInTheWind.MedicX.Application.LoadProject;
 using DustInTheWind.MedicX.Application.SaveProject;
+using DustInTheWind.MedicX.Application.SetCurrentItem;
 using DustInTheWind.MedicX.Domain;
 using DustInTheWind.MedicX.RequestBusModel;
 using DustInTheWind.MedicX.Wpf.Areas.Main.ViewModels;
@@ -78,6 +79,7 @@ namespace DustInTheWind.MedicX.Wpf
             requestBus.Register<GetCurrentProjectRequest, GetCurrentProjectRequestHandler>();
             requestBus.Register<GetCurrentProjectStatusRequest, GetCurrentProjectStatusRequestHandler>();
             requestBus.Register<ExitApplicationRequest, ExitApplicationRequestHandler>();
+            requestBus.Register<SetCurrentItemRequest, SetCurrentItemRequestHandler>();
         }
 
         private Window CreateMainWindow()

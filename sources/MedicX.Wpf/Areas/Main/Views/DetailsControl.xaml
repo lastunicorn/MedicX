@@ -24,18 +24,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:entities="clr-namespace:DustInTheWind.MedicX.Common.Entities;assembly=DustInTheWind.MedicX.Common"
-    xmlns:viewModels="clr-namespace:DustInTheWind.MedicX.Wpf.Areas.Medics.ViewModels"
-    xmlns:views1="clr-namespace:DustInTheWind.MedicX.Wpf.Areas.Medics.Views"
-    xmlns:views2="clr-namespace:DustInTheWind.MedicX.Wpf.Areas.Clinics.Views"
-    xmlns:viewModels1="clr-namespace:DustInTheWind.MedicX.Wpf.Areas.MedicalEvents.ViewModels"
-    xmlns:views3="clr-namespace:DustInTheWind.MedicX.Wpf.Areas.MedicalEvents.Views"
-    xmlns:viewModels2="clr-namespace:DustInTheWind.MedicX.Wpf.Areas.Main.ViewModels"
+    xmlns:viewModels="clr-namespace:DustInTheWind.MedicX.Wpf.Areas.Main.ViewModels"
+    xmlns:viewModels1="clr-namespace:DustInTheWind.MedicX.Wpf.Areas.Medics.ViewModels"
+    xmlns:views="clr-namespace:DustInTheWind.MedicX.Wpf.Areas.Medics.Views"
+    xmlns:entities1="clr-namespace:DustInTheWind.MedicX.Domain.Entities;assembly=DustInTheWind.MedicX.Domain"
+    xmlns:views1="clr-namespace:DustInTheWind.MedicX.Wpf.Areas.Clinics.Views"
+    xmlns:viewModels11="clr-namespace:DustInTheWind.MedicX.Wpf.Areas.MedicalEvents.ViewModels"
+    xmlns:views2="clr-namespace:DustInTheWind.MedicX.Wpf.Areas.MedicalEvents.Views"
+
 
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="300"
-    d:DataContext="{d:DesignInstance viewModels2:DetailsViewModel}">
+    d:DataContext="{d:DesignInstance viewModels:DetailsViewModel}">
 
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
@@ -54,20 +55,20 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
             <ContentControl.Resources>
 
-                <DataTemplate DataType="{x:Type viewModels:MedicViewModel}">
-                    <views1:MedicView />
+                <DataTemplate DataType="{x:Type viewModels1:MedicViewModel}">
+                    <views:MedicView />
                 </DataTemplate>
 
-                <DataTemplate DataType="{x:Type entities:Clinic}">
-                    <views2:ClinicView />
+                <DataTemplate DataType="{x:Type entities1:Clinic}">
+                    <views1:ClinicView />
                 </DataTemplate>
 
-                <DataTemplate DataType="{x:Type viewModels1:ConsultationViewModel}">
-                    <views3:ConsultationView />
+                <DataTemplate DataType="{x:Type viewModels11:ConsultationViewModel}">
+                    <views2:ConsultationView />
                 </DataTemplate>
 
-                <DataTemplate DataType="{x:Type viewModels1:InvestigationViewModel}">
-                    <views3:InvestigationView />
+                <DataTemplate DataType="{x:Type viewModels11:InvestigationViewModel}">
+                    <views2:InvestigationView />
                 </DataTemplate>
 
             </ContentControl.Resources>

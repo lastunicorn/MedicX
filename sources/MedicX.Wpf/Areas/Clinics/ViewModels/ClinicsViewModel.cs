@@ -20,6 +20,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Data;
+using System.Windows.Threading;
 using DustInTheWind.MedicX.Application.SetCurrentItem;
 using DustInTheWind.MedicX.Domain;
 using DustInTheWind.MedicX.Domain.Entities;
@@ -35,6 +36,7 @@ namespace DustInTheWind.MedicX.Wpf.Areas.Clinics.ViewModels
         private ClinicListItemViewModel selectedClinic;
         private readonly CollectionViewSource clinicsSource;
         private string searchText;
+        private readonly Dispatcher dispatcher;
 
         public ICollectionView Clinics { get; }
 
@@ -50,8 +52,6 @@ namespace DustInTheWind.MedicX.Wpf.Areas.Clinics.ViewModels
                 OnPropertyChanged();
 
                 SetCurrentItem(selectedClinic?.Clinic);
-
-                //medicXProject.CurrentItem = selectedClinic?.Clinic;
             }
         }
 
@@ -98,6 +98,8 @@ namespace DustInTheWind.MedicX.Wpf.Areas.Clinics.ViewModels
             AddClinicCommand = new AddClinicCommand(medicXProject);
             ClearSearchTextCommand = new RelayCommand(() => { SearchText = string.Empty; });
 
+            dispatcher = Dispatcher.CurrentDispatcher;
+
             clinicsSource = new CollectionViewSource
             {
                 Source = new ObservableCollection<ClinicListItemViewModel>(medicXProject.Clinics
@@ -121,17 +123,20 @@ namespace DustInTheWind.MedicX.Wpf.Areas.Clinics.ViewModels
 
         private void HandleCurrentItemChanged(object sender, EventArgs e)
         {
-            Clinic clinic = medicXProject.CurrentItem as Clinic;
+            dispatcher.InvokeAsync(() =>
+            {
+                Clinic clinic = medicXProject.CurrentItem as Clinic;
+                SelectedClinic = GetNextSelectedClinic(clinic);
+            });
+        }
 
+        private ClinicListItemViewModel GetNextSelectedClinic(Clinic clinic)
+        {
             if (clinic == null)
-                return;
+                return null;
 
             IEnumerable<ClinicListItemViewModel> clinicsViewModels = clinicsSource.Source as IEnumerable<ClinicListItemViewModel>;
-
-            if (clinicsViewModels == null)
-                return;
-
-            SelectedClinic = clinicsViewModels.FirstOrDefault(x => x.Clinic == clinic);
+            return clinicsViewModels?.FirstOrDefault(x => x.Clinic == clinic);
         }
 
         private bool FilterClinic(object o)
