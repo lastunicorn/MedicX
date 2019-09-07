@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedicX.Cli", "MedicX\MedicX.Cli.csproj", "{2C4CF850-4EFF-47B4-8598-1813FAAA21E6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedicX.Cli", "MedicX.Cli\MedicX.Cli.csproj", "{2C4CF850-4EFF-47B4-8598-1813FAAA21E6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedicX.Persistence.Json", "MedicX.Persistence.Json\MedicX.Persistence.Json.csproj", "{9684B41D-C429-4B04-8CF0-0612785B398A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedicX.Domain", "MedicX.Common\MedicX.Domain.csproj", "{854C77F6-22F9-48A9-AE73-43E19AB9B258}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedicX.Domain", "MedicX.Domain\MedicX.Domain.csproj", "{854C77F6-22F9-48A9-AE73-43E19AB9B258}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedicX.Tests", "MedicX.Tests\MedicX.Tests.csproj", "{E99E2FC7-23D8-406B-91C1-622693B6DB0C}"
 EndProject
