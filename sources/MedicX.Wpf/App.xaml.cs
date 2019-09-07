@@ -21,7 +21,7 @@ using DustInTheWind.MedicX.Application.GetCurrentProject;
 using DustInTheWind.MedicX.Application.GetCurrentProjectStatus;
 using DustInTheWind.MedicX.Application.LoadProject;
 using DustInTheWind.MedicX.Application.SaveProject;
-using DustInTheWind.MedicX.Common;
+using DustInTheWind.MedicX.Domain;
 using DustInTheWind.MedicX.RequestBusModel;
 using DustInTheWind.MedicX.Wpf.Areas.Main.ViewModels;
 using DustInTheWind.MedicX.Wpf.Areas.Main.Views;

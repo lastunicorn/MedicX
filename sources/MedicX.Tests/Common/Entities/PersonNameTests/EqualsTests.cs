@@ -14,10 +14,10 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using DustInTheWind.MedicX.Common.Entities;
+using DustInTheWind.MedicX.Domain.Entities;
 using NUnit.Framework;
 
-namespace DustInThyeWind.MedicX.Tests.Common.Entities.PersonNameTests
+namespace DustInTheWind.MedicX.Tests.Common.Entities.PersonNameTests
 {
     [TestFixture]
     public class EqualsTests

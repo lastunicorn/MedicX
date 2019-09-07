@@ -17,9 +17,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using DustInTheWind.MedicX.Common.Entities;
+using DustInTheWind.MedicX.Domain.Entities;
 
-namespace DustInTheWind.MedicX.Common
+namespace DustInTheWind.MedicX.Domain
 {
     public class MedicalEventCollection : ICollection<MedicalEvent>
     {

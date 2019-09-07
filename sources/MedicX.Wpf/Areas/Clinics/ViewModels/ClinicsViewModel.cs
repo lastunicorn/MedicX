@@ -20,14 +20,17 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Data;
-using DustInTheWind.MedicX.Common;
-using DustInTheWind.MedicX.Common.Entities;
-using DustInTheWind.MedicX.Wpf.Commands;
+using DustInTheWind.MedicX.Application.SetCurrentItem;
+using DustInTheWind.MedicX.Domain;
+using DustInTheWind.MedicX.Domain.Entities;
+using DustInTheWind.MedicX.RequestBusModel;
+using DustInTheWind.MedicX.Wpf.Areas.Main.Commands;
 
 namespace DustInTheWind.MedicX.Wpf.Areas.Clinics.ViewModels
 {
     internal class ClinicsViewModel : ViewModelBase
     {
+        private readonly RequestBus requestBus;
         private readonly MedicXProject medicXProject;
         private ClinicListItemViewModel selectedClinic;
         private readonly CollectionViewSource clinicsSource;
@@ -46,8 +49,20 @@ namespace DustInTheWind.MedicX.Wpf.Areas.Clinics.ViewModels
                 selectedClinic = value;
                 OnPropertyChanged();
 
-                medicXProject.CurrentItem = selectedClinic?.Clinic;
+                SetCurrentItem(selectedClinic?.Clinic);
+
+                //medicXProject.CurrentItem = selectedClinic?.Clinic;
             }
+        }
+
+        private void SetCurrentItem(Clinic clinic)
+        {
+            SetCurrentItemRequest request = new SetCurrentItemRequest
+            {
+                NewCurrentItem = clinic
+            };
+
+            AsyncUtil.RunSync(() => requestBus.ProcessRequest(request));
         }
 
         public string SearchText
@@ -75,8 +90,9 @@ namespace DustInTheWind.MedicX.Wpf.Areas.Clinics.ViewModels
         public AddClinicCommand AddClinicCommand { get; }
         public RelayCommand ClearSearchTextCommand { get; }
 
-        public ClinicsViewModel(MedicXProject medicXProject)
+        public ClinicsViewModel(RequestBus requestBus, MedicXProject medicXProject)
         {
+            this.requestBus = requestBus ?? throw new ArgumentNullException(nameof(requestBus));
             this.medicXProject = medicXProject ?? throw new ArgumentNullException(nameof(medicXProject));
 
             AddClinicCommand = new AddClinicCommand(medicXProject);

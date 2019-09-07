@@ -20,7 +20,7 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
 using System.Windows.Data;
-using DustInTheWind.MedicX.Common.Entities;
+using DustInTheWind.MedicX.Domain.Entities;
 
 namespace DustInTheWind.MedicX.Wpf.Converters
 {

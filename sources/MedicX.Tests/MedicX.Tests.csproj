@@ -7,8 +7,8 @@
     <ProjectGuid>{E99E2FC7-23D8-406B-91C1-622693B6DB0C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DustInThyeWind.MedicX.Tests</RootNamespace>
-    <AssemblyName>DustInThyeWind.MedicX.Tests</AssemblyName>
+    <RootNamespace>DustInTheWind.MedicX.Tests</RootNamespace>
+    <AssemblyName>DustInTheWind.MedicX.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -59,12 +59,11 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MedicX.Common\MedicX.Domain.csproj">
+    <ProjectReference Include="..\MedicX.Domain\MedicX.Domain.csproj">
       <Project>{854C77F6-22F9-48A9-AE73-43E19AB9B258}</Project>
       <Name>MedicX.Domain</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -16,8 +16,8 @@
 
 using System;
 using System.Windows.Input;
-using DustInTheWind.MedicX.Common;
-using DustInTheWind.MedicX.Common.Entities;
+using DustInTheWind.MedicX.Domain;
+using DustInTheWind.MedicX.Domain.Entities;
 
 namespace DustInTheWind.MedicX.Wpf.Areas.Medics
 {

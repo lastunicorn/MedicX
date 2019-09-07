@@ -16,7 +16,7 @@
 
 using System;
 
-namespace DustInTheWind.MedicX.Common.Entities
+namespace DustInTheWind.MedicX.Domain.Entities
 {
     public class InvestigationResult
     {

@@ -17,7 +17,7 @@
 using System;
 using System.Text;
 
-namespace DustInTheWind.MedicX.Common.Entities
+namespace DustInTheWind.MedicX.Domain.Entities
 {
     public class Address : IEquatable<Address>
     {

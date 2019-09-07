@@ -60,9 +60,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SaveProject\SaveProjectRequest.cs" />
     <Compile Include="SaveProject\SaveProjectRequestHandler.cs" />
+    <Compile Include="SetCurrentItem\SetCurrentItemRequest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MedicX.Common\MedicX.Domain.csproj">
+    <ProjectReference Include="..\MedicX.Domain\MedicX.Domain.csproj">
       <Project>{854C77F6-22F9-48A9-AE73-43E19AB9B258}</Project>
       <Name>MedicX.Domain</Name>
     </ProjectReference>

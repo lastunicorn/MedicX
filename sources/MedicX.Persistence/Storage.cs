@@ -19,10 +19,10 @@ using System.Collections.Generic;
 using DustInTheWind.MedicX.Persistence.Json;
 using DustInTheWind.MedicX.Persistence.Json.Entities;
 using DustInTheWind.MedicX.Persistence.Translators;
-using Clinic = DustInTheWind.MedicX.Common.Entities.Clinic;
-using Consultation = DustInTheWind.MedicX.Common.Entities.Consultation;
-using Investigation = DustInTheWind.MedicX.Common.Entities.Investigation;
-using Medic = DustInTheWind.MedicX.Common.Entities.Medic;
+using Clinic = DustInTheWind.MedicX.Domain.Entities.Clinic;
+using Consultation = DustInTheWind.MedicX.Domain.Entities.Consultation;
+using Investigation = DustInTheWind.MedicX.Domain.Entities.Investigation;
+using Medic = DustInTheWind.MedicX.Domain.Entities.Medic;
 
 namespace DustInTheWind.MedicX.Persistence
 {

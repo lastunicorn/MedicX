@@ -15,8 +15,8 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using DustInTheWind.MedicX.Common;
-using DustInTheWind.MedicX.Common.Entities;
+using DustInTheWind.MedicX.Domain;
+using DustInTheWind.MedicX.Domain.Entities;
 using DustInTheWind.MedicX.Wpf.Areas.MedicalEvents.ViewModels;
 using DustInTheWind.MedicX.Wpf.Areas.Medics.ViewModels;
 

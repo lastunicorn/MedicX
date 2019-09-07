@@ -18,8 +18,8 @@ using System;
 using System.Collections.Generic;
 using DustInTheWind.ConsoleTools;
 using DustInTheWind.ConsoleTools.TabularData;
-using DustInTheWind.MedicX.Common.DataAccess;
-using DustInTheWind.MedicX.Common.Entities;
+using DustInTheWind.MedicX.Domain.DataAccess;
+using DustInTheWind.MedicX.Domain.Entities;
 using DustInTheWind.MedicX.Persistence;
 
 namespace DustInTheWind.MedicX.Cli.Controllers

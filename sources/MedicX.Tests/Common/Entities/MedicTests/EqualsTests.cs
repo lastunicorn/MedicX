@@ -16,10 +16,10 @@
 
 using System;
 using System.Collections.ObjectModel;
-using DustInTheWind.MedicX.Common.Entities;
+using DustInTheWind.MedicX.Domain.Entities;
 using NUnit.Framework;
 
-namespace DustInThyeWind.MedicX.Tests.Common.Entities.MedicTests
+namespace DustInTheWind.MedicX.Tests.Common.Entities.MedicTests
 {
     [TestFixture]
     public class EqualsTests

@@ -16,7 +16,7 @@
 
 using System.Collections.Generic;
 
-namespace DustInTheWind.MedicX.Common.Entities
+namespace DustInTheWind.MedicX.Domain.Entities
 {
     public class InvestigationDescription
     {

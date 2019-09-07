@@ -18,7 +18,7 @@ using System;
 using System.Linq;
 using System.Text;
 
-namespace DustInTheWind.MedicX.Common.Entities
+namespace DustInTheWind.MedicX.Domain.Entities
 {
     public class PersonName : IComparable<PersonName>, IEquatable<PersonName>
     {

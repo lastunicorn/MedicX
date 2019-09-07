@@ -17,7 +17,7 @@
 using System;
 using System.Windows.Input;
 
-namespace DustInTheWind.MedicX.Wpf.Commands
+namespace DustInTheWind.MedicX.Wpf.Areas.Main.Commands
 {
     internal class RelayCommand : ICommand
     {

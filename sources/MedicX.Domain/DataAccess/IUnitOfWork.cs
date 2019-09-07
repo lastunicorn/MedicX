@@ -16,7 +16,7 @@
 
 using System;
 
-namespace DustInTheWind.MedicX.Common.DataAccess
+namespace DustInTheWind.MedicX.Domain.DataAccess
 {
     public interface IUnitOfWork: IDisposable
     {

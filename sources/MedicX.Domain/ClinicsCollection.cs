@@ -18,9 +18,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using DustInTheWind.MedicX.Common.Entities;
+using DustInTheWind.MedicX.Domain.Entities;
 
-namespace DustInTheWind.MedicX.Common
+namespace DustInTheWind.MedicX.Domain
 {
     public class ClinicsCollection : ICollection<Clinic>
     {

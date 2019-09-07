@@ -1,5 +1,5 @@
 ﻿using System;
-using DustInTheWind.MedicX.Common;
+using DustInTheWind.MedicX.Domain;
 
 namespace DustInTheWind.MedicX.Application.GetCurrentProjectStatus
 {

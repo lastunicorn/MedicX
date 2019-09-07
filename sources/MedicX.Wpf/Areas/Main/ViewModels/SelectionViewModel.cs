@@ -16,7 +16,8 @@
 
 using System;
 using System.Collections.Generic;
-using DustInTheWind.MedicX.Common;
+using DustInTheWind.MedicX.Domain;
+using DustInTheWind.MedicX.RequestBusModel;
 using DustInTheWind.MedicX.Wpf.Areas.Clinics.ViewModels;
 using DustInTheWind.MedicX.Wpf.Areas.MedicalEvents.ViewModels;
 using DustInTheWind.MedicX.Wpf.Areas.Medics.ViewModels;
@@ -25,6 +26,7 @@ namespace DustInTheWind.MedicX.Wpf.Areas.Main.ViewModels
 {
     internal class SelectionViewModel : ViewModelBase
     {
+        private readonly RequestBus requestBus;
         private readonly MedicXProject medicXProject;
 
         private TabItemViewModel selectedTab;
@@ -46,8 +48,9 @@ namespace DustInTheWind.MedicX.Wpf.Areas.Main.ViewModels
             }
         }
 
-        public SelectionViewModel(MedicXProject medicXProject)
+        public SelectionViewModel(RequestBus requestBus, MedicXProject medicXProject)
         {
+            this.requestBus = requestBus ?? throw new ArgumentNullException(nameof(requestBus));
             this.medicXProject = medicXProject ?? throw new ArgumentNullException(nameof(medicXProject));
 
             Tabs = CreateTabs();
@@ -66,7 +69,7 @@ namespace DustInTheWind.MedicX.Wpf.Areas.Main.ViewModels
                 new TabItemViewModel
                 {
                     Header = "Clinics",
-                    Content = new ClinicsViewModel(medicXProject)
+                    Content = new ClinicsViewModel(requestBus, medicXProject)
                 },
                 new TabItemViewModel
                 {

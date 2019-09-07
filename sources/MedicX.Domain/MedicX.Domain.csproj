@@ -7,8 +7,8 @@
     <ProjectGuid>{854C77F6-22F9-48A9-AE73-43E19AB9B258}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DustInTheWind.MedicX.Common</RootNamespace>
-    <AssemblyName>DustInTheWind.MedicX.Common</AssemblyName>
+    <RootNamespace>DustInTheWind.MedicX.Domain</RootNamespace>
+    <AssemblyName>DustInTheWind.MedicX.Domain</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

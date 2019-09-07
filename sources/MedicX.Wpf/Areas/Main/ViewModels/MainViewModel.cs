@@ -18,10 +18,9 @@ using System;
 using System.Diagnostics;
 using System.Reflection;
 using DustInTheWind.MedicX.Application.GetCurrentProject;
-using DustInTheWind.MedicX.Application.GetCurrentProjectStatus;
-using DustInTheWind.MedicX.Common;
+using DustInTheWind.MedicX.Domain;
 using DustInTheWind.MedicX.RequestBusModel;
-using DustInTheWind.MedicX.Wpf.Commands;
+using DustInTheWind.MedicX.Wpf.Areas.Main.Commands;
 
 namespace DustInTheWind.MedicX.Wpf.Areas.Main.ViewModels
 {
@@ -55,7 +54,7 @@ namespace DustInTheWind.MedicX.Wpf.Areas.Main.ViewModels
                 return requestBus.ProcessRequest<GetCurrentProjectRequest, MedicXProject>(request);
             });
 
-            SelectionViewModel = new SelectionViewModel(medicXProject);
+            SelectionViewModel = new SelectionViewModel(requestBus, medicXProject);
             DetailsViewModel = new DetailsViewModel(medicXProject);
 
             SaveCommand = new SaveCommand(requestBus);

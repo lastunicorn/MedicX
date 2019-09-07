@@ -16,9 +16,9 @@
 
 using System;
 using System.Collections.Generic;
-using DustInTheWind.MedicX.Common.Entities;
+using DustInTheWind.MedicX.Domain.Entities;
 
-namespace DustInTheWind.MedicX.Common.DataAccess
+namespace DustInTheWind.MedicX.Domain.DataAccess
 {
     public interface IMedicRepository
     {

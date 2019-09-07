@@ -18,7 +18,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using DustInTheWind.ConsoleTools.InputControls;
-using DustInTheWind.MedicX.Common.Entities;
+using DustInTheWind.MedicX.Domain.Entities;
 using DustInTheWind.MedicX.Persistence;
 
 namespace DustInTheWind.MedicX.Cli.Controllers

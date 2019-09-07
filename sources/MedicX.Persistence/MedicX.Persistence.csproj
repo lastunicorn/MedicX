@@ -65,12 +65,12 @@
     <Compile Include="UnitOfWorkBuilder.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MedicX.Common\MedicX.Domain.csproj">
-      <Project>{854c77f6-22f9-48a9-ae73-43e19ab9b258}</Project>
+    <ProjectReference Include="..\MedicX.Domain\MedicX.Domain.csproj">
+      <Project>{854C77F6-22F9-48A9-AE73-43E19AB9B258}</Project>
       <Name>MedicX.Domain</Name>
     </ProjectReference>
     <ProjectReference Include="..\MedicX.Persistence.Json\MedicX.Persistence.Json.csproj">
-      <Project>{9684b41d-c429-4b04-8cf0-0612785b398a}</Project>
+      <Project>{9684B41D-C429-4B04-8CF0-0612785B398A}</Project>
       <Name>MedicX.Persistence.Json</Name>
     </ProjectReference>
   </ItemGroup>

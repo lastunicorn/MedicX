@@ -16,10 +16,10 @@
 
 using DustInTheWind.MedicX.Application;
 using DustInTheWind.MedicX.Application.ExitApplication;
-using DustInTheWind.MedicX.Common.DataAccess;
+using DustInTheWind.MedicX.Domain.DataAccess;
 using DustInTheWind.MedicX.Persistence;
 using DustInTheWind.MedicX.RequestBusModel;
-using DustInTheWind.MedicX.Wpf.Commands;
+using DustInTheWind.MedicX.Wpf.Areas.Main.Commands;
 using Ninject.Modules;
 
 namespace DustInTheWind.MedicX.Wpf

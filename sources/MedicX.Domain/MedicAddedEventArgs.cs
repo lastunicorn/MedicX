@@ -15,9 +15,9 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using DustInTheWind.MedicX.Common.Entities;
+using DustInTheWind.MedicX.Domain.Entities;
 
-namespace DustInTheWind.MedicX.Common
+namespace DustInTheWind.MedicX.Domain
 {
     public class MedicAddedEventArgs : EventArgs
     {

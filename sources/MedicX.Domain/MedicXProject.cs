@@ -17,10 +17,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using DustInTheWind.MedicX.Common.DataAccess;
-using DustInTheWind.MedicX.Common.Entities;
+using DustInTheWind.MedicX.Domain.DataAccess;
+using DustInTheWind.MedicX.Domain.Entities;
 
-namespace DustInTheWind.MedicX.Common
+namespace DustInTheWind.MedicX.Domain
 {
     public class MedicXProject
     {

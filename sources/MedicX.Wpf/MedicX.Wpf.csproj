@@ -66,7 +66,7 @@
     <Compile Include="Areas\Medics\ViewModels\MedicViewModel.cs" />
     <Compile Include="AsyncUtil.cs" />
     <Compile Include="Bindings.cs" />
-    <Compile Include="Commands\ExitCommand.cs" />
+    <Compile Include="Areas\Main\Commands\ExitCommand.cs" />
     <Compile Include="Converters\PrescriptionListToMultilineStringConverter.cs" />
     <Compile Include="Areas\Clinics\AddClinicCommand.cs" />
     <Compile Include="Areas\MedicalEvents\AddConsultationCommand.cs" />
@@ -89,9 +89,9 @@
       <DependentUpon>MedicsControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Areas\Medics\AddMedicCommand.cs" />
-    <Compile Include="Commands\RelayCommand.cs" />
-    <Compile Include="Commands\SaveCommand.cs" />
-    <Compile Include="Commands\SaveConfirmationQuestion.cs" />
+    <Compile Include="Areas\Main\Commands\RelayCommand.cs" />
+    <Compile Include="Areas\Main\Commands\SaveCommand.cs" />
+    <Compile Include="Areas\Main\Commands\SaveConfirmationQuestion.cs" />
     <Compile Include="MedicalEventTypeConverter.cs" />
     <Compile Include="Areas\MedicalEvents\ViewModels\ConsultationViewModel.cs" />
     <Compile Include="Areas\Main\ViewModels\DetailsViewModel.cs" />
@@ -220,12 +220,12 @@
       <Project>{483072F7-D4D6-4CA9-8E3F-EB806AF2A7C3}</Project>
       <Name>MedicX.Application</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MedicX.Common\MedicX.Domain.csproj">
-      <Project>{854c77f6-22f9-48a9-ae73-43e19ab9b258}</Project>
+    <ProjectReference Include="..\MedicX.Domain\MedicX.Domain.csproj">
+      <Project>{854C77F6-22F9-48A9-AE73-43E19AB9B258}</Project>
       <Name>MedicX.Domain</Name>
     </ProjectReference>
     <ProjectReference Include="..\MedicX.Persistence\MedicX.Persistence.csproj">
-      <Project>{6104e0cd-5f5a-4c47-bd41-6d4c58822928}</Project>
+      <Project>{6104E0CD-5F5A-4C47-BD41-6D4C58822928}</Project>
       <Name>MedicX.Persistence</Name>
     </ProjectReference>
     <ProjectReference Include="..\MedicX.RequestBusModel\MedicX.RequestBusModel.csproj">

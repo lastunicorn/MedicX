@@ -1,6 +1,6 @@
 ﻿using System;
-using DustInTheWind.MedicX.Common;
-using DustInTheWind.MedicX.Common.DataAccess;
+using DustInTheWind.MedicX.Domain;
+using DustInTheWind.MedicX.Domain.DataAccess;
 
 namespace DustInTheWind.MedicX.Application
 {

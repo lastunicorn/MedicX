@@ -19,7 +19,7 @@ using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
 
-namespace DustInTheWind.MedicX.Common.Entities
+namespace DustInTheWind.MedicX.Domain.Entities
 {
     public class Clinic : IEquatable<Clinic>
     {
