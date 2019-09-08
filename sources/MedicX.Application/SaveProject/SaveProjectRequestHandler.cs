@@ -31,10 +31,7 @@ namespace DustInTheWind.MedicX.Application.SaveProject
 
         public Task Handle(SaveProjectRequest request)
         {
-            return Task.Run(() =>
-            {
-                medicXApplication.SaveCurrentProject();
-            });
+            return Task.Run(() => { medicXApplication.SaveCurrentProject(); });
         }
     }
 }

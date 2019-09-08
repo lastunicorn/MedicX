@@ -1,5 +1,4 @@
 ﻿using System;
-using DustInTheWind.MedicX.Domain;
 using DustInTheWind.MedicX.Domain.DataAccess;
 using DustInTheWind.MedicX.Domain.Entities;
 
@@ -41,7 +40,9 @@ namespace DustInTheWind.MedicX.Application
                 return;
 
             using (IUnitOfWork unitOfWork = unitOfWorkBuilder.Build(connectionString))
+            {
                 CurrentProject.Save(unitOfWork);
+            }
         }
     }
 }

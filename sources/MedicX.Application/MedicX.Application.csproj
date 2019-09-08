@@ -52,7 +52,6 @@
     <Compile Include="AddNewConsultation\AddNewConsultationRequestHandler.cs" />
     <Compile Include="AddNewMedic\AddNewMedicRequest.cs" />
     <Compile Include="AddNewMedic\AddNewMedicRequestHandler.cs" />
-    <Compile Include="EventBusModel\EventBus.cs" />
     <Compile Include="ExitApplication\ConfirmationResponse.cs" />
     <Compile Include="ExitApplication\ExitApplicationRequest.cs" />
     <Compile Include="ExitApplication\ExitApplicationRequestHandler.cs" />

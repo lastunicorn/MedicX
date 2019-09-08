@@ -16,7 +16,6 @@
 
 using System;
 using System.Threading.Tasks;
-using DustInTheWind.MedicX.Domain;
 using DustInTheWind.MedicX.Domain.Entities;
 using DustInTheWind.MedicX.RequestBusModel;
 
@@ -49,7 +48,7 @@ namespace DustInTheWind.MedicX.Application.ExitApplication
                 return true;
 
             ConfirmationResponse response = saveConfirmationQuestion.Ask();
-            
+
             switch (response)
             {
                 case ConfirmationResponse.Yes:
