@@ -15,32 +15,29 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using System.Windows.Input;
+using System.Threading.Tasks;
 using DustInTheWind.MedicX.Domain;
 using DustInTheWind.MedicX.Domain.Entities;
+using DustInTheWind.MedicX.RequestBusModel;
 
-namespace DustInTheWind.MedicX.Wpf.Areas.Medics
+namespace DustInTheWind.MedicX.Application.SetCurrentItem
 {
-    internal class AddMedicCommand : ICommand
+    public class SetCurrentItemRequestHandler : IRequestHandler<SetCurrentItemRequest>
     {
-        private readonly MedicXProject medicXProject;
+        private readonly MedicXApplication medicXApplication;
 
-        public event EventHandler CanExecuteChanged;
-
-        public AddMedicCommand(MedicXProject medicXProject)
+        public SetCurrentItemRequestHandler(MedicXApplication medicXApplication)
         {
-            this.medicXProject = medicXProject ?? throw new ArgumentNullException(nameof(medicXProject));
+            this.medicXApplication = medicXApplication ?? throw new ArgumentNullException(nameof(medicXApplication));
         }
 
-        public bool CanExecute(object parameter)
+        public Task Handle(SetCurrentItemRequest request)
         {
-            return true;
-        }
-
-        public void Execute(object parameter)
-        {
-            Medic medic = medicXProject.Medics.AddNew();
-            medicXProject.CurrentItem = medic;
+            return Task.Run(() =>
+            {
+                MedicXProject currentProject = medicXApplication.CurrentProject;
+                currentProject.CurrentItem = request.NewCurrentItem;
+            });
         }
     }
 }

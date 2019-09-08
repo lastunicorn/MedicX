@@ -72,7 +72,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
                     <ContentControl.Resources>
 
-                        <DataTemplate DataType="{x:Type viewModels:MedicsViewModel}">
+                        <DataTemplate DataType="{x:Type viewModels:MedicsTabViewModel}">
                             <views1:MedicsControl DataContext="{Binding}" />
                         </DataTemplate>
 

@@ -63,21 +63,21 @@
     <Compile Include="Areas\Calendar\Views\CalendarWindow.xaml.cs">
       <DependentUpon>CalendarWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Areas\Medics\ViewModels\MedicViewModel.cs" />
+    <Compile Include="Areas\Medics\ViewModels\MedicDetailsViewModel.cs" />
     <Compile Include="AsyncUtil.cs" />
     <Compile Include="Bindings.cs" />
     <Compile Include="Areas\Main\Commands\ExitCommand.cs" />
     <Compile Include="Converters\PrescriptionListToMultilineStringConverter.cs" />
-    <Compile Include="Areas\Clinics\AddClinicCommand.cs" />
-    <Compile Include="Areas\MedicalEvents\AddConsultationCommand.cs" />
-    <Compile Include="Areas\MedicalEvents\AddInvestigationCommand.cs" />
+    <Compile Include="Areas\Clinics\Commands\AddClinicCommand.cs" />
+    <Compile Include="Areas\MedicalEvents\Commands\AddConsultationCommand.cs" />
+    <Compile Include="Areas\MedicalEvents\Commands\AddInvestigationCommand.cs" />
     <Compile Include="Areas\Clinics\ViewModels\ClinicListItemViewModel.cs" />
     <Compile Include="Areas\Clinics\ViewModels\ClinicsViewModel.cs" />
     <Compile Include="Areas\MedicalEvents\ViewModels\ConsultationListItemViewModel.cs" />
     <Compile Include="Areas\MedicalEvents\ViewModels\InvestigationListItemViewModel.cs" />
     <Compile Include="Areas\Main\ViewModels\ListItemViewModel.cs" />
     <Compile Include="Areas\MedicalEvents\ViewModels\MedicalEventsViewModel.cs" />
-    <Compile Include="Areas\Medics\ViewModels\MedicsViewModel.cs" />
+    <Compile Include="Areas\Medics\ViewModels\MedicsTabViewModel.cs" />
     <Compile Include="Areas\Main\ViewModels\TabItemViewModel.cs" />
     <Compile Include="Areas\Clinics\Views\ClinicsControl.xaml.cs">
       <DependentUpon>ClinicsControl.xaml</DependentUpon>
@@ -88,7 +88,7 @@
     <Compile Include="Areas\Medics\Views\MedicsControl.xaml.cs">
       <DependentUpon>MedicsControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Areas\Medics\AddMedicCommand.cs" />
+    <Compile Include="Areas\Medics\Commands\AddMedicCommand.cs" />
     <Compile Include="Areas\Main\Commands\RelayCommand.cs" />
     <Compile Include="Areas\Main\Commands\SaveCommand.cs" />
     <Compile Include="Areas\Main\Commands\SaveConfirmationQuestion.cs" />
@@ -96,7 +96,7 @@
     <Compile Include="Areas\MedicalEvents\ViewModels\ConsultationViewModel.cs" />
     <Compile Include="Areas\Main\ViewModels\DetailsViewModel.cs" />
     <Compile Include="Areas\MedicalEvents\ViewModels\InvestigationViewModel.cs" />
-    <Compile Include="Areas\Medics\ViewModels\MedicListItemViewModel.cs" />
+    <Compile Include="Areas\Medics\ViewModels\MedicItemViewModel.cs" />
     <Compile Include="Areas\Main\ViewModels\SelectionViewModel.cs" />
     <Compile Include="Converters\StringListToCsvConverter.cs" />
     <Compile Include="Converters\StringListToMultilineStringConverter.cs" />

@@ -20,22 +20,28 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Data;
-using DustInTheWind.MedicX.Domain;
+using System.Windows.Threading;
+using DustInTheWind.MedicX.Application.SetCurrentItem;
+using DustInTheWind.MedicX.Domain.Collections;
 using DustInTheWind.MedicX.Domain.Entities;
+using DustInTheWind.MedicX.RequestBusModel;
 using DustInTheWind.MedicX.Wpf.Areas.Main.Commands;
+using DustInTheWind.MedicX.Wpf.Areas.Medics.Commands;
 
 namespace DustInTheWind.MedicX.Wpf.Areas.Medics.ViewModels
 {
-    internal class MedicsViewModel : ViewModelBase
+    internal class MedicsTabViewModel : ViewModelBase
     {
+        private readonly RequestBus requestBus;
         private readonly MedicXProject medicXProject;
-        private MedicListItemViewModel selectedMedic;
+        private MedicItemViewModel selectedMedic;
         private readonly CollectionViewSource medicsSource;
         private string searchText;
+        private readonly Dispatcher dispatcher;
 
         public ICollectionView Medics { get; }
 
-        public MedicListItemViewModel SelectedMedic
+        public MedicItemViewModel SelectedMedic
         {
             get => selectedMedic;
             set
@@ -46,8 +52,18 @@ namespace DustInTheWind.MedicX.Wpf.Areas.Medics.ViewModels
                 selectedMedic = value;
                 OnPropertyChanged();
 
-                medicXProject.CurrentItem = selectedMedic?.Medic;
+                SetCurrentItem(selectedMedic?.Medic);
             }
+        }
+
+        private void SetCurrentItem(Medic medic)
+        {
+            SetCurrentItemRequest request = new SetCurrentItemRequest
+            {
+                NewCurrentItem = medic
+            };
+
+            AsyncUtil.RunSync(() => requestBus.ProcessRequest(request));
         }
 
         public string SearchText
@@ -75,17 +91,20 @@ namespace DustInTheWind.MedicX.Wpf.Areas.Medics.ViewModels
         public AddMedicCommand AddMedicCommand { get; }
         public RelayCommand ClearSearchTextCommand { get; }
 
-        public MedicsViewModel(MedicXProject medicXProject)
+        public MedicsTabViewModel(RequestBus requestBus, MedicXProject medicXProject)
         {
+            this.requestBus = requestBus ?? throw new ArgumentNullException(nameof(requestBus));
             this.medicXProject = medicXProject ?? throw new ArgumentNullException(nameof(medicXProject));
 
-            AddMedicCommand = new AddMedicCommand(medicXProject);
+            AddMedicCommand = new AddMedicCommand(requestBus);
             ClearSearchTextCommand = new RelayCommand(() => { SearchText = string.Empty; });
+
+            dispatcher = Dispatcher.CurrentDispatcher;
 
             medicsSource = new CollectionViewSource
             {
-                Source = new ObservableCollection<MedicListItemViewModel>(medicXProject.Medics
-                    .Select(x => new MedicListItemViewModel(x))
+                Source = new ObservableCollection<MedicItemViewModel>(medicXProject.Medics
+                    .Select(x => new MedicItemViewModel(x))
                     .ToList())
             };
             Medics = medicsSource.View;
@@ -96,26 +115,29 @@ namespace DustInTheWind.MedicX.Wpf.Areas.Medics.ViewModels
 
         private void HandleMedicAdded(object sender, MedicAddedEventArgs e)
         {
-            if (medicsSource.Source is ObservableCollection<MedicListItemViewModel> medics)
+            if (medicsSource.Source is ObservableCollection<MedicItemViewModel> medics)
             {
-                MedicListItemViewModel medicListItemViewModel = new MedicListItemViewModel(e.Medic);
-                medics.Add(medicListItemViewModel);
+                MedicItemViewModel medicItemViewModel = new MedicItemViewModel(e.Medic);
+                medics.Add(medicItemViewModel);
             }
         }
 
         private void HandleCurrentItemChanged(object sender, EventArgs e)
         {
-            Medic medic = medicXProject.CurrentItem as Medic;
+            dispatcher.InvokeAsync(() =>
+            {
+                Medic medic = medicXProject.CurrentItem as Medic;
 
-            if (medic == null)
-                return;
+                if (medic == null)
+                    return;
 
-            IEnumerable<MedicListItemViewModel> medicsViewModels = medicsSource.Source as IEnumerable<MedicListItemViewModel>;
+                IEnumerable<MedicItemViewModel> medicsViewModels = medicsSource.Source as IEnumerable<MedicItemViewModel>;
 
-            if (medicsViewModels == null)
-                return;
+                if (medicsViewModels == null)
+                    return;
 
-            SelectedMedic = medicsViewModels.FirstOrDefault(x => x.Medic == medic);
+                SelectedMedic = medicsViewModels.FirstOrDefault(x => x.Medic == medic);
+            });
         }
 
         private bool FilterMedic(object o)
@@ -123,9 +145,9 @@ namespace DustInTheWind.MedicX.Wpf.Areas.Medics.ViewModels
             if (string.IsNullOrEmpty(searchText))
                 return true;
 
-            MedicListItemViewModel medicListItemViewModel = o as MedicListItemViewModel;
+            MedicItemViewModel medicItemViewModel = o as MedicItemViewModel;
 
-            return medicListItemViewModel?.Medic?.Contains(searchText) ?? false;
+            return medicItemViewModel?.Medic?.Contains(searchText) ?? false;
         }
     }
 }

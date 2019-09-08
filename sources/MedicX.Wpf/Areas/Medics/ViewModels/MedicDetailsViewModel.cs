@@ -21,7 +21,7 @@ using DustInTheWind.MedicX.Domain.Entities;
 
 namespace DustInTheWind.MedicX.Wpf.Areas.Medics.ViewModels
 {
-    internal class MedicViewModel : ViewModelBase
+    internal class MedicDetailsViewModel : ViewModelBase
     {
         private readonly Medic medic;
 
@@ -82,7 +82,7 @@ namespace DustInTheWind.MedicX.Wpf.Areas.Medics.ViewModels
             }
         }
 
-        public MedicViewModel(Medic medic)
+        public MedicDetailsViewModel(Medic medic)
         {
             this.medic = medic ?? throw new ArgumentNullException(nameof(medic));
 

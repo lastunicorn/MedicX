@@ -15,22 +15,21 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using System.Collections.ObjectModel;
 using System.Windows.Input;
-using DustInTheWind.MedicX.Domain;
-using DustInTheWind.MedicX.Domain.Entities;
+using DustInTheWind.MedicX.Application.AddNewMedic;
+using DustInTheWind.MedicX.RequestBusModel;
 
-namespace DustInTheWind.MedicX.Wpf.Areas.MedicalEvents
+namespace DustInTheWind.MedicX.Wpf.Areas.Medics.Commands
 {
-    internal class AddConsultationCommand : ICommand
+    internal class AddMedicCommand : ICommand
     {
-        private readonly MedicXProject medicXProject;
+        private readonly RequestBus requestBus;
 
         public event EventHandler CanExecuteChanged;
 
-        public AddConsultationCommand(MedicXProject medicXProject)
+        public AddMedicCommand(RequestBus requestBus)
         {
-            this.medicXProject = medicXProject ?? throw new ArgumentNullException(nameof(medicXProject));
+            this.requestBus = requestBus ?? throw new ArgumentNullException(nameof(requestBus));
         }
 
         public bool CanExecute(object parameter)
@@ -38,17 +37,10 @@ namespace DustInTheWind.MedicX.Wpf.Areas.MedicalEvents
             return true;
         }
 
-        public void Execute(object parameter)
+        public async void Execute(object parameter)
         {
-            Consultation consultation = new Consultation
-            {
-                Id = Guid.NewGuid(),
-                Date = DateTime.Today,
-                Labels = new ObservableCollection<string>()
-            };
-
-            medicXProject.MedicalEvents.Add(consultation);
-            medicXProject.CurrentItem = consultation;
+            AddNewMedicRequest request = new AddNewMedicRequest();
+            await requestBus.ProcessRequest(request);
         }
     }
 }

@@ -62,7 +62,7 @@ namespace DustInTheWind.MedicX.Wpf.Areas.Clinics.ViewModels
             UpdateDisplayedText();
         }
 
-        private void HandleAddressChanged(object sender, EventArgs eventArgs)
+        private void HandleAddressChanged(object sender, EventArgs e)
         {
             UpdateDisplayedAddress();
         }

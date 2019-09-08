@@ -44,6 +44,14 @@
     <Compile Include="..\AssemblyInfo.Shared.cs">
       <Link>Properties\AssemblyInfo.Shared.cs</Link>
     </Compile>
+    <Compile Include="AddNewClinic\AddNewClinicRequest.cs" />
+    <Compile Include="AddNewClinic\AddNewClinicRequestHandler.cs" />
+    <Compile Include="AddNewInvestigation\AddNewInvestigationRequest.cs" />
+    <Compile Include="AddNewInvestigation\AddNewInvestigationRequestHandler.cs" />
+    <Compile Include="AddNewConsultation\AddNewConsultationRequest.cs" />
+    <Compile Include="AddNewConsultation\AddNewConsultationRequestHandler.cs" />
+    <Compile Include="AddNewMedic\AddNewMedicRequest.cs" />
+    <Compile Include="AddNewMedic\AddNewMedicRequestHandler.cs" />
     <Compile Include="EventBusModel\EventBus.cs" />
     <Compile Include="ExitApplication\ConfirmationResponse.cs" />
     <Compile Include="ExitApplication\ExitApplicationRequest.cs" />
@@ -61,6 +69,7 @@
     <Compile Include="SaveProject\SaveProjectRequest.cs" />
     <Compile Include="SaveProject\SaveProjectRequestHandler.cs" />
     <Compile Include="SetCurrentItem\SetCurrentItemRequest.cs" />
+    <Compile Include="SetCurrentItem\SetCurrentItemRequestHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MedicX.Domain\MedicX.Domain.csproj">

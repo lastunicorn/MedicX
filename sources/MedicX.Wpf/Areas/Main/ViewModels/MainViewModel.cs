@@ -19,6 +19,7 @@ using System.Diagnostics;
 using System.Reflection;
 using DustInTheWind.MedicX.Application.GetCurrentProject;
 using DustInTheWind.MedicX.Domain;
+using DustInTheWind.MedicX.Domain.Entities;
 using DustInTheWind.MedicX.RequestBusModel;
 using DustInTheWind.MedicX.Wpf.Areas.Main.Commands;
 

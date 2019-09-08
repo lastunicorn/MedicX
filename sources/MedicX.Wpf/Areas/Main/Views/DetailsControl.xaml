@@ -55,7 +55,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
             <ContentControl.Resources>
 
-                <DataTemplate DataType="{x:Type viewModels1:MedicViewModel}">
+                <DataTemplate DataType="{x:Type viewModels1:MedicDetailsViewModel}">
                     <views:MedicView />
                 </DataTemplate>
 

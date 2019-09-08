@@ -15,29 +15,17 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using System.Threading.Tasks;
-using DustInTheWind.MedicX.Domain;
 using DustInTheWind.MedicX.Domain.Entities;
-using DustInTheWind.MedicX.RequestBusModel;
 
-namespace DustInTheWind.MedicX.Application.LoadProject
+namespace DustInTheWind.MedicX.Domain.Collections
 {
-    public class LoadProjectRequestHandler : IRequestHandler<LoadProjectRequest, MedicXProject>
+    public class ClinicAddedEventArgs : EventArgs
     {
-        private readonly MedicXApplication medicXApplication;
+        public Clinic Clinic { get; }
 
-        public LoadProjectRequestHandler(MedicXApplication medicXApplication)
+        public ClinicAddedEventArgs(Clinic clinic)
         {
-            this.medicXApplication = medicXApplication ?? throw new ArgumentNullException(nameof(medicXApplication));
-        }
-
-        public Task<MedicXProject> Handle(LoadProjectRequest request)
-        {
-            return Task.Run(() =>
-            {
-                medicXApplication.LoadProject(request.FileName);
-                return medicXApplication.CurrentProject;
-            });
+            Clinic = clinic;
         }
     }
 }

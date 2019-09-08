@@ -72,7 +72,7 @@ namespace DustInTheWind.MedicX.Wpf.Areas.Main.ViewModels
                     break;
 
                 case Medic medic:
-                    Item = new MedicViewModel(medic);
+                    Item = new MedicDetailsViewModel(medic);
                     break;
 
                 default:

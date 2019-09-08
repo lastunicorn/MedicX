@@ -23,8 +23,10 @@ using System.Windows.Data;
 using System.Windows.Threading;
 using DustInTheWind.MedicX.Application.SetCurrentItem;
 using DustInTheWind.MedicX.Domain;
+using DustInTheWind.MedicX.Domain.Collections;
 using DustInTheWind.MedicX.Domain.Entities;
 using DustInTheWind.MedicX.RequestBusModel;
+using DustInTheWind.MedicX.Wpf.Areas.Clinics.Commands;
 using DustInTheWind.MedicX.Wpf.Areas.Main.Commands;
 
 namespace DustInTheWind.MedicX.Wpf.Areas.Clinics.ViewModels
@@ -95,7 +97,7 @@ namespace DustInTheWind.MedicX.Wpf.Areas.Clinics.ViewModels
             this.requestBus = requestBus ?? throw new ArgumentNullException(nameof(requestBus));
             this.medicXProject = medicXProject ?? throw new ArgumentNullException(nameof(medicXProject));
 
-            AddClinicCommand = new AddClinicCommand(medicXProject);
+            AddClinicCommand = new AddClinicCommand(requestBus);
             ClearSearchTextCommand = new RelayCommand(() => { SearchText = string.Empty; });
 
             dispatcher = Dispatcher.CurrentDispatcher;

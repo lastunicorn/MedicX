@@ -37,8 +37,8 @@
     <Compile Include="..\AssemblyInfo.Shared.cs">
       <Link>Properties\AssemblyInfo.Shared.cs</Link>
     </Compile>
-    <Compile Include="ClinicAddedEventArgs.cs" />
-    <Compile Include="ClinicsCollection.cs" />
+    <Compile Include="Collections\ClinicAddedEventArgs.cs" />
+    <Compile Include="Collections\ClinicsCollection.cs" />
     <Compile Include="DataAccess\IClinicRepository.cs" />
     <Compile Include="DataAccess\IConsultationRepository.cs" />
     <Compile Include="DataAccess\IInvestigationRepository.cs" />
@@ -57,12 +57,12 @@
     <Compile Include="Entities\PersonName.cs" />
     <Compile Include="Entities\Prescription.cs" />
     <Compile Include="DataAccess\IUnitOfWorkBuilder.cs" />
-    <Compile Include="MedicAddedEventArgs.cs" />
-    <Compile Include="MedicalEventAddedEventArgs.cs" />
-    <Compile Include="MedicalEventCollection.cs" />
-    <Compile Include="MedicsCollection.cs" />
-    <Compile Include="MedicXProject.cs" />
-    <Compile Include="ProjectStatus.cs" />
+    <Compile Include="Collections\MedicAddedEventArgs.cs" />
+    <Compile Include="Collections\MedicalEventAddedEventArgs.cs" />
+    <Compile Include="Collections\MedicalEventCollection.cs" />
+    <Compile Include="Collections\MedicsCollection.cs" />
+    <Compile Include="Entities\MedicXProject.cs" />
+    <Compile Include="Entities\ProjectStatus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

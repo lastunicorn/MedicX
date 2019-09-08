@@ -15,29 +15,40 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
-using DustInTheWind.MedicX.Domain;
 using DustInTheWind.MedicX.Domain.Entities;
 using DustInTheWind.MedicX.RequestBusModel;
 
-namespace DustInTheWind.MedicX.Application.LoadProject
+namespace DustInTheWind.MedicX.Application.AddNewInvestigation
 {
-    public class LoadProjectRequestHandler : IRequestHandler<LoadProjectRequest, MedicXProject>
+    internal class AddNewInvestigationRequestHandler : IRequestHandler<AddNewInvestigationRequest>
     {
         private readonly MedicXApplication medicXApplication;
 
-        public LoadProjectRequestHandler(MedicXApplication medicXApplication)
+        public AddNewInvestigationRequestHandler(MedicXApplication medicXApplication)
         {
             this.medicXApplication = medicXApplication ?? throw new ArgumentNullException(nameof(medicXApplication));
         }
 
-        public Task<MedicXProject> Handle(LoadProjectRequest request)
+        public Task Handle(AddNewInvestigationRequest request)
         {
-            return Task.Run(() =>
+            MedicXProject currentProject = medicXApplication.CurrentProject;
+
+            if (currentProject != null)
             {
-                medicXApplication.LoadProject(request.FileName);
-                return medicXApplication.CurrentProject;
-            });
+                Investigation investigation = new Investigation
+                {
+                    Id = Guid.NewGuid(),
+                    Date = DateTime.Today,
+                    Labels = new ObservableCollection<string>()
+                };
+
+                currentProject.MedicalEvents.Add(investigation);
+                currentProject.CurrentItem = investigation;
+            }
+
+            return Task.CompletedTask;
         }
     }
 }

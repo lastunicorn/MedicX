@@ -14,13 +14,9 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-namespace DustInTheWind.MedicX.Domain
+namespace DustInTheWind.MedicX.Application.AddNewInvestigation
 {
-    public enum ProjectStatus
+    public class AddNewInvestigationRequest
     {
-        None,
-        New,
-        Saved,
-        Modified
     }
 }

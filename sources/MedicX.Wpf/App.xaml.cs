@@ -23,6 +23,7 @@ using DustInTheWind.MedicX.Application.LoadProject;
 using DustInTheWind.MedicX.Application.SaveProject;
 using DustInTheWind.MedicX.Application.SetCurrentItem;
 using DustInTheWind.MedicX.Domain;
+using DustInTheWind.MedicX.Domain.Entities;
 using DustInTheWind.MedicX.RequestBusModel;
 using DustInTheWind.MedicX.Wpf.Areas.Main.ViewModels;
 using DustInTheWind.MedicX.Wpf.Areas.Main.Views;

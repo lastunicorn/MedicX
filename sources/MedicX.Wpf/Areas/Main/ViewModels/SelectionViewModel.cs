@@ -17,6 +17,7 @@
 using System;
 using System.Collections.Generic;
 using DustInTheWind.MedicX.Domain;
+using DustInTheWind.MedicX.Domain.Entities;
 using DustInTheWind.MedicX.RequestBusModel;
 using DustInTheWind.MedicX.Wpf.Areas.Clinics.ViewModels;
 using DustInTheWind.MedicX.Wpf.Areas.MedicalEvents.ViewModels;
@@ -64,7 +65,7 @@ namespace DustInTheWind.MedicX.Wpf.Areas.Main.ViewModels
                 new TabItemViewModel
                 {
                     Header = "Medics",
-                    Content = new MedicsViewModel(medicXProject)
+                    Content = new MedicsTabViewModel(requestBus, medicXProject)
                 },
                 new TabItemViewModel
                 {
@@ -74,7 +75,7 @@ namespace DustInTheWind.MedicX.Wpf.Areas.Main.ViewModels
                 new TabItemViewModel
                 {
                     Header = "Medical Events",
-                    Content = new MedicalEventsViewModel(medicXProject)
+                    Content = new MedicalEventsViewModel(requestBus, medicXProject)
                 }
             };
         }
@@ -83,7 +84,7 @@ namespace DustInTheWind.MedicX.Wpf.Areas.Main.ViewModels
         {
             switch (selectedTab?.Content)
             {
-                case MedicsViewModel medicsViewModel:
+                case MedicsTabViewModel medicsViewModel:
                     medicXProject.CurrentItem = medicsViewModel.SelectedMedic?.Medic;
                     break;
 

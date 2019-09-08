@@ -21,8 +21,11 @@ using System.ComponentModel;
 using System.Linq;
 using System.Windows.Data;
 using DustInTheWind.MedicX.Domain;
+using DustInTheWind.MedicX.Domain.Collections;
 using DustInTheWind.MedicX.Domain.Entities;
+using DustInTheWind.MedicX.RequestBusModel;
 using DustInTheWind.MedicX.Wpf.Areas.Main.Commands;
+using DustInTheWind.MedicX.Wpf.Areas.MedicalEvents.Commands;
 
 namespace DustInTheWind.MedicX.Wpf.Areas.MedicalEvents.ViewModels
 {
@@ -89,12 +92,12 @@ namespace DustInTheWind.MedicX.Wpf.Areas.MedicalEvents.ViewModels
         public AddInvestigationCommand AddInvestigationCommand { get; }
         public RelayCommand ClearSearchTextCommand { get; }
 
-        public MedicalEventsViewModel(MedicXProject medicXProject)
+        public MedicalEventsViewModel(RequestBus requestBus, MedicXProject medicXProject)
         {
             this.medicXProject = medicXProject ?? throw new ArgumentNullException(nameof(medicXProject));
 
-            AddConsultationCommand = new AddConsultationCommand(medicXProject);
-            AddInvestigationCommand = new AddInvestigationCommand(medicXProject);
+            AddConsultationCommand = new AddConsultationCommand(requestBus);
+            AddInvestigationCommand = new AddInvestigationCommand(requestBus);
             ClearSearchTextCommand = new RelayCommand(() => { SearchText = string.Empty; });
 
             medicalEventsSource = new CollectionViewSource

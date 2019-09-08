@@ -16,20 +16,20 @@
 
 using System;
 using System.Windows.Input;
-using DustInTheWind.MedicX.Domain;
-using DustInTheWind.MedicX.Domain.Entities;
+using DustInTheWind.MedicX.Application.AddNewClinic;
+using DustInTheWind.MedicX.RequestBusModel;
 
-namespace DustInTheWind.MedicX.Wpf.Areas.Clinics
+namespace DustInTheWind.MedicX.Wpf.Areas.Clinics.Commands
 {
     internal class AddClinicCommand : ICommand
     {
-        private readonly MedicXProject medicXProject;
+        private readonly RequestBus requestBus;
 
         public event EventHandler CanExecuteChanged;
 
-        public AddClinicCommand(MedicXProject medicXProject)
+        public AddClinicCommand(RequestBus requestBus)
         {
-            this.medicXProject = medicXProject ?? throw new ArgumentNullException(nameof(medicXProject));
+            this.requestBus = requestBus ?? throw new ArgumentNullException(nameof(requestBus));
         }
 
         public bool CanExecute(object parameter)
@@ -37,10 +37,10 @@ namespace DustInTheWind.MedicX.Wpf.Areas.Clinics
             return true;
         }
 
-        public void Execute(object parameter)
+        public async void Execute(object parameter)
         {
-            Clinic clinic = medicXProject.Clinics.AddNew();
-            medicXProject.CurrentItem = clinic;
+            AddNewClinicRequest request = new AddNewClinicRequest();
+            await requestBus.ProcessRequest(request);
         }
     }
 }

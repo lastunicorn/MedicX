@@ -31,7 +31,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="300"
-    d:DataContext="{d:DesignInstance viewModels:MedicsViewModel}">
+    d:DataContext="{d:DesignInstance viewModels:MedicsTabViewModel}">
 
     <UserControl.Resources>
         <converters:StringListToCsvConverter x:Key="StringListToCsvConverter" />
@@ -85,7 +85,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             </ListView.Resources>
 
             <ListView.ItemTemplate>
-                <DataTemplate DataType="viewModels:MedicListItemViewModel">
+                <DataTemplate DataType="viewModels:MedicItemViewModel">
                     <customControls:BigListItem
                         Title="{Binding Name, Mode=OneWay}"
                         Description="{Binding Specializations, Converter={StaticResource StringListToCsvConverter}, Mode=OneWay}" />

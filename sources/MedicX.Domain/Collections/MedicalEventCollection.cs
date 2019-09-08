@@ -19,7 +19,7 @@ using System.Collections;
 using System.Collections.Generic;
 using DustInTheWind.MedicX.Domain.Entities;
 
-namespace DustInTheWind.MedicX.Domain
+namespace DustInTheWind.MedicX.Domain.Collections
 {
     public class MedicalEventCollection : ICollection<MedicalEvent>
     {

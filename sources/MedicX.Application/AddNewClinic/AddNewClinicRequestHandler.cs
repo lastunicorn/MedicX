@@ -16,28 +16,31 @@
 
 using System;
 using System.Threading.Tasks;
-using DustInTheWind.MedicX.Domain;
 using DustInTheWind.MedicX.Domain.Entities;
 using DustInTheWind.MedicX.RequestBusModel;
 
-namespace DustInTheWind.MedicX.Application.LoadProject
+namespace DustInTheWind.MedicX.Application.AddNewClinic
 {
-    public class LoadProjectRequestHandler : IRequestHandler<LoadProjectRequest, MedicXProject>
+    internal class AddNewClinicRequestHandler : IRequestHandler<AddNewClinicRequest>
     {
         private readonly MedicXApplication medicXApplication;
 
-        public LoadProjectRequestHandler(MedicXApplication medicXApplication)
+        public AddNewClinicRequestHandler(MedicXApplication medicXApplication)
         {
             this.medicXApplication = medicXApplication ?? throw new ArgumentNullException(nameof(medicXApplication));
         }
 
-        public Task<MedicXProject> Handle(LoadProjectRequest request)
+        public Task Handle(AddNewClinicRequest request)
         {
-            return Task.Run(() =>
+            MedicXProject currentProject = medicXApplication.CurrentProject;
+
+            if (currentProject != null)
             {
-                medicXApplication.LoadProject(request.FileName);
-                return medicXApplication.CurrentProject;
-            });
+                Clinic clinic = currentProject.Clinics.AddNew();
+                currentProject.CurrentItem = clinic;
+            }
+
+            return Task.CompletedTask;
         }
     }
 }

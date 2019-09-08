@@ -19,6 +19,7 @@ using System.Windows.Input;
 using DustInTheWind.MedicX.Application.GetCurrentProjectStatus;
 using DustInTheWind.MedicX.Application.SaveProject;
 using DustInTheWind.MedicX.Domain;
+using DustInTheWind.MedicX.Domain.Entities;
 using DustInTheWind.MedicX.RequestBusModel;
 
 namespace DustInTheWind.MedicX.Wpf.Areas.Main.Commands

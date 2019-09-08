@@ -17,10 +17,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using DustInTheWind.MedicX.Domain.Collections;
 using DustInTheWind.MedicX.Domain.DataAccess;
-using DustInTheWind.MedicX.Domain.Entities;
 
-namespace DustInTheWind.MedicX.Domain
+namespace DustInTheWind.MedicX.Domain.Entities
 {
     public class MedicXProject
     {
@@ -135,11 +135,6 @@ namespace DustInTheWind.MedicX.Domain
 
             unitOfWork.Save();
 
-            Status = ProjectStatus.Saved;
-        }
-
-        public void SetAsSaved()
-        {
             Status = ProjectStatus.Saved;
         }
 

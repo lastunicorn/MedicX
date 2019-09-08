@@ -15,29 +15,32 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using System.Threading.Tasks;
-using DustInTheWind.MedicX.Domain;
-using DustInTheWind.MedicX.Domain.Entities;
+using System.Windows.Input;
+using DustInTheWind.MedicX.Application.AddNewConsultation;
 using DustInTheWind.MedicX.RequestBusModel;
 
-namespace DustInTheWind.MedicX.Application.LoadProject
+namespace DustInTheWind.MedicX.Wpf.Areas.MedicalEvents.Commands
 {
-    public class LoadProjectRequestHandler : IRequestHandler<LoadProjectRequest, MedicXProject>
+    internal class AddConsultationCommand : ICommand
     {
-        private readonly MedicXApplication medicXApplication;
+        private readonly RequestBus requestBus;
 
-        public LoadProjectRequestHandler(MedicXApplication medicXApplication)
+        public event EventHandler CanExecuteChanged;
+
+        public AddConsultationCommand(RequestBus requestBus)
         {
-            this.medicXApplication = medicXApplication ?? throw new ArgumentNullException(nameof(medicXApplication));
+            this.requestBus = requestBus ?? throw new ArgumentNullException(nameof(requestBus));
         }
 
-        public Task<MedicXProject> Handle(LoadProjectRequest request)
+        public bool CanExecute(object parameter)
         {
-            return Task.Run(() =>
-            {
-                medicXApplication.LoadProject(request.FileName);
-                return medicXApplication.CurrentProject;
-            });
+            return true;
+        }
+
+        public async void Execute(object parameter)
+        {
+            AddNewConsultationRequest request = new AddNewConsultationRequest();
+            await requestBus.ProcessRequest(request);
         }
     }
 }

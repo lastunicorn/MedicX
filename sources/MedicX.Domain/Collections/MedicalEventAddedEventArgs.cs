@@ -17,15 +17,15 @@
 using System;
 using DustInTheWind.MedicX.Domain.Entities;
 
-namespace DustInTheWind.MedicX.Domain
+namespace DustInTheWind.MedicX.Domain.Collections
 {
-    public class ClinicAddedEventArgs : EventArgs
+    public class MedicalEventAddedEventArgs : EventArgs
     {
-        public Clinic Clinic { get; }
+        public MedicalEvent MedicalEvent { get; }
 
-        public ClinicAddedEventArgs(Clinic clinic)
+        public MedicalEventAddedEventArgs(MedicalEvent medicalEvent)
         {
-            Clinic = clinic;
+            MedicalEvent = medicalEvent;
         }
     }
 }
