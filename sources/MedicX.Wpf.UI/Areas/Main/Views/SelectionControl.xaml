@@ -73,15 +73,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                     <ContentControl.Resources>
 
                         <DataTemplate DataType="{x:Type viewModels:MedicsTabViewModel}">
-                            <views:MedicsControl DataContext="{Binding}" />
+                            <views:MedicsTabView DataContext="{Binding}" />
                         </DataTemplate>
 
-                        <DataTemplate DataType="{x:Type vewModels1:ClinicsViewModel}">
-                            <views1:ClinicsControl DataContext="{Binding}" />
+                        <DataTemplate DataType="{x:Type vewModels1:ClinicsTabViewModel}">
+                            <views1:ClinicsTabView DataContext="{Binding}" />
                         </DataTemplate>
 
-                        <DataTemplate DataType="{x:Type viewModels1:MedicalEventsViewModel}">
-                            <views2:MedicalEventsControl DataContext="{Binding}" />
+                        <DataTemplate DataType="{x:Type viewModels1:MedicalEventsTabViewModel}">
+                            <views2:MedicalEventsTabView DataContext="{Binding}" />
                         </DataTemplate>
 
                     </ContentControl.Resources>

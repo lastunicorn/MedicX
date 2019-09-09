@@ -30,18 +30,18 @@ using MedicX.Wpf.UI.Areas.Main.Commands;
 
 namespace MedicX.Wpf.UI.Areas.Clinics.ViewModels
 {
-    internal class ClinicsViewModel : ViewModelBase
+    internal class ClinicsTabViewModel : ViewModelBase
     {
         private readonly RequestBus requestBus;
         private readonly MedicXProject medicXProject;
-        private ClinicListItemViewModel selectedClinic;
+        private ClinicItemViewModel selectedClinic;
         private readonly CollectionViewSource clinicsSource;
         private string searchText;
         private readonly Dispatcher dispatcher;
 
         public ICollectionView Clinics { get; }
 
-        public ClinicListItemViewModel SelectedClinic
+        public ClinicItemViewModel SelectedClinic
         {
             get => selectedClinic;
             set
@@ -91,7 +91,7 @@ namespace MedicX.Wpf.UI.Areas.Clinics.ViewModels
         public AddClinicCommand AddClinicCommand { get; }
         public RelayCommand ClearSearchTextCommand { get; }
 
-        public ClinicsViewModel(RequestBus requestBus, MedicXProject medicXProject)
+        public ClinicsTabViewModel(RequestBus requestBus, MedicXProject medicXProject)
         {
             this.requestBus = requestBus ?? throw new ArgumentNullException(nameof(requestBus));
             this.medicXProject = medicXProject ?? throw new ArgumentNullException(nameof(medicXProject));
@@ -103,8 +103,8 @@ namespace MedicX.Wpf.UI.Areas.Clinics.ViewModels
 
             clinicsSource = new CollectionViewSource
             {
-                Source = new ObservableCollection<ClinicListItemViewModel>(medicXProject.Clinics
-                    .Select(x => new ClinicListItemViewModel(x))
+                Source = new ObservableCollection<ClinicItemViewModel>(medicXProject.Clinics
+                    .Select(x => new ClinicItemViewModel(x))
                     .ToList())
             };
             Clinics = clinicsSource.View;
@@ -115,9 +115,9 @@ namespace MedicX.Wpf.UI.Areas.Clinics.ViewModels
 
         private void HandleClinicAdded(object sender, ClinicAddedEventArgs e)
         {
-            if (clinicsSource.Source is ObservableCollection<ClinicListItemViewModel> clinics)
+            if (clinicsSource.Source is ObservableCollection<ClinicItemViewModel> clinics)
             {
-                ClinicListItemViewModel clinicToBeAdded = new ClinicListItemViewModel(e.Clinic);
+                ClinicItemViewModel clinicToBeAdded = new ClinicItemViewModel(e.Clinic);
                 clinics.Add(clinicToBeAdded);
             }
         }
@@ -131,12 +131,12 @@ namespace MedicX.Wpf.UI.Areas.Clinics.ViewModels
             });
         }
 
-        private ClinicListItemViewModel GetNextSelectedClinic(Clinic clinic)
+        private ClinicItemViewModel GetNextSelectedClinic(Clinic clinic)
         {
             if (clinic == null)
                 return null;
 
-            IEnumerable<ClinicListItemViewModel> clinicsViewModels = clinicsSource.Source as IEnumerable<ClinicListItemViewModel>;
+            IEnumerable<ClinicItemViewModel> clinicsViewModels = clinicsSource.Source as IEnumerable<ClinicItemViewModel>;
             return clinicsViewModels?.FirstOrDefault(x => x.Clinic == clinic);
         }
 
@@ -145,9 +145,9 @@ namespace MedicX.Wpf.UI.Areas.Clinics.ViewModels
             if (string.IsNullOrEmpty(searchText))
                 return true;
 
-            ClinicListItemViewModel clinicListItemViewModel = o as ClinicListItemViewModel;
+            ClinicItemViewModel clinicItemViewModel = o as ClinicItemViewModel;
 
-            return clinicListItemViewModel?.Clinic?.Contains(searchText) ?? false;
+            return clinicItemViewModel?.Clinic?.Contains(searchText) ?? false;
         }
     }
 }

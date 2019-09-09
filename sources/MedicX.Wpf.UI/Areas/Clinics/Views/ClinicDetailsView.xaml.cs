@@ -16,14 +16,14 @@
 
 using System.Windows.Controls;
 
-namespace MedicX.Wpf.UI.Areas.MedicalEvents.Views
+namespace MedicX.Wpf.UI.Areas.Clinics.Views
 {
     /// <summary>
-    /// Interaction logic for ConsultationView.xaml
+    /// Interaction logic for ClinicDetailsView.xaml
     /// </summary>
-    internal partial class ConsultationView : UserControl
+    internal partial class ClinicDetailsView : UserControl
     {
-        public ConsultationView()
+        public ClinicDetailsView()
         {
             InitializeComponent();
         }

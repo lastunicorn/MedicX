@@ -46,6 +46,13 @@
     <Compile Include="..\AssemblyInfo.Shared.cs">
       <Link>Properties\AssemblyInfo.Shared.cs</Link>
     </Compile>
+    <Compile Include="Areas\Clinics\ViewModels\ClinicDetailsViewModel.cs" />
+    <Compile Include="Areas\Clinics\Views\ClinicItemView.xaml.cs">
+      <DependentUpon>ClinicItemView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Medics\Views\MedicItemView.xaml.cs">
+      <DependentUpon>MedicItemView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AsyncUtil.cs" />
     <Compile Include="MedicalEventType.cs" />
     <Compile Include="MedicalEventTypeConverter.cs" />
@@ -58,16 +65,16 @@
       <DependentUpon>CalendarWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Areas\Clinics\Commands\AddClinicCommand.cs" />
-    <Compile Include="Areas\Clinics\ViewModels\ClinicListItemViewModel.cs" />
-    <Compile Include="Areas\Clinics\ViewModels\ClinicsViewModel.cs" />
+    <Compile Include="Areas\Clinics\ViewModels\ClinicItemViewModel.cs" />
+    <Compile Include="Areas\Clinics\ViewModels\ClinicsTabViewModel.cs" />
     <Compile Include="Areas\Clinics\Views\AddressView.xaml.cs">
       <DependentUpon>AddressView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Areas\Clinics\Views\ClinicsControl.xaml.cs">
-      <DependentUpon>ClinicsControl.xaml</DependentUpon>
+    <Compile Include="Areas\Clinics\Views\ClinicsTabView.xaml.cs">
+      <DependentUpon>ClinicsTabView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Areas\Clinics\Views\ClinicView.xaml.cs">
-      <DependentUpon>ClinicView.xaml</DependentUpon>
+    <Compile Include="Areas\Clinics\Views\ClinicDetailsView.xaml.cs">
+      <DependentUpon>ClinicDetailsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Areas\Main\Commands\ExitCommand.cs" />
     <Compile Include="Areas\Main\Commands\RelayCommand.cs" />
@@ -89,19 +96,19 @@
     </Compile>
     <Compile Include="Areas\MedicalEvents\Commands\AddConsultationCommand.cs" />
     <Compile Include="Areas\MedicalEvents\Commands\AddInvestigationCommand.cs" />
-    <Compile Include="Areas\MedicalEvents\ViewModels\ConsultationListItemViewModel.cs" />
-    <Compile Include="Areas\MedicalEvents\ViewModels\ConsultationViewModel.cs" />
-    <Compile Include="Areas\MedicalEvents\ViewModels\InvestigationListItemViewModel.cs" />
-    <Compile Include="Areas\MedicalEvents\ViewModels\InvestigationViewModel.cs" />
-    <Compile Include="Areas\MedicalEvents\ViewModels\MedicalEventsViewModel.cs" />
-    <Compile Include="Areas\MedicalEvents\Views\ConsultationView.xaml.cs">
-      <DependentUpon>ConsultationView.xaml</DependentUpon>
+    <Compile Include="Areas\MedicalEvents\ViewModels\ConsultationItemViewModel.cs" />
+    <Compile Include="Areas\MedicalEvents\ViewModels\ConsultationDetailsViewModel.cs" />
+    <Compile Include="Areas\MedicalEvents\ViewModels\InvestigationItemViewModel.cs" />
+    <Compile Include="Areas\MedicalEvents\ViewModels\InvestigationDetailsViewModel.cs" />
+    <Compile Include="Areas\MedicalEvents\ViewModels\MedicalEventsTabViewModel.cs" />
+    <Compile Include="Areas\MedicalEvents\Views\ConsultationDetailsView.xaml.cs">
+      <DependentUpon>ConsultationDetailsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Areas\MedicalEvents\Views\InvestigationView.xaml.cs">
-      <DependentUpon>InvestigationView.xaml</DependentUpon>
+    <Compile Include="Areas\MedicalEvents\Views\InvestigationDetailsView.xaml.cs">
+      <DependentUpon>InvestigationDetailsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Areas\MedicalEvents\Views\MedicalEventsControl.xaml.cs">
-      <DependentUpon>MedicalEventsControl.xaml</DependentUpon>
+    <Compile Include="Areas\MedicalEvents\Views\MedicalEventsTabView.xaml.cs">
+      <DependentUpon>MedicalEventsTabView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Areas\Medics\Commands\AddMedicCommand.cs" />
     <Compile Include="Areas\Medics\ViewModels\MedicDetailsViewModel.cs" />
@@ -110,8 +117,8 @@
     <Compile Include="Areas\Medics\Views\MedicDetailsView.xaml.cs">
       <DependentUpon>MedicDetailsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Areas\Medics\Views\MedicsControl.xaml.cs">
-      <DependentUpon>MedicsControl.xaml</DependentUpon>
+    <Compile Include="Areas\Medics\Views\MedicsTabView.xaml.cs">
+      <DependentUpon>MedicsTabView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converters\PrescriptionListToMultilineStringConverter.cs" />
     <Compile Include="Converters\StringListToCsvConverter.cs" />
@@ -147,11 +154,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Areas\Clinics\Views\ClinicsControl.xaml">
+    <Page Include="Areas\Clinics\Views\ClinicItemView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Areas\Clinics\Views\ClinicsTabView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Areas\Clinics\Views\ClinicView.xaml">
+    <Page Include="Areas\Clinics\Views\ClinicDetailsView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -167,15 +178,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Areas\MedicalEvents\Views\ConsultationView.xaml">
+    <Page Include="Areas\MedicalEvents\Views\ConsultationDetailsView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Areas\MedicalEvents\Views\InvestigationView.xaml">
+    <Page Include="Areas\MedicalEvents\Views\InvestigationDetailsView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Areas\MedicalEvents\Views\MedicalEventsControl.xaml">
+    <Page Include="Areas\MedicalEvents\Views\MedicalEventsTabView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -183,7 +194,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Areas\Medics\Views\MedicsControl.xaml">
+    <Page Include="Areas\Medics\Views\MedicItemView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Areas\Medics\Views\MedicsTabView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

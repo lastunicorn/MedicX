@@ -44,7 +44,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="DustInTheWind.MedicX.Domain.Entities.Prescription" Collapsed="true">
-    <Position X="11.25" Y="3.75" Width="1.5" />
+    <Position X="10.5" Y="3.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAQAgAAAApAAAAAQAAAAAAIAAAAAAAAAQAAA=</HashCode>
       <FileName>Entities\Prescription.cs</FileName>
@@ -68,7 +68,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="DustInTheWind.MedicX.Domain.Entities.Address" Collapsed="true">
-    <Position X="8.75" Y="0.5" Width="1.5" />
+    <Position X="8" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAEAAAAAAQBAEAAMhAAACAQAAAICAogCgAJAAAIQAAA=</HashCode>
       <FileName>Entities\Address.cs</FileName>
@@ -76,7 +76,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="DustInTheWind.MedicX.Domain.Entities.InvestigationResult" Collapsed="true">
-    <Position X="4.25" Y="3.75" Width="1.75" />
+    <Position X="3.5" Y="3.75" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAACAAAAAQAAAAAABAAAAAAAAAAAACAAAIAgAAAQAAA=</HashCode>
       <FileName>Entities\InvestigationResult.cs</FileName>

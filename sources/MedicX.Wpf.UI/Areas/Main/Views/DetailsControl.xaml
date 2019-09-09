@@ -24,12 +24,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:entities1="clr-namespace:DustInTheWind.MedicX.Domain.Entities;assembly=DustInTheWind.MedicX.Domain"
     xmlns:viewModels1="clr-namespace:MedicX.Wpf.UI.Areas.Medics.ViewModels"
     xmlns:views="clr-namespace:MedicX.Wpf.UI.Areas.Medics.Views"
     xmlns:views1="clr-namespace:MedicX.Wpf.UI.Areas.Clinics.Views"
     xmlns:viewModels11="clr-namespace:MedicX.Wpf.UI.Areas.MedicalEvents.ViewModels"
     xmlns:views2="clr-namespace:MedicX.Wpf.UI.Areas.MedicalEvents.Views"
+    xmlns:viewModels="clr-namespace:MedicX.Wpf.UI.Areas.Main.ViewModels"
+    xmlns:viewModels2="clr-namespace:MedicX.Wpf.UI.Areas.Clinics.ViewModels"
 
 
     mc:Ignorable="d"
@@ -58,16 +59,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                     <views:MedicDetailsView />
                 </DataTemplate>
 
-                <DataTemplate DataType="{x:Type entities1:Clinic}">
-                    <views1:ClinicView />
+                <DataTemplate DataType="{x:Type viewModels2:ClinicDetailsViewModel}">
+                    <views1:ClinicDetailsView />
                 </DataTemplate>
 
-                <DataTemplate DataType="{x:Type viewModels11:ConsultationViewModel}">
-                    <views2:ConsultationView />
+                <DataTemplate DataType="{x:Type viewModels11:ConsultationDetailsViewModel}">
+                    <views2:ConsultationDetailsView />
                 </DataTemplate>
 
-                <DataTemplate DataType="{x:Type viewModels11:InvestigationViewModel}">
-                    <views2:InvestigationView />
+                <DataTemplate DataType="{x:Type viewModels11:InvestigationDetailsViewModel}">
+                    <views2:InvestigationDetailsView />
                 </DataTemplate>
 
             </ContentControl.Resources>

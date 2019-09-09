@@ -29,10 +29,10 @@ namespace MedicX.Wpf.UI
 
             switch (value)
             {
-                case ConsultationListItemViewModel _:
+                case ConsultationItemViewModel _:
                     return MedicalEventType.Consult;
 
-                case InvestigationListItemViewModel _:
+                case InvestigationItemViewModel _:
                     return MedicalEventType.Investigation;
 
                 default:

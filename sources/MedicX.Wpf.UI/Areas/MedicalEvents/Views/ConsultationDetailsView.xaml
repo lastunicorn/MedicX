@@ -17,7 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 
 <UserControl
-    x:Class="MedicX.Wpf.UI.Areas.MedicalEvents.Views.ConsultationView"
+    x:Class="MedicX.Wpf.UI.Areas.MedicalEvents.Views.ConsultationDetailsView"
     x:ClassModifier="internal"
 
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -27,11 +27,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     xmlns:customControls="clr-namespace:DustInTheWind.MedicX.Wpf.CustomControls;assembly=DustInTheWind.MedicX.Wpf.CustomControls"
     xmlns:entities="clr-namespace:DustInTheWind.MedicX.Domain.Entities;assembly=DustInTheWind.MedicX.Domain"
     xmlns:converters="clr-namespace:MedicX.Wpf.UI.Converters"
+    xmlns:viewModels="clr-namespace:MedicX.Wpf.UI.Areas.MedicalEvents.ViewModels"
 
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="300"
-    d:DataContext="{d:DesignInstance viewModels:ConsultationViewModel}">
+    d:DataContext="{d:DesignInstance viewModels:ConsultationDetailsViewModel}">
 
     <UserControl.Resources>
 

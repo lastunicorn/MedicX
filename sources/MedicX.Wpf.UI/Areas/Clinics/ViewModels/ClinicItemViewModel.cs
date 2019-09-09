@@ -19,7 +19,7 @@ using DustInTheWind.MedicX.Domain.Entities;
 
 namespace MedicX.Wpf.UI.Areas.Clinics.ViewModels
 {
-    internal class ClinicListItemViewModel : ViewModelBase
+    internal class ClinicItemViewModel : ViewModelBase
     {
         private string name;
         private string address;
@@ -46,7 +46,7 @@ namespace MedicX.Wpf.UI.Areas.Clinics.ViewModels
             }
         }
 
-        public ClinicListItemViewModel(Clinic clinic)
+        public ClinicItemViewModel(Clinic clinic)
         {
             Clinic = clinic ?? throw new ArgumentNullException(nameof(clinic));
 

@@ -26,6 +26,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:customControls="clr-namespace:DustInTheWind.MedicX.Wpf.CustomControls;assembly=DustInTheWind.MedicX.Wpf.CustomControls"
     xmlns:converters="clr-namespace:MedicX.Wpf.UI.Converters"
+    xmlns:viewModels="clr-namespace:MedicX.Wpf.UI.Areas.Medics.ViewModels"
 
     mc:Ignorable="d"
     d:DesignHeight="300"

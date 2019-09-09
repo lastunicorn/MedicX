@@ -28,7 +28,7 @@ using MedicX.Wpf.UI.Areas.MedicalEvents.Commands;
 
 namespace MedicX.Wpf.UI.Areas.MedicalEvents.ViewModels
 {
-    internal class MedicalEventsViewModel : ViewModelBase
+    internal class MedicalEventsTabViewModel : ViewModelBase
     {
         private readonly MedicXProject medicXProject;
         private ViewModelBase selectedMedicalEvent;
@@ -50,11 +50,11 @@ namespace MedicX.Wpf.UI.Areas.MedicalEvents.ViewModels
 
                 switch (selectedMedicalEvent)
                 {
-                    case ConsultationListItemViewModel consultationListItemViewModel:
+                    case ConsultationItemViewModel consultationListItemViewModel:
                         medicXProject.CurrentItem = consultationListItemViewModel.Value;
                         break;
 
-                    case InvestigationListItemViewModel investigationListItemViewModel:
+                    case InvestigationItemViewModel investigationListItemViewModel:
                         medicXProject.CurrentItem = investigationListItemViewModel.Value;
                         break;
 
@@ -91,7 +91,7 @@ namespace MedicX.Wpf.UI.Areas.MedicalEvents.ViewModels
         public AddInvestigationCommand AddInvestigationCommand { get; }
         public RelayCommand ClearSearchTextCommand { get; }
 
-        public MedicalEventsViewModel(RequestBus requestBus, MedicXProject medicXProject)
+        public MedicalEventsTabViewModel(RequestBus requestBus, MedicXProject medicXProject)
         {
             this.medicXProject = medicXProject ?? throw new ArgumentNullException(nameof(medicXProject));
 
@@ -108,11 +108,11 @@ namespace MedicX.Wpf.UI.Areas.MedicalEvents.ViewModels
                         {
                             case Consultation consultation:
                                 consultation.DateChanged += HandleMedicalEventDateChanged;
-                                return new ConsultationListItemViewModel(consultation);
+                                return new ConsultationItemViewModel(consultation);
 
                             case Investigation investigation:
                                 investigation.DateChanged += HandleMedicalEventDateChanged;
-                                return new InvestigationListItemViewModel(investigation);
+                                return new InvestigationItemViewModel(investigation);
 
                             default:
                                 return null;
@@ -134,13 +134,13 @@ namespace MedicX.Wpf.UI.Areas.MedicalEvents.ViewModels
                 switch (e.MedicalEvent)
                 {
                     case Consultation consultation:
-                        ConsultationListItemViewModel consultationToBeAdded = new ConsultationListItemViewModel(consultation);
+                        ConsultationItemViewModel consultationToBeAdded = new ConsultationItemViewModel(consultation);
                         medicalEvents.Add(consultationToBeAdded);
                         consultationToBeAdded.DateChanged += HandleMedicalEventDateChanged;
                         break;
 
                     case Investigation investigation:
-                        InvestigationListItemViewModel investigationToBeAdded = new InvestigationListItemViewModel(investigation);
+                        InvestigationItemViewModel investigationToBeAdded = new InvestigationItemViewModel(investigation);
                         medicalEvents.Add(investigationToBeAdded);
                         investigationToBeAdded.DateChanged += HandleMedicalEventDateChanged;
                         break;
@@ -169,10 +169,10 @@ namespace MedicX.Wpf.UI.Areas.MedicalEvents.ViewModels
             {
                 switch (x)
                 {
-                    case ConsultationListItemViewModel consultation:
+                    case ConsultationItemViewModel consultation:
                         return consultation.Value == medicalEvent;
 
-                    case InvestigationListItemViewModel investigation:
+                    case InvestigationItemViewModel investigation:
                         return investigation.Value == medicalEvent;
 
                     default:
@@ -188,10 +188,10 @@ namespace MedicX.Wpf.UI.Areas.MedicalEvents.ViewModels
 
             switch (o)
             {
-                case ConsultationListItemViewModel consultation:
+                case ConsultationItemViewModel consultation:
                     return consultation.Value?.Contains(searchText) ?? false;
 
-                case InvestigationListItemViewModel investigation:
+                case InvestigationItemViewModel investigation:
                     return investigation.Value?.Contains(searchText) ?? false;
 
                 default:

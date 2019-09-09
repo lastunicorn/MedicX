@@ -69,12 +69,12 @@ namespace MedicX.Wpf.UI.Areas.Main.ViewModels
                 new TabItemViewModel
                 {
                     Header = "Clinics",
-                    Content = new ClinicsViewModel(requestBus, medicXProject)
+                    Content = new ClinicsTabViewModel(requestBus, medicXProject)
                 },
                 new TabItemViewModel
                 {
                     Header = "Medical Events",
-                    Content = new MedicalEventsViewModel(requestBus, medicXProject)
+                    Content = new MedicalEventsTabViewModel(requestBus, medicXProject)
                 }
             };
         }
@@ -87,18 +87,18 @@ namespace MedicX.Wpf.UI.Areas.Main.ViewModels
                     medicXProject.CurrentItem = medicsViewModel.SelectedMedic?.Medic;
                     break;
 
-                case ClinicsViewModel clinicsViewModel:
+                case ClinicsTabViewModel clinicsViewModel:
                     medicXProject.CurrentItem = clinicsViewModel.SelectedClinic?.Clinic;
                     break;
 
-                case MedicalEventsViewModel medicalEventsViewModel:
+                case MedicalEventsTabViewModel medicalEventsViewModel:
                     switch (medicalEventsViewModel.SelectedMedicalEvent)
                     {
-                        case ConsultationListItemViewModel consultation:
+                        case ConsultationItemViewModel consultation:
                             medicXProject.CurrentItem = consultation.Value;
                             break;
 
-                        case InvestigationListItemViewModel investigation:
+                        case InvestigationItemViewModel investigation:
                             medicXProject.CurrentItem = investigation.Value;
                             break;
 

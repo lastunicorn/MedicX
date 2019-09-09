@@ -20,19 +20,19 @@ using MedicX.Wpf.UI.Areas.Main.ViewModels;
 
 namespace MedicX.Wpf.UI.Areas.MedicalEvents.ViewModels
 {
-    internal class ConsultationListItemViewModel : ListItemViewModel<Consultation>
+    internal class InvestigationItemViewModel : ListItemViewModel<Investigation>
     {
         public DateTime Date => Value.Date;
 
         public event EventHandler DateChanged;
 
-        public ConsultationListItemViewModel(Consultation consultation)
+        public InvestigationItemViewModel(Investigation investigation)
         {
-            Value = consultation ?? throw new ArgumentNullException(nameof(consultation));
+            Value = investigation ?? throw new ArgumentNullException(nameof(investigation));
 
             UpdateText();
-            consultation.DateChanged += HandleDateChanged;
-            consultation.MedicChanged += HandleMedicChanged;
+            investigation.DateChanged += HandleDateChanged;
+            investigation.SentByChanged += HandleSentByChanged;
         }
 
         private void HandleDateChanged(object sender, EventArgs e)
@@ -41,14 +41,14 @@ namespace MedicX.Wpf.UI.Areas.MedicalEvents.ViewModels
             OnDateChanged();
         }
 
-        private void HandleMedicChanged(object sender, EventArgs e)
+        private void HandleSentByChanged(object sender, EventArgs e)
         {
             UpdateText();
         }
 
         private void UpdateText()
         {
-            string medicName = Value.Medic?.ToString();
+            string medicName = Value.SentBy?.ToString();
 
             Text = string.IsNullOrEmpty(medicName)
                 ? "<no name>"

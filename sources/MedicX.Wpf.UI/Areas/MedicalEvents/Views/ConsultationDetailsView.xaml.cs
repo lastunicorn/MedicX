@@ -19,11 +19,11 @@ using System.Windows.Controls;
 namespace MedicX.Wpf.UI.Areas.MedicalEvents.Views
 {
     /// <summary>
-    /// Interaction logic for InvestigationView.xaml
+    /// Interaction logic for ConsultationDetailsView.xaml
     /// </summary>
-    internal partial class InvestigationView : UserControl
+    internal partial class ConsultationDetailsView : UserControl
     {
-        public InvestigationView()
+        public ConsultationDetailsView()
         {
             InitializeComponent();
         }

@@ -22,7 +22,7 @@ using DustInTheWind.MedicX.Domain.Entities;
 
 namespace MedicX.Wpf.UI.Areas.MedicalEvents.ViewModels
 {
-    internal class InvestigationViewModel : ViewModelBase
+    internal class InvestigationDetailsViewModel : ViewModelBase
     {
         private string title;
 
@@ -42,7 +42,7 @@ namespace MedicX.Wpf.UI.Areas.MedicalEvents.ViewModels
 
         public List<Clinic> Clinics { get; }
 
-        public InvestigationViewModel(Investigation investigation, MedicsCollection medics, ClinicsCollection clinics)
+        public InvestigationDetailsViewModel(Investigation investigation, MedicsCollection medics, ClinicsCollection clinics)
         {
             if (investigation == null) throw new ArgumentNullException(nameof(investigation));
             if (medics == null) throw new ArgumentNullException(nameof(medics));

@@ -16,6 +16,7 @@
 
 using System;
 using DustInTheWind.MedicX.Domain.Entities;
+using MedicX.Wpf.UI.Areas.Clinics.ViewModels;
 using MedicX.Wpf.UI.Areas.MedicalEvents.ViewModels;
 using MedicX.Wpf.UI.Areas.Medics.ViewModels;
 
@@ -63,15 +64,19 @@ namespace MedicX.Wpf.UI.Areas.Main.ViewModels
             switch (medicXProject.CurrentItem)
             {
                 case Consultation consultation:
-                    Item = new ConsultationViewModel(consultation, medicXProject.Medics, medicXProject.Clinics);
+                    Item = new ConsultationDetailsViewModel(consultation, medicXProject.Medics, medicXProject.Clinics);
                     break;
 
                 case Investigation investigation:
-                    Item = new InvestigationViewModel(investigation, medicXProject.Medics, medicXProject.Clinics);
+                    Item = new InvestigationDetailsViewModel(investigation, medicXProject.Medics, medicXProject.Clinics);
                     break;
 
                 case Medic medic:
                     Item = new MedicDetailsViewModel(medic);
+                    break;
+
+                case Clinic clinic:
+                    Item = new ClinicDetailsViewModel(clinic);
                     break;
 
                 default:
