@@ -14,21 +14,18 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using System.Windows;
+using System.Windows.Controls;
 
-namespace DustInTheWind.MedicX.Wpf
+namespace MedicX.Wpf.UI.Areas.Clinics.Views
 {
     /// <summary>
-    /// Interaction logic for App.xaml
+    /// Interaction logic for AddressView.xaml
     /// </summary>
-    public partial class App : System.Windows.Application
+    public partial class AddressView : UserControl
     {
-        protected override void OnStartup(StartupEventArgs e)
+        public AddressView()
         {
-            base.OnStartup(e);
-
-            Bootstrapper bootstrapper = new Bootstrapper();
-            bootstrapper.Run();
+            InitializeComponent();
         }
     }
 }

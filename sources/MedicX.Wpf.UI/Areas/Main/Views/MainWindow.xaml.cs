@@ -16,19 +16,16 @@
 
 using System.Windows;
 
-namespace DustInTheWind.MedicX.Wpf
+namespace MedicX.Wpf.UI.Areas.Main.Views
 {
     /// <summary>
-    /// Interaction logic for App.xaml
+    /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class App : System.Windows.Application
+    public partial class MainWindow : Window
     {
-        protected override void OnStartup(StartupEventArgs e)
+        public MainWindow()
         {
-            base.OnStartup(e);
-
-            Bootstrapper bootstrapper = new Bootstrapper();
-            bootstrapper.Run();
+            InitializeComponent();
         }
     }
 }

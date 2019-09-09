@@ -14,21 +14,36 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using System.Windows;
-
-namespace DustInTheWind.MedicX.Wpf
+namespace MedicX.Wpf.UI.Areas.Main.ViewModels
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
-    public partial class App : System.Windows.Application
+    public sealed class TabItemViewModel : ViewModelBase
     {
-        protected override void OnStartup(StartupEventArgs e)
-        {
-            base.OnStartup(e);
+        private string header;
+        private ViewModelBase content;
 
-            Bootstrapper bootstrapper = new Bootstrapper();
-            bootstrapper.Run();
+        public string Header
+        {
+            get => header;
+            set
+            {
+                header = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public ViewModelBase Content
+        {
+            get => content;
+            set
+            {
+                content = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public override string ToString()
+        {
+            return Header;
         }
     }
 }

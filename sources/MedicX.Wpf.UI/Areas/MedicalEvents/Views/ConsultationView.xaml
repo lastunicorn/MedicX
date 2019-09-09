@@ -1,0 +1,181 @@
+﻿<!--
+MedicX
+Copyright (C) 2017-2018 Dust in the Wind
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<UserControl
+    x:Class="MedicX.Wpf.UI.Areas.MedicalEvents.Views.ConsultationView"
+    x:ClassModifier="internal"
+
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:customControls="clr-namespace:DustInTheWind.MedicX.Wpf.CustomControls;assembly=DustInTheWind.MedicX.Wpf.CustomControls"
+    xmlns:entities="clr-namespace:DustInTheWind.MedicX.Domain.Entities;assembly=DustInTheWind.MedicX.Domain"
+    xmlns:converters="clr-namespace:MedicX.Wpf.UI.Converters"
+
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="300"
+    d:DataContext="{d:DesignInstance viewModels:ConsultationViewModel}">
+
+    <UserControl.Resources>
+
+        <converters:StringListToMultilineStringConverter x:Key="StringListToMultilineStringConverter" />
+        <converters:PrescriptionListToMultilineStringConverter x:Key="PrescriptionListToMultilineStringConverter" />
+        <converters:StringListToCsvConverter x:Key="StringListToCsvConverter" />
+
+    </UserControl.Resources>
+
+    <customControls:TitledPanel Title="{Binding Title}">
+
+        <ItemsControl>
+
+            <DockPanel>
+
+                <!-- Date -->
+
+                <customControls:LabeledContent
+                    Label="Date"
+                    DockPanel.Dock="Right"
+                    Margin="15 0 0 15">
+
+                    <Calendar
+                            Margin="0"
+                            Padding="0"
+                            BorderThickness="0"
+                            SelectedDate="{Binding Consultation.Date, Mode=TwoWay}"
+                            DisplayDate="{Binding Consultation.Date, Mode=OneWay}" />
+
+                </customControls:LabeledContent>
+
+                <ItemsControl>
+
+                    <!-- Medic -->
+
+                    <customControls:LabeledContent Label="Medic">
+
+                        <ComboBox
+                                ItemsSource="{Binding Medics}"
+                                SelectedItem="{Binding Consultation.Medic, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                VerticalContentAlignment="Center">
+
+                            <ComboBox.Resources>
+                                <!--Selected color when the ComboBox is focused-->
+                                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="{StaticResource HighlightBrushKeyColor}" />
+
+                                <!--selected text-->
+                                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="{StaticResource HighlightTextBrushKeyColor}" />
+
+                                <DataTemplate DataType="{x:Type entities:Medic}">
+                                    <StackPanel
+                                            Orientation="Horizontal"
+                                            Margin="8 4 8 4">
+
+                                        <TextBlock
+                                                Text="{Binding Name, Mode=OneWay}"
+                                                VerticalAlignment="Center" />
+
+                                        <TextBlock
+                                                Margin="5 0 0 0"
+                                                FontSize="12"
+                                                Text="{Binding Specializations, Converter={StaticResource StringListToCsvConverter}, StringFormat= ({0}), Mode=OneWay}"
+                                                VerticalAlignment="Center" />
+
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ComboBox.Resources>
+
+                        </ComboBox>
+
+                    </customControls:LabeledContent>
+
+                    <!-- Clinic -->
+
+                    <customControls:LabeledContent Label="Clinic">
+
+                        <ComboBox
+                                ItemsSource="{Binding Clinics}"
+                                SelectedItem="{Binding Consultation.Clinic, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                VerticalContentAlignment="Center">
+
+                            <ComboBox.Resources>
+                                <!--Selected color when the ComboBox is focused-->
+                                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="{StaticResource HighlightBrushKeyColor}" />
+
+                                <!--selected text-->
+                                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="{StaticResource HighlightTextBrushKeyColor}" />
+
+                                <DataTemplate DataType="{x:Type entities:Clinic}">
+                                    <StackPanel
+                                            Orientation="Horizontal"
+                                            Margin="8 4 8 4">
+
+                                        <TextBlock
+                                                Text="{Binding Name, Mode=OneWay}"
+                                                VerticalAlignment="Center" />
+
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ComboBox.Resources>
+
+                        </ComboBox>
+
+                    </customControls:LabeledContent>
+
+                    <!-- Labels -->
+
+                    <customControls:LabeledContent Label="Labels (list)">
+                        <TextBox
+                            Text="{Binding Consultation.Labels, Converter={StaticResource StringListToMultilineStringConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            Height="85"
+                            AcceptsReturn="True"
+                            VerticalScrollBarVisibility="Auto"
+                            HorizontalScrollBarVisibility="Auto" />
+                    </customControls:LabeledContent>
+
+                </ItemsControl>
+
+            </DockPanel>
+
+            <!-- Comments -->
+
+            <customControls:LabeledContent Label="Comments">
+                <TextBox
+                    Text="{Binding Consultation.Comments, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    Height="200"
+                    AcceptsReturn="True"
+                    VerticalScrollBarVisibility="Auto"
+                    HorizontalScrollBarVisibility="Auto" />
+            </customControls:LabeledContent>
+
+            <!-- Prescriptions -->
+
+            <customControls:LabeledContent Label="Prescriptions (list)">
+                <TextBox
+                    Text="{Binding Consultation.Prescriptions, Converter={StaticResource PrescriptionListToMultilineStringConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    Height="150"
+                    AcceptsReturn="True"
+                    VerticalScrollBarVisibility="Auto"
+                    HorizontalScrollBarVisibility="Auto" />
+            </customControls:LabeledContent>
+
+        </ItemsControl>
+
+    </customControls:TitledPanel>
+
+</UserControl>

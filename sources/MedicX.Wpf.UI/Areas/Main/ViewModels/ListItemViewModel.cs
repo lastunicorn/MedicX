@@ -14,21 +14,31 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using System.Windows;
-
-namespace DustInTheWind.MedicX.Wpf
+namespace MedicX.Wpf.UI.Areas.Main.ViewModels
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
-    public partial class App : System.Windows.Application
+    internal class ListItemViewModel<T> : ViewModelBase
     {
-        protected override void OnStartup(StartupEventArgs e)
-        {
-            base.OnStartup(e);
+        private string text;
+        private T value;
 
-            Bootstrapper bootstrapper = new Bootstrapper();
-            bootstrapper.Run();
+        public string Text
+        {
+            get => text;
+            protected set
+            {
+                text = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public T Value
+        {
+            get => value;
+            protected set
+            {
+                this.value = value;
+                OnPropertyChanged();
+            }
         }
     }
 }

@@ -14,21 +14,12 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using System.Windows;
-
-namespace DustInTheWind.MedicX.Wpf
+namespace MedicX.Wpf.UI
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
-    public partial class App : System.Windows.Application
+    public enum MedicalEventType
     {
-        protected override void OnStartup(StartupEventArgs e)
-        {
-            base.OnStartup(e);
-
-            Bootstrapper bootstrapper = new Bootstrapper();
-            bootstrapper.Run();
-        }
+        Unknown,
+        Consult,
+        Investigation
     }
 }

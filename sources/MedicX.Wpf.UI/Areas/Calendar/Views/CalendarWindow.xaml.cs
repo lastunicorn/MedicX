@@ -16,19 +16,16 @@
 
 using System.Windows;
 
-namespace DustInTheWind.MedicX.Wpf
+namespace MedicX.Wpf.UI.Areas.Calendar.Views
 {
     /// <summary>
-    /// Interaction logic for App.xaml
+    /// Interaction logic for CalendarWindow.xaml
     /// </summary>
-    public partial class App : System.Windows.Application
+    internal partial class CalendarWindow : Window
     {
-        protected override void OnStartup(StartupEventArgs e)
+        public CalendarWindow()
         {
-            base.OnStartup(e);
-
-            Bootstrapper bootstrapper = new Bootstrapper();
-            bootstrapper.Run();
+            InitializeComponent();
         }
     }
 }

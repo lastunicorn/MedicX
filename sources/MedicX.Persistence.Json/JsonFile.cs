@@ -22,7 +22,7 @@ using Newtonsoft.Json;
 namespace DustInTheWind.MedicX.Persistence.Json
 {
     /// <summary>
-    /// Responsability: Reads and writes the 
+    /// Responsibility: Reads and writes the 
     /// </summary>
     internal class JsonFile
     {
