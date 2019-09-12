@@ -155,30 +155,26 @@ namespace MedicX.Wpf.UI.Areas.MedicalEvents.ViewModels
 
         private void HandleCurrentItemChanged(object sender, EventArgs e)
         {
-            MedicalEvent medicalEvent = medicXProject.CurrentItem as MedicalEvent;
-
-            if (medicalEvent == null)
-                return;
-
-            IEnumerable<ViewModelBase> clinicsViewModels = medicalEventsSource.Source as IEnumerable<ViewModelBase>;
-
-            if (clinicsViewModels == null)
-                return;
-
-            SelectedMedicalEvent = clinicsViewModels.FirstOrDefault(x =>
+            if (medicXProject.CurrentItem is MedicalEvent medicalEvent)
             {
-                switch (x)
+                if (medicalEventsSource.Source is IEnumerable<ViewModelBase> clinicsViewModels)
                 {
-                    case ConsultationItemViewModel consultation:
-                        return consultation.Value == medicalEvent;
+                    SelectedMedicalEvent = clinicsViewModels.FirstOrDefault(x =>
+                    {
+                        switch (x)
+                        {
+                            case ConsultationItemViewModel consultation:
+                                return consultation.Value == medicalEvent;
 
-                    case InvestigationItemViewModel investigation:
-                        return investigation.Value == medicalEvent;
+                            case InvestigationItemViewModel investigation:
+                                return investigation.Value == medicalEvent;
 
-                    default:
-                        return false;
+                            default:
+                                return false;
+                        }
+                    });
                 }
-            });
+            }
         }
 
         private bool FilterMedicalEvent(object o)

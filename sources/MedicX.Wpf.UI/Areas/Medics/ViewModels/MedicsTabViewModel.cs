@@ -127,17 +127,11 @@ namespace MedicX.Wpf.UI.Areas.Medics.ViewModels
         {
             dispatcher.InvokeAsync(() =>
             {
-                Medic medic = medicXProject.CurrentItem as Medic;
-
-                if (medic == null)
-                    return;
-
-                IEnumerable<MedicItemViewModel> medicsViewModels = medicsSource.Source as IEnumerable<MedicItemViewModel>;
-
-                if (medicsViewModels == null)
-                    return;
-
-                SelectedMedic = medicsViewModels.FirstOrDefault(x => x.Medic == medic);
+                if (medicXProject.CurrentItem is Medic medic)
+                {
+                    if (medicsSource.Source is IEnumerable<MedicItemViewModel> medicsViewModels)
+                        SelectedMedic = medicsViewModels.FirstOrDefault(x => x.Medic == medic);
+                }
             });
         }
 

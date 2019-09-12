@@ -126,8 +126,8 @@ namespace MedicX.Wpf.UI.Areas.Clinics.ViewModels
         {
             dispatcher.InvokeAsync(() =>
             {
-                Clinic clinic = medicXProject.CurrentItem as Clinic;
-                SelectedClinic = GetNextSelectedClinic(clinic);
+                if (medicXProject.CurrentItem is Clinic clinic)
+                    SelectedClinic = GetNextSelectedClinic(clinic);
             });
         }
 
