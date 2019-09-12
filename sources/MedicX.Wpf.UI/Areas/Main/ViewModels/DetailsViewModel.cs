@@ -16,6 +16,8 @@
 
 using System;
 using DustInTheWind.MedicX.Domain.Entities;
+using DustInTheWind.MedicX.RequestBusModel;
+using EventBusModel;
 using MedicX.Wpf.UI.Areas.Clinics.ViewModels;
 using MedicX.Wpf.UI.Areas.MedicalEvents.ViewModels;
 using MedicX.Wpf.UI.Areas.Medics.ViewModels;
@@ -24,7 +26,7 @@ namespace MedicX.Wpf.UI.Areas.Main.ViewModels
 {
     public class DetailsViewModel : ViewModelBase
     {
-        private readonly MedicXProject medicXProject;
+        private readonly RequestBus requestBus;
         private object item;
         private bool isNoItemPanelVisible;
 
@@ -51,24 +53,25 @@ namespace MedicX.Wpf.UI.Areas.Main.ViewModels
             }
         }
 
-        public DetailsViewModel(MedicXProject medicXProject)
+        public DetailsViewModel(RequestBus requestBus, EventBus eventBus)
         {
-            this.medicXProject = medicXProject ?? throw new ArgumentNullException(nameof(medicXProject));
+            if (eventBus == null) throw new ArgumentNullException(nameof(eventBus));
+            this.requestBus = requestBus ?? throw new ArgumentNullException(nameof(requestBus));
 
             isNoItemPanelVisible = true;
-            medicXProject.CurrentItemChanged += HandleCurrentItemChanged;
+            eventBus["CurrentItemChanged"].Subscribe(new Action<object>(HandleCurrentItemChanged2));
         }
 
-        private void HandleCurrentItemChanged(object sender, EventArgs e)
+        private void HandleCurrentItemChanged2(object currentItem)
         {
-            switch (medicXProject.CurrentItem)
+            switch (currentItem)
             {
                 case Consultation consultation:
-                    Item = new ConsultationDetailsViewModel(consultation, medicXProject.Medics, medicXProject.Clinics);
+                    Item = new ConsultationDetailsViewModel(consultation, requestBus);
                     break;
 
                 case Investigation investigation:
-                    Item = new InvestigationDetailsViewModel(investigation, medicXProject.Medics, medicXProject.Clinics);
+                    Item = new InvestigationDetailsViewModel(investigation, requestBus);
                     break;
 
                 case Medic medic:
@@ -80,7 +83,7 @@ namespace MedicX.Wpf.UI.Areas.Main.ViewModels
                     break;
 
                 default:
-                    Item = medicXProject.CurrentItem;
+                    Item = currentItem;
                     break;
             }
         }

@@ -19,6 +19,7 @@ using DustInTheWind.MedicX.Application.ExitApplication;
 using DustInTheWind.MedicX.Domain.DataAccess;
 using DustInTheWind.MedicX.Persistence;
 using DustInTheWind.MedicX.RequestBusModel;
+using EventBusModel;
 using MedicX.Wpf.UI.Areas.Main.Commands;
 using Ninject.Modules;
 
@@ -29,6 +30,7 @@ namespace DustInTheWind.MedicX.Wpf.Setup
         public override void Load()
         {
             Bind<RequestBus>().ToSelf().InSingletonScope();
+            Bind<EventBus>().ToSelf().InSingletonScope();
             Bind<IRequestHandlerFactory>().To<NinjectRequestHandlerFactory>();
             Bind<MedicXApplication>().ToSelf().InSingletonScope();
             Bind<ISaveConfirmationQuestion>().To<SaveConfirmationQuestion>();

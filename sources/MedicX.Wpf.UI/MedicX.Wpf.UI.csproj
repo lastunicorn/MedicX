@@ -204,6 +204,10 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\EventBusModel\EventBusModel.csproj">
+      <Project>{09FEED84-EFCF-4438-8A8F-5D195712779E}</Project>
+      <Name>EventBusModel</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MedicX.Application\MedicX.Application.csproj">
       <Project>{483072F7-D4D6-4CA9-8E3F-EB806AF2A7C3}</Project>
       <Name>MedicX.Application</Name>

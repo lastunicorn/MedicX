@@ -21,7 +21,7 @@ using DustInTheWind.MedicX.RequestBusModel;
 
 namespace DustInTheWind.MedicX.Application.GetCurrentProject
 {
-    public class GetCurrentProjectRequestHandler : IRequestHandler<GetCurrentProjectRequest, MedicXProject>
+    internal class GetCurrentProjectRequestHandler : IRequestHandler<GetCurrentProjectRequest, MedicXProject>
     {
         private readonly MedicXApplication medicXApplication;
 

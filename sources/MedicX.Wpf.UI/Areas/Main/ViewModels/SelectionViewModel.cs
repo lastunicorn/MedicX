@@ -16,6 +16,7 @@
 
 using System;
 using System.Collections.Generic;
+using DustInTheWind.MedicX.Application.SetCurrentItem;
 using DustInTheWind.MedicX.Domain.Entities;
 using DustInTheWind.MedicX.RequestBusModel;
 using MedicX.Wpf.UI.Areas.Clinics.ViewModels;
@@ -81,37 +82,43 @@ namespace MedicX.Wpf.UI.Areas.Main.ViewModels
 
         private void UpdateCurrentItem()
         {
+            medicXProject.CurrentItem = CalculateNewCurrentItem();
+
+            SetCurrentItemRequest request = new SetCurrentItemRequest
+            {
+                NewCurrentItem = CalculateNewCurrentItem()
+            };
+
+            requestBus.ProcessRequest(request);
+        }
+
+        private object CalculateNewCurrentItem()
+        {
             switch (selectedTab?.Content)
             {
                 case MedicsTabViewModel medicsViewModel:
-                    medicXProject.CurrentItem = medicsViewModel.SelectedMedic?.Medic;
-                    break;
+                    return medicsViewModel.SelectedMedic?.Medic;
 
                 case ClinicsTabViewModel clinicsViewModel:
-                    medicXProject.CurrentItem = clinicsViewModel.SelectedClinic?.Clinic;
-                    break;
+                    return clinicsViewModel.SelectedClinic?.Clinic;
 
                 case MedicalEventsTabViewModel medicalEventsViewModel:
-                    switch (medicalEventsViewModel.SelectedMedicalEvent)
                     {
-                        case ConsultationItemViewModel consultation:
-                            medicXProject.CurrentItem = consultation.Value;
-                            break;
+                        switch (medicalEventsViewModel.SelectedMedicalEvent)
+                        {
+                            case ConsultationItemViewModel consultation:
+                                return consultation.Value;
 
-                        case InvestigationItemViewModel investigation:
-                            medicXProject.CurrentItem = investigation.Value;
-                            break;
+                            case InvestigationItemViewModel investigation:
+                                return investigation.Value;
 
-                        default:
-                            medicXProject.CurrentItem = null;
-                            break;
+                            default:
+                                return null;
+                        }
                     }
 
-                    break;
-
                 default:
-                    medicXProject.CurrentItem = null;
-                    break;
+                    return null;
             }
         }
     }

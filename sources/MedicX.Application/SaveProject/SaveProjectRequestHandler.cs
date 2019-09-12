@@ -20,7 +20,7 @@ using DustInTheWind.MedicX.RequestBusModel;
 
 namespace DustInTheWind.MedicX.Application.SaveProject
 {
-    public class SaveProjectRequestHandler : IRequestHandler<SaveProjectRequest>
+    internal class SaveProjectRequestHandler : IRequestHandler<SaveProjectRequest>
     {
         private readonly MedicXApplication medicXApplication;
 

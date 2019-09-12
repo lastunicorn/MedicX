@@ -21,7 +21,7 @@ using DustInTheWind.MedicX.RequestBusModel;
 
 namespace DustInTheWind.MedicX.Application.ExitApplication
 {
-    public class ExitApplicationRequestHandler : IRequestHandler<ExitApplicationRequest, bool>
+    internal class ExitApplicationRequestHandler : IRequestHandler<ExitApplicationRequest, bool>
     {
         private readonly MedicXApplication medicXApplication;
         private readonly ISaveConfirmationQuestion saveConfirmationQuestion;

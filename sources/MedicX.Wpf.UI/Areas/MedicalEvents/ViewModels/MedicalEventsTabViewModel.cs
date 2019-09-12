@@ -20,6 +20,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Data;
+using System.Windows.Threading;
 using DustInTheWind.MedicX.Domain.Collections;
 using DustInTheWind.MedicX.Domain.Entities;
 using DustInTheWind.MedicX.RequestBusModel;
@@ -34,6 +35,7 @@ namespace MedicX.Wpf.UI.Areas.MedicalEvents.ViewModels
         private ViewModelBase selectedMedicalEvent;
         private readonly CollectionViewSource medicalEventsSource;
         private string searchText;
+        private readonly Dispatcher dispatcher;
 
         public ICollectionView MedicalEvents { get; }
 
@@ -99,6 +101,8 @@ namespace MedicX.Wpf.UI.Areas.MedicalEvents.ViewModels
             AddInvestigationCommand = new AddInvestigationCommand(requestBus);
             ClearSearchTextCommand = new RelayCommand(() => { SearchText = string.Empty; });
 
+            dispatcher = Dispatcher.CurrentDispatcher;
+
             medicalEventsSource = new CollectionViewSource
             {
                 Source = new ObservableCollection<ViewModelBase>(medicXProject.MedicalEvents
@@ -155,26 +159,29 @@ namespace MedicX.Wpf.UI.Areas.MedicalEvents.ViewModels
 
         private void HandleCurrentItemChanged(object sender, EventArgs e)
         {
-            if (medicXProject.CurrentItem is MedicalEvent medicalEvent)
+            dispatcher.InvokeAsync(() =>
             {
-                if (medicalEventsSource.Source is IEnumerable<ViewModelBase> clinicsViewModels)
+                if (medicXProject.CurrentItem is MedicalEvent medicalEvent)
                 {
-                    SelectedMedicalEvent = clinicsViewModels.FirstOrDefault(x =>
+                    if (medicalEventsSource.Source is IEnumerable<ViewModelBase> clinicsViewModels)
                     {
-                        switch (x)
+                        SelectedMedicalEvent = clinicsViewModels.FirstOrDefault(x =>
                         {
-                            case ConsultationItemViewModel consultation:
-                                return consultation.Value == medicalEvent;
+                            switch (x)
+                            {
+                                case ConsultationItemViewModel consultation:
+                                    return consultation.Value == medicalEvent;
 
-                            case InvestigationItemViewModel investigation:
-                                return investigation.Value == medicalEvent;
+                                case InvestigationItemViewModel investigation:
+                                    return investigation.Value == medicalEvent;
 
-                            default:
-                                return false;
-                        }
-                    });
+                                default:
+                                    return false;
+                            }
+                        });
+                    }
                 }
-            }
+            });
         }
 
         private bool FilterMedicalEvent(object o)

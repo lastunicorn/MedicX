@@ -17,14 +17,19 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using DustInTheWind.MedicX.Domain.Collections;
+using DustInTheWind.MedicX.Application.GetAllClinics;
+using DustInTheWind.MedicX.Application.GetAllMedics;
 using DustInTheWind.MedicX.Domain.Entities;
+using DustInTheWind.MedicX.RequestBusModel;
 
 namespace MedicX.Wpf.UI.Areas.MedicalEvents.ViewModels
 {
     internal class InvestigationDetailsViewModel : ViewModelBase
     {
+        private readonly RequestBus requestBus;
         private string title;
+        private List<Medic> medics;
+        private List<Clinic> clinics;
 
         public string Title
         {
@@ -38,30 +43,56 @@ namespace MedicX.Wpf.UI.Areas.MedicalEvents.ViewModels
 
         public Investigation Investigation { get; }
 
-        public List<Medic> Medics { get; }
-
-        public List<Clinic> Clinics { get; }
-
-        public InvestigationDetailsViewModel(Investigation investigation, MedicsCollection medics, ClinicsCollection clinics)
+        public List<Medic> Medics
         {
-            if (investigation == null) throw new ArgumentNullException(nameof(investigation));
-            if (medics == null) throw new ArgumentNullException(nameof(medics));
-            if (clinics == null) throw new ArgumentNullException(nameof(clinics));
+            get => medics;
+            private set
+            {
+                medics = value;
+                OnPropertyChanged();
+            }
+        }
 
-            Investigation = investigation;
+        public List<Clinic> Clinics
+        {
+            get => clinics;
+            private set
+            {
+                clinics = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public InvestigationDetailsViewModel(Investigation investigation, RequestBus requestBus)
+        {
+            Investigation = investigation ?? throw new ArgumentNullException(nameof(investigation));
+            this.requestBus = requestBus ?? throw new ArgumentNullException(nameof(requestBus));
 
             Investigation.DateChanged += HandleInvestigationDateChanged;
             Investigation.SentByChanged += HandleInvestigationSentByChanged;
 
-            Medics = medics
-                .OrderBy(x => x.Name)
-                .ToList();
-
-            Clinics = clinics
-                .OrderBy(x => x.Name)
-                .ToList();
+            RetrieveMedics();
+            RetrieveClinics();
 
             UpdateTitle();
+        }
+
+        private void RetrieveMedics()
+        {
+            GetAllMedicsRequest request = new GetAllMedicsRequest();
+            requestBus.ProcessRequest<GetAllMedicsRequest, List<Medic>>(request)
+                .ContinueWith(t => Medics = t.Result
+                    .OrderBy(x => x.Name)
+                    .ToList());
+        }
+
+        private void RetrieveClinics()
+        {
+            GetAllClinicsRequest request = new GetAllClinicsRequest();
+            requestBus.ProcessRequest<GetAllClinicsRequest, List<Clinic>>(request)
+                .ContinueWith(t => Clinics = t.Result
+                    .OrderBy(x => x.Name)
+                    .ToList());
         }
 
         private void HandleInvestigationDateChanged(object sender, EventArgs e)

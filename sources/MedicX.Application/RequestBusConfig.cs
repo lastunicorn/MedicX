@@ -15,6 +15,8 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using DustInTheWind.MedicX.Application.ExitApplication;
+using DustInTheWind.MedicX.Application.GetAllClinics;
+using DustInTheWind.MedicX.Application.GetAllMedics;
 using DustInTheWind.MedicX.Application.GetCurrentProject;
 using DustInTheWind.MedicX.Application.GetCurrentProjectStatus;
 using DustInTheWind.MedicX.Application.LoadProject;
@@ -22,9 +24,9 @@ using DustInTheWind.MedicX.Application.SaveProject;
 using DustInTheWind.MedicX.Application.SetCurrentItem;
 using DustInTheWind.MedicX.RequestBusModel;
 
-namespace DustInTheWind.MedicX.Wpf.Setup
+namespace DustInTheWind.MedicX.Application
 {
-    internal class RequestBusConfig
+    public class RequestBusConfig
     {
         public static void Configure(RequestBus requestBus)
         {
@@ -34,6 +36,8 @@ namespace DustInTheWind.MedicX.Wpf.Setup
             requestBus.Register<GetCurrentProjectStatusRequest, GetCurrentProjectStatusRequestHandler>();
             requestBus.Register<ExitApplicationRequest, ExitApplicationRequestHandler>();
             requestBus.Register<SetCurrentItemRequest, SetCurrentItemRequestHandler>();
+            requestBus.Register<GetAllMedicsRequest, GetAllMedicsRequestHandler>();
+            requestBus.Register<GetAllClinicsRequest, GetAllClinicsRequestHandler>();
         }
     }
 }

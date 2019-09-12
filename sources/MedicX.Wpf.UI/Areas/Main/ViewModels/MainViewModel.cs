@@ -20,6 +20,7 @@ using System.Reflection;
 using DustInTheWind.MedicX.Application.GetCurrentProject;
 using DustInTheWind.MedicX.Domain.Entities;
 using DustInTheWind.MedicX.RequestBusModel;
+using EventBusModel;
 using MedicX.Wpf.UI.Areas.Main.Commands;
 
 namespace MedicX.Wpf.UI.Areas.Main.ViewModels
@@ -46,8 +47,11 @@ namespace MedicX.Wpf.UI.Areas.Main.ViewModels
         public SaveCommand SaveCommand { get; }
         public ExitCommand ExitCommand { get; }
 
-        public MainViewModel(RequestBus requestBus)
+        public MainViewModel(RequestBus requestBus, EventBus eventBus)
         {
+            if (eventBus == null)
+                throw new ArgumentNullException(nameof(eventBus));
+
             medicXProject = AsyncUtil.RunSync(() =>
             {
                 GetCurrentProjectRequest request = new GetCurrentProjectRequest();
@@ -55,7 +59,7 @@ namespace MedicX.Wpf.UI.Areas.Main.ViewModels
             });
 
             SelectionViewModel = new SelectionViewModel(requestBus, medicXProject);
-            DetailsViewModel = new DetailsViewModel(medicXProject);
+            DetailsViewModel = new DetailsViewModel(requestBus, eventBus);
 
             SaveCommand = new SaveCommand(requestBus);
             ExitCommand = new ExitCommand(requestBus);

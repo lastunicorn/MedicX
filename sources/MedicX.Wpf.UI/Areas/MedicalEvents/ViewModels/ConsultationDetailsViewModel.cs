@@ -17,14 +17,19 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using DustInTheWind.MedicX.Domain.Collections;
+using DustInTheWind.MedicX.Application.GetAllClinics;
+using DustInTheWind.MedicX.Application.GetAllMedics;
 using DustInTheWind.MedicX.Domain.Entities;
+using DustInTheWind.MedicX.RequestBusModel;
 
 namespace MedicX.Wpf.UI.Areas.MedicalEvents.ViewModels
 {
     internal class ConsultationDetailsViewModel : ViewModelBase
     {
+        private readonly RequestBus requestBus;
         private string title;
+        private List<Medic> medics;
+        private List<Clinic> clinics;
 
         public string Title
         {
@@ -38,30 +43,56 @@ namespace MedicX.Wpf.UI.Areas.MedicalEvents.ViewModels
 
         public Consultation Consultation { get; }
 
-        public List<Medic> Medics { get; }
-
-        public List<Clinic> Clinics { get; }
-
-        public ConsultationDetailsViewModel(Consultation consultation, MedicsCollection medics, ClinicsCollection clinics)
+        public List<Medic> Medics
         {
-            if (consultation == null) throw new ArgumentNullException(nameof(consultation));
-            if (medics == null) throw new ArgumentNullException(nameof(medics));
-            if (clinics == null) throw new ArgumentNullException(nameof(clinics));
+            get => medics;
+            private set
+            {
+                medics = value;
+                OnPropertyChanged();
+            }
+        }
 
-            Consultation = consultation;
+        public List<Clinic> Clinics
+        {
+            get => clinics;
+            private set
+            {
+                clinics = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public ConsultationDetailsViewModel(Consultation consultation, RequestBus requestBus)
+        {
+            Consultation = consultation ?? throw new ArgumentNullException(nameof(consultation));
+            this.requestBus = requestBus ?? throw new ArgumentNullException(nameof(requestBus));
 
             Consultation.DateChanged += HandleConsultationDateChanged;
             Consultation.MedicChanged += HandleConsultationMedicChanged;
 
-            Medics = medics
-                .OrderBy(x => x.Name)
-                .ToList();
-
-            Clinics = clinics
-                .OrderBy(x => x.Name)
-                .ToList();
+            RetrieveMedics();
+            RetrieveClinics();
 
             UpdateTitle();
+        }
+
+        private void RetrieveMedics()
+        {
+            GetAllMedicsRequest request = new GetAllMedicsRequest();
+            requestBus.ProcessRequest<GetAllMedicsRequest, List<Medic>>(request)
+                .ContinueWith(t => Medics = t.Result
+                    .OrderBy(x => x.Name)
+                    .ToList());
+        }
+
+        private void RetrieveClinics()
+        {
+            GetAllClinicsRequest request = new GetAllClinicsRequest();
+            requestBus.ProcessRequest<GetAllClinicsRequest, List<Clinic>>(request)
+                .ContinueWith(t => Clinics = t.Result
+                    .OrderBy(x => x.Name)
+                    .ToList());
         }
 
         private void HandleConsultationDateChanged(object sender, EventArgs e)

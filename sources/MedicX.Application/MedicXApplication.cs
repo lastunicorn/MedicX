@@ -1,19 +1,22 @@
 ﻿using System;
 using DustInTheWind.MedicX.Domain.DataAccess;
 using DustInTheWind.MedicX.Domain.Entities;
+using EventBusModel;
 
 namespace DustInTheWind.MedicX.Application
 {
     public class MedicXApplication
     {
         private readonly IUnitOfWorkBuilder unitOfWorkBuilder;
+        private readonly EventBus eventBus;
         private string connectionString;
 
         public MedicXProject CurrentProject { get; private set; }
 
-        public MedicXApplication(IUnitOfWorkBuilder unitOfWorkBuilder)
+        public MedicXApplication(IUnitOfWorkBuilder unitOfWorkBuilder, EventBus eventBus)
         {
             this.unitOfWorkBuilder = unitOfWorkBuilder ?? throw new ArgumentNullException(nameof(unitOfWorkBuilder));
+            this.eventBus = eventBus ?? throw new ArgumentNullException(nameof(eventBus));
         }
 
         public void LoadProject(string connectionString)
@@ -25,7 +28,13 @@ namespace DustInTheWind.MedicX.Application
                 this.connectionString = connectionString;
 
                 CurrentProject = medicXProject;
+                medicXProject.CurrentItemChanged += HandleCurrentItemChanged;
             }
+        }
+
+        private void HandleCurrentItemChanged(object sender, EventArgs e)
+        {
+            eventBus["CurrentItemChanged"].Raise(CurrentProject.CurrentItem);
         }
 
         public void UnloadProject()

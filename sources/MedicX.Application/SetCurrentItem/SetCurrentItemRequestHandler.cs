@@ -21,7 +21,7 @@ using DustInTheWind.MedicX.RequestBusModel;
 
 namespace DustInTheWind.MedicX.Application.SetCurrentItem
 {
-    public class SetCurrentItemRequestHandler : IRequestHandler<SetCurrentItemRequest>
+    internal class SetCurrentItemRequestHandler : IRequestHandler<SetCurrentItemRequest>
     {
         private readonly MedicXApplication medicXApplication;
 
