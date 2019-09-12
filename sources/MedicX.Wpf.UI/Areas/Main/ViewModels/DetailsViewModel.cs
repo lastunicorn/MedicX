@@ -27,6 +27,7 @@ namespace MedicX.Wpf.UI.Areas.Main.ViewModels
     public class DetailsViewModel : ViewModelBase
     {
         private readonly RequestBus requestBus;
+        private readonly EventBus eventBus;
         private object item;
         private bool isNoItemPanelVisible;
 
@@ -55,14 +56,14 @@ namespace MedicX.Wpf.UI.Areas.Main.ViewModels
 
         public DetailsViewModel(RequestBus requestBus, EventBus eventBus)
         {
-            if (eventBus == null) throw new ArgumentNullException(nameof(eventBus));
             this.requestBus = requestBus ?? throw new ArgumentNullException(nameof(requestBus));
+            this.eventBus = eventBus ?? throw new ArgumentNullException(nameof(eventBus));
 
             isNoItemPanelVisible = true;
-            eventBus["CurrentItemChanged"].Subscribe(new Action<object>(HandleCurrentItemChanged2));
+            eventBus["CurrentItemChanged"].Subscribe(new Action<object>(HandleCurrentItemChanged));
         }
 
-        private void HandleCurrentItemChanged2(object currentItem)
+        private void HandleCurrentItemChanged(object currentItem)
         {
             switch (currentItem)
             {
@@ -79,7 +80,7 @@ namespace MedicX.Wpf.UI.Areas.Main.ViewModels
                     break;
 
                 case Clinic clinic:
-                    Item = new ClinicDetailsViewModel(clinic);
+                    Item = new ClinicDetailsViewModel(clinic, eventBus);
                     break;
 
                 default:

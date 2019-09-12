@@ -52,6 +52,8 @@
     <Compile Include="AddNewConsultation\AddNewConsultationRequestHandler.cs" />
     <Compile Include="AddNewMedic\AddNewMedicRequest.cs" />
     <Compile Include="AddNewMedic\AddNewMedicRequestHandler.cs" />
+    <Compile Include="GetAllClinics\Address.cs" />
+    <Compile Include="GetAllClinics\Clinic.cs" />
     <Compile Include="GetAllClinics\GetAllClinicsRequest.cs" />
     <Compile Include="GetAllMedics\GetAllMedicsRequest.cs" />
     <Compile Include="ExitApplication\ConfirmationResponse.cs" />

@@ -21,6 +21,7 @@ using DustInTheWind.MedicX.Application.GetAllClinics;
 using DustInTheWind.MedicX.Application.GetAllMedics;
 using DustInTheWind.MedicX.Domain.Entities;
 using DustInTheWind.MedicX.RequestBusModel;
+using ClinicDto = DustInTheWind.MedicX.Application.GetAllClinics.Clinic;
 
 namespace MedicX.Wpf.UI.Areas.MedicalEvents.ViewModels
 {
@@ -29,7 +30,7 @@ namespace MedicX.Wpf.UI.Areas.MedicalEvents.ViewModels
         private readonly RequestBus requestBus;
         private string title;
         private List<Medic> medics;
-        private List<Clinic> clinics;
+        private List<ClinicDto> clinics;
 
         public string Title
         {
@@ -53,7 +54,7 @@ namespace MedicX.Wpf.UI.Areas.MedicalEvents.ViewModels
             }
         }
 
-        public List<Clinic> Clinics
+        public List<ClinicDto> Clinics
         {
             get => clinics;
             private set
@@ -89,7 +90,7 @@ namespace MedicX.Wpf.UI.Areas.MedicalEvents.ViewModels
         private void RetrieveClinics()
         {
             GetAllClinicsRequest request = new GetAllClinicsRequest();
-            requestBus.ProcessRequest<GetAllClinicsRequest, List<Clinic>>(request)
+            requestBus.ProcessRequest<GetAllClinicsRequest, List<ClinicDto>>(request)
                 .ContinueWith(t => Clinics = t.Result
                     .OrderBy(x => x.Name)
                     .ToList());

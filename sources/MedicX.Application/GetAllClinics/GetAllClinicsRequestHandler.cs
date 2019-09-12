@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using DustInTheWind.MedicX.Domain.Entities;
 using DustInTheWind.MedicX.RequestBusModel;
 
 namespace DustInTheWind.MedicX.Application.GetAllClinics
@@ -18,8 +17,18 @@ namespace DustInTheWind.MedicX.Application.GetAllClinics
 
         public Task<List<Clinic>> Handle(GetAllClinicsRequest request)
         {
-            List<Clinic> clinics = medicXApplication.CurrentProject?.Clinics.ToList() ?? new List<Clinic>();
-            return Task.FromResult(clinics);
+            List<Clinic> clinics = medicXApplication.CurrentProject?.Clinics
+                .Select(x => new Clinic
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    Address = new Address(x.Address),
+                    Program = x.Program,
+                    Comments = x.Comments
+                })
+                .ToList();
+
+            return Task.FromResult(clinics ?? new List<Clinic>());
         }
     }
 }

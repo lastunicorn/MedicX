@@ -18,12 +18,13 @@ using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using DustInTheWind.MedicX.Domain.Entities;
+using EventBusModel;
 
 namespace MedicX.Wpf.UI.Areas.Clinics.ViewModels
 {
     internal class ClinicDetailsViewModel : ViewModelBase
     {
-        private readonly Clinic clinic;
+        private Clinic clinic;
 
         private string name;
         private string comments;
@@ -106,20 +107,26 @@ namespace MedicX.Wpf.UI.Areas.Clinics.ViewModels
             }
         }
 
-        public ClinicDetailsViewModel(Clinic clinic)
+        public ClinicDetailsViewModel(Clinic clinic, EventBus eventBus)
         {
+            if (eventBus == null) throw new ArgumentNullException(nameof(eventBus));
             this.clinic = clinic ?? throw new ArgumentNullException(nameof(clinic));
 
-            name = clinic.Name;
-            comments = clinic.Comments;
-            program = clinic.Program;
-            address = clinic.Address;
-            phones = clinic.Phones;
+            UpdateDisplayedData();
 
-            clinic.Changed += HandleClinicChanged;
+            eventBus["CurrentItemChanged"].Subscribe(new Action<object>(HandleCurrentItemChanged));
         }
 
-        private void HandleClinicChanged(object sender, EventArgs e)
+        private void HandleCurrentItemChanged(object currentItem)
+        {
+            if (currentItem is Clinic newClinic)
+            {
+                clinic = newClinic;
+                UpdateDisplayedData();
+            }
+        }
+
+        private void UpdateDisplayedData()
         {
             Name = clinic.Name;
             Comments = clinic.Comments;

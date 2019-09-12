@@ -17,12 +17,18 @@ namespace EventBusModel
 
         public void Subscribe(Delegate action)
         {
-            subscriptions.Add(action);
+            lock (subscriptions)
+                subscriptions.Add(action);
         }
 
         public void Raise(params object[] eventData)
         {
-            foreach (Delegate subscription in subscriptions)
+            List<Delegate> subscriptionSnapshot;
+
+            lock (subscriptions)
+                subscriptionSnapshot = subscriptions.ToList();
+
+            foreach (Delegate subscription in subscriptionSnapshot)
             {
                 MethodInfo methodInfo = subscription.Method;
 
