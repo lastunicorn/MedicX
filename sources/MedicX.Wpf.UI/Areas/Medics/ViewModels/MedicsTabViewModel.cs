@@ -25,6 +25,7 @@ using DustInTheWind.MedicX.Application.SetCurrentItem;
 using DustInTheWind.MedicX.Domain.Collections;
 using DustInTheWind.MedicX.Domain.Entities;
 using DustInTheWind.MedicX.RequestBusModel;
+using EventBusModel;
 using MedicX.Wpf.UI.Areas.Main.Commands;
 using MedicX.Wpf.UI.Areas.Medics.Commands;
 
@@ -92,8 +93,9 @@ namespace MedicX.Wpf.UI.Areas.Medics.ViewModels
         public AddMedicCommand AddMedicCommand { get; }
         public RelayCommand ClearSearchTextCommand { get; }
 
-        public MedicsTabViewModel(RequestBus requestBus, MedicXProject medicXProject)
+        public MedicsTabViewModel(RequestBus requestBus, EventBus eventBus, MedicXProject medicXProject)
         {
+            if (eventBus == null) throw new ArgumentNullException(nameof(eventBus));
             this.requestBus = requestBus ?? throw new ArgumentNullException(nameof(requestBus));
             this.medicXProject = medicXProject ?? throw new ArgumentNullException(nameof(medicXProject));
 
@@ -111,7 +113,8 @@ namespace MedicX.Wpf.UI.Areas.Medics.ViewModels
             Medics = medicsSource.View;
             medicXProject.Medics.Added += HandleMedicAdded;
 
-            medicXProject.CurrentItemChanged += HandleCurrentItemChanged;
+            //medicXProject.CurrentItemChanged += HandleCurrentItemChanged;
+            eventBus["CurrentItemChanged"].Subscribe(new Action<object>(HandleCurrentItemChanged));
         }
 
         private void HandleMedicAdded(object sender, MedicAddedEventArgs e)
@@ -123,11 +126,11 @@ namespace MedicX.Wpf.UI.Areas.Medics.ViewModels
             }
         }
 
-        private void HandleCurrentItemChanged(object sender, EventArgs e)
+        private void HandleCurrentItemChanged(object currentItem)
         {
             dispatcher.InvokeAsync(() =>
             {
-                if (medicXProject.CurrentItem is Medic medic)
+                if (currentItem is Medic medic)
                 {
                     if (medicsSource.Source is IEnumerable<MedicItemViewModel> medicsViewModels)
                         SelectedMedic = medicsViewModels.FirstOrDefault(x => x.Medic == medic);

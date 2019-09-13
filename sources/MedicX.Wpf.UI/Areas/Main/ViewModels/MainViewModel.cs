@@ -58,7 +58,7 @@ namespace MedicX.Wpf.UI.Areas.Main.ViewModels
                 return requestBus.ProcessRequest<GetCurrentProjectRequest, MedicXProject>(request);
             });
 
-            SelectionViewModel = new SelectionViewModel(requestBus, medicXProject);
+            SelectionViewModel = new SelectionViewModel(requestBus, eventBus, medicXProject);
             DetailsViewModel = new DetailsViewModel(requestBus, eventBus);
 
             SaveCommand = new SaveCommand(requestBus);

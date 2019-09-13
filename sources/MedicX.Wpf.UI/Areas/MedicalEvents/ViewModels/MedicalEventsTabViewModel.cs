@@ -24,6 +24,7 @@ using System.Windows.Threading;
 using DustInTheWind.MedicX.Domain.Collections;
 using DustInTheWind.MedicX.Domain.Entities;
 using DustInTheWind.MedicX.RequestBusModel;
+using EventBusModel;
 using MedicX.Wpf.UI.Areas.Main.Commands;
 using MedicX.Wpf.UI.Areas.MedicalEvents.Commands;
 
@@ -93,8 +94,9 @@ namespace MedicX.Wpf.UI.Areas.MedicalEvents.ViewModels
         public AddInvestigationCommand AddInvestigationCommand { get; }
         public RelayCommand ClearSearchTextCommand { get; }
 
-        public MedicalEventsTabViewModel(RequestBus requestBus, MedicXProject medicXProject)
+        public MedicalEventsTabViewModel(RequestBus requestBus, EventBus eventBus, MedicXProject medicXProject)
         {
+            if (eventBus == null) throw new ArgumentNullException(nameof(eventBus));
             this.medicXProject = medicXProject ?? throw new ArgumentNullException(nameof(medicXProject));
 
             AddConsultationCommand = new AddConsultationCommand(requestBus);
@@ -128,7 +130,7 @@ namespace MedicX.Wpf.UI.Areas.MedicalEvents.ViewModels
             MedicalEvents.SortDescriptions.Add(new SortDescription("Date", ListSortDirection.Descending));
             medicXProject.MedicalEvents.Added += HandleMedicalEventAdded;
 
-            medicXProject.CurrentItemChanged += HandleCurrentItemChanged;
+            eventBus["CurrentItemChanged"].Subscribe(new Action<object>(HandleCurrentItemChanged));
         }
 
         private void HandleMedicalEventAdded(object sender, MedicalEventAddedEventArgs e)
@@ -157,11 +159,11 @@ namespace MedicX.Wpf.UI.Areas.MedicalEvents.ViewModels
             MedicalEvents.Refresh();
         }
 
-        private void HandleCurrentItemChanged(object sender, EventArgs e)
+        private void HandleCurrentItemChanged(object currentItem)
         {
             dispatcher.InvokeAsync(() =>
             {
-                if (medicXProject.CurrentItem is MedicalEvent medicalEvent)
+                if (currentItem is MedicalEvent medicalEvent)
                 {
                     if (medicalEventsSource.Source is IEnumerable<ViewModelBase> clinicsViewModels)
                     {

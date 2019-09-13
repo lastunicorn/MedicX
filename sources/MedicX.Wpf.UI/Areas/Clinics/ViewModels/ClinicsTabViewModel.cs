@@ -25,6 +25,7 @@ using DustInTheWind.MedicX.Application.SetCurrentItem;
 using DustInTheWind.MedicX.Domain.Collections;
 using DustInTheWind.MedicX.Domain.Entities;
 using DustInTheWind.MedicX.RequestBusModel;
+using EventBusModel;
 using MedicX.Wpf.UI.Areas.Clinics.Commands;
 using MedicX.Wpf.UI.Areas.Main.Commands;
 
@@ -91,8 +92,9 @@ namespace MedicX.Wpf.UI.Areas.Clinics.ViewModels
         public AddClinicCommand AddClinicCommand { get; }
         public RelayCommand ClearSearchTextCommand { get; }
 
-        public ClinicsTabViewModel(RequestBus requestBus, MedicXProject medicXProject)
+        public ClinicsTabViewModel(RequestBus requestBus, EventBus eventBus, MedicXProject medicXProject)
         {
+            if (eventBus == null)throw new ArgumentNullException(nameof(eventBus));
             this.requestBus = requestBus ?? throw new ArgumentNullException(nameof(requestBus));
             this.medicXProject = medicXProject ?? throw new ArgumentNullException(nameof(medicXProject));
 
@@ -110,7 +112,7 @@ namespace MedicX.Wpf.UI.Areas.Clinics.ViewModels
             Clinics = clinicsSource.View;
             medicXProject.Clinics.Added += HandleClinicAdded;
 
-            medicXProject.CurrentItemChanged += HandleCurrentItemChanged;
+            eventBus["CurrentItemChanged"].Subscribe(new Action<object>(HandleCurrentItemChanged));
         }
 
         private void HandleClinicAdded(object sender, ClinicAddedEventArgs e)
@@ -122,11 +124,11 @@ namespace MedicX.Wpf.UI.Areas.Clinics.ViewModels
             }
         }
 
-        private void HandleCurrentItemChanged(object sender, EventArgs e)
+        private void HandleCurrentItemChanged(object currentItem)
         {
             dispatcher.InvokeAsync(() =>
             {
-                if (medicXProject.CurrentItem is Clinic clinic)
+                if (currentItem is Clinic clinic)
                     SelectedClinic = GetNextSelectedClinic(clinic);
             });
         }

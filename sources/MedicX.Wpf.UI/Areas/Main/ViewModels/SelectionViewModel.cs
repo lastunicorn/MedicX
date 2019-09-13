@@ -19,6 +19,7 @@ using System.Collections.Generic;
 using DustInTheWind.MedicX.Application.SetCurrentItem;
 using DustInTheWind.MedicX.Domain.Entities;
 using DustInTheWind.MedicX.RequestBusModel;
+using EventBusModel;
 using MedicX.Wpf.UI.Areas.Clinics.ViewModels;
 using MedicX.Wpf.UI.Areas.MedicalEvents.ViewModels;
 using MedicX.Wpf.UI.Areas.Medics.ViewModels;
@@ -28,6 +29,7 @@ namespace MedicX.Wpf.UI.Areas.Main.ViewModels
     public class SelectionViewModel : ViewModelBase
     {
         private readonly RequestBus requestBus;
+        private readonly EventBus eventBus;
         private readonly MedicXProject medicXProject;
 
         private TabItemViewModel selectedTab;
@@ -49,9 +51,10 @@ namespace MedicX.Wpf.UI.Areas.Main.ViewModels
             }
         }
 
-        public SelectionViewModel(RequestBus requestBus, MedicXProject medicXProject)
+        public SelectionViewModel(RequestBus requestBus, EventBus eventBus, MedicXProject medicXProject)
         {
             this.requestBus = requestBus ?? throw new ArgumentNullException(nameof(requestBus));
+            this.eventBus = eventBus ?? throw new ArgumentNullException(nameof(eventBus));
             this.medicXProject = medicXProject ?? throw new ArgumentNullException(nameof(medicXProject));
 
             Tabs = CreateTabs();
@@ -65,17 +68,17 @@ namespace MedicX.Wpf.UI.Areas.Main.ViewModels
                 new TabItemViewModel
                 {
                     Header = "Medics",
-                    Content = new MedicsTabViewModel(requestBus, medicXProject)
+                    Content = new MedicsTabViewModel(requestBus, eventBus, medicXProject)
                 },
                 new TabItemViewModel
                 {
                     Header = "Clinics",
-                    Content = new ClinicsTabViewModel(requestBus, medicXProject)
+                    Content = new ClinicsTabViewModel(requestBus, eventBus, medicXProject)
                 },
                 new TabItemViewModel
                 {
                     Header = "Medical Events",
-                    Content = new MedicalEventsTabViewModel(requestBus, medicXProject)
+                    Content = new MedicalEventsTabViewModel(requestBus, eventBus, medicXProject)
                 }
             };
         }
