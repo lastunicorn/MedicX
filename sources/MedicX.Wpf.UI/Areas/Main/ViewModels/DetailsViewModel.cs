@@ -53,7 +53,7 @@ namespace MedicX.Wpf.UI.Areas.Main.ViewModels
                 OnPropertyChanged();
             }
         }
-
+        
         public DetailsViewModel(RequestBus requestBus, EventBus eventBus)
         {
             this.requestBus = requestBus ?? throw new ArgumentNullException(nameof(requestBus));

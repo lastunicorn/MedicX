@@ -79,7 +79,13 @@ namespace DustInTheWind.MedicX.Domain.Entities
             Status = ProjectStatus.Modified;
         }
 
-        public void LoadData(IUnitOfWork unitOfWork)
+        public MedicXProject(IUnitOfWork unitOfWork)
+            : this()
+        {
+            LoadFrom(unitOfWork);
+        }
+
+        private void LoadFrom(IUnitOfWork unitOfWork)
         {
             IMedicRepository medicRepository = unitOfWork.MedicRepository;
 

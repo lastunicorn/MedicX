@@ -14,6 +14,10 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+using DustInTheWind.MedicX.Application.AddNewClinic;
+using DustInTheWind.MedicX.Application.AddNewConsultation;
+using DustInTheWind.MedicX.Application.AddNewInvestigation;
+using DustInTheWind.MedicX.Application.AddNewMedic;
 using DustInTheWind.MedicX.Application.ExitApplication;
 using DustInTheWind.MedicX.Application.GetAllClinics;
 using DustInTheWind.MedicX.Application.GetAllMedics;
@@ -38,6 +42,10 @@ namespace DustInTheWind.MedicX.Application
             requestBus.Register<SetCurrentItemRequest, SetCurrentItemRequestHandler>();
             requestBus.Register<GetAllMedicsRequest, GetAllMedicsRequestHandler>();
             requestBus.Register<GetAllClinicsRequest, GetAllClinicsRequestHandler>();
+            requestBus.Register<AddNewMedicRequest, AddNewMedicRequestHandler>();
+            requestBus.Register<AddNewClinicRequest, AddNewClinicRequestHandler>();
+            requestBus.Register<AddNewInvestigationRequest, AddNewInvestigationRequestHandler>();
+            requestBus.Register<AddNewConsultationRequest, AddNewConsultationRequestHandler>();
         }
     }
 }

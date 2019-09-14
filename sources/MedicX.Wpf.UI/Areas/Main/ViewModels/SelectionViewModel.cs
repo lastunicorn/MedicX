@@ -85,8 +85,6 @@ namespace MedicX.Wpf.UI.Areas.Main.ViewModels
 
         private void UpdateCurrentItem()
         {
-            medicXProject.CurrentItem = CalculateNewCurrentItem();
-
             SetCurrentItemRequest request = new SetCurrentItemRequest
             {
                 NewCurrentItem = CalculateNewCurrentItem()

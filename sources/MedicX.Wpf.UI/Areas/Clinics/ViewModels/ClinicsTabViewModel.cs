@@ -21,6 +21,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Windows.Data;
 using System.Windows.Threading;
+using DustInTheWind.MedicX.Application.GetAllClinics;
 using DustInTheWind.MedicX.Application.SetCurrentItem;
 using DustInTheWind.MedicX.Domain.Collections;
 using DustInTheWind.MedicX.Domain.Entities;
@@ -28,13 +29,13 @@ using DustInTheWind.MedicX.RequestBusModel;
 using EventBusModel;
 using MedicX.Wpf.UI.Areas.Clinics.Commands;
 using MedicX.Wpf.UI.Areas.Main.Commands;
+using Clinic = DustInTheWind.MedicX.Domain.Entities.Clinic;
 
 namespace MedicX.Wpf.UI.Areas.Clinics.ViewModels
 {
     internal class ClinicsTabViewModel : ViewModelBase
     {
         private readonly RequestBus requestBus;
-        private readonly MedicXProject medicXProject;
         private ClinicItemViewModel selectedClinic;
         private readonly CollectionViewSource clinicsSource;
         private string searchText;
@@ -94,32 +95,46 @@ namespace MedicX.Wpf.UI.Areas.Clinics.ViewModels
 
         public ClinicsTabViewModel(RequestBus requestBus, EventBus eventBus, MedicXProject medicXProject)
         {
-            if (eventBus == null)throw new ArgumentNullException(nameof(eventBus));
+            if (eventBus == null) throw new ArgumentNullException(nameof(eventBus));
             this.requestBus = requestBus ?? throw new ArgumentNullException(nameof(requestBus));
-            this.medicXProject = medicXProject ?? throw new ArgumentNullException(nameof(medicXProject));
+            if (medicXProject == null) throw new ArgumentNullException(nameof(medicXProject));
 
             AddClinicCommand = new AddClinicCommand(requestBus);
             ClearSearchTextCommand = new RelayCommand(() => { SearchText = string.Empty; });
 
             dispatcher = Dispatcher.CurrentDispatcher;
 
+            //GetAllClinicsRequest request = new GetAllClinicsRequest();
+            //List<Clinic> clinics = requestBus.ProcessRequest<GetAllClinicsRequest, List<Clinic>>(request).Result;
+
             clinicsSource = new CollectionViewSource
             {
                 Source = new ObservableCollection<ClinicItemViewModel>(medicXProject.Clinics
-                    .Select(x => new ClinicItemViewModel(x))
+                    .Select(x =>
+                    {
+                        x.NameChanged += HandleClinicNameChanged;
+                        return new ClinicItemViewModel(x);
+                    })
                     .ToList())
             };
             Clinics = clinicsSource.View;
-            medicXProject.Clinics.Added += HandleClinicAdded;
+            Clinics.SortDescriptions.Add(new SortDescription("Name", ListSortDirection.Ascending));
 
             eventBus["CurrentItemChanged"].Subscribe(new Action<object>(HandleCurrentItemChanged));
+            eventBus["NewClinicAdded"].Subscribe(new Action<Clinic>(HandleNewClinicAdded));
         }
 
-        private void HandleClinicAdded(object sender, ClinicAddedEventArgs e)
+        private void HandleClinicNameChanged(object sender, EventArgs e)
+        {
+            Clinics.Refresh();
+        }
+
+        private void HandleNewClinicAdded(Clinic newClinic)
         {
             if (clinicsSource.Source is ObservableCollection<ClinicItemViewModel> clinics)
             {
-                ClinicItemViewModel clinicToBeAdded = new ClinicItemViewModel(e.Clinic);
+                newClinic.NameChanged += HandleClinicNameChanged;
+                ClinicItemViewModel clinicToBeAdded = new ClinicItemViewModel(newClinic);
                 clinics.Add(clinicToBeAdded);
             }
         }

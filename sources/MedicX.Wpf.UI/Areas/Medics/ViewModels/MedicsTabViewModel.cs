@@ -22,7 +22,6 @@ using System.Linq;
 using System.Windows.Data;
 using System.Windows.Threading;
 using DustInTheWind.MedicX.Application.SetCurrentItem;
-using DustInTheWind.MedicX.Domain.Collections;
 using DustInTheWind.MedicX.Domain.Entities;
 using DustInTheWind.MedicX.RequestBusModel;
 using EventBusModel;
@@ -34,7 +33,6 @@ namespace MedicX.Wpf.UI.Areas.Medics.ViewModels
     internal class MedicsTabViewModel : ViewModelBase
     {
         private readonly RequestBus requestBus;
-        private readonly MedicXProject medicXProject;
         private MedicItemViewModel selectedMedic;
         private readonly CollectionViewSource medicsSource;
         private string searchText;
@@ -95,9 +93,9 @@ namespace MedicX.Wpf.UI.Areas.Medics.ViewModels
 
         public MedicsTabViewModel(RequestBus requestBus, EventBus eventBus, MedicXProject medicXProject)
         {
-            if (eventBus == null) throw new ArgumentNullException(nameof(eventBus));
             this.requestBus = requestBus ?? throw new ArgumentNullException(nameof(requestBus));
-            this.medicXProject = medicXProject ?? throw new ArgumentNullException(nameof(medicXProject));
+            if (eventBus == null) throw new ArgumentNullException(nameof(eventBus));
+            if (medicXProject == null) throw new ArgumentNullException(nameof(medicXProject));
 
             AddMedicCommand = new AddMedicCommand(requestBus);
             ClearSearchTextCommand = new RelayCommand(() => { SearchText = string.Empty; });
@@ -107,21 +105,31 @@ namespace MedicX.Wpf.UI.Areas.Medics.ViewModels
             medicsSource = new CollectionViewSource
             {
                 Source = new ObservableCollection<MedicItemViewModel>(medicXProject.Medics
-                    .Select(x => new MedicItemViewModel(x))
+                    .Select(x =>
+                    {
+                        x.NameChanged += HandleMedicNameChanged;
+                        return new MedicItemViewModel(x);
+                    })
                     .ToList())
             };
             Medics = medicsSource.View;
-            medicXProject.Medics.Added += HandleMedicAdded;
+            Medics.SortDescriptions.Add(new SortDescription("Name", ListSortDirection.Ascending));
 
-            //medicXProject.CurrentItemChanged += HandleCurrentItemChanged;
             eventBus["CurrentItemChanged"].Subscribe(new Action<object>(HandleCurrentItemChanged));
+            eventBus["NewMedicAdded"].Subscribe(new Action<Medic>(HandleNewMedicAdded));
         }
 
-        private void HandleMedicAdded(object sender, MedicAddedEventArgs e)
+        private void HandleMedicNameChanged(object sender, EventArgs e)
+        {
+            Medics.Refresh();
+        }
+
+        private void HandleNewMedicAdded(Medic newMedic)
         {
             if (medicsSource.Source is ObservableCollection<MedicItemViewModel> medics)
             {
-                MedicItemViewModel medicItemViewModel = new MedicItemViewModel(e.Medic);
+                newMedic.NameChanged += HandleMedicNameChanged;
+                MedicItemViewModel medicItemViewModel = new MedicItemViewModel(newMedic);
                 medics.Add(medicItemViewModel);
             }
         }

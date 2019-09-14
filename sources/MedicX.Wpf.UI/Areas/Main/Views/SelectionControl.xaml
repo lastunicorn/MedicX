@@ -24,18 +24,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:vewModels="clr-namespace:MedicX.Wpf.UI.Areas.Main.ViewModels"
-    xmlns:viewModels="clr-namespace:MedicX.Wpf.UI.Areas.Medics.ViewModels"
+    xmlns:viewModels="clr-namespace:MedicX.Wpf.UI.Areas.Main.ViewModels"
+    xmlns:viewModels1="clr-namespace:MedicX.Wpf.UI.Areas.Medics.ViewModels"
     xmlns:views="clr-namespace:MedicX.Wpf.UI.Areas.Medics.Views"
-    xmlns:vewModels1="clr-namespace:MedicX.Wpf.UI.Areas.Clinics.ViewModels"
+    xmlns:viewModels2="clr-namespace:MedicX.Wpf.UI.Areas.Clinics.ViewModels"
     xmlns:views1="clr-namespace:MedicX.Wpf.UI.Areas.Clinics.Views"
-    xmlns:viewModels1="clr-namespace:MedicX.Wpf.UI.Areas.MedicalEvents.ViewModels"
+    xmlns:viewModels3="clr-namespace:MedicX.Wpf.UI.Areas.MedicalEvents.ViewModels"
     xmlns:views2="clr-namespace:MedicX.Wpf.UI.Areas.MedicalEvents.Views"
 
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="300"
-    d:DataContext="{d:DesignInstance vewModels:SelectionViewModel}">
+    d:DataContext="{d:DesignInstance viewModels:SelectionViewModel}">
 
     <TabControl
         ItemsSource="{Binding Tabs}"
@@ -64,7 +64,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         </TabControl.ItemTemplate>-->
 
         <TabControl.ContentTemplate>
-            <DataTemplate DataType="{x:Type vewModels:TabItemViewModel}">
+            <DataTemplate DataType="{x:Type viewModels:TabItemViewModel}">
 
                 <ContentControl
                     Content="{Binding Content}"
@@ -72,15 +72,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
                     <ContentControl.Resources>
 
-                        <DataTemplate DataType="{x:Type viewModels:MedicsTabViewModel}">
+                        <DataTemplate DataType="{x:Type viewModels1:MedicsTabViewModel}">
                             <views:MedicsTabView DataContext="{Binding}" />
                         </DataTemplate>
 
-                        <DataTemplate DataType="{x:Type vewModels1:ClinicsTabViewModel}">
+                        <DataTemplate DataType="{x:Type viewModels2:ClinicsTabViewModel}">
                             <views1:ClinicsTabView DataContext="{Binding}" />
                         </DataTemplate>
 
-                        <DataTemplate DataType="{x:Type viewModels1:MedicalEventsTabViewModel}">
+                        <DataTemplate DataType="{x:Type viewModels3:MedicalEventsTabViewModel}">
                             <views2:MedicalEventsTabView DataContext="{Binding}" />
                         </DataTemplate>
 

@@ -49,8 +49,7 @@ namespace MedicX.Wpf.UI.Areas.Main.ViewModels
 
         public MainViewModel(RequestBus requestBus, EventBus eventBus)
         {
-            if (eventBus == null)
-                throw new ArgumentNullException(nameof(eventBus));
+            if (eventBus == null) throw new ArgumentNullException(nameof(eventBus));
 
             medicXProject = AsyncUtil.RunSync(() =>
             {

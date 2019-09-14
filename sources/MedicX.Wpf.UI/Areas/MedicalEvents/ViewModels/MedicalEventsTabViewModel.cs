@@ -21,7 +21,6 @@ using System.ComponentModel;
 using System.Linq;
 using System.Windows.Data;
 using System.Windows.Threading;
-using DustInTheWind.MedicX.Domain.Collections;
 using DustInTheWind.MedicX.Domain.Entities;
 using DustInTheWind.MedicX.RequestBusModel;
 using EventBusModel;
@@ -128,16 +127,16 @@ namespace MedicX.Wpf.UI.Areas.MedicalEvents.ViewModels
             };
             MedicalEvents = medicalEventsSource.View;
             MedicalEvents.SortDescriptions.Add(new SortDescription("Date", ListSortDirection.Descending));
-            medicXProject.MedicalEvents.Added += HandleMedicalEventAdded;
 
             eventBus["CurrentItemChanged"].Subscribe(new Action<object>(HandleCurrentItemChanged));
+            eventBus["NewMedicalEventAdded"].Subscribe(new Action<MedicalEvent>(HandleNewMedicalEventAdded));
         }
 
-        private void HandleMedicalEventAdded(object sender, MedicalEventAddedEventArgs e)
+        private void HandleNewMedicalEventAdded(MedicalEvent newMedicalEvent)
         {
             if (medicalEventsSource.Source is ObservableCollection<ViewModelBase> medicalEvents)
             {
-                switch (e.MedicalEvent)
+                switch (newMedicalEvent)
                 {
                     case Consultation consultation:
                         ConsultationItemViewModel consultationToBeAdded = new ConsultationItemViewModel(consultation);
