@@ -19,6 +19,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DustInTheWind.MedicX.Application.GetAllClinics;
 using DustInTheWind.MedicX.Application.GetAllMedics;
+using DustInTheWind.MedicX.Application.UpdateConsultationClinic;
 using DustInTheWind.MedicX.Domain.Entities;
 using DustInTheWind.MedicX.RequestBusModel;
 using ClinicDto = DustInTheWind.MedicX.Application.GetAllClinics.Clinic;
@@ -31,6 +32,8 @@ namespace MedicX.Wpf.UI.Areas.MedicalEvents.ViewModels
         private string title;
         private List<Medic> medics;
         private List<ClinicDto> clinics;
+        private ClinicDto selectedClinic;
+        private bool isClinicsEnabled;
 
         public string Title
         {
@@ -42,7 +45,7 @@ namespace MedicX.Wpf.UI.Areas.MedicalEvents.ViewModels
             }
         }
 
-        public Consultation Consultation { get; }
+        private Consultation Consultation { get; }
 
         public List<Medic> Medics
         {
@@ -64,6 +67,43 @@ namespace MedicX.Wpf.UI.Areas.MedicalEvents.ViewModels
             }
         }
 
+        public ClinicDto SelectedClinic
+        {
+            get => selectedClinic;
+            set
+            {
+                selectedClinic = value;
+                OnPropertyChanged();
+
+                IsClinicsEnabled = false;
+
+                UpdateConsultationSetClinicRequest request = new UpdateConsultationSetClinicRequest
+                {
+                    ConsultationId = Consultation.Id,
+                    ClinicId = value.Id
+                };
+
+                requestBus.ProcessRequest(request)
+                    .ContinueWith(t =>
+                    {
+                        if (t.Exception != null)
+                            SelectedClinic = ClinicDto.Empty;
+                        else
+                            IsClinicsEnabled = true;
+                    });
+            }
+        }
+
+        public bool IsClinicsEnabled
+        {
+            get => isClinicsEnabled;
+            private set
+            {
+                isClinicsEnabled = value;
+                OnPropertyChanged();
+            }
+        }
+
         public ConsultationDetailsViewModel(Consultation consultation, RequestBus requestBus)
         {
             Consultation = consultation ?? throw new ArgumentNullException(nameof(consultation));
@@ -72,28 +112,53 @@ namespace MedicX.Wpf.UI.Areas.MedicalEvents.ViewModels
             Consultation.DateChanged += HandleConsultationDateChanged;
             Consultation.MedicChanged += HandleConsultationMedicChanged;
 
-            RetrieveMedics();
-            RetrieveClinics();
+            PopulateMedics();
+            PopulateClinics();
 
             UpdateTitle();
         }
 
-        private void RetrieveMedics()
+        private void UpdateSelectedClinic()
         {
-            GetAllMedicsRequest request = new GetAllMedicsRequest();
-            requestBus.ProcessRequest<GetAllMedicsRequest, List<Medic>>(request)
-                .ContinueWith(t => Medics = t.Result
-                    .OrderBy(x => x.Name)
-                    .ToList());
+            if (Consultation.Clinic == null)
+                SelectedClinic = ClinicDto.Empty;
+            else
+            {
+                ClinicDto clinic = Clinics.FirstOrDefault(x => x.Id == Consultation.Clinic.Id);
+                SelectedClinic = clinic;
+            }
         }
 
-        private void RetrieveClinics()
+        private void PopulateMedics()
         {
+            GetAllMedicsRequest request = new GetAllMedicsRequest();
+
+            requestBus.ProcessRequest<GetAllMedicsRequest, List<Medic>>(request)
+                .ContinueWith(t =>
+                {
+                    Medics = t.Result
+                        .OrderBy(x => x.Name)
+                        .ToList();
+                });
+        }
+
+        private void PopulateClinics()
+        {
+            IsClinicsEnabled = false;
+
             GetAllClinicsRequest request = new GetAllClinicsRequest();
+
             requestBus.ProcessRequest<GetAllClinicsRequest, List<ClinicDto>>(request)
-                .ContinueWith(t => Clinics = t.Result
-                    .OrderBy(x => x.Name)
-                    .ToList());
+                .ContinueWith(t =>
+                {
+                    Clinics = t.Result
+                        .OrderBy(x => x.Name)
+                        .ToList();
+
+                    IsClinicsEnabled = true;
+
+                    UpdateSelectedClinic();
+                });
         }
 
         private void HandleConsultationDateChanged(object sender, EventArgs e)

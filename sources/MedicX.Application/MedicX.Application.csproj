@@ -76,6 +76,8 @@
     <Compile Include="SaveProject\SaveProjectRequestHandler.cs" />
     <Compile Include="SetCurrentItem\SetCurrentItemRequest.cs" />
     <Compile Include="SetCurrentItem\SetCurrentItemRequestHandler.cs" />
+    <Compile Include="UpdateConsultationClinic\UpdateConsultationSetClinicRequest.cs" />
+    <Compile Include="UpdateConsultationClinic\UpdateConsultationSetClinicRequestHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EventBusModel\EventBusModel.csproj">

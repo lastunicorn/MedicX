@@ -28,6 +28,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     xmlns:entities="clr-namespace:DustInTheWind.MedicX.Domain.Entities;assembly=DustInTheWind.MedicX.Domain"
     xmlns:converters="clr-namespace:MedicX.Wpf.UI.Converters"
     xmlns:viewModels="clr-namespace:MedicX.Wpf.UI.Areas.MedicalEvents.ViewModels"
+    xmlns:getAllClinics="clr-namespace:DustInTheWind.MedicX.Application.GetAllClinics;assembly=DustInTheWind.MedicX.Application"
 
     mc:Ignorable="d"
     d:DesignHeight="300"
@@ -111,8 +112,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
                         <ComboBox
                                 ItemsSource="{Binding Clinics}"
-                                SelectedItem="{Binding Consultation.Clinic, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                VerticalContentAlignment="Center">
+                                SelectedItem="{Binding SelectedClinic, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                VerticalContentAlignment="Center"
+                                IsEnabled="{Binding IsClinicsEnabled}">
 
                             <ComboBox.Resources>
                                 <!--Selected color when the ComboBox is focused-->
@@ -121,7 +123,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                                 <!--selected text-->
                                 <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="{StaticResource HighlightTextBrushKeyColor}" />
 
-                                <DataTemplate DataType="{x:Type entities:Clinic}">
+                                <DataTemplate DataType="{x:Type getAllClinics:Clinic}">
                                     <StackPanel
                                             Orientation="Horizontal"
                                             Margin="8 4 8 4">

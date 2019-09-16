@@ -26,6 +26,7 @@ using DustInTheWind.MedicX.Application.GetCurrentProjectStatus;
 using DustInTheWind.MedicX.Application.LoadProject;
 using DustInTheWind.MedicX.Application.SaveProject;
 using DustInTheWind.MedicX.Application.SetCurrentItem;
+using DustInTheWind.MedicX.Application.UpdateConsultationClinic;
 using DustInTheWind.MedicX.RequestBusModel;
 
 namespace DustInTheWind.MedicX.Application
@@ -46,6 +47,7 @@ namespace DustInTheWind.MedicX.Application
             requestBus.Register<AddNewClinicRequest, AddNewClinicRequestHandler>();
             requestBus.Register<AddNewInvestigationRequest, AddNewInvestigationRequestHandler>();
             requestBus.Register<AddNewConsultationRequest, AddNewConsultationRequestHandler>();
+            requestBus.Register<UpdateConsultationSetClinicRequest, UpdateConsultationSetClinicRequestHandler>();
         }
     }
 }

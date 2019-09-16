@@ -21,15 +21,12 @@ using System.ComponentModel;
 using System.Linq;
 using System.Windows.Data;
 using System.Windows.Threading;
-using DustInTheWind.MedicX.Application.GetAllClinics;
 using DustInTheWind.MedicX.Application.SetCurrentItem;
-using DustInTheWind.MedicX.Domain.Collections;
 using DustInTheWind.MedicX.Domain.Entities;
 using DustInTheWind.MedicX.RequestBusModel;
 using EventBusModel;
 using MedicX.Wpf.UI.Areas.Clinics.Commands;
 using MedicX.Wpf.UI.Areas.Main.Commands;
-using Clinic = DustInTheWind.MedicX.Domain.Entities.Clinic;
 
 namespace MedicX.Wpf.UI.Areas.Clinics.ViewModels
 {
@@ -126,7 +123,7 @@ namespace MedicX.Wpf.UI.Areas.Clinics.ViewModels
 
         private void HandleClinicNameChanged(object sender, EventArgs e)
         {
-            Clinics.Refresh();
+            dispatcher.InvokeAsync(() => Clinics.Refresh());
         }
 
         private void HandleNewClinicAdded(Clinic newClinic)

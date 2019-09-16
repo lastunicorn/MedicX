@@ -9,5 +9,7 @@ namespace DustInTheWind.MedicX.Application.GetAllClinics
         public Address Address { get; set; }
         public string Program { get; set; }
         public string Comments { get; set; }
+
+        public static Clinic Empty { get; } = new Clinic { Id = Guid.Empty };
     }
 }
