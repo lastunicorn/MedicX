@@ -17,7 +17,6 @@
 using System;
 using System.Collections.Generic;
 using DustInTheWind.MedicX.Application.SetCurrentItem;
-using DustInTheWind.MedicX.Domain.Entities;
 using DustInTheWind.MedicX.RequestBusModel;
 using EventBusModel;
 using MedicX.Wpf.UI.Areas.Clinics.ViewModels;
@@ -30,7 +29,6 @@ namespace MedicX.Wpf.UI.Areas.Main.ViewModels
     {
         private readonly RequestBus requestBus;
         private readonly EventAggregator eventAggregator;
-        private readonly MedicXProject medicXProject;
 
         private TabItemViewModel selectedTab;
 
@@ -51,14 +49,13 @@ namespace MedicX.Wpf.UI.Areas.Main.ViewModels
             }
         }
 
-        public SelectionViewModel(RequestBus requestBus, EventAggregator eventAggregator, MedicXProject medicXProject)
+        public SelectionViewModel(RequestBus requestBus, EventAggregator eventAggregator)
         {
             this.requestBus = requestBus ?? throw new ArgumentNullException(nameof(requestBus));
             this.eventAggregator = eventAggregator ?? throw new ArgumentNullException(nameof(eventAggregator));
-            this.medicXProject = medicXProject ?? throw new ArgumentNullException(nameof(medicXProject));
 
             Tabs = CreateTabs();
-            SelectedTab = Tabs[2];
+            SelectedTab = Tabs[0];
         }
 
         private List<TabItemViewModel> CreateTabs()
@@ -68,18 +65,18 @@ namespace MedicX.Wpf.UI.Areas.Main.ViewModels
                 new TabItemViewModel
                 {
                     Header = "Medics",
-                    Content = new MedicsTabViewModel(requestBus, eventAggregator, medicXProject)
+                    Content = new MedicsTabViewModel(requestBus, eventAggregator)
                 },
-                new TabItemViewModel
-                {
-                    Header = "Clinics",
-                    Content = new ClinicsTabViewModel(requestBus, eventAggregator, medicXProject)
-                },
-                new TabItemViewModel
-                {
-                    Header = "Medical Events",
-                    Content = new MedicalEventsTabViewModel(requestBus, eventAggregator, medicXProject)
-                }
+                //new TabItemViewModel
+                //{
+                //    Header = "Clinics",
+                //    Content = new ClinicsTabViewModel(requestBus, eventAggregator, medicXProject)
+                //},
+                //new TabItemViewModel
+                //{
+                //    Header = "Medical Events",
+                //    Content = new MedicalEventsTabViewModel(requestBus, eventAggregator, medicXProject)
+                //}
             };
         }
 
@@ -90,7 +87,7 @@ namespace MedicX.Wpf.UI.Areas.Main.ViewModels
                 NewCurrentItem = CalculateNewCurrentItem()
             };
 
-            requestBus.ProcessRequest(request);
+            requestBus.ProcessRequest(request).ConfigureAwait(false);
         }
 
         private object CalculateNewCurrentItem()

@@ -19,8 +19,10 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Windows.Threading;
+using DustInTheWind.MedicX.Application.GetAllMedics;
 using DustInTheWind.MedicX.Application.SetCurrentItem;
 using DustInTheWind.MedicX.Domain.Entities;
 using DustInTheWind.MedicX.RequestBusModel;
@@ -38,7 +40,7 @@ namespace MedicX.Wpf.UI.Areas.Medics.ViewModels
         private string searchText;
         private readonly Dispatcher dispatcher;
 
-        public ICollectionView Medics { get; }
+        public ICollectionView Medics => medicsSource.View;
 
         public MedicItemViewModel SelectedMedic
         {
@@ -91,11 +93,10 @@ namespace MedicX.Wpf.UI.Areas.Medics.ViewModels
         public AddMedicCommand AddMedicCommand { get; }
         public RelayCommand ClearSearchTextCommand { get; }
 
-        public MedicsTabViewModel(RequestBus requestBus, EventAggregator eventAggregator, MedicXProject medicXProject)
+        public MedicsTabViewModel(RequestBus requestBus, EventAggregator eventAggregator)
         {
             this.requestBus = requestBus ?? throw new ArgumentNullException(nameof(requestBus));
             if (eventAggregator == null) throw new ArgumentNullException(nameof(eventAggregator));
-            if (medicXProject == null) throw new ArgumentNullException(nameof(medicXProject));
 
             AddMedicCommand = new AddMedicCommand(requestBus);
             ClearSearchTextCommand = new RelayCommand(() => { SearchText = string.Empty; });
@@ -104,22 +105,30 @@ namespace MedicX.Wpf.UI.Areas.Medics.ViewModels
 
             medicsSource = new CollectionViewSource
             {
-                Source = new ObservableCollection<MedicItemViewModel>(medicXProject.Medics
-                    .Select(x =>
-                    {
-                        x.NameChanged += HandleMedicNameChanged;
-                        return new MedicItemViewModel(x);
-                    })
-                    .ToList())
+                Source = new ObservableCollection<MedicItemViewModel>()
             };
-            Medics = medicsSource.View;
-            Medics.SortDescriptions.Add(new SortDescription("Name", ListSortDirection.Ascending));
+            Medics.SortDescriptions.Add(new SortDescription(nameof(MedicItemViewModel.Name), ListSortDirection.Ascending));
 
             eventAggregator["CurrentItemChanged"].Subscribe(new Action<object>(HandleCurrentItemChanged));
             eventAggregator["NewMedicAdded"].Subscribe(new Action<Medic>(HandleNewMedicAdded));
+            eventAggregator["MedicNameChanged"].Subscribe(new Action<Medic>(HandleMedicNameChanged));
+
+            requestBus.ProcessRequest<GetAllMedicsRequest, List<Medic>>(new GetAllMedicsRequest())
+                .ContinueWith(t =>
+                {
+                    if (medicsSource.Source is ObservableCollection<MedicItemViewModel> medics)
+                    {
+                        foreach (Medic medic in t.Result)
+                        {
+                            MedicItemViewModel viewModel = new MedicItemViewModel(medic);
+                            medics.Add(viewModel);
+                        }
+                    }
+                }, TaskContinuationOptions.ExecuteSynchronously)
+                .ConfigureAwait(true);
         }
 
-        private void HandleMedicNameChanged(object sender, EventArgs e)
+        private void HandleMedicNameChanged(Medic medic)
         {
             Medics.Refresh();
         }
@@ -128,7 +137,6 @@ namespace MedicX.Wpf.UI.Areas.Medics.ViewModels
         {
             if (medicsSource.Source is ObservableCollection<MedicItemViewModel> medics)
             {
-                newMedic.NameChanged += HandleMedicNameChanged;
                 MedicItemViewModel medicItemViewModel = new MedicItemViewModel(newMedic);
                 medics.Add(medicItemViewModel);
             }
@@ -140,8 +148,8 @@ namespace MedicX.Wpf.UI.Areas.Medics.ViewModels
             {
                 if (currentItem is Medic medic)
                 {
-                    if (medicsSource.Source is IEnumerable<MedicItemViewModel> medicsViewModels)
-                        SelectedMedic = medicsViewModels.FirstOrDefault(x => x.Medic == medic);
+                    if (medicsSource.Source is ObservableCollection<MedicItemViewModel> medics)
+                        SelectedMedic = medics.FirstOrDefault(x => x.Medic == medic);
                 }
             });
         }

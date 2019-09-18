@@ -50,7 +50,7 @@ namespace MedicX.Wpf.UI.Areas.Main.ViewModels
             this.requestBus = requestBus ?? throw new ArgumentNullException(nameof(requestBus));
             if (eventAggregator == null) throw new ArgumentNullException(nameof(eventAggregator));
 
-            //SelectionViewModel = new SelectionViewModel(requestBus, eventAggregator, medicXProject);
+            SelectionViewModel = new SelectionViewModel(requestBus, eventAggregator);
             DetailsViewModel = new DetailsViewModel(requestBus, eventAggregator);
 
             SaveCommand = new SaveCommand(requestBus);

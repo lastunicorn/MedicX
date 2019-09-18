@@ -71,7 +71,23 @@ namespace DustInTheWind.MedicX.Application
                 this.connectionString = connectionString;
 
                 CurrentProject = medicXProject;
+                foreach (Medic medic in medicXProject.Medics)
+                {
+                    medic.NameChanged += HandleMedicNameChanged;
+                }
+                medicXProject.Medics.Added += HandleMedicAdded;
             }
+        }
+
+        private void HandleMedicAdded(object sender, MedicAddedEventArgs e)
+        {
+            e.Medic.NameChanged += HandleMedicNameChanged;
+        }
+
+        private void HandleMedicNameChanged(object sender, EventArgs e)
+        {
+            if (sender is Medic medic)
+                eventAggregator["MedicNameChanged"].Raise(medic);
         }
 
         private void HandleStatusChanged(object sender, EventArgs e)
