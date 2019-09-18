@@ -20,7 +20,7 @@ using System.Linq;
 using DustInTheWind.MedicX.Domain.Entities;
 using MedicDto = DustInTheWind.MedicX.Application.GetAllMedics.Medic;
 
-namespace MedicX.Wpf.UI.Areas.Medics.ViewModels
+namespace DustInTheWind.MedicX.Wpf.UI.Areas.Medics.ViewModels
 {
     internal class MedicDetailsViewModel : ViewModelBase
     {
@@ -77,7 +77,7 @@ namespace MedicX.Wpf.UI.Areas.Medics.ViewModels
                     return;
 
                 specializations = value;
-                medic.Specializations = specializations;
+                //medic.Specializations = specializations;
 
                 OnPropertyChanged();
             }

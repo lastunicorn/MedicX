@@ -17,13 +17,13 @@
 using System;
 using DustInTheWind.MedicX.Domain.Entities;
 using DustInTheWind.MedicX.RequestBusModel;
+using DustInTheWind.MedicX.Wpf.UI.Areas.Clinics.ViewModels;
+using DustInTheWind.MedicX.Wpf.UI.Areas.MedicalEvents.ViewModels;
+using DustInTheWind.MedicX.Wpf.UI.Areas.Medics.ViewModels;
 using EventBusModel;
-using MedicX.Wpf.UI.Areas.Clinics.ViewModels;
-using MedicX.Wpf.UI.Areas.MedicalEvents.ViewModels;
-using MedicX.Wpf.UI.Areas.Medics.ViewModels;
 using MedicDto = DustInTheWind.MedicX.Application.GetAllMedics.Medic;
 
-namespace MedicX.Wpf.UI.Areas.Main.ViewModels
+namespace DustInTheWind.MedicX.Wpf.UI.Areas.Main.ViewModels
 {
     public class DetailsViewModel : ViewModelBase
     {

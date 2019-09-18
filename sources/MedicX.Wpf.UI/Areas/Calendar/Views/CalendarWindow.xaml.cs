@@ -16,7 +16,7 @@
 
 using System.Windows;
 
-namespace MedicX.Wpf.UI.Areas.Calendar.Views
+namespace DustInTheWind.MedicX.Wpf.UI.Areas.Calendar.Views
 {
     /// <summary>
     /// Interaction logic for CalendarWindow.xaml

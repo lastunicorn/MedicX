@@ -19,7 +19,7 @@ using System.Windows.Input;
 using DustInTheWind.MedicX.Application.AddNewInvestigation;
 using DustInTheWind.MedicX.RequestBusModel;
 
-namespace MedicX.Wpf.UI.Areas.MedicalEvents.Commands
+namespace DustInTheWind.MedicX.Wpf.UI.Areas.MedicalEvents.Commands
 {
     internal class AddInvestigationCommand : ICommand
     {

@@ -19,7 +19,7 @@ using System.Diagnostics;
 using System.Reflection;
 using DustInTheWind.MedicX.Domain.Entities;
 
-namespace MedicX.Wpf.UI.Areas.Main.ViewModels
+namespace DustInTheWind.MedicX.Wpf.UI.Areas.Main.ViewModels
 {
     public class MainWindowTitle
     {

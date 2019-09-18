@@ -20,7 +20,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using DustInTheWind.MedicX.Domain.Entities;
 
-namespace MedicX.Wpf.UI.Areas.Calendar.ViewModels
+namespace DustInTheWind.MedicX.Wpf.UI.Areas.Calendar.ViewModels
 {
     internal class CalendarViewModel : ViewModelBase
     {

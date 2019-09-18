@@ -16,7 +16,7 @@
 
 using System.Windows.Controls;
 
-namespace MedicX.Wpf.UI.Areas.MedicalEvents.Views
+namespace DustInTheWind.MedicX.Wpf.UI.Areas.MedicalEvents.Views
 {
     /// <summary>
     /// Interaction logic for MedicalEventsTabView.xaml

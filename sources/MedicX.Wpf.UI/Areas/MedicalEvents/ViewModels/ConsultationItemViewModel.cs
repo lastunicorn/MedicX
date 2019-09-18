@@ -16,9 +16,9 @@
 
 using System;
 using DustInTheWind.MedicX.Domain.Entities;
-using MedicX.Wpf.UI.Areas.Main.ViewModels;
+using DustInTheWind.MedicX.Wpf.UI.Areas.Main.ViewModels;
 
-namespace MedicX.Wpf.UI.Areas.MedicalEvents.ViewModels
+namespace DustInTheWind.MedicX.Wpf.UI.Areas.MedicalEvents.ViewModels
 {
     internal class ConsultationItemViewModel : ListItemViewModel<Consultation>
     {

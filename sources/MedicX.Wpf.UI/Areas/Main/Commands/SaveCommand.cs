@@ -21,7 +21,7 @@ using DustInTheWind.MedicX.Application.SaveProject;
 using DustInTheWind.MedicX.Domain.Entities;
 using DustInTheWind.MedicX.RequestBusModel;
 
-namespace MedicX.Wpf.UI.Areas.Main.Commands
+namespace DustInTheWind.MedicX.Wpf.UI.Areas.Main.Commands
 {
     public class SaveCommand : ICommand
     {

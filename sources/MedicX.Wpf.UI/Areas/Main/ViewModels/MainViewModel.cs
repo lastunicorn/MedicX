@@ -18,10 +18,10 @@ using System;
 using DustInTheWind.MedicX.Application.GetCurrentProject;
 using DustInTheWind.MedicX.Domain.Entities;
 using DustInTheWind.MedicX.RequestBusModel;
+using DustInTheWind.MedicX.Wpf.UI.Areas.Main.Commands;
 using EventBusModel;
-using MedicX.Wpf.UI.Areas.Main.Commands;
 
-namespace MedicX.Wpf.UI.Areas.Main.ViewModels
+namespace DustInTheWind.MedicX.Wpf.UI.Areas.Main.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {

@@ -18,7 +18,7 @@ using System;
 using System.Windows;
 using DustInTheWind.MedicX.Application.ExitApplication;
 
-namespace MedicX.Wpf.UI.Areas.Main.Commands
+namespace DustInTheWind.MedicX.Wpf.UI.Areas.Main.Commands
 {
     public class SaveConfirmationQuestion : ISaveConfirmationQuestion
     {

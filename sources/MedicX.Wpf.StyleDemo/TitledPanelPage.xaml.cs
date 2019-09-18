@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace MedicX.StyleDemo
+namespace DustInTheWind.MedicX.StyleDemo
 {
     /// <summary>
     /// Interaction logic for TitledPanelPage.xaml

@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-namespace MedicX.Wpf.UI.Areas.Main.ViewModels
+namespace DustInTheWind.MedicX.Wpf.UI.Areas.Main.ViewModels
 {
     internal class ListItemViewModel<T> : ViewModelBase
     {

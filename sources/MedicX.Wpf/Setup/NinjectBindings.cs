@@ -19,8 +19,8 @@ using DustInTheWind.MedicX.Application.ExitApplication;
 using DustInTheWind.MedicX.Domain.DataAccess;
 using DustInTheWind.MedicX.Persistence;
 using DustInTheWind.MedicX.RequestBusModel;
+using DustInTheWind.MedicX.Wpf.UI.Areas.Main.Commands;
 using EventBusModel;
-using MedicX.Wpf.UI.Areas.Main.Commands;
 using Ninject.Modules;
 
 namespace DustInTheWind.MedicX.Wpf.Setup

@@ -16,7 +16,7 @@
 
 using System.Windows.Controls;
 
-namespace MedicX.Wpf.UI.Areas.Medics.Views
+namespace DustInTheWind.MedicX.Wpf.UI.Areas.Medics.Views
 {
     /// <summary>
     /// Interaction logic for MedicDetailsView.xaml

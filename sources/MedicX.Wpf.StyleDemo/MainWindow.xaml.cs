@@ -16,7 +16,7 @@
 
 using System.Windows;
 
-namespace MedicX.StyleDemo
+namespace DustInTheWind.MedicX.StyleDemo
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

@@ -16,7 +16,7 @@
 
 using System.Windows;
 
-namespace MedicX.Wpf.UI.Areas.Main.Views
+namespace DustInTheWind.MedicX.Wpf.UI.Areas.Main.Views
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

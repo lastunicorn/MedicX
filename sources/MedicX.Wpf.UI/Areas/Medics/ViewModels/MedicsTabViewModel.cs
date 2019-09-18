@@ -25,11 +25,11 @@ using System.Windows.Threading;
 using DustInTheWind.MedicX.Application.GetAllMedics;
 using DustInTheWind.MedicX.Application.SetMedicAsCurrent;
 using DustInTheWind.MedicX.RequestBusModel;
+using DustInTheWind.MedicX.Wpf.UI.Areas.Main.Commands;
+using DustInTheWind.MedicX.Wpf.UI.Areas.Medics.Commands;
 using EventBusModel;
-using MedicX.Wpf.UI.Areas.Main.Commands;
-using MedicX.Wpf.UI.Areas.Medics.Commands;
 
-namespace MedicX.Wpf.UI.Areas.Medics.ViewModels
+namespace DustInTheWind.MedicX.Wpf.UI.Areas.Medics.ViewModels
 {
     internal class MedicsTabViewModel : ViewModelBase
     {

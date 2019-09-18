@@ -21,12 +21,12 @@ using DustInTheWind.MedicX.Application.GetAllMedics;
 using DustInTheWind.MedicX.Application.GetCurrentItem;
 using DustInTheWind.MedicX.Application.SetCurrentItem;
 using DustInTheWind.MedicX.RequestBusModel;
+using DustInTheWind.MedicX.Wpf.UI.Areas.Clinics.ViewModels;
+using DustInTheWind.MedicX.Wpf.UI.Areas.MedicalEvents.ViewModels;
+using DustInTheWind.MedicX.Wpf.UI.Areas.Medics.ViewModels;
 using EventBusModel;
-using MedicX.Wpf.UI.Areas.Clinics.ViewModels;
-using MedicX.Wpf.UI.Areas.MedicalEvents.ViewModels;
-using MedicX.Wpf.UI.Areas.Medics.ViewModels;
 
-namespace MedicX.Wpf.UI.Areas.Main.ViewModels
+namespace DustInTheWind.MedicX.Wpf.UI.Areas.Main.ViewModels
 {
     public class TabSelectionViewModel : ViewModelBase
     {

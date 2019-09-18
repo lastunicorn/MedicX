@@ -20,7 +20,7 @@ using System.Linq;
 using DustInTheWind.MedicX.Domain.Entities;
 using EventBusModel;
 
-namespace MedicX.Wpf.UI.Areas.Clinics.ViewModels
+namespace DustInTheWind.MedicX.Wpf.UI.Areas.Clinics.ViewModels
 {
     internal class ClinicDetailsViewModel : ViewModelBase
     {

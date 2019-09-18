@@ -17,7 +17,7 @@
 using System;
 using DustInTheWind.MedicX.Domain.Entities;
 
-namespace MedicX.Wpf.UI.Areas.Clinics.ViewModels
+namespace DustInTheWind.MedicX.Wpf.UI.Areas.Clinics.ViewModels
 {
     internal class ClinicItemViewModel : ViewModelBase
     {

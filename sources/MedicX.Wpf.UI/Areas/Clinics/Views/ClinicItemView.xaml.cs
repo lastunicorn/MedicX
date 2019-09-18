@@ -16,7 +16,7 @@
 
 using System.Windows.Controls;
 
-namespace MedicX.Wpf.UI.Areas.Clinics.Views
+namespace DustInTheWind.MedicX.Wpf.UI.Areas.Clinics.Views
 {
     /// <summary>
     /// Interaction logic for ClinicItemView.xaml

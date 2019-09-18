@@ -22,7 +22,7 @@ using System.Linq;
 using System.Windows.Data;
 using DustInTheWind.MedicX.Domain.Entities;
 
-namespace MedicX.Wpf.UI.Converters
+namespace DustInTheWind.MedicX.Wpf.UI.Converters
 {
     internal class PrescriptionListToMultilineStringConverter : IValueConverter
     {

@@ -17,14 +17,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 
 <Window
-    x:Class="MedicX.StyleDemo.MainWindow"
+    x:Class="DustInTheWind.MedicX.StyleDemo.MainWindow"
 
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:styleDemo="clr-namespace:MedicX.StyleDemo"
     xmlns:customControls="clr-namespace:DustInTheWind.MedicX.Wpf.CustomControls;assembly=DustInTheWind.MedicX.Wpf.CustomControls"
+    xmlns:styleDemo="clr-namespace:DustInTheWind.MedicX.StyleDemo"
 
     mc:Ignorable="d"
     Title="MainWindow"

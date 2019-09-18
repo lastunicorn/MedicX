@@ -16,9 +16,9 @@
 
 using System;
 using System.Windows.Data;
-using MedicX.Wpf.UI.Areas.MedicalEvents.ViewModels;
+using DustInTheWind.MedicX.Wpf.UI.Areas.MedicalEvents.ViewModels;
 
-namespace MedicX.Wpf.UI
+namespace DustInTheWind.MedicX.Wpf.UI
 {
     public class MedicalEventTypeConverter : IValueConverter
     {

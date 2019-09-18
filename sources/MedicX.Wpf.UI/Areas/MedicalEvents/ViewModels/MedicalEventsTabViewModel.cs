@@ -23,11 +23,11 @@ using System.Windows.Data;
 using System.Windows.Threading;
 using DustInTheWind.MedicX.Domain.Entities;
 using DustInTheWind.MedicX.RequestBusModel;
+using DustInTheWind.MedicX.Wpf.UI.Areas.Main.Commands;
+using DustInTheWind.MedicX.Wpf.UI.Areas.MedicalEvents.Commands;
 using EventBusModel;
-using MedicX.Wpf.UI.Areas.Main.Commands;
-using MedicX.Wpf.UI.Areas.MedicalEvents.Commands;
 
-namespace MedicX.Wpf.UI.Areas.MedicalEvents.ViewModels
+namespace DustInTheWind.MedicX.Wpf.UI.Areas.MedicalEvents.ViewModels
 {
     internal class MedicalEventsTabViewModel : ViewModelBase
     {

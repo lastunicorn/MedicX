@@ -20,7 +20,7 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Windows.Data;
 
-namespace MedicX.Wpf.UI.Converters
+namespace DustInTheWind.MedicX.Wpf.UI.Converters
 {
     internal class StringListToMultilineStringConverter : IValueConverter
     {

@@ -19,7 +19,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DustInTheWind.MedicX.Application.GetAllMedics;
 
-namespace MedicX.Wpf.UI.Areas.Medics.ViewModels
+namespace DustInTheWind.MedicX.Wpf.UI.Areas.Medics.ViewModels
 {
     internal class MedicItemViewModel : ViewModelBase
     {

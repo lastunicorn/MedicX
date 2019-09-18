@@ -18,7 +18,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace MedicX.Wpf.UI
+namespace DustInTheWind.MedicX.Wpf.UI
 {
     public static class AsyncUtil
     {

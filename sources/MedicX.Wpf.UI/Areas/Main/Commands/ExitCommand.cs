@@ -19,7 +19,7 @@ using System.Windows.Input;
 using DustInTheWind.MedicX.Application.ExitApplication;
 using DustInTheWind.MedicX.RequestBusModel;
 
-namespace MedicX.Wpf.UI.Areas.Main.Commands
+namespace DustInTheWind.MedicX.Wpf.UI.Areas.Main.Commands
 {
     public class ExitCommand : ICommand
     {

@@ -17,7 +17,7 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace MedicX.Wpf.UI
+namespace DustInTheWind.MedicX.Wpf.UI
 {
     public abstract class ViewModelBase : INotifyPropertyChanged
     {

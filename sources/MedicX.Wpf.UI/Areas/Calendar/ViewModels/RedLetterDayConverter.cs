@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Windows.Data;
 
-namespace MedicX.Wpf.UI.Areas.Calendar.ViewModels
+namespace DustInTheWind.MedicX.Wpf.UI.Areas.Calendar.ViewModels
 {
     public class RedLetterDayConverter : IValueConverter
     {

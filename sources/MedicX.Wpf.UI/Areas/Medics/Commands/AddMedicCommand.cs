@@ -20,7 +20,7 @@ using System.Windows.Input;
 using DustInTheWind.MedicX.Application.AddNewMedic;
 using DustInTheWind.MedicX.RequestBusModel;
 
-namespace MedicX.Wpf.UI.Areas.Medics.Commands
+namespace DustInTheWind.MedicX.Wpf.UI.Areas.Medics.Commands
 {
     internal class AddMedicCommand : ICommand
     {
