@@ -90,9 +90,9 @@ namespace MedicX.Wpf.UI.Areas.Clinics.ViewModels
         public AddClinicCommand AddClinicCommand { get; }
         public RelayCommand ClearSearchTextCommand { get; }
 
-        public ClinicsTabViewModel(RequestBus requestBus, EventBus eventBus, MedicXProject medicXProject)
+        public ClinicsTabViewModel(RequestBus requestBus, EventAggregator eventAggregator, MedicXProject medicXProject)
         {
-            if (eventBus == null) throw new ArgumentNullException(nameof(eventBus));
+            if (eventAggregator == null) throw new ArgumentNullException(nameof(eventAggregator));
             this.requestBus = requestBus ?? throw new ArgumentNullException(nameof(requestBus));
             if (medicXProject == null) throw new ArgumentNullException(nameof(medicXProject));
 
@@ -117,8 +117,8 @@ namespace MedicX.Wpf.UI.Areas.Clinics.ViewModels
             Clinics = clinicsSource.View;
             Clinics.SortDescriptions.Add(new SortDescription("Name", ListSortDirection.Ascending));
 
-            eventBus["CurrentItemChanged"].Subscribe(new Action<object>(HandleCurrentItemChanged));
-            eventBus["NewClinicAdded"].Subscribe(new Action<Clinic>(HandleNewClinicAdded));
+            eventAggregator["CurrentItemChanged"].Subscribe(new Action<object>(HandleCurrentItemChanged));
+            eventAggregator["NewClinicAdded"].Subscribe(new Action<Clinic>(HandleNewClinicAdded));
         }
 
         private void HandleClinicNameChanged(object sender, EventArgs e)

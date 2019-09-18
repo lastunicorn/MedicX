@@ -107,14 +107,14 @@ namespace MedicX.Wpf.UI.Areas.Clinics.ViewModels
             }
         }
 
-        public ClinicDetailsViewModel(Clinic clinic, EventBus eventBus)
+        public ClinicDetailsViewModel(Clinic clinic, EventAggregator eventAggregator)
         {
-            if (eventBus == null) throw new ArgumentNullException(nameof(eventBus));
+            if (eventAggregator == null) throw new ArgumentNullException(nameof(eventAggregator));
             this.clinic = clinic ?? throw new ArgumentNullException(nameof(clinic));
 
             UpdateDisplayedData();
 
-            eventBus["CurrentItemChanged"].Subscribe(new Action<object>(HandleCurrentItemChanged));
+            eventAggregator["CurrentItemChanged"].Subscribe(new Action<object>(HandleCurrentItemChanged));
         }
 
         private void HandleCurrentItemChanged(object currentItem)

@@ -93,9 +93,9 @@ namespace MedicX.Wpf.UI.Areas.MedicalEvents.ViewModels
         public AddInvestigationCommand AddInvestigationCommand { get; }
         public RelayCommand ClearSearchTextCommand { get; }
 
-        public MedicalEventsTabViewModel(RequestBus requestBus, EventBus eventBus, MedicXProject medicXProject)
+        public MedicalEventsTabViewModel(RequestBus requestBus, EventAggregator eventAggregator, MedicXProject medicXProject)
         {
-            if (eventBus == null) throw new ArgumentNullException(nameof(eventBus));
+            if (eventAggregator == null) throw new ArgumentNullException(nameof(eventAggregator));
             this.medicXProject = medicXProject ?? throw new ArgumentNullException(nameof(medicXProject));
 
             AddConsultationCommand = new AddConsultationCommand(requestBus);
@@ -128,8 +128,8 @@ namespace MedicX.Wpf.UI.Areas.MedicalEvents.ViewModels
             MedicalEvents = medicalEventsSource.View;
             MedicalEvents.SortDescriptions.Add(new SortDescription("Date", ListSortDirection.Descending));
 
-            eventBus["CurrentItemChanged"].Subscribe(new Action<object>(HandleCurrentItemChanged));
-            eventBus["NewMedicalEventAdded"].Subscribe(new Action<MedicalEvent>(HandleNewMedicalEventAdded));
+            eventAggregator["CurrentItemChanged"].Subscribe(new Action<object>(HandleCurrentItemChanged));
+            eventAggregator["NewMedicalEventAdded"].Subscribe(new Action<MedicalEvent>(HandleNewMedicalEventAdded));
         }
 
         private void HandleNewMedicalEventAdded(MedicalEvent newMedicalEvent)

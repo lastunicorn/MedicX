@@ -24,13 +24,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:views="clr-namespace:MedicX.Wpf.UI.Areas.Main.Views"
+    xmlns:viewModels="clr-namespace:MedicX.Wpf.UI.Areas.Main.ViewModels"
 
     mc:Ignorable="d"
     Title="{Binding Title}"
     Height="720"
     Width="1280"
     ResizeMode="CanResizeWithGrip"
-    d:DataContext="{d:DesignInstance viewModels1:MainViewModel}"
+    d:DataContext="{d:DesignInstance viewModels:MainViewModel}"
     WindowStartupLocation="CenterScreen"
     Style="{StaticResource WindowStyle}">
 

@@ -50,6 +50,7 @@
     <Compile Include="Areas\Clinics\Views\ClinicItemView.xaml.cs">
       <DependentUpon>ClinicItemView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Areas\Main\ViewModels\MainWindowTitle.cs" />
     <Compile Include="Areas\Medics\Views\MedicItemView.xaml.cs">
       <DependentUpon>MedicItemView.xaml</DependentUpon>
     </Compile>

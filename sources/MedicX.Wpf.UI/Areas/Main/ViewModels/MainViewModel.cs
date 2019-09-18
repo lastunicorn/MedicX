@@ -15,8 +15,6 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using System.Diagnostics;
-using System.Reflection;
 using DustInTheWind.MedicX.Application.GetCurrentProject;
 using DustInTheWind.MedicX.Domain.Entities;
 using DustInTheWind.MedicX.RequestBusModel;
@@ -27,10 +25,10 @@ namespace MedicX.Wpf.UI.Areas.Main.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
-        private string title;
-        private readonly MedicXProject medicXProject;
+        private readonly RequestBus requestBus;
+        private MainWindowTitle title;
 
-        public string Title
+        public MainWindowTitle Title
         {
             get => title;
             set
@@ -47,65 +45,41 @@ namespace MedicX.Wpf.UI.Areas.Main.ViewModels
         public SaveCommand SaveCommand { get; }
         public ExitCommand ExitCommand { get; }
 
-        public MainViewModel(RequestBus requestBus, EventBus eventBus)
+        public MainViewModel(RequestBus requestBus, EventAggregator eventAggregator)
         {
-            if (eventBus == null) throw new ArgumentNullException(nameof(eventBus));
+            this.requestBus = requestBus ?? throw new ArgumentNullException(nameof(requestBus));
+            if (eventAggregator == null) throw new ArgumentNullException(nameof(eventAggregator));
 
-            medicXProject = AsyncUtil.RunSync(() =>
-            {
-                GetCurrentProjectRequest request = new GetCurrentProjectRequest();
-                return requestBus.ProcessRequest<GetCurrentProjectRequest, MedicXProject>(request);
-            });
-
-            SelectionViewModel = new SelectionViewModel(requestBus, eventBus, medicXProject);
-            DetailsViewModel = new DetailsViewModel(requestBus, eventBus);
+            //SelectionViewModel = new SelectionViewModel(requestBus, eventAggregator, medicXProject);
+            DetailsViewModel = new DetailsViewModel(requestBus, eventAggregator);
 
             SaveCommand = new SaveCommand(requestBus);
             ExitCommand = new ExitCommand(requestBus);
 
-            medicXProject.StatusChanged += HandleProjectStatusChanged;
+            eventAggregator["StatusChanged"].Subscribe(new Action<ProjectStatus>(HandleProjectStatusChanged));
+            Title = new MainWindowTitle();
             UpdateWindowTitle();
         }
 
-        private void HandleProjectStatusChanged(object sender, EventArgs e)
+        private void HandleProjectStatusChanged(ProjectStatus newProjectStatus)
         {
-            UpdateWindowTitle();
+            Title = new MainWindowTitle(newProjectStatus);
         }
 
         private void UpdateWindowTitle()
         {
-            string name = BuildName();
+            GetCurrentProjectRequest request = new GetCurrentProjectRequest();
 
-            Title = medicXProject.Status == ProjectStatus.Saved
-                ? name
-                : name + " *";
-        }
-
-        private static string BuildName()
-        {
-            Assembly assembly = Assembly.GetExecutingAssembly();
-
-            AssemblyInformationalVersionAttribute attribute = assembly.GetCustomAttribute(typeof(AssemblyInformationalVersionAttribute)) as AssemblyInformationalVersionAttribute;
-
-            string version;
-            if (attribute == null)
-            {
-                AssemblyName assemblyName = assembly.GetName();
-
-                version = assemblyName.Version.Build == 0
-                    ? assemblyName.Version.ToString(2)
-                    : assemblyName.Version.ToString(3);
-            }
-            else
-            {
-                version = attribute.InformationalVersion;
-            }
-
-            FileVersionInfo fileVersionInfo = FileVersionInfo.GetVersionInfo(assembly.Location);
-
-            string productName = fileVersionInfo.ProductName;
-
-            return $"{productName} {version}";
+            requestBus.ProcessRequest<GetCurrentProjectRequest, MedicXProject>(request)
+                .ContinueWith(t =>
+                {
+                    if (t.Exception == null)
+                        Title = new MainWindowTitle(t.Result.Status);
+                    else
+                    {
+                        // todo: Display an error message
+                    }
+                });
         }
     }
 }

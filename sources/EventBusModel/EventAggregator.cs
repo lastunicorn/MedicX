@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace EventBusModel
 {
-    public class EventBus
+    public class EventAggregator
     {
         private readonly List<Event> events = new List<Event>();
 

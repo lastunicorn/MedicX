@@ -29,7 +29,7 @@ namespace MedicX.Wpf.UI.Areas.Main.ViewModels
     public class SelectionViewModel : ViewModelBase
     {
         private readonly RequestBus requestBus;
-        private readonly EventBus eventBus;
+        private readonly EventAggregator eventAggregator;
         private readonly MedicXProject medicXProject;
 
         private TabItemViewModel selectedTab;
@@ -51,10 +51,10 @@ namespace MedicX.Wpf.UI.Areas.Main.ViewModels
             }
         }
 
-        public SelectionViewModel(RequestBus requestBus, EventBus eventBus, MedicXProject medicXProject)
+        public SelectionViewModel(RequestBus requestBus, EventAggregator eventAggregator, MedicXProject medicXProject)
         {
             this.requestBus = requestBus ?? throw new ArgumentNullException(nameof(requestBus));
-            this.eventBus = eventBus ?? throw new ArgumentNullException(nameof(eventBus));
+            this.eventAggregator = eventAggregator ?? throw new ArgumentNullException(nameof(eventAggregator));
             this.medicXProject = medicXProject ?? throw new ArgumentNullException(nameof(medicXProject));
 
             Tabs = CreateTabs();
@@ -68,17 +68,17 @@ namespace MedicX.Wpf.UI.Areas.Main.ViewModels
                 new TabItemViewModel
                 {
                     Header = "Medics",
-                    Content = new MedicsTabViewModel(requestBus, eventBus, medicXProject)
+                    Content = new MedicsTabViewModel(requestBus, eventAggregator, medicXProject)
                 },
                 new TabItemViewModel
                 {
                     Header = "Clinics",
-                    Content = new ClinicsTabViewModel(requestBus, eventBus, medicXProject)
+                    Content = new ClinicsTabViewModel(requestBus, eventAggregator, medicXProject)
                 },
                 new TabItemViewModel
                 {
                     Header = "Medical Events",
-                    Content = new MedicalEventsTabViewModel(requestBus, eventBus, medicXProject)
+                    Content = new MedicalEventsTabViewModel(requestBus, eventAggregator, medicXProject)
                 }
             };
         }

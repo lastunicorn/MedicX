@@ -27,7 +27,7 @@ namespace MedicX.Wpf.UI.Areas.Main.ViewModels
     public class DetailsViewModel : ViewModelBase
     {
         private readonly RequestBus requestBus;
-        private readonly EventBus eventBus;
+        private readonly EventAggregator eventAggregator;
         private object item;
         private bool isNoItemPanelVisible;
 
@@ -54,13 +54,13 @@ namespace MedicX.Wpf.UI.Areas.Main.ViewModels
             }
         }
         
-        public DetailsViewModel(RequestBus requestBus, EventBus eventBus)
+        public DetailsViewModel(RequestBus requestBus, EventAggregator eventAggregator)
         {
             this.requestBus = requestBus ?? throw new ArgumentNullException(nameof(requestBus));
-            this.eventBus = eventBus ?? throw new ArgumentNullException(nameof(eventBus));
+            this.eventAggregator = eventAggregator ?? throw new ArgumentNullException(nameof(eventAggregator));
 
             isNoItemPanelVisible = true;
-            eventBus["CurrentItemChanged"].Subscribe(new Action<object>(HandleCurrentItemChanged));
+            eventAggregator["CurrentItemChanged"].Subscribe(new Action<object>(HandleCurrentItemChanged));
         }
 
         private void HandleCurrentItemChanged(object currentItem)
@@ -80,7 +80,7 @@ namespace MedicX.Wpf.UI.Areas.Main.ViewModels
                     break;
 
                 case Clinic clinic:
-                    Item = new ClinicDetailsViewModel(clinic, eventBus);
+                    Item = new ClinicDetailsViewModel(clinic, eventAggregator);
                     break;
 
                 default:

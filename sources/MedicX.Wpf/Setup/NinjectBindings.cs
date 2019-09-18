@@ -30,7 +30,7 @@ namespace DustInTheWind.MedicX.Wpf.Setup
         public override void Load()
         {
             Bind<RequestBus>().ToSelf().InSingletonScope();
-            Bind<EventBus>().ToSelf().InSingletonScope();
+            Bind<EventAggregator>().ToSelf().InSingletonScope();
             Bind<IRequestHandlerFactory>().To<NinjectRequestHandlerFactory>();
             Bind<MedicXApplication>().ToSelf().InSingletonScope();
             Bind<ISaveConfirmationQuestion>().To<SaveConfirmationQuestion>();
