@@ -16,6 +16,9 @@
 
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using DustInTheWind.MedicX.Application.GetAllMedics;
+using DustInTheWind.MedicX.Application.GetCurrentItem;
 using DustInTheWind.MedicX.Application.SetCurrentItem;
 using DustInTheWind.MedicX.RequestBusModel;
 using EventBusModel;
@@ -25,12 +28,13 @@ using MedicX.Wpf.UI.Areas.Medics.ViewModels;
 
 namespace MedicX.Wpf.UI.Areas.Main.ViewModels
 {
-    public class SelectionViewModel : ViewModelBase
+    public class TabSelectionViewModel : ViewModelBase
     {
         private readonly RequestBus requestBus;
         private readonly EventAggregator eventAggregator;
 
         private TabItemViewModel selectedTab;
+        private bool areTabsEnabled;
 
         public List<TabItemViewModel> Tabs { get; }
 
@@ -49,13 +53,60 @@ namespace MedicX.Wpf.UI.Areas.Main.ViewModels
             }
         }
 
-        public SelectionViewModel(RequestBus requestBus, EventAggregator eventAggregator)
+        public bool AreTabsEnabled
+        {
+            get => areTabsEnabled;
+            set
+            {
+                areTabsEnabled = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public TabSelectionViewModel(RequestBus requestBus, EventAggregator eventAggregator)
         {
             this.requestBus = requestBus ?? throw new ArgumentNullException(nameof(requestBus));
             this.eventAggregator = eventAggregator ?? throw new ArgumentNullException(nameof(eventAggregator));
 
             Tabs = CreateTabs();
-            SelectedTab = Tabs[0];
+            UpdateSelectedTab();
+
+            eventAggregator["CurrentItemChanged"].Subscribe(new Action<object>(HandleCurrentItemChanged));
+        }
+
+        private void HandleCurrentItemChanged(object newCurrentItem)
+        {
+            switch (newCurrentItem)
+            {
+                case Medic _:
+                    SelectedTab = Tabs[0];
+                    break;
+            }
+        }
+
+        private void UpdateSelectedTab()
+        {
+            AreTabsEnabled = false;
+
+            GetCurrentItemRequest request = new GetCurrentItemRequest();
+
+            requestBus.ProcessRequest<GetCurrentItemRequest, object>(request)
+                .ContinueWith(t =>
+                {
+                    switch (t.Result)
+                    {
+                        case Medic _:
+                            SelectedTab = Tabs[0];
+                            break;
+
+                        default:
+                            SelectedTab = Tabs[0];
+                            break;
+                    }
+
+                    AreTabsEnabled = true;
+                }, TaskContinuationOptions.ExecuteSynchronously)
+                .ConfigureAwait(true);
         }
 
         private List<TabItemViewModel> CreateTabs()
@@ -67,11 +118,11 @@ namespace MedicX.Wpf.UI.Areas.Main.ViewModels
                     Header = "Medics",
                     Content = new MedicsTabViewModel(requestBus, eventAggregator)
                 },
-                //new TabItemViewModel
-                //{
-                //    Header = "Clinics",
-                //    Content = new ClinicsTabViewModel(requestBus, eventAggregator, medicXProject)
-                //},
+                new TabItemViewModel
+                {
+                    Header = "Clinics",
+                    Content = new ClinicsTabViewModel(requestBus, eventAggregator)
+                },
                 //new TabItemViewModel
                 //{
                 //    Header = "Medical Events",
@@ -87,7 +138,8 @@ namespace MedicX.Wpf.UI.Areas.Main.ViewModels
                 NewCurrentItem = CalculateNewCurrentItem()
             };
 
-            requestBus.ProcessRequest(request).ConfigureAwait(false);
+            requestBus.ProcessRequest(request)
+                .ConfigureAwait(false);
         }
 
         private object CalculateNewCurrentItem()

@@ -64,7 +64,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
         <ListView
             ItemsSource="{Binding Medics}"
-            SelectedItem="{Binding SelectedMedic}">
+            SelectedItem="{Binding SelectedMedic}"
+            IsEnabled="{Binding IsMedicsListEnabled}">
 
             <ListView.Resources>
                 <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="{StaticResource HighlightBrushKeyColor}" />

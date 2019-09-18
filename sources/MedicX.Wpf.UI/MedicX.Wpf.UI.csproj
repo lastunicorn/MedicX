@@ -84,7 +84,7 @@
     <Compile Include="Areas\Main\ViewModels\DetailsViewModel.cs" />
     <Compile Include="Areas\Main\ViewModels\ListItemViewModel.cs" />
     <Compile Include="Areas\Main\ViewModels\MainViewModel.cs" />
-    <Compile Include="Areas\Main\ViewModels\SelectionViewModel.cs" />
+    <Compile Include="Areas\Main\ViewModels\TabSelectionViewModel.cs" />
     <Compile Include="Areas\Main\ViewModels\TabItemViewModel.cs" />
     <Compile Include="Areas\Main\Views\DetailsControl.xaml.cs">
       <DependentUpon>DetailsControl.xaml</DependentUpon>
@@ -92,8 +92,8 @@
     <Compile Include="Areas\Main\Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Areas\Main\Views\SelectionControl.xaml.cs">
-      <DependentUpon>SelectionControl.xaml</DependentUpon>
+    <Compile Include="Areas\Main\Views\TabSelectionControl.xaml.cs">
+      <DependentUpon>TabSelectionControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Areas\MedicalEvents\Commands\AddConsultationCommand.cs" />
     <Compile Include="Areas\MedicalEvents\Commands\AddInvestigationCommand.cs" />
@@ -175,7 +175,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Areas\Main\Views\SelectionControl.xaml">
+    <Page Include="Areas\Main\Views\TabSelectionControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

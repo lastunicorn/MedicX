@@ -18,12 +18,13 @@ using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using DustInTheWind.MedicX.Domain.Entities;
+using MedicDto = DustInTheWind.MedicX.Application.GetAllMedics.Medic;
 
 namespace MedicX.Wpf.UI.Areas.Medics.ViewModels
 {
     internal class MedicDetailsViewModel : ViewModelBase
     {
-        private readonly Medic medic;
+        private readonly MedicDto medic;
 
         private PersonName name;
         private string comments;
@@ -82,22 +83,22 @@ namespace MedicX.Wpf.UI.Areas.Medics.ViewModels
             }
         }
 
-        public MedicDetailsViewModel(Medic medic)
+        public MedicDetailsViewModel(MedicDto medic)
         {
             this.medic = medic ?? throw new ArgumentNullException(nameof(medic));
 
             name = medic.Name;
             comments = medic.Comments;
-            isCommentsChanged = medic.IsCommentsChanged;
-            specializations = medic.Specializations;
+            //isCommentsChanged = medic.IsCommentsChanged;
+            specializations = new ObservableCollection<string>(medic.Specializations);
 
-            medic.Changed += HandleMedicChanged;
-            medic.Name.Changed += HandleNameChanged;
+            //medic.Changed += HandleMedicChanged;
+            //medic.Name.Changed += HandleNameChanged;
         }
 
         private void HandleMedicChanged(object sender, EventArgs eventArgs)
         {
-            IsCommentsChanged = medic.IsCommentsChanged;
+            //IsCommentsChanged = medic.IsCommentsChanged;
         }
 
         private void HandleNameChanged(object sender, EventArgs eventArgs)

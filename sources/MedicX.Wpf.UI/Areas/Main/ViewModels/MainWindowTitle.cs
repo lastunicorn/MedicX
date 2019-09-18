@@ -14,6 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+using System;
 using System.Diagnostics;
 using System.Reflection;
 using DustInTheWind.MedicX.Domain.Entities;
@@ -47,27 +48,30 @@ namespace MedicX.Wpf.UI.Areas.Main.ViewModels
         {
             Assembly assembly = Assembly.GetExecutingAssembly();
 
-            AssemblyInformationalVersionAttribute attribute = assembly.GetCustomAttribute(typeof(AssemblyInformationalVersionAttribute)) as AssemblyInformationalVersionAttribute;
-
-            string version;
-            if (attribute == null)
-            {
-                AssemblyName assemblyName = assembly.GetName();
-
-                version = assemblyName.Version.Build == 0
-                    ? assemblyName.Version.ToString(2)
-                    : assemblyName.Version.ToString(3);
-            }
-            else
-            {
-                version = attribute.InformationalVersion;
-            }
-
-            FileVersionInfo fileVersionInfo = FileVersionInfo.GetVersionInfo(assembly.Location);
-
-            string productName = fileVersionInfo.ProductName;
+            string productName = GetProductName(assembly);
+            string version = GetVersion(assembly);
 
             return $"{productName} {version}";
+        }
+
+        private static string GetProductName(Assembly assembly)
+        {
+            FileVersionInfo fileVersionInfo = FileVersionInfo.GetVersionInfo(assembly.Location);
+            return fileVersionInfo.ProductName;
+        }
+
+        private static string GetVersion(Assembly assembly)
+        {
+            Attribute customAttribute = assembly.GetCustomAttribute(typeof(AssemblyInformationalVersionAttribute));
+
+            if (customAttribute is AssemblyInformationalVersionAttribute informationalVersionAttribute)
+                return informationalVersionAttribute.InformationalVersion;
+
+            AssemblyName assemblyName = assembly.GetName();
+
+            return assemblyName.Version.Build == 0
+                ? assemblyName.Version.ToString(2)
+                : assemblyName.Version.ToString(3);
         }
 
         public override string ToString()

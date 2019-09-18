@@ -14,9 +14,18 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-namespace DustInTheWind.MedicX.Application.GetAllClinics
+using System.Windows.Controls;
+
+namespace MedicX.Wpf.UI.Areas.Main.Views
 {
-    public class GetAllClinicsRequest
+    /// <summary>
+    /// Interaction logic for TabSelectionControl.xaml
+    /// </summary>
+    internal partial class TabSelectionControl : UserControl
     {
+        public TabSelectionControl()
+        {
+            InitializeComponent();
+        }
     }
 }

@@ -23,8 +23,7 @@ using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Windows.Threading;
 using DustInTheWind.MedicX.Application.GetAllMedics;
-using DustInTheWind.MedicX.Application.SetCurrentItem;
-using DustInTheWind.MedicX.Domain.Entities;
+using DustInTheWind.MedicX.Application.SetMedicAsCurrent;
 using DustInTheWind.MedicX.RequestBusModel;
 using EventBusModel;
 using MedicX.Wpf.UI.Areas.Main.Commands;
@@ -39,6 +38,7 @@ namespace MedicX.Wpf.UI.Areas.Medics.ViewModels
         private readonly CollectionViewSource medicsSource;
         private string searchText;
         private readonly Dispatcher dispatcher;
+        private bool isMedicsListEnabled;
 
         public ICollectionView Medics => medicsSource.View;
 
@@ -59,12 +59,22 @@ namespace MedicX.Wpf.UI.Areas.Medics.ViewModels
 
         private void SetCurrentItem(Medic medic)
         {
-            SetCurrentItemRequest request = new SetCurrentItemRequest
+            IsMedicsListEnabled = false;
+
+            SetMedicAsCurrentRequest request = new SetMedicAsCurrentRequest
             {
                 NewCurrentItem = medic
             };
 
-            AsyncUtil.RunSync(() => requestBus.ProcessRequest(request));
+            requestBus.ProcessRequest(request)
+                .ContinueWith(t =>
+                {
+                    if (t.Exception != null)
+                        SelectedMedic = null;
+
+                    IsMedicsListEnabled = true;
+                }, TaskContinuationOptions.ExecuteSynchronously)
+                .ConfigureAwait(true);
         }
 
         public string SearchText
@@ -93,6 +103,16 @@ namespace MedicX.Wpf.UI.Areas.Medics.ViewModels
         public AddMedicCommand AddMedicCommand { get; }
         public RelayCommand ClearSearchTextCommand { get; }
 
+        public bool IsMedicsListEnabled
+        {
+            get => isMedicsListEnabled;
+            set
+            {
+                isMedicsListEnabled = value;
+                OnPropertyChanged();
+            }
+        }
+
         public MedicsTabViewModel(RequestBus requestBus, EventAggregator eventAggregator)
         {
             this.requestBus = requestBus ?? throw new ArgumentNullException(nameof(requestBus));
@@ -112,17 +132,34 @@ namespace MedicX.Wpf.UI.Areas.Medics.ViewModels
             eventAggregator["CurrentItemChanged"].Subscribe(new Action<object>(HandleCurrentItemChanged));
             eventAggregator["NewMedicAdded"].Subscribe(new Action<Medic>(HandleNewMedicAdded));
             eventAggregator["MedicNameChanged"].Subscribe(new Action<Medic>(HandleMedicNameChanged));
+            eventAggregator["MedicSpecializationsChanged"].Subscribe(new Action<Medic>(HandleMedicSpecializationsChanged));
+
+            UpdateListOfMedics();
+        }
+
+        private void UpdateListOfMedics()
+        {
+            IsMedicsListEnabled = false;
 
             requestBus.ProcessRequest<GetAllMedicsRequest, List<Medic>>(new GetAllMedicsRequest())
                 .ContinueWith(t =>
                 {
-                    if (medicsSource.Source is ObservableCollection<MedicItemViewModel> medics)
+                    if (t.Exception == null)
                     {
-                        foreach (Medic medic in t.Result)
+                        if (medicsSource.Source is ObservableCollection<MedicItemViewModel> medics)
                         {
-                            MedicItemViewModel viewModel = new MedicItemViewModel(medic);
-                            medics.Add(viewModel);
+                            foreach (Medic medic in t.Result)
+                            {
+                                MedicItemViewModel viewModel = new MedicItemViewModel(medic);
+                                medics.Add(viewModel);
+                            }
                         }
+
+                        IsMedicsListEnabled = true;
+                    }
+                    else
+                    {
+                        // todo: display an error message
                     }
                 }, TaskContinuationOptions.ExecuteSynchronously)
                 .ConfigureAwait(true);
@@ -130,7 +167,30 @@ namespace MedicX.Wpf.UI.Areas.Medics.ViewModels
 
         private void HandleMedicNameChanged(Medic medic)
         {
-            Medics.Refresh();
+            if (medicsSource.Source is ObservableCollection<MedicItemViewModel> medics)
+            {
+                MedicItemViewModel viewModel = medics.FirstOrDefault(x => x.Medic.Id == medic.Id);
+
+                if (viewModel != null)
+                {
+                    viewModel.UpdateFrom(medic);
+                    Medics.Refresh();
+                }
+            }
+        }
+
+        private void HandleMedicSpecializationsChanged(Medic medic)
+        {
+            if (medicsSource.Source is ObservableCollection<MedicItemViewModel> medics)
+            {
+                MedicItemViewModel viewModel = medics.FirstOrDefault(x => x.Medic.Id == medic.Id);
+
+                if (viewModel != null)
+                {
+                    viewModel.UpdateFrom(medic);
+                    Medics.Refresh();
+                }
+            }
         }
 
         private void HandleNewMedicAdded(Medic newMedic)
@@ -149,7 +209,7 @@ namespace MedicX.Wpf.UI.Areas.Medics.ViewModels
                 if (currentItem is Medic medic)
                 {
                     if (medicsSource.Source is ObservableCollection<MedicItemViewModel> medics)
-                        SelectedMedic = medics.FirstOrDefault(x => x.Medic == medic);
+                        SelectedMedic = medics.FirstOrDefault(x => x.Medic.Id == medic.Id);
                 }
             });
         }

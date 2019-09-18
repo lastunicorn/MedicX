@@ -62,6 +62,9 @@
     <Compile Include="ExitApplication\ISaveConfirmationQuestion.cs" />
     <Compile Include="GetAllClinics\GetAllClinicsRequestHandler.cs" />
     <Compile Include="GetAllMedics\GetAllMedicsRequestHandler.cs" />
+    <Compile Include="GetAllMedics\Medic.cs" />
+    <Compile Include="GetCurrentItem\GetCurrentItemRequest.cs" />
+    <Compile Include="GetCurrentItem\GetCurrentItemRequestHandler.cs" />
     <Compile Include="GetCurrentProject\GetCurrentProjectRequest.cs" />
     <Compile Include="GetCurrentProjectStatus\GetCurrentProjectStatusRequest.cs" />
     <Compile Include="GetCurrentProjectStatus\GetCurrentProjectStatusRequestHandler.cs" />
@@ -76,6 +79,8 @@
     <Compile Include="SaveProject\SaveProjectRequestHandler.cs" />
     <Compile Include="SetCurrentItem\SetCurrentItemRequest.cs" />
     <Compile Include="SetCurrentItem\SetCurrentItemRequestHandler.cs" />
+    <Compile Include="SetMedicAsCurrent\SetMedicAsCurrentRequest.cs" />
+    <Compile Include="SetMedicAsCurrent\SetMedicAsCurrentRequestHandler.cs" />
     <Compile Include="UpdateConsultationClinic\UpdateConsultationSetClinicRequest.cs" />
     <Compile Include="UpdateConsultationClinic\UpdateConsultationSetClinicRequestHandler.cs" />
   </ItemGroup>

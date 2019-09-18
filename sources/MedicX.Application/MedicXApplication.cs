@@ -3,6 +3,7 @@ using DustInTheWind.MedicX.Domain.Collections;
 using DustInTheWind.MedicX.Domain.DataAccess;
 using DustInTheWind.MedicX.Domain.Entities;
 using EventBusModel;
+using MedicDto = DustInTheWind.MedicX.Application.GetAllMedics.Medic;
 
 namespace DustInTheWind.MedicX.Application
 {
@@ -44,7 +45,8 @@ namespace DustInTheWind.MedicX.Application
 
         private void HandleNewMedicAdded(object sender, MedicAddedEventArgs e)
         {
-            eventAggregator["NewMedicAdded"].Raise(e.Medic);
+            MedicDto medic = new MedicDto(e.Medic);
+            eventAggregator["NewMedicAdded"].Raise(medic);
         }
 
         private void HandleNewClinicAdded(object sender, ClinicAddedEventArgs e)
@@ -74,7 +76,9 @@ namespace DustInTheWind.MedicX.Application
                 foreach (Medic medic in medicXProject.Medics)
                 {
                     medic.NameChanged += HandleMedicNameChanged;
+                    medic.SpecializationsChanged += HandleMedicSpecializationsChanged;
                 }
+
                 medicXProject.Medics.Added += HandleMedicAdded;
             }
         }
@@ -82,12 +86,25 @@ namespace DustInTheWind.MedicX.Application
         private void HandleMedicAdded(object sender, MedicAddedEventArgs e)
         {
             e.Medic.NameChanged += HandleMedicNameChanged;
+            e.Medic.SpecializationsChanged += HandleMedicSpecializationsChanged;
         }
 
         private void HandleMedicNameChanged(object sender, EventArgs e)
         {
             if (sender is Medic medic)
-                eventAggregator["MedicNameChanged"].Raise(medic);
+            {
+                MedicDto medicDto = new MedicDto(medic);
+                eventAggregator["MedicNameChanged"].Raise(medicDto);
+            }
+        }
+
+        private void HandleMedicSpecializationsChanged(object sender, EventArgs e)
+        {
+            if (sender is Medic medic)
+            {
+                MedicDto medicDto = new MedicDto(medic);
+                eventAggregator["MedicSpecializationsChanged"].Raise(medicDto);
+            }
         }
 
         private void HandleStatusChanged(object sender, EventArgs e)
@@ -97,7 +114,17 @@ namespace DustInTheWind.MedicX.Application
 
         private void HandleCurrentItemChanged(object sender, EventArgs e)
         {
-            eventAggregator["CurrentItemChanged"].Raise(CurrentProject.CurrentItem);
+            switch (CurrentProject.CurrentItem)
+            {
+                case Medic medic:
+                    eventAggregator["CurrentItemChanged"].Raise(new MedicDto(medic));
+                    break;
+
+                default:
+                    eventAggregator["CurrentItemChanged"].Raise(CurrentProject.CurrentItem);
+                    break;
+            }
+
         }
 
         public void UnloadProject()

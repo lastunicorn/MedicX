@@ -15,30 +15,31 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DustInTheWind.MedicX.Domain.Entities;
 using DustInTheWind.MedicX.RequestBusModel;
-using MedicDto = DustInTheWind.MedicX.Application.GetAllMedics.Medic;
 
-namespace DustInTheWind.MedicX.Application.GetAllMedics
+namespace DustInTheWind.MedicX.Application.SetMedicAsCurrent
 {
-    internal class GetAllMedicsRequestHandler : IRequestHandler<GetAllMedicsRequest, List<Medic>>
+    public class SetMedicAsCurrentRequestHandler : IRequestHandler<SetMedicAsCurrentRequest>
     {
         private readonly MedicXApplication medicXApplication;
 
-        public GetAllMedicsRequestHandler(MedicXApplication medicXApplication)
+        public SetMedicAsCurrentRequestHandler(MedicXApplication medicXApplication)
         {
             this.medicXApplication = medicXApplication ?? throw new ArgumentNullException(nameof(medicXApplication));
         }
 
-        public Task<List<Medic>> Handle(GetAllMedicsRequest request)
+        public Task Handle(SetMedicAsCurrentRequest request)
         {
-            List<Medic> medics = medicXApplication.CurrentProject?.Medics
-                .Select(x => new MedicDto(x))
-                .ToList();
-
-            return Task.FromResult(medics ?? new List<Medic>());
+            return Task.Run(() =>
+            {
+                MedicXProject currentProject = medicXApplication.CurrentProject;
+                currentProject.CurrentItem = request.NewCurrentItem == null
+                    ? null
+                    : currentProject.Medics.FirstOrDefault(x => x.Id == request.NewCurrentItem.Id);
+            });
         }
     }
 }

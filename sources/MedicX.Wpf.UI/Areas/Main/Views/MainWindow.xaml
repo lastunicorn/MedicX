@@ -58,9 +58,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 <ColumnDefinition Width="8*" />
             </Grid.ColumnDefinitions>
 
-            <views:SelectionControl
+            <views:TabSelectionControl
                 Grid.Column="0"
-                DataContext="{Binding SelectionViewModel}" />
+                DataContext="{Binding TabSelectionViewModel}" />
 
             <GridSplitter
                 Grid.Column="1"

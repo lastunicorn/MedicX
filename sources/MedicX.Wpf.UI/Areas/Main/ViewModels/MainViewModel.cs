@@ -38,7 +38,7 @@ namespace MedicX.Wpf.UI.Areas.Main.ViewModels
             }
         }
 
-        public SelectionViewModel SelectionViewModel { get; }
+        public TabSelectionViewModel TabSelectionViewModel { get; }
 
         public DetailsViewModel DetailsViewModel { get; }
 
@@ -50,7 +50,7 @@ namespace MedicX.Wpf.UI.Areas.Main.ViewModels
             this.requestBus = requestBus ?? throw new ArgumentNullException(nameof(requestBus));
             if (eventAggregator == null) throw new ArgumentNullException(nameof(eventAggregator));
 
-            SelectionViewModel = new SelectionViewModel(requestBus, eventAggregator);
+            TabSelectionViewModel = new TabSelectionViewModel(requestBus, eventAggregator);
             DetailsViewModel = new DetailsViewModel(requestBus, eventAggregator);
 
             SaveCommand = new SaveCommand(requestBus);

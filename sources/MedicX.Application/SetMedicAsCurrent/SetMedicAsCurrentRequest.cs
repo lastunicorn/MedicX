@@ -14,18 +14,12 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using System.Windows.Controls;
+using Medic = DustInTheWind.MedicX.Application.GetAllMedics.Medic;
 
-namespace MedicX.Wpf.UI.Areas.Main.Views
+namespace DustInTheWind.MedicX.Application.SetMedicAsCurrent
 {
-    /// <summary>
-    /// Interaction logic for SelectionControl.xaml
-    /// </summary>
-    internal partial class SelectionControl : UserControl
+    public class SetMedicAsCurrentRequest
     {
-        public SelectionControl()
-        {
-            InitializeComponent();
-        }
+        public Medic NewCurrentItem { get; set; }
     }
 }

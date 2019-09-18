@@ -17,7 +17,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using DustInTheWind.MedicX.Domain.Entities;
+using DustInTheWind.MedicX.Application.GetAllMedics;
 
 namespace MedicX.Wpf.UI.Areas.Medics.ViewModels
 {
@@ -26,7 +26,7 @@ namespace MedicX.Wpf.UI.Areas.Medics.ViewModels
         private string name;
         private List<string> specializations;
 
-        public Medic Medic { get; }
+        public Medic Medic { get; set; }
 
         public string Name
         {
@@ -50,24 +50,24 @@ namespace MedicX.Wpf.UI.Areas.Medics.ViewModels
 
         public MedicItemViewModel(Medic medic)
         {
-            this.Medic = medic ?? throw new ArgumentNullException(nameof(medic));
+            Medic = medic ?? throw new ArgumentNullException(nameof(medic));
 
             UpdateDisplayedName();
             UpdateDisplayedSpecializations();
 
-            medic.NameChanged += HandleMedicNameChanged;
-            medic.SpecializationsChanged += HandleSpecializationsChanged;
+            //medic.NameChanged += HandleMedicNameChanged;
+            //medic.SpecializationsChanged += HandleSpecializationsChanged;
         }
 
-        private void HandleMedicNameChanged(object sender, EventArgs e)
-        {
-            UpdateDisplayedName();
-        }
+        //private void HandleMedicNameChanged(object sender, EventArgs e)
+        //{
+        //    UpdateDisplayedName();
+        //}
 
-        private void HandleSpecializationsChanged(object sender, EventArgs e)
-        {
-            UpdateDisplayedSpecializations();
-        }
+        //private void HandleSpecializationsChanged(object sender, EventArgs e)
+        //{
+        //    UpdateDisplayedSpecializations();
+        //}
 
         private void UpdateDisplayedName()
         {
@@ -81,6 +81,14 @@ namespace MedicX.Wpf.UI.Areas.Medics.ViewModels
         private void UpdateDisplayedSpecializations()
         {
             Specializations = Medic.Specializations.ToList();
+        }
+
+        public void UpdateFrom(Medic medic)
+        {
+            Medic = medic ?? throw new ArgumentNullException(nameof(medic));
+
+            UpdateDisplayedName();
+            UpdateDisplayedSpecializations();
         }
     }
 }

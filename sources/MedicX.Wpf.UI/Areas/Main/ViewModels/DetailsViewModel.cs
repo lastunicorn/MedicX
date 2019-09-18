@@ -21,6 +21,7 @@ using EventBusModel;
 using MedicX.Wpf.UI.Areas.Clinics.ViewModels;
 using MedicX.Wpf.UI.Areas.MedicalEvents.ViewModels;
 using MedicX.Wpf.UI.Areas.Medics.ViewModels;
+using MedicDto = DustInTheWind.MedicX.Application.GetAllMedics.Medic;
 
 namespace MedicX.Wpf.UI.Areas.Main.ViewModels
 {
@@ -75,7 +76,7 @@ namespace MedicX.Wpf.UI.Areas.Main.ViewModels
                     Item = new InvestigationDetailsViewModel(investigation, requestBus);
                     break;
 
-                case Medic medic:
+                case MedicDto medic:
                     Item = new MedicDetailsViewModel(medic);
                     break;
 

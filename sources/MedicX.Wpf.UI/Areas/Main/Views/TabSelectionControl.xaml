@@ -17,7 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 
 <UserControl
-    x:Class="MedicX.Wpf.UI.Areas.Main.Views.SelectionControl"
+    x:Class="MedicX.Wpf.UI.Areas.Main.Views.TabSelectionControl"
     x:ClassModifier="internal"
 
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -35,12 +35,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="300"
-    d:DataContext="{d:DesignInstance viewModels:SelectionViewModel}">
+    d:DataContext="{d:DesignInstance viewModels:TabSelectionViewModel}">
 
     <TabControl
         ItemsSource="{Binding Tabs}"
         SelectedItem="{Binding SelectedTab}"
-        Background="Transparent">
+        Background="Transparent"
+        IsEnabled="{Binding AreTabsEnabled}">
 
         <!--<TabControl.ItemTemplate>
             <DataTemplate DataType="{x:Type vewModels:TabItemViewModel}">

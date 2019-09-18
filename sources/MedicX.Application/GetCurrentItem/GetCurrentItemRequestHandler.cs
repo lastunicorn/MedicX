@@ -14,9 +14,25 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-namespace DustInTheWind.MedicX.Application.GetAllClinics
+using System;
+using System.Threading.Tasks;
+using DustInTheWind.MedicX.RequestBusModel;
+
+namespace DustInTheWind.MedicX.Application.GetCurrentItem
 {
-    public class GetAllClinicsRequest
+    public class GetCurrentItemRequestHandler : IRequestHandler<GetCurrentItemRequest, object>
     {
+        private readonly MedicXApplication application;
+
+        public GetCurrentItemRequestHandler(MedicXApplication application)
+        {
+            this.application = application ?? throw new ArgumentNullException(nameof(application));
+        }
+
+        public Task<object> Handle(GetCurrentItemRequest request)
+        {
+            object currentItem = application.CurrentProject?.CurrentItem;
+            return Task.FromResult(currentItem);
+        }
     }
 }

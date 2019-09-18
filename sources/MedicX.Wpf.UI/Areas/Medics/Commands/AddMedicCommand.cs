@@ -15,6 +15,7 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using DustInTheWind.MedicX.Application.AddNewMedic;
 using DustInTheWind.MedicX.RequestBusModel;
@@ -37,10 +38,18 @@ namespace MedicX.Wpf.UI.Areas.Medics.Commands
             return true;
         }
 
-        public async void Execute(object parameter)
+        public void Execute(object parameter)
         {
             AddNewMedicRequest request = new AddNewMedicRequest();
-            await requestBus.ProcessRequest(request);
+            requestBus.ProcessRequest(request)
+                .ContinueWith(t =>
+                {
+                    if (t.Exception != null)
+                    {
+                        // todo: display error message
+                    }
+                }, TaskContinuationOptions.ExecuteSynchronously)
+                .ConfigureAwait(true);
         }
     }
 }

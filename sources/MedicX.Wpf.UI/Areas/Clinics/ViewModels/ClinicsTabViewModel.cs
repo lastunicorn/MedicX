@@ -90,11 +90,10 @@ namespace MedicX.Wpf.UI.Areas.Clinics.ViewModels
         public AddClinicCommand AddClinicCommand { get; }
         public RelayCommand ClearSearchTextCommand { get; }
 
-        public ClinicsTabViewModel(RequestBus requestBus, EventAggregator eventAggregator, MedicXProject medicXProject)
+        public ClinicsTabViewModel(RequestBus requestBus, EventAggregator eventAggregator)
         {
             if (eventAggregator == null) throw new ArgumentNullException(nameof(eventAggregator));
             this.requestBus = requestBus ?? throw new ArgumentNullException(nameof(requestBus));
-            if (medicXProject == null) throw new ArgumentNullException(nameof(medicXProject));
 
             AddClinicCommand = new AddClinicCommand(requestBus);
             ClearSearchTextCommand = new RelayCommand(() => { SearchText = string.Empty; });
@@ -106,13 +105,14 @@ namespace MedicX.Wpf.UI.Areas.Clinics.ViewModels
 
             clinicsSource = new CollectionViewSource
             {
-                Source = new ObservableCollection<ClinicItemViewModel>(medicXProject.Clinics
-                    .Select(x =>
-                    {
-                        x.NameChanged += HandleClinicNameChanged;
-                        return new ClinicItemViewModel(x);
-                    })
-                    .ToList())
+                Source = new ObservableCollection<ClinicItemViewModel>()
+                //Source = new ObservableCollection<ClinicItemViewModel>(medicXProject.Clinics
+                //    .Select(x =>
+                //    {
+                //        x.NameChanged += HandleClinicNameChanged;
+                //        return new ClinicItemViewModel(x);
+                //    })
+                //    .ToList())
             };
             Clinics = clinicsSource.View;
             Clinics.SortDescriptions.Add(new SortDescription("Name", ListSortDirection.Ascending));
