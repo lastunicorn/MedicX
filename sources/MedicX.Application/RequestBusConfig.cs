@@ -24,6 +24,7 @@ using DustInTheWind.MedicX.Application.GetAllMedics;
 using DustInTheWind.MedicX.Application.GetCurrentItem;
 using DustInTheWind.MedicX.Application.GetCurrentProject;
 using DustInTheWind.MedicX.Application.GetCurrentProjectStatus;
+using DustInTheWind.MedicX.Application.InitializeMedicsTab;
 using DustInTheWind.MedicX.Application.LoadProject;
 using DustInTheWind.MedicX.Application.SaveProject;
 using DustInTheWind.MedicX.Application.SetCurrentItem;
@@ -52,6 +53,7 @@ namespace DustInTheWind.MedicX.Application
             requestBus.Register<UpdateConsultationSetClinicRequest, UpdateConsultationSetClinicRequestHandler>();
             requestBus.Register<GetCurrentItemRequest, GetCurrentItemRequestHandler>();
             requestBus.Register<SetMedicAsCurrentRequest, SetMedicAsCurrentRequestHandler>();
+            requestBus.Register<InitializeMedicsTabRequest, InitializeMedicsTabRequestHandler>();
         }
     }
 }
