@@ -36,12 +36,12 @@ namespace DustInTheWind.MedicX.Wpf.UI.Areas.Medics.ViewModels
     {
         private readonly RequestBus requestBus;
         private MedicItemViewModel selectedMedic;
-        private readonly CollectionViewSource medicsSource;
+        private readonly CollectionViewSource medicsViewSource;
         private string searchText;
         private readonly Dispatcher dispatcher;
         private bool isMedicsListEnabled;
 
-        public ICollectionView Medics => medicsSource.View;
+        public ICollectionView Medics => medicsViewSource.View;
 
         public MedicItemViewModel SelectedMedic
         {
@@ -124,7 +124,7 @@ namespace DustInTheWind.MedicX.Wpf.UI.Areas.Medics.ViewModels
 
             dispatcher = Dispatcher.CurrentDispatcher;
 
-            medicsSource = new CollectionViewSource
+            medicsViewSource = new CollectionViewSource
             {
                 Source = new ObservableCollection<MedicItemViewModel>()
             };
@@ -148,14 +148,22 @@ namespace DustInTheWind.MedicX.Wpf.UI.Areas.Medics.ViewModels
                 {
                     if (t.Exception == null)
                     {
-                        if (medicsSource.Source is ObservableCollection<MedicItemViewModel> medics)
+                        Medics.DeferRefresh();
+                        try
                         {
-                            medics.Clear();
+                            if (medicsViewSource.Source is ObservableCollection<MedicItemViewModel> medics)
+                            {
+                                medics.Clear();
 
-                            IEnumerable<MedicItemViewModel> viewModels = t.Result.Select(x => new MedicItemViewModel(x));
+                                IEnumerable<MedicItemViewModel> viewModels = t.Result.Select(x => new MedicItemViewModel(x));
 
-                            foreach (MedicItemViewModel viewModel in viewModels)
-                                medics.Add(viewModel);
+                                foreach (MedicItemViewModel viewModel in viewModels)
+                                    medics.Add(viewModel);
+                            }
+                        }
+                        finally
+                        {
+                            Medics.Refresh();
                         }
 
                         IsMedicsListEnabled = true;
@@ -170,7 +178,7 @@ namespace DustInTheWind.MedicX.Wpf.UI.Areas.Medics.ViewModels
 
         private void HandleMedicNameChanged(Medic medic)
         {
-            if (medicsSource.Source is ObservableCollection<MedicItemViewModel> medics)
+            if (medicsViewSource.Source is ObservableCollection<MedicItemViewModel> medics)
             {
                 MedicItemViewModel viewModel = medics.FirstOrDefault(x => x.Medic.Id == medic.Id);
 
@@ -184,7 +192,7 @@ namespace DustInTheWind.MedicX.Wpf.UI.Areas.Medics.ViewModels
 
         private void HandleMedicSpecializationsChanged(Medic medic)
         {
-            if (medicsSource.Source is ObservableCollection<MedicItemViewModel> medics)
+            if (medicsViewSource.Source is ObservableCollection<MedicItemViewModel> medics)
             {
                 MedicItemViewModel viewModel = medics.FirstOrDefault(x => x.Medic.Id == medic.Id);
 
@@ -198,7 +206,7 @@ namespace DustInTheWind.MedicX.Wpf.UI.Areas.Medics.ViewModels
 
         private void HandleNewMedicAdded(Medic newMedic)
         {
-            if (medicsSource.Source is ObservableCollection<MedicItemViewModel> medics)
+            if (medicsViewSource.Source is ObservableCollection<MedicItemViewModel> medics)
             {
                 MedicItemViewModel medicItemViewModel = new MedicItemViewModel(newMedic);
                 medics.Add(medicItemViewModel);
@@ -211,7 +219,7 @@ namespace DustInTheWind.MedicX.Wpf.UI.Areas.Medics.ViewModels
             {
                 if (currentItem is Medic medic)
                 {
-                    if (medicsSource.Source is ObservableCollection<MedicItemViewModel> medics)
+                    if (medicsViewSource.Source is ObservableCollection<MedicItemViewModel> medics)
                         SelectedMedic = medics.FirstOrDefault(x => x.Medic.Id == medic.Id);
                 }
             });
