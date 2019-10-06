@@ -62,6 +62,8 @@
     <Compile Include="ExitApplication\ISaveConfirmationQuestion.cs" />
     <Compile Include="GetAllClinics\GetAllClinicsRequestHandler.cs" />
     <Compile Include="GetAllMedics\GetAllMedicsRequestHandler.cs" />
+    <Compile Include="InitializeMedicsTab\InitializeMedicsTabRequest.cs" />
+    <Compile Include="InitializeMedicsTab\InitializeMedicsTabRequestHandler.cs" />
     <Compile Include="GetAllMedics\Medic.cs" />
     <Compile Include="GetCurrentItem\GetCurrentItemRequest.cs" />
     <Compile Include="GetCurrentItem\GetCurrentItemRequestHandler.cs" />
@@ -98,5 +100,6 @@
       <Name>MedicX.RequestBusModel</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

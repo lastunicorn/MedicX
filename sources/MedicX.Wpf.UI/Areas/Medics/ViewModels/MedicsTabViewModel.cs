@@ -23,6 +23,7 @@ using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Windows.Threading;
 using DustInTheWind.MedicX.Application.GetAllMedics;
+using DustInTheWind.MedicX.Application.InitializeMedicsTab;
 using DustInTheWind.MedicX.Application.SetMedicAsCurrent;
 using DustInTheWind.MedicX.RequestBusModel;
 using DustInTheWind.MedicX.Wpf.UI.Areas.Main.Commands;
@@ -141,18 +142,20 @@ namespace DustInTheWind.MedicX.Wpf.UI.Areas.Medics.ViewModels
         {
             IsMedicsListEnabled = false;
 
-            requestBus.ProcessRequest<GetAllMedicsRequest, List<Medic>>(new GetAllMedicsRequest())
+            InitializeMedicsTabRequest request = new InitializeMedicsTabRequest();
+            requestBus.ProcessRequest<InitializeMedicsTabRequest, List<Medic>>(request)
                 .ContinueWith(t =>
                 {
                     if (t.Exception == null)
                     {
                         if (medicsSource.Source is ObservableCollection<MedicItemViewModel> medics)
                         {
-                            foreach (Medic medic in t.Result)
-                            {
-                                MedicItemViewModel viewModel = new MedicItemViewModel(medic);
+                            medics.Clear();
+
+                            IEnumerable<MedicItemViewModel> viewModels = t.Result.Select(x => new MedicItemViewModel(x));
+
+                            foreach (MedicItemViewModel viewModel in viewModels)
                                 medics.Add(viewModel);
-                            }
                         }
 
                         IsMedicsListEnabled = true;

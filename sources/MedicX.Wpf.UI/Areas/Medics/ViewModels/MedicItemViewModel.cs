@@ -54,20 +54,7 @@ namespace DustInTheWind.MedicX.Wpf.UI.Areas.Medics.ViewModels
 
             UpdateDisplayedName();
             UpdateDisplayedSpecializations();
-
-            //medic.NameChanged += HandleMedicNameChanged;
-            //medic.SpecializationsChanged += HandleSpecializationsChanged;
         }
-
-        //private void HandleMedicNameChanged(object sender, EventArgs e)
-        //{
-        //    UpdateDisplayedName();
-        //}
-
-        //private void HandleSpecializationsChanged(object sender, EventArgs e)
-        //{
-        //    UpdateDisplayedSpecializations();
-        //}
 
         private void UpdateDisplayedName()
         {
