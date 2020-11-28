@@ -15,9 +15,7 @@ namespace DustInTheWind.MedicX.Cli.Controllers
 
         public DisplayClinicsController(UnitOfWork unitOfWork, string searchText = null)
         {
-            if (unitOfWork == null) throw new ArgumentNullException(nameof(unitOfWork));
-
-            this.unitOfWork = unitOfWork;
+            this.unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
             this.searchText = searchText;
         }
 

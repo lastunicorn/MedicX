@@ -22,17 +22,69 @@ using DustInTheWind.MedicX.Domain.DataAccess;
 
 namespace DustInTheWind.MedicX.Domain.Entities
 {
-    public class MedicXProject
+    public enum DataStatus
     {
-        private ProjectStatus status = ProjectStatus.New;
+        None,
+        New,
+        Saved,
+        Modified
+    }
 
-        private object currentItem;
+    public class MedicalData
+    {
+        private DataStatus status = DataStatus.New;
 
         public MedicsCollection Medics { get; } = new MedicsCollection();
 
         public ClinicsCollection Clinics { get; } = new ClinicsCollection();
 
         public MedicalEventCollection MedicalEvents { get; } = new MedicalEventCollection();
+
+        public DataStatus Status
+        {
+            get => status;
+            private set
+            {
+                status = value;
+                OnStatusChanged();
+            }
+        }
+
+        public event EventHandler StatusChanged;
+
+        public MedicalData()
+        {
+            Medics.Changed += HandleMedicsCollectionChanged;
+            Clinics.Changed += HandleClinicsCollectionChanged;
+            MedicalEvents.Changed += HandleMedicalEventsCollectionChanged;
+        }
+
+        private void HandleMedicsCollectionChanged(object sender, EventArgs e)
+        {
+            Status = DataStatus.Modified;
+        }
+
+        private void HandleClinicsCollectionChanged(object sender, EventArgs e)
+        {
+            Status = DataStatus.Modified;
+        }
+
+        private void HandleMedicalEventsCollectionChanged(object sender, EventArgs e)
+        {
+            Status = DataStatus.Modified;
+        }
+
+        protected virtual void OnStatusChanged()
+        {
+            StatusChanged?.Invoke(this, EventArgs.Empty);
+        }
+    }
+
+    public class MedicXProject
+    {
+        private ProjectStatus status = ProjectStatus.New;
+
+        private object currentItem;
 
         public object CurrentItem
         {

@@ -71,7 +71,7 @@ namespace DustInTheWind.MedicX.Cli.Controllers
             List<Consultation> consultations = consultationRepository.Search(searchText);
 
             if (consultations == null || consultations.Count == 0)
-                CustomConsole.WriteLineError("No consultations exist in the database contining the searched text.");
+                CustomConsole.WriteLineError("No consultations exist in the database containing the searched text.");
             else
                 DisplayConsultations(consultations);
         }
