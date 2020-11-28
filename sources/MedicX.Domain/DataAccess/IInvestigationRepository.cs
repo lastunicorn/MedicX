@@ -22,7 +22,9 @@ namespace DustInTheWind.MedicX.Domain.DataAccess
     public interface IInvestigationRepository
     {
         List<Investigation> GetAll();
+        
         List<Investigation> Search(string text);
+        
         void AddOrUpdate(Investigation investigation);
     }
 }

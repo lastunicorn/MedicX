@@ -21,21 +21,18 @@ using DustInTheWind.ConsoleTools;
 using DustInTheWind.ConsoleTools.InputControls;
 using DustInTheWind.MedicX.Domain.DataAccess;
 using DustInTheWind.MedicX.Domain.Entities;
-using DustInTheWind.MedicX.Persistence;
 
-namespace DustInTheWind.MedicX.Cli.Controllers
+namespace MedicX.Cli.Presentation.Commands
 {
-    internal class ConsultationsController : IController
+    internal class ConsultationsCommand : ICommand
     {
-        private readonly UnitOfWork unitOfWork;
-        private readonly string searchText;
+        private readonly IUnitOfWork unitOfWork;
         private readonly TextOutputControl textOutputControl;
         private readonly ListOutputControl listOutputControl;
 
-        public ConsultationsController(UnitOfWork unitOfWork, string searchText = null)
+        public ConsultationsCommand(IUnitOfWork unitOfWork)
         {
             this.unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
-            this.searchText = searchText;
 
             textOutputControl = new TextOutputControl();
             listOutputControl = new ListOutputControl
@@ -44,12 +41,22 @@ namespace DustInTheWind.MedicX.Cli.Controllers
             };
         }
 
-        public void Run()
+        public bool IsMatch(UserCommand command)
         {
-            if (string.IsNullOrEmpty(searchText))
-                DisplayAllConsultations();
+            return command.Name == "consult" || command.Name == "consults" || command.Name == "consultation" || command.Name == "consultations";
+        }
+
+        public void Execute(UserCommand command)
+        {
+            if (command.Parameters.Count > 0)
+            {
+                string searchText = command.Parameters.ElementAt(0).Name;
+                SearchConsultation(searchText);
+            }
             else
-                SearchConsultation();
+            {
+                DisplayAllConsultations();
+            }
         }
 
         private void DisplayAllConsultations()
@@ -64,7 +71,7 @@ namespace DustInTheWind.MedicX.Cli.Controllers
                 DisplayConsultations(consultations);
         }
 
-        private void SearchConsultation()
+        private void SearchConsultation(string searchText)
         {
             IConsultationRepository consultationRepository = unitOfWork.ConsultationRepository;
 

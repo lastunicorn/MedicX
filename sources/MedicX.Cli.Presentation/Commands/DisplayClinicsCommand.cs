@@ -1,30 +1,38 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using DustInTheWind.ConsoleTools;
 using DustInTheWind.ConsoleTools.TabularData;
 using DustInTheWind.MedicX.Domain.DataAccess;
 using DustInTheWind.MedicX.Domain.Entities;
-using DustInTheWind.MedicX.Persistence;
 
-namespace DustInTheWind.MedicX.Cli.Controllers
+namespace MedicX.Cli.Presentation.Commands
 {
-    internal class DisplayClinicsController : IController
+    internal class DisplayClinicsCommand : ICommand
     {
-        private readonly UnitOfWork unitOfWork;
-        private readonly string searchText;
+        private readonly IUnitOfWork unitOfWork;
 
-        public DisplayClinicsController(UnitOfWork unitOfWork, string searchText = null)
+        public DisplayClinicsCommand(IUnitOfWork unitOfWork)
         {
             this.unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
-            this.searchText = searchText;
         }
 
-        public void Run()
+        public bool IsMatch(UserCommand command)
         {
-            if (string.IsNullOrEmpty(searchText))
-                DisplayAllClinics();
+            return command.Name == "clinic" || command.Name == "clinics";
+        }
+
+        public void Execute(UserCommand command)
+        {
+            if (command.Parameters.Count > 0)
+            {
+                string searchText = command.Parameters.ElementAt(0).Name;
+                SearchClinic(searchText);
+            }
             else
-                SearchClinic();
+            {
+                DisplayAllClinics();
+            }
         }
 
         private void DisplayAllClinics()
@@ -84,14 +92,14 @@ namespace DustInTheWind.MedicX.Cli.Controllers
             return clinicsTable;
         }
 
-        private void SearchClinic()
+        private void SearchClinic(string searchText)
         {
             IClinicRepository clinicRepository = unitOfWork.ClinicRepository;
 
             List<Clinic> clinics = clinicRepository.Search(searchText);
 
             if (clinics == null || clinics.Count == 0)
-                CustomConsole.WriteLineError("No clinics exist in the database contining the searched text.");
+                CustomConsole.WriteLineError("No clinics exist in the database containing the searched text.");
             else if (clinics.Count == 1)
                 DisplayClinicDetails(clinics[0]);
             else

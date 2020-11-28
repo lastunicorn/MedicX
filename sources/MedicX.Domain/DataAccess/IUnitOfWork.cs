@@ -21,9 +21,13 @@ namespace DustInTheWind.MedicX.Domain.DataAccess
     public interface IUnitOfWork: IDisposable
     {
         IMedicRepository MedicRepository { get; }
+        
         IConsultationRepository ConsultationRepository { get; }
+        
         IInvestigationRepository InvestigationRepository { get; }
+        
         IClinicRepository ClinicRepository { get; }
+        
         void Save();
     }
 }

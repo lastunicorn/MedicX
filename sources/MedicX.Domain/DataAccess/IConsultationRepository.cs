@@ -22,7 +22,9 @@ namespace DustInTheWind.MedicX.Domain.DataAccess
     public interface IConsultationRepository
     {
         List<Consultation> GetAll();
+        
         List<Consultation> Search(string text);
+        
         void AddOrUpdate(Consultation consultation);
     }
 }

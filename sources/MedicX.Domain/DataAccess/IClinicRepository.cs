@@ -23,9 +23,13 @@ namespace DustInTheWind.MedicX.Domain.DataAccess
     public interface IClinicRepository
     {
         List<Clinic> GetAll();
+        
         Clinic GetById(Guid id);
+        
         List<Clinic> GetByName(string clinicName);
+        
         List<Clinic> Search(string text);
+        
         void AddOrUpdate(Clinic clinic);
     }
 }

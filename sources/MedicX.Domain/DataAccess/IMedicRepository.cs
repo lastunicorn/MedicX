@@ -23,10 +23,15 @@ namespace DustInTheWind.MedicX.Domain.DataAccess
     public interface IMedicRepository
     {
         List<Medic> GetAll();
+        
         Medic GetById(Guid id);
+        
         void Add(Medic medic);
+        
         void AddOrUpdate(Medic medic);
+        
         List<Medic> GetByName(string medicName);
+        
         List<Medic> Search(string text);
     }
 }

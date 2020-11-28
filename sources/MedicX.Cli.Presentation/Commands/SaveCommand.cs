@@ -15,27 +15,29 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using System.Threading;
 using DustInTheWind.ConsoleTools;
+using DustInTheWind.MedicX.Domain.DataAccess;
 
-namespace DustInTheWind.MedicX.Cli
+namespace MedicX.Cli.Presentation.Commands
 {
-    public static class Program
+    public class SaveCommand : ICommand
     {
-        public static void Main(string[] args)
-        {
-            try
-            {
-                Bootstrapper bootstrapper = new Bootstrapper();
-                bootstrapper.Run();
-            }
-            catch (Exception ex)
-            {
-                CustomConsole.WriteError(ex);
-                CustomConsole.Pause();
-            }
+        private readonly IUnitOfWork unitOfWork;
 
-            Thread.Sleep(300);
+        public SaveCommand(IUnitOfWork unitOfWork)
+        {
+            this.unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
+        }
+
+        public bool IsMatch(UserCommand command)
+        {
+            return command.Name == "save";
+        }
+
+        public void Execute(UserCommand command)
+        {
+            unitOfWork.Save();
+            CustomConsole.WriteLineSuccess("Changes were successfully saved.");
         }
     }
 }

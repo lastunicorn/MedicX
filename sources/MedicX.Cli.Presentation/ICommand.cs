@@ -14,28 +14,14 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using System;
-using System.Threading;
 using DustInTheWind.ConsoleTools;
 
-namespace DustInTheWind.MedicX.Cli
+namespace MedicX.Cli.Presentation
 {
-    public static class Program
+    internal interface ICommand
     {
-        public static void Main(string[] args)
-        {
-            try
-            {
-                Bootstrapper bootstrapper = new Bootstrapper();
-                bootstrapper.Run();
-            }
-            catch (Exception ex)
-            {
-                CustomConsole.WriteError(ex);
-                CustomConsole.Pause();
-            }
+        bool IsMatch(UserCommand command);
 
-            Thread.Sleep(300);
-        }
+        void Execute(UserCommand command);
     }
 }

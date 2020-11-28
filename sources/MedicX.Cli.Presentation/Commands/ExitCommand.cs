@@ -15,27 +15,29 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using System.Threading;
 using DustInTheWind.ConsoleTools;
 
-namespace DustInTheWind.MedicX.Cli
+namespace MedicX.Cli.Presentation.Commands
 {
-    public static class Program
+    internal class ExitCommand : ICommand
     {
-        public static void Main(string[] args)
-        {
-            try
-            {
-                Bootstrapper bootstrapper = new Bootstrapper();
-                bootstrapper.Run();
-            }
-            catch (Exception ex)
-            {
-                CustomConsole.WriteError(ex);
-                CustomConsole.Pause();
-            }
+        private readonly MedicXApplication medicXApplication;
 
-            Thread.Sleep(300);
+        public ExitCommand(MedicXApplication medicXApplication)
+        {
+            this.medicXApplication = medicXApplication ?? throw new ArgumentNullException(nameof(medicXApplication));
+        }
+
+        public bool IsMatch(UserCommand command)
+        {
+            return command.Name == "exit" || command.Name == "quit";
+        }
+
+        public void Execute(UserCommand command)
+        {
+            medicXApplication.Exit();
+            CustomConsole.WriteLine();
+            CustomConsole.WriteLine("Bye!");
         }
     }
 }
