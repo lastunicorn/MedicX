@@ -18,13 +18,9 @@ using DustInTheWind.ConsoleTools;
 
 namespace MedicX.Cli.Presentation.Commands
 {
+    [Command(Names = "help")]
     internal class HelpCommand : ICommand
     {
-        public bool IsMatch(UserCommand command)
-        {
-            return command.Name == "help";
-        }
-
         public void Execute(UserCommand command)
         {
             CustomConsole.WriteEmphasies("Commands: ");

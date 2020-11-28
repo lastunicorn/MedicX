@@ -38,15 +38,16 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommandAttribute.cs" />
+    <Compile Include="ICommandFactory.cs" />
     <Compile Include="Views\DisplayMedicsView.cs" />
     <Compile Include="UserControls\MedicDetailsControl.cs" />
     <Compile Include="UserControls\MedicsTableControl.cs" />
     <Compile Include="UserControls\ApplicationHeader.cs" />
     <Compile Include="ControllerPool.cs" />
-    <Compile Include="Commands\AddMedicCommand.cs" />
     <Compile Include="Commands\ConsultationsCommand.cs" />
-    <Compile Include="Commands\DisplayClinicsCommand.cs" />
-    <Compile Include="Commands\DisplayMedicsCommand.cs" />
+    <Compile Include="Commands\ClinicsCommand.cs" />
+    <Compile Include="Commands\MedicsCommand.cs" />
     <Compile Include="Commands\ExitCommand.cs" />
     <Compile Include="Commands\HelpCommand.cs" />
     <Compile Include="Commands\SaveCommand.cs" />

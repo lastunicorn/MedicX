@@ -17,44 +17,43 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using DustInTheWind.ConsoleTools;
-using DustInTheWind.MedicX.Domain.DataAccess;
-using MedicX.Cli.Presentation.Commands;
-using MedicX.Cli.Presentation.Views;
 
 namespace MedicX.Cli.Presentation
 {
-    internal class ControllerPool
+    public class ControllerPool
     {
-        private readonly IUnitOfWork unitOfWork;
-        private readonly MedicXApplication medicXApplication;
-        private List<ICommand> controllers;
+        private readonly ICommandFactory commandFactory;
+        private List<Type> commandTypes;
 
-        public ControllerPool(IUnitOfWork unitOfWork, MedicXApplication medicXApplication)
+        public ControllerPool(ICommandFactory commandFactory)
         {
-            this.unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
-            this.medicXApplication = medicXApplication ?? throw new ArgumentNullException(nameof(medicXApplication));
+            this.commandFactory = commandFactory ?? throw new ArgumentNullException(nameof(commandFactory));
 
-            CreateControllers();
+            CreateCommands();
         }
 
-        private void CreateControllers()
+        private void CreateCommands()
         {
-            controllers = new List<ICommand>
-            {
-                new AddMedicCommand(unitOfWork),
-                new DisplayMedicsCommand(unitOfWork, new DisplayMedicsView()),
-                new DisplayClinicsCommand(unitOfWork),
-                new ConsultationsCommand(unitOfWork),
-                new SaveCommand(unitOfWork),
-                new ExitCommand(medicXApplication),
-                new HelpCommand()
-            };
+            Assembly assembly = Assembly.GetExecutingAssembly();
+            commandTypes = assembly.GetTypes()
+                .Where(x => x.IsClass && !x.IsAbstract && typeof(ICommand).IsAssignableFrom(x) && x.GetCustomAttribute<CommandAttribute>() != null)
+                .ToList();
         }
 
         public ICommand Get(UserCommand command)
         {
-            return controllers.FirstOrDefault(x => x.IsMatch(command));
+            Type commandType = commandTypes.FirstOrDefault(x =>
+            {
+                CommandAttribute commandAttribute = x.GetCustomAttribute<CommandAttribute>();
+                return commandAttribute != null && commandAttribute.IsMatch(command.Name);
+            });
+
+            if (commandType == null)
+                return null;
+
+            return commandFactory.Create(commandType);
         }
     }
 }

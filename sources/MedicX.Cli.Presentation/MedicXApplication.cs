@@ -26,11 +26,11 @@ namespace MedicX.Cli.Presentation
         private readonly ControllerPool controllerPool;
         private readonly Prompter prompter;
 
-        public MedicXApplication(IUnitOfWork unitOfWork)
+        public MedicXApplication(IUnitOfWork unitOfWork, ControllerPool controllerPool)
         {
             if (unitOfWork == null) throw new ArgumentNullException(nameof(unitOfWork));
+            this.controllerPool = controllerPool ?? throw new ArgumentNullException(nameof(controllerPool));
 
-            controllerPool = new ControllerPool(unitOfWork, this);
             prompter = new Prompter();
         }
 

@@ -18,10 +18,8 @@ using DustInTheWind.ConsoleTools;
 
 namespace MedicX.Cli.Presentation
 {
-    internal interface ICommand
+    public interface ICommand
     {
-        bool IsMatch(UserCommand command);
-
         void Execute(UserCommand command);
     }
 }

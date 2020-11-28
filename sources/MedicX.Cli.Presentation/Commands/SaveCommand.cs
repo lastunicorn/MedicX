@@ -20,6 +20,7 @@ using DustInTheWind.MedicX.Domain.DataAccess;
 
 namespace MedicX.Cli.Presentation.Commands
 {
+    [Command(Names = "save")]
     public class SaveCommand : ICommand
     {
         private readonly IUnitOfWork unitOfWork;
@@ -27,11 +28,6 @@ namespace MedicX.Cli.Presentation.Commands
         public SaveCommand(IUnitOfWork unitOfWork)
         {
             this.unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
-        }
-
-        public bool IsMatch(UserCommand command)
-        {
-            return command.Name == "save";
         }
 
         public void Execute(UserCommand command)

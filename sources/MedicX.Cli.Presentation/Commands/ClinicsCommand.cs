@@ -8,18 +8,14 @@ using DustInTheWind.MedicX.Domain.Entities;
 
 namespace MedicX.Cli.Presentation.Commands
 {
-    internal class DisplayClinicsCommand : ICommand
+    [Command(Names = "clinic, clinics")]
+    internal class ClinicsCommand : ICommand
     {
         private readonly IUnitOfWork unitOfWork;
 
-        public DisplayClinicsCommand(IUnitOfWork unitOfWork)
+        public ClinicsCommand(IUnitOfWork unitOfWork)
         {
             this.unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
-        }
-
-        public bool IsMatch(UserCommand command)
-        {
-            return command.Name == "clinic" || command.Name == "clinics";
         }
 
         public void Execute(UserCommand command)

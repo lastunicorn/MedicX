@@ -11,10 +11,14 @@ namespace DustInTheWind.MedicX.Cli
         {
             IKernel kernel = new StandardKernel();
 
+            kernel.Bind<ICommandFactory>().To<NinjectCommandFactory>();
+
             kernel
                 .Bind<IUnitOfWork>()
                 .ToMethod(context => new UnitOfWork("medicx.zmdx"))
                 .InSingletonScope();
+
+            kernel.Bind<MedicXApplication>().ToSelf().InSingletonScope();
 
             MedicXApplication application = kernel.Get<MedicXApplication>();
             application.Run();

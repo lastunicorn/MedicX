@@ -22,26 +22,43 @@ using DustInTheWind.ConsoleTools;
 using DustInTheWind.ConsoleTools.InputControls;
 using DustInTheWind.MedicX.Domain.DataAccess;
 using DustInTheWind.MedicX.Domain.Entities;
+using MedicX.Cli.Presentation.Views;
 
 namespace MedicX.Cli.Presentation.Commands
 {
-    internal class AddMedicCommand : ICommand
+    [Command(Names = "medic, medics")]
+    internal class MedicsCommand : ICommand
     {
         private readonly IUnitOfWork unitOfWork;
+        private readonly DisplayMedicsView view;
 
-        public AddMedicCommand(IUnitOfWork unitOfWork)
+        public MedicsCommand(IUnitOfWork unitOfWork, DisplayMedicsView view)
         {
             this.unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
-        }
-
-        public bool IsMatch(UserCommand command)
-        {
-            return (command.Name == "medic" || command.Name == "medics") &&
-                   command.Parameters.Count > 0 &&
-                   command.Parameters.ElementAt(0).Name?.ToLower() == "add";
+            this.view = view ?? throw new ArgumentNullException(nameof(view));
         }
 
         public void Execute(UserCommand command)
+        {
+            if (command.Parameters.Count > 0)
+            {
+                if (command.Parameters.Count > 0 && command.Parameters.ElementAt(0).Name?.ToLower() == "add")
+                {
+                    AddMedic();
+                }
+                else
+                {
+                    string searchText = command.Parameters.ElementAt(0).Name;
+                    SearchMedic(searchText);
+                }
+            }
+            else
+            {
+                DisplayAllMedics();
+            }
+        }
+
+        private void AddMedic()
         {
             TextInputControl textInputControl = new TextInputControl();
             ListInputControl listInputControl = new ListInputControl();
@@ -68,6 +85,22 @@ namespace MedicX.Cli.Presentation.Commands
             };
 
             unitOfWork.MedicRepository.Add(medic);
+        }
+
+        private void DisplayAllMedics()
+        {
+            IMedicRepository medicRepository = unitOfWork.MedicRepository;
+
+            List<Medic> medics = medicRepository.GetAll();
+            view.DisplayMedics(medics);
+        }
+
+        private void SearchMedic(string searchText)
+        {
+            IMedicRepository medicRepository = unitOfWork.MedicRepository;
+
+            List<Medic> medics = medicRepository.Search(searchText);
+            view.DisplayMedics(medics);
         }
     }
 }

@@ -24,6 +24,7 @@ using DustInTheWind.MedicX.Domain.Entities;
 
 namespace MedicX.Cli.Presentation.Commands
 {
+    [Command(Names = "consult, consults, consultation, consultations")]
     internal class ConsultationsCommand : ICommand
     {
         private readonly IUnitOfWork unitOfWork;
@@ -39,11 +40,6 @@ namespace MedicX.Cli.Presentation.Commands
             {
                 ItemsIndentation = 4
             };
-        }
-
-        public bool IsMatch(UserCommand command)
-        {
-            return command.Name == "consult" || command.Name == "consults" || command.Name == "consultation" || command.Name == "consultations";
         }
 
         public void Execute(UserCommand command)

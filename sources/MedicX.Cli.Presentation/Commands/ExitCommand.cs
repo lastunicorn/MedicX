@@ -19,6 +19,7 @@ using DustInTheWind.ConsoleTools;
 
 namespace MedicX.Cli.Presentation.Commands
 {
+    [Command(Names = "exit, quit")]
     internal class ExitCommand : ICommand
     {
         private readonly MedicXApplication medicXApplication;
@@ -26,11 +27,6 @@ namespace MedicX.Cli.Presentation.Commands
         public ExitCommand(MedicXApplication medicXApplication)
         {
             this.medicXApplication = medicXApplication ?? throw new ArgumentNullException(nameof(medicXApplication));
-        }
-
-        public bool IsMatch(UserCommand command)
-        {
-            return command.Name == "exit" || command.Name == "quit";
         }
 
         public void Execute(UserCommand command)
