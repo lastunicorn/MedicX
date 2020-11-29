@@ -7,7 +7,7 @@
     <ProjectGuid>{2C4CF850-4EFF-47B4-8598-1813FAAA21E6}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DustInTheWind.MedicX.Cli</RootNamespace>
+    <RootNamespace>DustInTheWind.MedicX.Cli.Bootstrapper</RootNamespace>
     <AssemblyName>MedicX.Cli</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

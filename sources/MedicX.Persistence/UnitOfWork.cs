@@ -16,14 +16,12 @@
 
 using System;
 using DustInTheWind.MedicX.Domain.DataAccess;
+using DustInTheWind.MedicX.Persistence.JsonStorage;
 
 namespace DustInTheWind.MedicX.Persistence
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private static int instanceCount;
-        private static readonly object SyncObject = new object();
-
         private bool isDisposed;
 
         private readonly Storage storage;
@@ -92,19 +90,8 @@ namespace DustInTheWind.MedicX.Persistence
         {
             if (connectionString == null) throw new ArgumentNullException(nameof(connectionString));
 
-            if (instanceCount > 0)
-                throw new Exception("Another instance of the UnitOfWork already exists.");
-
-            lock (SyncObject)
-            {
-                if (instanceCount > 0)
-                    throw new Exception("Another instance of the UnitOfWork already exists.");
-
-                storage = new Storage(connectionString);
-                storage.Open();
-
-                instanceCount++;
-            }
+            storage = new Storage(connectionString);
+            storage.Open();
         }
 
         public void Save()
@@ -117,11 +104,6 @@ namespace DustInTheWind.MedicX.Persistence
 
         public void Dispose()
         {
-            lock (SyncObject)
-            {
-                instanceCount--;
-            }
-
             isDisposed = true;
         }
     }

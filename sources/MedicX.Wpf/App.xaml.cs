@@ -16,7 +16,7 @@
 
 using System.Windows;
 
-namespace DustInTheWind.MedicX.Wpf
+namespace DustInTheWind.MedicX.Wpf.Bootstrapper
 {
     /// <summary>
     /// Interaction logic for App.xaml

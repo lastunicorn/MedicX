@@ -50,8 +50,8 @@
     <Compile Include="Entities\MedicalEvent.cs" />
     <Compile Include="Entities\Investigation.cs" />
     <Compile Include="Entities\InvestigationResult.cs" />
-    <Compile Include="Entities\InvestigationDescription.cs" />
-    <Compile Include="Entities\InvestigationItem.cs" />
+    <Compile Include="Entities\InvestigationTest.cs" />
+    <Compile Include="Entities\TestItem.cs" />
     <Compile Include="Entities\Medic.cs" />
     <Compile Include="Entities\Person.cs" />
     <Compile Include="Entities\PersonName.cs" />
@@ -63,6 +63,8 @@
     <Compile Include="Collections\MedicsCollection.cs" />
     <Compile Include="Entities\MedicXProject.cs" />
     <Compile Include="Entities\ProjectStatus.cs" />
+    <Compile Include="Entities\Record.cs" />
+    <Compile Include="Entities\Treatment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

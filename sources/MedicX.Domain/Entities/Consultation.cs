@@ -25,6 +25,10 @@ namespace DustInTheWind.MedicX.Domain.Entities
     {
         private ObservableCollection<Prescription> prescriptions;
 
+        public string Reason { get; set; }
+
+        public string Conclusions { get; set; }
+
         public ObservableCollection<Prescription> Prescriptions
         {
             get => prescriptions;
@@ -87,6 +91,9 @@ namespace DustInTheWind.MedicX.Domain.Entities
         {
             base.CopyFrom(consultation);
 
+            Reason = consultation.Reason;
+            Conclusions = consultation.Conclusions;
+
             Prescriptions = consultation.Prescriptions == null
                 ? null
                 : new ObservableCollection<Prescription>(consultation.Prescriptions);
@@ -103,7 +110,9 @@ namespace DustInTheWind.MedicX.Domain.Entities
         public override bool Contains(string text)
         {
             return base.Contains(text) ||
-                   Prescriptions != null && Prescriptions.Any(x => x != null && x.Contains(text));
+                   Prescriptions != null && Prescriptions.Any(x => x != null && x.Contains(text)) ||
+                   Reason != null && Reason.IndexOf(text, StringComparison.OrdinalIgnoreCase) >= 0 ||
+                   Conclusions != null && Conclusions.IndexOf(text, StringComparison.OrdinalIgnoreCase) >= 0;
         }
 
         public bool Equals(Consultation other)
@@ -112,7 +121,9 @@ namespace DustInTheWind.MedicX.Domain.Entities
             if (ReferenceEquals(this, other)) return true;
 
             return base.Equals(other) &&
-                   ((prescriptions == null & other.prescriptions == null) || (prescriptions != null & other.prescriptions != null && prescriptions.SequenceEqual(other.prescriptions)));
+                   ((prescriptions == null & other.prescriptions == null) || (prescriptions != null & other.prescriptions != null && prescriptions.SequenceEqual(other.prescriptions))) &&
+                   Reason == other.Reason &&
+                   Conclusions == other.Conclusions;
         }
 
         public override bool Equals(object obj)
@@ -128,7 +139,11 @@ namespace DustInTheWind.MedicX.Domain.Entities
         {
             unchecked
             {
-                return (base.GetHashCode() * 397) ^ (prescriptions != null ? prescriptions.GetHashCode() : 0);
+                int hashCode = base.GetHashCode();
+                hashCode = (hashCode * 397) ^ (prescriptions != null ? prescriptions.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ (Reason != null ? Reason.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ (Conclusions != null ? Conclusions.GetHashCode() : 0);
+                return hashCode;
             }
         }
     }

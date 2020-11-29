@@ -15,32 +15,16 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using System.Collections.ObjectModel;
-using System.Collections.Specialized;
 using System.Linq;
 
 namespace DustInTheWind.MedicX.Domain.Entities
 {
-    public class MedicalEvent : IEquatable<MedicalEvent>
+    public class MedicalEvent : Record, IEquatable<MedicalEvent>
     {
-        private DateTime date;
         private Medic medic;
         private Clinic clinic;
-        private ObservableCollection<string> labels;
-        private string comments;
 
         public Guid Id { get; set; }
-
-        public DateTime Date
-        {
-            get => date;
-            set
-            {
-                date = value;
-                OnDateChanged();
-                OnChanged();
-            }
-        }
 
         public Medic Medic
         {
@@ -63,50 +47,15 @@ namespace DustInTheWind.MedicX.Domain.Entities
             }
         }
 
-        public ObservableCollection<string> Labels
-        {
-            get => labels;
-            set
-            {
-                if (labels != null)
-                    labels.CollectionChanged -= HandleLabelsCollectionChanged;
-
-                labels = value;
-
-                if (labels != null)
-                    labels.CollectionChanged += HandleLabelsCollectionChanged;
-
-                OnChanged();
-            }
-        }
-
-        public string Comments
-        {
-            get => comments;
-            set
-            {
-                comments = value;
-                OnChanged();
-            }
-        }
-
-        public event EventHandler DateChanged;
         public event EventHandler MedicChanged;
-        public event EventHandler Changed;
 
-        private void HandleLabelsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        public override void CopyFrom(MedicalEvent medicalEvent)
         {
-            OnChanged();
-        }
+            base.CopyFrom(medicalEvent);
 
-        public virtual void CopyFrom(MedicalEvent medicalEvent)
-        {
             Id = medicalEvent.Id;
-            Date = medicalEvent.Date;
             Medic = medicalEvent.Medic;
             Clinic = medicalEvent.Clinic;
-            Labels = new ObservableCollection<string>(medicalEvent.Labels);
-            Comments = medicalEvent.Comments;
         }
 
         public virtual bool Contains(string text)
@@ -122,11 +71,9 @@ namespace DustInTheWind.MedicX.Domain.Entities
         {
             if (ReferenceEquals(null, other)) return false;
             if (ReferenceEquals(this, other)) return true;
-            return date.Equals(other.date) &&
+            return base.Equals(other) &&
                    Equals(medic, other.medic) &&
                    Equals(clinic, other.clinic) &&
-                   ((labels == null && other.labels == null) || (labels != null && other.labels != null && labels.SequenceEqual(other.labels))) &&
-                   string.Equals(comments, other.comments) &&
                    Id.Equals(other.Id);
         }
 
@@ -134,7 +81,7 @@ namespace DustInTheWind.MedicX.Domain.Entities
         {
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
-            if (obj.GetType() != this.GetType()) return false;
+            if (obj.GetType() != GetType()) return false;
             return Equals((MedicalEvent)obj);
         }
 
@@ -142,29 +89,17 @@ namespace DustInTheWind.MedicX.Domain.Entities
         {
             unchecked
             {
-                int hashCode = date.GetHashCode();
+                int hashCode = base.GetHashCode();
                 hashCode = (hashCode * 397) ^ (medic != null ? medic.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (clinic != null ? clinic.GetHashCode() : 0);
-                hashCode = (hashCode * 397) ^ (labels != null ? labels.GetHashCode() : 0);
-                hashCode = (hashCode * 397) ^ (comments != null ? comments.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ Id.GetHashCode();
                 return hashCode;
             }
         }
 
-        protected virtual void OnDateChanged()
-        {
-            DateChanged?.Invoke(this, EventArgs.Empty);
-        }
-
         protected virtual void OnMedicChanged()
         {
             MedicChanged?.Invoke(this, EventArgs.Empty);
-        }
-
-        protected virtual void OnChanged()
-        {
-            Changed?.Invoke(this, EventArgs.Empty);
         }
     }
 }

@@ -18,7 +18,7 @@ using System;
 using DustInTheWind.MedicX.RequestBusModel;
 using Ninject;
 
-namespace DustInTheWind.MedicX.Wpf
+namespace DustInTheWind.MedicX.Wpf.Bootstrapper
 {
     public class NinjectRequestHandlerFactory : IRequestHandlerFactory
     {

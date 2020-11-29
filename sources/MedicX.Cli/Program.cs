@@ -18,7 +18,7 @@ using System;
 using System.Threading;
 using DustInTheWind.ConsoleTools;
 
-namespace DustInTheWind.MedicX.Cli
+namespace DustInTheWind.MedicX.Cli.Bootstrapper
 {
     public static class Program
     {

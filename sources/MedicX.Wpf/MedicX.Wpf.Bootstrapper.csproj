@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{3370194C-0F92-4C7D-BF10-3C23F496891D}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>DustInTheWind.MedicX.Wpf</RootNamespace>
+    <RootNamespace>DustInTheWind.MedicX.Wpf.Bootstrapper</RootNamespace>
     <AssemblyName>MedicX</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

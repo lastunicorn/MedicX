@@ -49,18 +49,33 @@
     <Compile Include="IClinicLocationRepository.cs" />
     <Compile Include="InitializationStatus.cs" />
     <Compile Include="InvestigationRepository.cs" />
+    <Compile Include="JsonStorage\Entities\Address.cs" />
+    <Compile Include="JsonStorage\Entities\Clinic.cs" />
+    <Compile Include="JsonStorage\Entities\Consultation.cs" />
+    <Compile Include="JsonStorage\Entities\Investigation.cs" />
+    <Compile Include="JsonStorage\Entities\InvestigationDescription.cs" />
+    <Compile Include="JsonStorage\Entities\InvestigationItem.cs" />
+    <Compile Include="JsonStorage\Entities\InvestigationResult.cs" />
+    <Compile Include="JsonStorage\Entities\Medic.cs" />
+    <Compile Include="JsonStorage\Entities\MedicalEvent.cs" />
+    <Compile Include="JsonStorage\Entities\MedicXData.cs" />
+    <Compile Include="JsonStorage\Entities\Person.cs" />
+    <Compile Include="JsonStorage\Entities\PersonName.cs" />
+    <Compile Include="JsonStorage\Entities\Prescription.cs" />
+    <Compile Include="JsonStorage\JsonFile.cs" />
+    <Compile Include="JsonStorage\JsonZipFile.cs" />
     <Compile Include="MedicRepository.cs" />
-    <Compile Include="Storage.cs" />
+    <Compile Include="JsonStorage\Storage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Translators\AddressExtensions.cs" />
-    <Compile Include="Translators\ClinicExtensions.cs" />
-    <Compile Include="Translators\ConsultationExtensions.cs" />
-    <Compile Include="Translators\InvestigationExtensions.cs" />
-    <Compile Include="Translators\InvestigationTypesExtensions.cs" />
-    <Compile Include="Translators\InvestigationTypesItemExtensions.cs" />
-    <Compile Include="Translators\MedicExtensions.cs" />
-    <Compile Include="Translators\NameExtensions.cs" />
-    <Compile Include="Translators\PrescriptionsExtensions.cs" />
+    <Compile Include="JsonStorage\Translators\AddressExtensions.cs" />
+    <Compile Include="JsonStorage\Translators\ClinicExtensions.cs" />
+    <Compile Include="JsonStorage\Translators\ConsultationExtensions.cs" />
+    <Compile Include="JsonStorage\Translators\InvestigationExtensions.cs" />
+    <Compile Include="JsonStorage\Translators\InvestigationTypesExtensions.cs" />
+    <Compile Include="JsonStorage\Translators\InvestigationTypesItemExtensions.cs" />
+    <Compile Include="JsonStorage\Translators\MedicExtensions.cs" />
+    <Compile Include="JsonStorage\Translators\NameExtensions.cs" />
+    <Compile Include="JsonStorage\Translators\PrescriptionsExtensions.cs" />
     <Compile Include="UnitOfWork.cs" />
     <Compile Include="UnitOfWorkBuilder.cs" />
   </ItemGroup>
@@ -69,10 +84,14 @@
       <Project>{854C77F6-22F9-48A9-AE73-43E19AB9B258}</Project>
       <Name>MedicX.Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MedicX.Persistence.Json\MedicX.Persistence.Json.csproj">
-      <Project>{9684B41D-C429-4B04-8CF0-0612785B398A}</Project>
-      <Name>MedicX.Persistence.Json</Name>
-    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>12.0.3</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="JsonStorage\packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

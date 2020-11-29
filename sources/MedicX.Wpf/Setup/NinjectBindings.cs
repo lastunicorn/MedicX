@@ -23,7 +23,7 @@ using DustInTheWind.MedicX.Wpf.UI.Areas.Main.Commands;
 using EventBusModel;
 using Ninject.Modules;
 
-namespace DustInTheWind.MedicX.Wpf.Setup
+namespace DustInTheWind.MedicX.Wpf.Bootstrapper.Setup
 {
     public class NinjectBindings : NinjectModule
     {

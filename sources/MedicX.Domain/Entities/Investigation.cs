@@ -24,7 +24,7 @@ namespace DustInTheWind.MedicX.Domain.Entities
     public class Investigation : MedicalEvent, IEquatable<Investigation>
     {
         private Medic sentBy;
-        private ObservableCollection<InvestigationResult> result;
+        private ObservableCollection<InvestigationTest> result;
 
         public Medic SentBy
         {

@@ -20,15 +20,15 @@ namespace DustInTheWind.MedicX.Domain.Entities
 {
     public class InvestigationResult
     {
-        private InvestigationDescription investigationDescription;
+        private InvestigationTest investigationTest;
         private int value;
 
-        public InvestigationDescription InvestigationDescription
+        public InvestigationTest InvestigationTest
         {
-            get => investigationDescription;
+            get => investigationTest;
             set
             {
-                investigationDescription = value;
+                investigationTest = value;
                 OnChanged();
             }
         }

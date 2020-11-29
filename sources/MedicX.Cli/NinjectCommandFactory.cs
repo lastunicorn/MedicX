@@ -2,7 +2,7 @@
 using MedicX.Cli.Presentation;
 using Ninject;
 
-namespace DustInTheWind.MedicX.Cli
+namespace DustInTheWind.MedicX.Cli.Bootstrapper
 {
     internal class NinjectCommandFactory : ICommandFactory
     {

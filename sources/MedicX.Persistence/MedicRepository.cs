@@ -19,6 +19,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DustInTheWind.MedicX.Domain.DataAccess;
 using DustInTheWind.MedicX.Domain.Entities;
+using DustInTheWind.MedicX.Persistence.JsonStorage;
 
 namespace DustInTheWind.MedicX.Persistence
 {

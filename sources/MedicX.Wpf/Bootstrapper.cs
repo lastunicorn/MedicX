@@ -17,15 +17,13 @@
 using System.Reflection;
 using DustInTheWind.MedicX.Application;
 using DustInTheWind.MedicX.Application.LoadProject;
-using DustInTheWind.MedicX.Domain.Entities;
 using DustInTheWind.MedicX.RequestBusModel;
-using DustInTheWind.MedicX.Wpf.Setup;
 using DustInTheWind.MedicX.Wpf.UI;
 using DustInTheWind.MedicX.Wpf.UI.Areas.Main.ViewModels;
 using DustInTheWind.MedicX.Wpf.UI.Areas.Main.Views;
 using Ninject;
 
-namespace DustInTheWind.MedicX.Wpf
+namespace DustInTheWind.MedicX.Wpf.Bootstrapper
 {
     internal class Bootstrapper
     {
