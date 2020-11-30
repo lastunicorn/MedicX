@@ -21,6 +21,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Windows.Data;
 using System.Windows.Threading;
+using DustInTheWind.MedicX.Domain.DataAccess;
 using DustInTheWind.MedicX.Domain.Entities;
 using DustInTheWind.MedicX.RequestBusModel;
 using DustInTheWind.MedicX.Wpf.UI.Areas.Main.Commands;
@@ -31,7 +32,7 @@ namespace DustInTheWind.MedicX.Wpf.UI.Areas.MedicalEvents.ViewModels
 {
     internal class MedicalEventsTabViewModel : ViewModelBase
     {
-        private readonly MedicXProject medicXProject;
+        private readonly Project project;
         private ViewModelBase selectedMedicalEvent;
         private readonly CollectionViewSource medicalEventsSource;
         private string searchText;
@@ -53,15 +54,15 @@ namespace DustInTheWind.MedicX.Wpf.UI.Areas.MedicalEvents.ViewModels
                 switch (selectedMedicalEvent)
                 {
                     case ConsultationItemViewModel consultationListItemViewModel:
-                        medicXProject.CurrentItem = consultationListItemViewModel.Value;
+                        project.CurrentItem = consultationListItemViewModel.Value;
                         break;
 
                     case InvestigationItemViewModel investigationListItemViewModel:
-                        medicXProject.CurrentItem = investigationListItemViewModel.Value;
+                        project.CurrentItem = investigationListItemViewModel.Value;
                         break;
 
                     default:
-                        medicXProject.CurrentItem = null;
+                        project.CurrentItem = null;
                         break;
                 }
             }
@@ -90,13 +91,15 @@ namespace DustInTheWind.MedicX.Wpf.UI.Areas.MedicalEvents.ViewModels
         }
 
         public AddConsultationCommand AddConsultationCommand { get; }
+
         public AddInvestigationCommand AddInvestigationCommand { get; }
+
         public RelayCommand ClearSearchTextCommand { get; }
 
-        public MedicalEventsTabViewModel(RequestBus requestBus, EventAggregator eventAggregator, MedicXProject medicXProject)
+        public MedicalEventsTabViewModel(RequestBus requestBus, EventAggregator eventAggregator, Project project)
         {
             if (eventAggregator == null) throw new ArgumentNullException(nameof(eventAggregator));
-            this.medicXProject = medicXProject ?? throw new ArgumentNullException(nameof(medicXProject));
+            this.project = project ?? throw new ArgumentNullException(nameof(project));
 
             AddConsultationCommand = new AddConsultationCommand(requestBus);
             AddInvestigationCommand = new AddInvestigationCommand(requestBus);
@@ -106,7 +109,7 @@ namespace DustInTheWind.MedicX.Wpf.UI.Areas.MedicalEvents.ViewModels
 
             medicalEventsSource = new CollectionViewSource
             {
-                Source = new ObservableCollection<ViewModelBase>(medicXProject.MedicalEvents
+                Source = new ObservableCollection<ViewModelBase>(RetrieveAllMedicalEvents()
                     .Select<MedicalEvent, ViewModelBase>(x =>
                     {
                         switch (x)
@@ -130,6 +133,17 @@ namespace DustInTheWind.MedicX.Wpf.UI.Areas.MedicalEvents.ViewModels
 
             eventAggregator["CurrentItemChanged"].Subscribe(new Action<object>(HandleCurrentItemChanged));
             eventAggregator["NewMedicalEventAdded"].Subscribe(new Action<MedicalEvent>(HandleNewMedicalEventAdded));
+        }
+
+        private IEnumerable<MedicalEvent> RetrieveAllMedicalEvents()
+        {
+            using (IUnitOfWork unitOfWork = project.CreateUnitOfWork())
+            {
+                return unitOfWork.ConsultationRepository.GetAll()
+                    .Cast<MedicalEvent>()
+                    .Concat(unitOfWork.InvestigationRepository.GetAll())
+                    .OrderBy(x => x.Date);
+            }
         }
 
         private void HandleNewMedicalEventAdded(MedicalEvent newMedicalEvent)

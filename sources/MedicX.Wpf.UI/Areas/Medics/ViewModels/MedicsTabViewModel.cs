@@ -23,7 +23,6 @@ using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Windows.Threading;
 using DustInTheWind.MedicX.Application.GetAllMedics;
-using DustInTheWind.MedicX.Application.InitializeMedicsTab;
 using DustInTheWind.MedicX.Application.SetMedicAsCurrent;
 using DustInTheWind.MedicX.RequestBusModel;
 using DustInTheWind.MedicX.Wpf.UI.Areas.Main.Commands;
@@ -58,7 +57,7 @@ namespace DustInTheWind.MedicX.Wpf.UI.Areas.Medics.ViewModels
             }
         }
 
-        private void SetCurrentItem(Medic medic)
+        private void SetCurrentItem(MedicDto medic)
         {
             IsMedicsListEnabled = false;
 
@@ -131,9 +130,9 @@ namespace DustInTheWind.MedicX.Wpf.UI.Areas.Medics.ViewModels
             Medics.SortDescriptions.Add(new SortDescription(nameof(MedicItemViewModel.Name), ListSortDirection.Ascending));
 
             eventAggregator["CurrentItemChanged"].Subscribe(new Action<object>(HandleCurrentItemChanged));
-            eventAggregator["NewMedicAdded"].Subscribe(new Action<Medic>(HandleNewMedicAdded));
-            eventAggregator["MedicNameChanged"].Subscribe(new Action<Medic>(HandleMedicNameChanged));
-            eventAggregator["MedicSpecializationsChanged"].Subscribe(new Action<Medic>(HandleMedicSpecializationsChanged));
+            eventAggregator["NewMedicAdded"].Subscribe(new Action<MedicDto>(HandleNewMedicAdded));
+            eventAggregator["MedicNameChanged"].Subscribe(new Action<MedicDto>(HandleMedicNameChanged));
+            eventAggregator["MedicSpecializationsChanged"].Subscribe(new Action<MedicDto>(HandleMedicSpecializationsChanged));
 
             UpdateListOfMedics();
         }
@@ -142,8 +141,8 @@ namespace DustInTheWind.MedicX.Wpf.UI.Areas.Medics.ViewModels
         {
             IsMedicsListEnabled = false;
 
-            InitializeMedicsTabRequest request = new InitializeMedicsTabRequest();
-            requestBus.ProcessRequest<InitializeMedicsTabRequest, List<Medic>>(request)
+            GetAllMedicsRequest request = new GetAllMedicsRequest();
+            requestBus.ProcessRequest<GetAllMedicsRequest, List<MedicDto>>(request)
                 .ContinueWith(t =>
                 {
                     if (t.Exception == null)
@@ -176,7 +175,7 @@ namespace DustInTheWind.MedicX.Wpf.UI.Areas.Medics.ViewModels
                 .ConfigureAwait(true);
         }
 
-        private void HandleMedicNameChanged(Medic medic)
+        private void HandleMedicNameChanged(MedicDto medic)
         {
             if (medicsViewSource.Source is ObservableCollection<MedicItemViewModel> medics)
             {
@@ -190,7 +189,7 @@ namespace DustInTheWind.MedicX.Wpf.UI.Areas.Medics.ViewModels
             }
         }
 
-        private void HandleMedicSpecializationsChanged(Medic medic)
+        private void HandleMedicSpecializationsChanged(MedicDto medic)
         {
             if (medicsViewSource.Source is ObservableCollection<MedicItemViewModel> medics)
             {
@@ -204,7 +203,7 @@ namespace DustInTheWind.MedicX.Wpf.UI.Areas.Medics.ViewModels
             }
         }
 
-        private void HandleNewMedicAdded(Medic newMedic)
+        private void HandleNewMedicAdded(MedicDto newMedic)
         {
             if (medicsViewSource.Source is ObservableCollection<MedicItemViewModel> medics)
             {
@@ -217,7 +216,7 @@ namespace DustInTheWind.MedicX.Wpf.UI.Areas.Medics.ViewModels
         {
             dispatcher.InvokeAsync(() =>
             {
-                if (currentItem is Medic medic)
+                if (currentItem is MedicDto medic)
                 {
                     if (medicsViewSource.Source is ObservableCollection<MedicItemViewModel> medics)
                         SelectedMedic = medics.FirstOrDefault(x => x.Medic.Id == medic.Id);

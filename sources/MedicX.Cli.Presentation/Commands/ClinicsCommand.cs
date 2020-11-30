@@ -1,10 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
 using DustInTheWind.ConsoleTools;
+using DustInTheWind.ConsoleTools.InputControls;
 using DustInTheWind.ConsoleTools.TabularData;
+using DustInTheWind.MedicX.Application.AddNewClinic;
 using DustInTheWind.MedicX.Domain.DataAccess;
 using DustInTheWind.MedicX.Domain.Entities;
+using DustInTheWind.MedicX.RequestBusModel;
 
 namespace MedicX.Cli.Presentation.Commands
 {
@@ -12,23 +17,64 @@ namespace MedicX.Cli.Presentation.Commands
     internal class ClinicsCommand : ICommand
     {
         private readonly IUnitOfWork unitOfWork;
+        private readonly RequestBus requestBus;
 
-        public ClinicsCommand(IUnitOfWork unitOfWork)
+        public ClinicsCommand(IUnitOfWork unitOfWork, RequestBus requestBus)
         {
             this.unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
+            this.requestBus = requestBus ?? throw new ArgumentNullException(nameof(requestBus));
         }
 
         public void Execute(UserCommand command)
         {
             if (command.Parameters.Count > 0)
             {
-                string searchText = command.Parameters.ElementAt(0).Name;
-                SearchClinic(searchText);
+                if (command.Parameters.Count > 0 && command.Parameters.ElementAt(0).Name?.ToLower() == "add")
+                {
+                    AddClinic().Wait();
+                }
+                else
+                {
+                    string searchText = command.Parameters.ElementAt(0).Name;
+                    SearchClinic(searchText);
+                }
             }
             else
             {
                 DisplayAllClinics();
             }
+        }
+
+        private async Task AddClinic()
+        {
+            TextInputControl textInputControl = new TextInputControl();
+            ListInputControl listInputControl = new ListInputControl();
+
+            string clinicName = textInputControl.Read("Name");
+            string street = textInputControl.Read("Street");
+            string city = textInputControl.Read("City");
+            string county = textInputControl.Read("County");
+            string country = textInputControl.Read("Country");
+            List<string> phones = listInputControl.Read("Phones");
+            string program = textInputControl.Read("Program");
+            string comments = textInputControl.Read("Comments");
+
+            AddNewClinicRequest request = new AddNewClinicRequest
+            {
+                Name = clinicName,
+                Address = new Address
+                {
+                    Street = street,
+                    City = city,
+                    County = county,
+                    Country = country
+                },
+                Phones = phones,
+                Program = program,
+                Comments = comments
+            };
+
+            await requestBus.ProcessRequest(request);
         }
 
         private void DisplayAllClinics()

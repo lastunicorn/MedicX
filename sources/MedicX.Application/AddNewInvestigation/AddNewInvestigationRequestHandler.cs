@@ -17,6 +17,7 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using DustInTheWind.MedicX.Domain.DataAccess;
 using DustInTheWind.MedicX.Domain.Entities;
 using DustInTheWind.MedicX.RequestBusModel;
 
@@ -33,18 +34,21 @@ namespace DustInTheWind.MedicX.Application.AddNewInvestigation
 
         public Task Handle(AddNewInvestigationRequest request)
         {
-            MedicXProject currentProject = medicXApplication.CurrentProject;
+            Project currentProject = medicXApplication.CurrentProject;
 
-            if (currentProject != null)
+            if (currentProject == null)
+                throw new NoProjectException();
+
+            Investigation investigation = new Investigation
             {
-                Investigation investigation = new Investigation
-                {
-                    Id = Guid.NewGuid(),
-                    Date = DateTime.Today,
-                    Labels = new ObservableCollection<string>()
-                };
+                Id = Guid.NewGuid(),
+                Date = DateTime.Today,
+                Labels = new ObservableCollection<string>()
+            };
 
-                currentProject.MedicalEvents.Add(investigation);
+            using (IUnitOfWork unitOfWork = currentProject.CreateUnitOfWork())
+            {
+                unitOfWork.InvestigationRepository.AddOrUpdate(investigation);
                 currentProject.CurrentItem = investigation;
             }
 

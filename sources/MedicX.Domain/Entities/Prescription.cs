@@ -15,13 +15,14 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
+using System.Collections.Generic;
 
 namespace DustInTheWind.MedicX.Domain.Entities
 {
     public class Prescription : IEquatable<Prescription>
     {
         private string description;
-        private object result;
+        private List<string> files;
 
         public string Description
         {
@@ -33,12 +34,12 @@ namespace DustInTheWind.MedicX.Domain.Entities
             }
         }
 
-        public object Result
+        public List<string> Files
         {
-            get => result;
+            get => files;
             set
             {
-                result = value;
+                files = value;
                 OnChanged();
             }
         }

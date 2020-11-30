@@ -14,6 +14,8 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+using System;
+
 namespace DustInTheWind.MedicX.Domain.Entities
 {
     public class TestItem
@@ -27,5 +29,19 @@ namespace DustInTheWind.MedicX.Domain.Entities
         public float? MinValue { get; set; }
         
         public float? MaxValue { get; set; }
+        
+        public float? Value { get; set; }
+
+        public string Comments { get; set; }
+
+        public bool Contains(string text)
+        {
+            return (Name != null && Name.IndexOf(text, StringComparison.OrdinalIgnoreCase) >= 0) ||
+                   (MeasurementUnit != null && MeasurementUnit.IndexOf(text, StringComparison.OrdinalIgnoreCase) >= 0) ||
+                   (MinValue != null && MinValue.ToString().IndexOf(text, StringComparison.OrdinalIgnoreCase) >= 0) ||
+                   (MaxValue != null && MaxValue.ToString().IndexOf(text, StringComparison.OrdinalIgnoreCase) >= 0) ||
+                   (Value != null && Value.ToString().IndexOf(text, StringComparison.OrdinalIgnoreCase) >= 0) ||
+                   (Comments != null && Comments.IndexOf(text, StringComparison.OrdinalIgnoreCase) >= 0);
+        }
     }
 }

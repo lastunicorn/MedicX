@@ -28,6 +28,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     xmlns:entities="clr-namespace:DustInTheWind.MedicX.Domain.Entities;assembly=DustInTheWind.MedicX.Domain"
     xmlns:getAllClinics="clr-namespace:DustInTheWind.MedicX.Application.GetAllClinics;assembly=DustInTheWind.MedicX.Application"
     xmlns:converters="clr-namespace:DustInTheWind.MedicX.Wpf.UI.Converters"
+    xmlns:viewModels="clr-namespace:DustInTheWind.MedicX.Wpf.UI.Areas.MedicalEvents.ViewModels"
 
     mc:Ignorable="d"
     d:DesignHeight="300"
@@ -122,7 +123,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                                 <!--selected text-->
                                 <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="{StaticResource HighlightTextBrushKeyColor}" />
 
-                                <DataTemplate DataType="{x:Type getAllClinics:Clinic}">
+                                <DataTemplate DataType="{x:Type getAllClinics:ClinicDto}">
                                     <StackPanel
                                             Orientation="Horizontal"
                                             Margin="8 4 8 4">

@@ -29,11 +29,14 @@ namespace DustInTheWind.MedicX.Wpf.UI
         /// USAGE: AsyncUtil.RunSync(() => AsyncMethod());
         /// </summary>
         /// <param name="func">Task method to execute</param>
-        public static void RunSync(Func<Task> func) => TaskFactory
-            .StartNew(func)
-            .Unwrap()
-            .GetAwaiter()
-            .GetResult();
+        public static void RunSync(Func<Task> func)
+        {
+            TaskFactory
+                .StartNew(func)
+                .Unwrap()
+                .GetAwaiter()
+                .GetResult();
+        }
 
         /// <summary>
         /// Executes an async <see cref="Task{T}"/> method which has a T return type synchronously
@@ -42,10 +45,13 @@ namespace DustInTheWind.MedicX.Wpf.UI
         /// <typeparam name="TResult">Return Type</typeparam>
         /// <param name="func"><see cref="Task{T}"/> method to execute</param>
         /// <returns></returns>
-        public static TResult RunSync<TResult>(Func<Task<TResult>> func) => TaskFactory
-            .StartNew(func)
-            .Unwrap()
-            .GetAwaiter()
-            .GetResult();
+        public static TResult RunSync<TResult>(Func<Task<TResult>> func)
+        {
+            return TaskFactory
+                .StartNew(func)
+                .Unwrap()
+                .GetAwaiter()
+                .GetResult();
+        }
     }
 }

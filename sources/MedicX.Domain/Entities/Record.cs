@@ -8,6 +8,7 @@ namespace DustInTheWind.MedicX.Domain.Entities
     {
         private DateTime date;
         private ObservableCollection<string> labels;
+        private ObservableCollection<string> files;
         private string comments;
 
         public event EventHandler DateChanged;
@@ -41,6 +42,23 @@ namespace DustInTheWind.MedicX.Domain.Entities
             }
         }
 
+        public ObservableCollection<string> Files
+        {
+            get => files;
+            set
+            {
+                if (files != null)
+                    files.CollectionChanged -= HandleFilesCollectionChanged;
+
+                files = value;
+
+                if (files != null)
+                    files.CollectionChanged += HandleFilesCollectionChanged;
+
+                OnChanged();
+            }
+        }
+
         public string Comments
         {
             get => comments;
@@ -52,6 +70,11 @@ namespace DustInTheWind.MedicX.Domain.Entities
         }
 
         private void HandleLabelsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            OnChanged();
+        }
+
+        private void HandleFilesCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             OnChanged();
         }

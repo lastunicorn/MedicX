@@ -17,6 +17,7 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using DustInTheWind.MedicX.Domain.DataAccess;
 using DustInTheWind.MedicX.Domain.Entities;
 using DustInTheWind.MedicX.RequestBusModel;
 
@@ -33,9 +34,12 @@ namespace DustInTheWind.MedicX.Application.AddNewConsultation
 
         public Task Handle(AddNewConsultationRequest request)
         {
-            MedicXProject currentProject = medicXApplication.CurrentProject;
+            Project currentProject = medicXApplication.CurrentProject;
 
-            if (currentProject != null)
+            if (currentProject == null)
+                throw new NoProjectException();
+
+            using (IUnitOfWork unitOfWork = currentProject.CreateUnitOfWork())
             {
                 Consultation consultation = new Consultation
                 {
@@ -44,7 +48,7 @@ namespace DustInTheWind.MedicX.Application.AddNewConsultation
                     Labels = new ObservableCollection<string>()
                 };
 
-                currentProject.MedicalEvents.Add(consultation);
+                unitOfWork.ConsultationRepository.AddOrUpdate(consultation);
                 currentProject.CurrentItem = consultation;
             }
 

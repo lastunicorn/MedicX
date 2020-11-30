@@ -79,7 +79,6 @@
     </Compile>
     <Compile Include="Areas\Main\Commands\ExitCommand.cs" />
     <Compile Include="Areas\Main\Commands\RelayCommand.cs" />
-    <Compile Include="Areas\Main\Commands\SaveCommand.cs" />
     <Compile Include="Areas\Main\Commands\SaveConfirmationQuestion.cs" />
     <Compile Include="Areas\Main\ViewModels\DetailsViewModel.cs" />
     <Compile Include="Areas\Main\ViewModels\ListItemViewModel.cs" />

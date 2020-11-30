@@ -21,7 +21,6 @@ using DustInTheWind.MedicX.Application.GetAllClinics;
 using DustInTheWind.MedicX.Application.GetAllMedics;
 using DustInTheWind.MedicX.Domain.Entities;
 using DustInTheWind.MedicX.RequestBusModel;
-using ClinicDto = DustInTheWind.MedicX.Application.GetAllClinics.Clinic;
 using Medic = DustInTheWind.MedicX.Domain.Entities.Medic;
 
 namespace DustInTheWind.MedicX.Wpf.UI.Areas.MedicalEvents.ViewModels

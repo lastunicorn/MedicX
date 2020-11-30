@@ -16,7 +16,7 @@
 
 using System;
 using System.Windows.Input;
-using DustInTheWind.MedicX.Application.AddNewClinic;
+using DustInTheWind.MedicX.Application.AddNewEmptyClinic;
 using DustInTheWind.MedicX.RequestBusModel;
 
 namespace DustInTheWind.MedicX.Wpf.UI.Areas.Clinics.Commands
@@ -39,7 +39,7 @@ namespace DustInTheWind.MedicX.Wpf.UI.Areas.Clinics.Commands
 
         public async void Execute(object parameter)
         {
-            AddNewClinicRequest request = new AddNewClinicRequest();
+            AddNewEmptyClinicRequest request = new AddNewEmptyClinicRequest();
             await requestBus.ProcessRequest(request);
         }
     }

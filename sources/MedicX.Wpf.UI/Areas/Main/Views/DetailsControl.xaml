@@ -30,6 +30,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     xmlns:views1="clr-namespace:DustInTheWind.MedicX.Wpf.UI.Areas.Clinics.Views"
     xmlns:viewModels11="clr-namespace:DustInTheWind.MedicX.Wpf.UI.Areas.MedicalEvents.ViewModels"
     xmlns:views2="clr-namespace:DustInTheWind.MedicX.Wpf.UI.Areas.MedicalEvents.Views"
+    xmlns:viewModels="clr-namespace:DustInTheWind.MedicX.Wpf.UI.Areas.Main.ViewModels"
 
 
     mc:Ignorable="d"

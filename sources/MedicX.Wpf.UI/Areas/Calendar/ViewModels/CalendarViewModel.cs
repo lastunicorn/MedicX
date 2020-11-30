@@ -24,26 +24,28 @@ namespace DustInTheWind.MedicX.Wpf.UI.Areas.Calendar.ViewModels
 {
     internal class CalendarViewModel : ViewModelBase
     {
-        private MedicXProject medicXProject;
+        private Project project;
 
         private DateTime januaryDate;
         private DateTime februaryDate;
         private DateTime marchDate;
         private ObservableCollection<DateTime> januarySelectedDates;
 
-        public CalendarViewModel(MedicXProject medicXProject)
+        public CalendarViewModel(Project project)
         {
-            this.medicXProject = medicXProject ?? throw new ArgumentNullException(nameof(medicXProject));
+            this.project = project ?? throw new ArgumentNullException(nameof(project));
 
-            int year = 1980;
+            const int year = 1980;
 
             januaryDate = new DateTime(year, 01, 01);
             februaryDate = new DateTime(year, 02, 01);
             marchDate = new DateTime(year, 03, 01);
 
-            IEnumerable<DateTime> dates = medicXProject.MedicalEvents
-                .Where(x => x.Date >= new DateTime(year, 01, 01) && x.Date <= new DateTime(year, 12, 31))
-                .Select(x => x.Date);
+            //IEnumerable<DateTime> dates = project.MedicalEvents
+            //    .Where(x => x.Date >= new DateTime(year, 01, 01) && x.Date <= new DateTime(year, 12, 31))
+            //    .Select(x => x.Date);
+
+            IEnumerable<DateTime> dates = Enumerable.Empty<DateTime>();
 
             januarySelectedDates = new ObservableCollection<DateTime>(dates);
         }

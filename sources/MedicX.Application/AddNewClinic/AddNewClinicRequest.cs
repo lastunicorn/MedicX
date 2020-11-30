@@ -14,9 +14,21 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+using System.Collections.Generic;
+using DustInTheWind.MedicX.Domain.Entities;
+
 namespace DustInTheWind.MedicX.Application.AddNewClinic
 {
     public class AddNewClinicRequest
     {
+        public string Name { get; set; }
+
+        public Address Address { get; set; }
+
+        public List<string> Phones { get; set; }
+
+        public string Program { get; set; }
+
+        public string Comments { get; set; }
     }
 }

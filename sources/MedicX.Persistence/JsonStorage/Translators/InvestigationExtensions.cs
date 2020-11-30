@@ -18,19 +18,20 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using DustInTheWind.MedicX.Domain.Entities;
+using DustInTheWind.MedicX.Persistence.JsonStorage.Entities;
 
 namespace DustInTheWind.MedicX.Persistence.JsonStorage.Translators
 {
     internal static class InvestigationExtensions
     {
-        public static List<Investigation> Translate(this IEnumerable<Entities.Investigation> investigations, List<Medic> medics, IEnumerable<Clinic> clinicLocations)
+        public static List<Investigation> Translate(this IEnumerable<JsonInvestigation> investigations, List<Medic> medics, IEnumerable<Clinic> clinicLocations)
         {
             return investigations?
                 .Select(x => x.Translate(medics, clinicLocations))
                 .ToList();
         }
 
-        private static Investigation Translate(this Entities.Investigation investigation, IEnumerable<Medic> medics, IEnumerable<Clinic> clinicLocations)
+        private static Investigation Translate(this JsonInvestigation investigation, IEnumerable<Medic> medics, IEnumerable<Clinic> clinicLocations)
         {
             if (investigation == null)
                 return null;
@@ -45,26 +46,29 @@ namespace DustInTheWind.MedicX.Persistence.JsonStorage.Translators
                 Labels = investigation.Labels == null
                     ? null
                     : new ObservableCollection<string>(investigation.Labels.ToList()),
-                Comments = investigation.Comments,
-                Result = investigation.Result == null
+                Files = investigation.Files == null
                     ? null
-                    : new ObservableCollection<InvestigationResult>(investigation.Result.Translate())
+                    : new ObservableCollection<string>(investigation.Files.ToList()),
+                Comments = investigation.Comments,
+                Tests = investigation.Tests == null
+                    ? null
+                    : new ObservableCollection<Test>(investigation.Tests.Translate())
             };
         }
 
-        public static List<Entities.Investigation> Translate(this IEnumerable<Investigation> investigations)
+        public static List<JsonInvestigation> Translate(this IEnumerable<Investigation> investigations)
         {
             return investigations?
                 .Select(x => x.Translate())
                 .ToList();
         }
 
-        private static Entities.Investigation Translate(this Investigation investigation)
+        private static JsonInvestigation Translate(this Investigation investigation)
         {
             if (investigation == null)
                 return null;
 
-            return new Entities.Investigation
+            return new JsonInvestigation
             {
                 Id = investigation.Id,
                 Date = investigation.Date,
@@ -73,7 +77,7 @@ namespace DustInTheWind.MedicX.Persistence.JsonStorage.Translators
                 ClinicLocationId = investigation.Clinic?.Id,
                 Labels = investigation.Labels?.ToList(),
                 Comments = investigation.Comments,
-                Result = investigation.Result?.Translate()
+                Tests = investigation.Tests?.Translate()
             };
         }
     }

@@ -40,6 +40,12 @@ namespace DustInTheWind.MedicX.Persistence
                 .ToList();
         }
 
+        public Investigation GetById(Guid id)
+        {
+            return storage.Investigations
+                .FirstOrDefault(x => x.Id == id);
+        }
+
         public List<Investigation> Search(string text)
         {
             return storage.Investigations

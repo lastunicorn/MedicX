@@ -17,6 +17,7 @@
 using System;
 using System.IO;
 using DustInTheWind.MedicX.Persistence.JsonStorage.Entities;
+using Newtonsoft.Json;
 
 namespace DustInTheWind.MedicX.Persistence.JsonStorage
 {

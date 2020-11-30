@@ -17,87 +17,47 @@
 using System.Collections.Generic;
 using System.Linq;
 using DustInTheWind.MedicX.Domain.Entities;
+using DustInTheWind.MedicX.Persistence.JsonStorage.Entities;
 
 namespace DustInTheWind.MedicX.Persistence.JsonStorage.Translators
 {
     internal static class PrescriptionsExtensions
     {
-        public static List<Prescription> Translate(this IEnumerable<Entities.Prescription> prescriptions)
+        public static List<Prescription> Translate(this IEnumerable<JsonPrescription> prescriptions)
         {
             return prescriptions?
                 .Select(Translate)
                 .ToList();
         }
 
-        private static Prescription Translate(this Entities.Prescription prescription)
+        private static Prescription Translate(this JsonPrescription jsonPrescription)
         {
-            if (prescription == null)
+            if (jsonPrescription == null)
                 return null;
 
             return new Prescription
             {
-                Description = prescription.Description,
-                Result = prescription.Result
+                Description = jsonPrescription.Description,
+                Files = jsonPrescription.Files
             };
         }
 
-        public static List<Entities.Prescription> Translate(this IEnumerable<Prescription> prescriptions)
+        public static List<JsonPrescription> Translate(this IEnumerable<Prescription> prescriptions)
         {
             return prescriptions?
                 .Select(Translate)
                 .ToList();
         }
 
-        private static Entities.Prescription Translate(this Prescription prescription)
+        private static JsonPrescription Translate(this Prescription prescription)
         {
             if (prescription == null)
                 return null;
 
-            return new Entities.Prescription
+            return new JsonPrescription
             {
                 Description = prescription.Description,
-                Result = prescription.Result
-            };
-        }
-    }
-
-    internal static class InvestigationResultExtensions
-    {
-        public static List<InvestigationResult> Translate(this IEnumerable<Entities.InvestigationResult> investigationResults)
-        {
-            return investigationResults?
-                .Select(Translate)
-                .ToList();
-        }
-
-        private static InvestigationResult Translate(this Entities.InvestigationResult investigationResult)
-        {
-            if (investigationResult == null)
-                return null;
-
-            return new InvestigationResult
-            {
-                InvestigationTest = null,
-                Value = investigationResult.Value
-            };
-        }
-
-        public static List<Entities.InvestigationResult> Translate(this IEnumerable<InvestigationResult> investigationResults)
-        {
-            return investigationResults?
-                .Select(Translate)
-                .ToList();
-        }
-
-        private static Entities.InvestigationResult Translate(this InvestigationResult investigationResult)
-        {
-            if (investigationResult == null)
-                return null;
-
-            return new Entities.InvestigationResult
-            {
-                InvestigationId = 0,
-                Value = investigationResult.Value
+                Files = prescription.Files
             };
         }
     }

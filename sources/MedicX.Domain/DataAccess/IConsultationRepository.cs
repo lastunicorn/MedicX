@@ -14,6 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+using System;
 using System.Collections.Generic;
 using DustInTheWind.MedicX.Domain.Entities;
 
@@ -21,6 +22,8 @@ namespace DustInTheWind.MedicX.Domain.DataAccess
 {
     public interface IConsultationRepository
     {
+        Consultation GetById(Guid id);
+     
         List<Consultation> GetAll();
         
         List<Consultation> Search(string text);

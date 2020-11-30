@@ -14,8 +14,8 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using DustInTheWind.MedicX.Application.AddNewClinic;
 using DustInTheWind.MedicX.Application.AddNewConsultation;
+using DustInTheWind.MedicX.Application.AddNewEmptyClinic;
 using DustInTheWind.MedicX.Application.AddNewInvestigation;
 using DustInTheWind.MedicX.Application.AddNewMedic;
 using DustInTheWind.MedicX.Application.ExitApplication;
@@ -23,10 +23,7 @@ using DustInTheWind.MedicX.Application.GetAllClinics;
 using DustInTheWind.MedicX.Application.GetAllMedics;
 using DustInTheWind.MedicX.Application.GetCurrentItem;
 using DustInTheWind.MedicX.Application.GetCurrentProject;
-using DustInTheWind.MedicX.Application.GetCurrentProjectStatus;
-using DustInTheWind.MedicX.Application.InitializeMedicsTab;
 using DustInTheWind.MedicX.Application.LoadProject;
-using DustInTheWind.MedicX.Application.SaveProject;
 using DustInTheWind.MedicX.Application.SetCurrentItem;
 using DustInTheWind.MedicX.Application.SetMedicAsCurrent;
 using DustInTheWind.MedicX.Application.UpdateConsultationClinic;
@@ -39,21 +36,18 @@ namespace DustInTheWind.MedicX.Application
         public static void Configure(RequestBus requestBus)
         {
             requestBus.Register<LoadProjectRequest, LoadProjectRequestHandler>();
-            requestBus.Register<SaveProjectRequest, SaveProjectRequestHandler>();
             requestBus.Register<GetCurrentProjectRequest, GetCurrentProjectRequestHandler>();
-            requestBus.Register<GetCurrentProjectStatusRequest, GetCurrentProjectStatusRequestHandler>();
             requestBus.Register<ExitApplicationRequest, ExitApplicationRequestHandler>();
             requestBus.Register<SetCurrentItemRequest, SetCurrentItemRequestHandler>();
             requestBus.Register<GetAllMedicsRequest, GetAllMedicsRequestHandler>();
             requestBus.Register<GetAllClinicsRequest, GetAllClinicsRequestHandler>();
             requestBus.Register<AddNewMedicRequest, AddNewMedicRequestHandler>();
-            requestBus.Register<AddNewClinicRequest, AddNewClinicRequestHandler>();
+            requestBus.Register<AddNewEmptyClinicRequest, AddNewEmptyClinicRequestHandler>();
             requestBus.Register<AddNewInvestigationRequest, AddNewInvestigationRequestHandler>();
             requestBus.Register<AddNewConsultationRequest, AddNewConsultationRequestHandler>();
             requestBus.Register<UpdateConsultationSetClinicRequest, UpdateConsultationSetClinicRequestHandler>();
             requestBus.Register<GetCurrentItemRequest, GetCurrentItemRequestHandler>();
             requestBus.Register<SetMedicAsCurrentRequest, SetMedicAsCurrentRequestHandler>();
-            requestBus.Register<InitializeMedicsTabRequest, InitializeMedicsTabRequestHandler>();
         }
     }
 }

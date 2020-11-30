@@ -5,13 +5,13 @@ namespace DustInTheWind.MedicX.Application.GetCurrentProjectStatus
 {
     public class ProjectStatusInfo
     {
-        private readonly MedicXProject project;
+        private readonly Project project;
 
         public event EventHandler StatusChanged;
 
         public ProjectStatus Value => project.Status;
 
-        public ProjectStatusInfo(MedicXProject project)
+        public ProjectStatusInfo(Project project)
         {
             this.project = project ?? throw new ArgumentNullException(nameof(project));
 

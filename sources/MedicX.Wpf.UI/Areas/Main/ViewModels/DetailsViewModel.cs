@@ -15,13 +15,13 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
+using DustInTheWind.MedicX.Application.GetAllMedics;
 using DustInTheWind.MedicX.Domain.Entities;
 using DustInTheWind.MedicX.RequestBusModel;
 using DustInTheWind.MedicX.Wpf.UI.Areas.Clinics.ViewModels;
 using DustInTheWind.MedicX.Wpf.UI.Areas.MedicalEvents.ViewModels;
 using DustInTheWind.MedicX.Wpf.UI.Areas.Medics.ViewModels;
 using EventBusModel;
-using MedicDto = DustInTheWind.MedicX.Application.GetAllMedics.Medic;
 
 namespace DustInTheWind.MedicX.Wpf.UI.Areas.Main.ViewModels
 {

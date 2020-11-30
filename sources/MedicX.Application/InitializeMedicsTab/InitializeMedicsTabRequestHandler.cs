@@ -23,7 +23,7 @@ using DustInTheWind.MedicX.RequestBusModel;
 
 namespace DustInTheWind.MedicX.Application.InitializeMedicsTab
 {
-    internal class InitializeMedicsTabRequestHandler : IRequestHandler<InitializeMedicsTabRequest, List<Medic>>
+    internal class InitializeMedicsTabRequestHandler : IRequestHandler<InitializeMedicsTabRequest, List<MedicDto>>
     {
         private readonly MedicXApplication medicXApplication;
 
@@ -32,15 +32,15 @@ namespace DustInTheWind.MedicX.Application.InitializeMedicsTab
             this.medicXApplication = medicXApplication ?? throw new ArgumentNullException(nameof(medicXApplication));
         }
 
-        public Task<List<Medic>> Handle(InitializeMedicsTabRequest request)
+        public Task<List<MedicDto>> Handle(InitializeMedicsTabRequest request)
         {
             return Task.Run(() =>
             {
-                List<Medic> medics = medicXApplication.CurrentProject?.Medics
-                    .Select(x => new Medic(x))
+                List<MedicDto> medics = medicXApplication.CurrentProject?.Medics
+                    .Select(x => new MedicDto(x))
                     .ToList();
 
-                return medics ?? new List<Medic>();
+                return medics ?? new List<MedicDto>();
             });
         }
     }

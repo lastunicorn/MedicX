@@ -26,7 +26,7 @@ namespace DustInTheWind.MedicX.Wpf.UI.Areas.Medics.ViewModels
         private string name;
         private List<string> specializations;
 
-        public Medic Medic { get; set; }
+        public MedicDto Medic { get; set; }
 
         public string Name
         {
@@ -48,7 +48,7 @@ namespace DustInTheWind.MedicX.Wpf.UI.Areas.Medics.ViewModels
             }
         }
 
-        public MedicItemViewModel(Medic medic)
+        public MedicItemViewModel(MedicDto medic)
         {
             Medic = medic ?? throw new ArgumentNullException(nameof(medic));
 
@@ -70,7 +70,7 @@ namespace DustInTheWind.MedicX.Wpf.UI.Areas.Medics.ViewModels
             Specializations = Medic.Specializations.ToList();
         }
 
-        public void UpdateFrom(Medic medic)
+        public void UpdateFrom(MedicDto medic)
         {
             Medic = medic ?? throw new ArgumentNullException(nameof(medic));
 

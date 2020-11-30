@@ -14,12 +14,12 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using Medic = DustInTheWind.MedicX.Application.GetAllMedics.Medic;
+using DustInTheWind.MedicX.Application.GetAllMedics;
 
 namespace DustInTheWind.MedicX.Application.SetMedicAsCurrent
 {
     public class SetMedicAsCurrentRequest
     {
-        public Medic NewCurrentItem { get; set; }
+        public MedicDto NewCurrentItem { get; set; }
     }
 }

@@ -18,19 +18,20 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using DustInTheWind.MedicX.Domain.Entities;
+using DustInTheWind.MedicX.Persistence.JsonStorage.Entities;
 
 namespace DustInTheWind.MedicX.Persistence.JsonStorage.Translators
 {
     internal static class ClinicExtensions
     {
-        public static List<Clinic> Translate(this IEnumerable<Entities.Clinic> clinicLocations)
+        public static List<Clinic> Translate(this IEnumerable<JsonClinic> clinicLocations)
         {
             return clinicLocations?
                 .Select(Translate)
                 .ToList();
         }
 
-        public static Clinic Translate(this Entities.Clinic clinic)
+        public static Clinic Translate(this JsonClinic clinic)
         {
             if (clinic == null)
                 return null;
@@ -46,19 +47,19 @@ namespace DustInTheWind.MedicX.Persistence.JsonStorage.Translators
             };
         }
 
-        public static List<Entities.Clinic> Translate(this IEnumerable<Clinic> clinicLocations)
+        public static List<JsonClinic> Translate(this IEnumerable<Clinic> clinicLocations)
         {
             return clinicLocations?
                 .Select(x => x.Translate())
                 .ToList();
         }
 
-        public static Entities.Clinic Translate(this Clinic clinic)
+        public static JsonClinic Translate(this Clinic clinic)
         {
             if (clinic == null)
                 return null;
 
-            return new Entities.Clinic
+            return new JsonClinic
             {
                 Id = clinic.Id,
                 Name = clinic.Name,

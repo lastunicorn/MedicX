@@ -18,12 +18,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DustInTheWind.MedicX.Domain.DataAccess;
+using DustInTheWind.MedicX.Domain.Entities;
 using DustInTheWind.MedicX.RequestBusModel;
-using MedicDto = DustInTheWind.MedicX.Application.GetAllMedics.Medic;
 
 namespace DustInTheWind.MedicX.Application.GetAllMedics
 {
-    internal class GetAllMedicsRequestHandler : IRequestHandler<GetAllMedicsRequest, List<Medic>>
+    internal class GetAllMedicsRequestHandler : IRequestHandler<GetAllMedicsRequest, List<MedicDto>>
     {
         private readonly MedicXApplication medicXApplication;
 
@@ -32,13 +33,21 @@ namespace DustInTheWind.MedicX.Application.GetAllMedics
             this.medicXApplication = medicXApplication ?? throw new ArgumentNullException(nameof(medicXApplication));
         }
 
-        public Task<List<Medic>> Handle(GetAllMedicsRequest request)
+        public Task<List<MedicDto>> Handle(GetAllMedicsRequest request)
         {
-            List<Medic> medics = medicXApplication.CurrentProject?.Medics
-                .Select(x => new MedicDto(x))
-                .ToList();
+            Project currentProject = medicXApplication.CurrentProject;
 
-            return Task.FromResult(medics ?? new List<Medic>());
+            if (currentProject == null)
+                throw new NoProjectException();
+
+            using (IUnitOfWork unitOfWork = currentProject.CreateUnitOfWork())
+            {
+                List<MedicDto> medics = unitOfWork.MedicRepository.GetAll()
+                    .Select(x => new MedicDto(x))
+                    .ToList();
+
+                return Task.FromResult(medics);
+            }
         }
     }
 }

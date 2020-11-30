@@ -47,10 +47,13 @@
     <Compile Include="Entities\Address.cs" />
     <Compile Include="Entities\Clinic.cs" />
     <Compile Include="Entities\Consultation.cs" />
+    <Compile Include="Entities\DataStatus.cs" />
+    <Compile Include="Entities\MedicalData.cs" />
     <Compile Include="Entities\MedicalEvent.cs" />
     <Compile Include="Entities\Investigation.cs" />
     <Compile Include="Entities\InvestigationResult.cs" />
-    <Compile Include="Entities\InvestigationTest.cs" />
+    <Compile Include="Entities\ProjectRepository.cs" />
+    <Compile Include="Entities\Test.cs" />
     <Compile Include="Entities\TestItem.cs" />
     <Compile Include="Entities\Medic.cs" />
     <Compile Include="Entities\Person.cs" />
@@ -61,7 +64,7 @@
     <Compile Include="Collections\MedicalEventAddedEventArgs.cs" />
     <Compile Include="Collections\MedicalEventCollection.cs" />
     <Compile Include="Collections\MedicsCollection.cs" />
-    <Compile Include="Entities\MedicXProject.cs" />
+    <Compile Include="Entities\Project.cs" />
     <Compile Include="Entities\ProjectStatus.cs" />
     <Compile Include="Entities\Record.cs" />
     <Compile Include="Entities\Treatment.cs" />

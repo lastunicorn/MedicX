@@ -27,6 +27,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     xmlns:customControls="clr-namespace:DustInTheWind.MedicX.Wpf.CustomControls;assembly=DustInTheWind.MedicX.Wpf.CustomControls"
     xmlns:entities1="clr-namespace:DustInTheWind.MedicX.Domain.Entities;assembly=DustInTheWind.MedicX.Domain"
     xmlns:converters="clr-namespace:DustInTheWind.MedicX.Wpf.UI.Converters"
+    xmlns:viewModels="clr-namespace:DustInTheWind.MedicX.Wpf.UI.Areas.MedicalEvents.ViewModels"
 
     mc:Ignorable="d"
     d:DesignHeight="300"

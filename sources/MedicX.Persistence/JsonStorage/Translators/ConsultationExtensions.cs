@@ -18,19 +18,20 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using DustInTheWind.MedicX.Domain.Entities;
+using DustInTheWind.MedicX.Persistence.JsonStorage.Entities;
 
 namespace DustInTheWind.MedicX.Persistence.JsonStorage.Translators
 {
     internal static class ConsultationExtensions
     {
-        public static List<Consultation> Translate(this IEnumerable<Entities.Consultation> consultations, List<Medic> medics, IEnumerable<Clinic> clinicLocations)
+        public static List<Consultation> Translate(this IEnumerable<JsonConsultation> consultations, List<Medic> medics, IEnumerable<Clinic> clinicLocations)
         {
             return consultations?
                 .Select(x => x.Translate(medics, clinicLocations))
                 .ToList();
         }
 
-        private static Consultation Translate(this Entities.Consultation consultation, IEnumerable<Medic> medics, IEnumerable<Clinic> clinicLocations)
+        private static Consultation Translate(this JsonConsultation consultation, IEnumerable<Medic> medics, IEnumerable<Clinic> clinicLocations)
         {
             if (consultation == null)
                 return null;
@@ -44,33 +45,41 @@ namespace DustInTheWind.MedicX.Persistence.JsonStorage.Translators
                 Labels = consultation.Labels == null
                     ? null
                     : new ObservableCollection<string>(consultation.Labels.ToList()),
+                Files = consultation.Files == null
+                    ? null
+                    : new ObservableCollection<string>(consultation.Files.ToList()),
                 Comments = consultation.Comments,
+                Reason = consultation.Reason,
+                Conclusions = consultation.Conclusions,
                 Prescriptions = consultation.Prescriptions == null
                     ? null
                     : new ObservableCollection<Prescription>(consultation.Prescriptions.Translate())
             };
         }
 
-        public static List<Entities.Consultation> Translate(this IEnumerable<Consultation> consultations)
+        public static List<JsonConsultation> Translate(this IEnumerable<Consultation> consultations)
         {
             return consultations?
                 .Select(x => x.Translate())
                 .ToList();
         }
 
-        private static Entities.Consultation Translate(this Consultation consultation)
+        private static JsonConsultation Translate(this Consultation consultation)
         {
             if (consultation == null)
                 return null;
 
-            return new Entities.Consultation
+            return new JsonConsultation
             {
                 Id = consultation.Id,
                 Date = consultation.Date,
                 MedicId = consultation.Medic?.Id,
                 ClinicLocationId = consultation.Clinic?.Id,
                 Labels = consultation.Labels?.ToList(),
+                Files = consultation.Files?.ToList(),
                 Comments = consultation.Comments,
+                Reason = consultation.Reason,
+                Conclusions = consultation.Conclusions,
                 Prescriptions = consultation.Prescriptions?.Translate()
             };
         }

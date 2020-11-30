@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using DustInTheWind.MedicX.Domain.DataAccess;
 using DustInTheWind.MedicX.Domain.Entities;
 using DustInTheWind.MedicX.RequestBusModel;
 
@@ -19,27 +20,40 @@ namespace DustInTheWind.MedicX.Application.UpdateConsultationClinic
         {
             return Task.Run(() =>
             {
-                Consultation consultation = application.CurrentProject?.MedicalEvents
-                    .OfType<Consultation>()
-                    .FirstOrDefault(x => x.Id == request.ConsultationId);
+                Project currentProject = application.CurrentProject;
 
-                if (consultation == null)
-                    return;
+                if (currentProject == null)
+                    throw new NoProjectException();
 
-                if (request.ClinicId == Guid.Empty)
+                using (IUnitOfWork unitOfWork = currentProject.CreateUnitOfWork())
                 {
-                    consultation.Clinic = null;
-                    return;
+                    Consultation consultation = RetrieveConsultation(unitOfWork, request.ConsultationId);
+                    consultation.Clinic = RetrieveClinic(unitOfWork, request.ClinicId);
                 }
-
-                Clinic clinic = application.CurrentProject?.Clinics
-                    .FirstOrDefault(x => x.Id == request.ClinicId);
-
-                if (clinic == null)
-                    return;
-
-                consultation.Clinic = clinic;
             });
+        }
+
+        private static Consultation RetrieveConsultation(IUnitOfWork unitOfWork, Guid consultationId)
+        {
+            Consultation consultation = unitOfWork.ConsultationRepository.GetById(consultationId);
+
+            if (consultation == null)
+                throw new Exception($"Consultation with id {consultationId} was not found.");
+
+            return consultation;
+        }
+
+        private static Clinic RetrieveClinic(IUnitOfWork unitOfWork, Guid clinicId)
+        {
+            if (clinicId == Guid.Empty)
+                return null;
+
+            Clinic clinic = unitOfWork.ClinicRepository.GetById(clinicId);
+
+            if (clinic == null)
+                throw new Exception($"Clinic with id {clinicId} not found.");
+
+            return clinic;
         }
     }
 }

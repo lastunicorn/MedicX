@@ -15,7 +15,9 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using DustInTheWind.MedicX.Domain.DataAccess;
 using DustInTheWind.MedicX.Domain.Entities;
 using DustInTheWind.MedicX.RequestBusModel;
 
@@ -23,22 +25,23 @@ namespace DustInTheWind.MedicX.Application.AddNewClinic
 {
     internal class AddNewClinicRequestHandler : IRequestHandler<AddNewClinicRequest>
     {
-        private readonly MedicXApplication medicXApplication;
+        private readonly IUnitOfWork unitOfWork;
 
-        public AddNewClinicRequestHandler(MedicXApplication medicXApplication)
+        public AddNewClinicRequestHandler(IUnitOfWork unitOfWork)
         {
-            this.medicXApplication = medicXApplication ?? throw new ArgumentNullException(nameof(medicXApplication));
+            this.unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
         }
 
         public Task Handle(AddNewClinicRequest request)
         {
-            MedicXProject currentProject = medicXApplication.CurrentProject;
-
-            if (currentProject != null)
+            Clinic clinic = new Clinic
             {
-                Clinic clinic = currentProject.Clinics.AddNew();
-                currentProject.CurrentItem = clinic;
-            }
+                Name = request.Name,
+                Address = request.Address,
+                Phones = new ObservableCollection<string>(request.Phones),
+                Program = request.Program
+            };
+            unitOfWork.ClinicRepository.AddOrUpdate(clinic);
 
             return Task.CompletedTask;
         }

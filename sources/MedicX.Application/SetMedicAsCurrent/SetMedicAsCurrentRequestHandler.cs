@@ -17,6 +17,7 @@
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using DustInTheWind.MedicX.Domain.DataAccess;
 using DustInTheWind.MedicX.Domain.Entities;
 using DustInTheWind.MedicX.RequestBusModel;
 
@@ -35,11 +36,23 @@ namespace DustInTheWind.MedicX.Application.SetMedicAsCurrent
         {
             return Task.Run(() =>
             {
-                MedicXProject currentProject = medicXApplication.CurrentProject;
+                Project currentProject = medicXApplication.CurrentProject;
+
+                if (currentProject == null)
+                    throw new NoProjectException();
+
                 currentProject.CurrentItem = request.NewCurrentItem == null
                     ? null
-                    : currentProject.Medics.FirstOrDefault(x => x.Id == request.NewCurrentItem.Id);
+                    : GetMedic(currentProject, request.NewCurrentItem.Id);
             });
+        }
+
+        private static Medic GetMedic(Project currentProject, Guid id)
+        {
+            using (IUnitOfWork unitOfWork = currentProject.CreateUnitOfWork())
+            {
+                return unitOfWork.MedicRepository.GetById(id);
+            }
         }
     }
 }

@@ -1,9 +1,9 @@
 ﻿using System;
+using DustInTheWind.MedicX.Application.GetAllMedics;
 using DustInTheWind.MedicX.Domain.Collections;
 using DustInTheWind.MedicX.Domain.DataAccess;
 using DustInTheWind.MedicX.Domain.Entities;
 using EventBusModel;
-using MedicDto = DustInTheWind.MedicX.Application.GetAllMedics.Medic;
 
 namespace DustInTheWind.MedicX.Application
 {
@@ -11,10 +11,9 @@ namespace DustInTheWind.MedicX.Application
     {
         private readonly IUnitOfWorkBuilder unitOfWorkBuilder;
         private readonly EventAggregator eventAggregator;
-        private string connectionString;
-        private MedicXProject currentProject;
+        private Project currentProject;
 
-        public MedicXProject CurrentProject
+        public Project CurrentProject
         {
             get => currentProject;
             private set
@@ -22,11 +21,11 @@ namespace DustInTheWind.MedicX.Application
                 if (currentProject != null)
                 {
                     currentProject.CurrentItemChanged -= HandleCurrentItemChanged;
-                    currentProject.StatusChanged -= HandleStatusChanged;
+                    //currentProject.StatusChanged -= HandleStatusChanged;
 
-                    currentProject.Medics.Added -= HandleNewMedicAdded;
-                    currentProject.Clinics.Added -= HandleNewClinicAdded;
-                    currentProject.MedicalEvents.Added -= HandleNewMedicalEventAdded;
+                    //currentProject.Medics.Added -= HandleNewMedicAdded;
+                    //currentProject.Clinics.Added -= HandleNewClinicAdded;
+                    //currentProject.MedicalEvents.Added -= HandleNewMedicalEventAdded;
                 }
 
                 currentProject = value;
@@ -34,30 +33,30 @@ namespace DustInTheWind.MedicX.Application
                 if (currentProject != null)
                 {
                     currentProject.CurrentItemChanged += HandleCurrentItemChanged;
-                    currentProject.StatusChanged += HandleStatusChanged;
+                    //currentProject.StatusChanged += HandleStatusChanged;
 
-                    currentProject.Medics.Added += HandleNewMedicAdded;
-                    currentProject.Clinics.Added += HandleNewClinicAdded;
-                    currentProject.MedicalEvents.Added += HandleNewMedicalEventAdded;
+                    //currentProject.Medics.Added += HandleNewMedicAdded;
+                    //currentProject.Clinics.Added += HandleNewClinicAdded;
+                    //currentProject.MedicalEvents.Added += HandleNewMedicalEventAdded;
                 }
             }
         }
 
-        private void HandleNewMedicAdded(object sender, MedicAddedEventArgs e)
-        {
-            MedicDto medic = new MedicDto(e.Medic);
-            eventAggregator["NewMedicAdded"].Raise(medic);
-        }
+        //private void HandleNewMedicAdded(object sender, MedicAddedEventArgs e)
+        //{
+        //    MedicDto medic = new MedicDto(e.Medic);
+        //    eventAggregator["NewMedicAdded"].Raise(medic);
+        //}
 
-        private void HandleNewClinicAdded(object sender, ClinicAddedEventArgs e)
-        {
-            eventAggregator["NewClinicAdded"].Raise(e.Clinic);
-        }
+        //private void HandleNewClinicAdded(object sender, ClinicAddedEventArgs e)
+        //{
+        //    eventAggregator["NewClinicAdded"].Raise(e.Clinic);
+        //}
 
-        private void HandleNewMedicalEventAdded(object sender, MedicalEventAddedEventArgs e)
-        {
-            eventAggregator["NewMedicalEventAdded"].Raise(e.MedicalEvent);
-        }
+        //private void HandleNewMedicalEventAdded(object sender, MedicalEventAddedEventArgs e)
+        //{
+        //    eventAggregator["NewMedicalEventAdded"].Raise(e.MedicalEvent);
+        //}
 
         public MedicXApplication(IUnitOfWorkBuilder unitOfWorkBuilder, EventAggregator eventAggregator)
         {
@@ -67,50 +66,55 @@ namespace DustInTheWind.MedicX.Application
 
         public void LoadProject(string connectionString)
         {
-            using (IUnitOfWork unitOfWork = unitOfWorkBuilder.Build(connectionString))
-            {
-                MedicXProject medicXProject = new MedicXProject(unitOfWork);
-                this.connectionString = connectionString;
-
-                CurrentProject = medicXProject;
-                foreach (Medic medic in medicXProject.Medics)
-                {
-                    medic.NameChanged += HandleMedicNameChanged;
-                    medic.SpecializationsChanged += HandleMedicSpecializationsChanged;
-                }
-
-                medicXProject.Medics.Added += HandleMedicAdded;
-            }
+            CurrentProject = new Project(unitOfWorkBuilder, connectionString);
         }
 
-        private void HandleMedicAdded(object sender, MedicAddedEventArgs e)
-        {
-            e.Medic.NameChanged += HandleMedicNameChanged;
-            e.Medic.SpecializationsChanged += HandleMedicSpecializationsChanged;
-        }
+        //public void LoadProject(string connectionString)
+        //{
+        //    using (IUnitOfWork unitOfWork = unitOfWorkBuilder.Build(connectionString))
+        //    {
+        //        Project project = new Project(unitOfWork);
+        //        this.connectionString = connectionString;
 
-        private void HandleMedicNameChanged(object sender, EventArgs e)
-        {
-            if (sender is Medic medic)
-            {
-                MedicDto medicDto = new MedicDto(medic);
-                eventAggregator["MedicNameChanged"].Raise(medicDto);
-            }
-        }
+        //        CurrentProject = project;
+        //        foreach (Medic medic in project.Medics)
+        //        {
+        //            medic.NameChanged += HandleMedicNameChanged;
+        //            medic.SpecializationsChanged += HandleMedicSpecializationsChanged;
+        //        }
 
-        private void HandleMedicSpecializationsChanged(object sender, EventArgs e)
-        {
-            if (sender is Medic medic)
-            {
-                MedicDto medicDto = new MedicDto(medic);
-                eventAggregator["MedicSpecializationsChanged"].Raise(medicDto);
-            }
-        }
+        //        project.Medics.Added += HandleMedicAdded;
+        //    }
+        //}
 
-        private void HandleStatusChanged(object sender, EventArgs e)
-        {
-            eventAggregator["StatusChanged"].Raise(CurrentProject.Status);
-        }
+        //private void HandleMedicAdded(object sender, MedicAddedEventArgs e)
+        //{
+        //    e.Medic.NameChanged += HandleMedicNameChanged;
+        //    e.Medic.SpecializationsChanged += HandleMedicSpecializationsChanged;
+        //}
+
+        //private void HandleMedicNameChanged(object sender, EventArgs e)
+        //{
+        //    if (sender is Medic medic)
+        //    {
+        //        MedicDto medicDto = new MedicDto(medic);
+        //        eventAggregator["MedicNameChanged"].Raise(medicDto);
+        //    }
+        //}
+
+        //private void HandleMedicSpecializationsChanged(object sender, EventArgs e)
+        //{
+        //    if (sender is Medic medic)
+        //    {
+        //        MedicDto medicDto = new MedicDto(medic);
+        //        eventAggregator["MedicSpecializationsChanged"].Raise(medicDto);
+        //    }
+        //}
+
+        //private void HandleStatusChanged(object sender, EventArgs e)
+        //{
+        //    eventAggregator["StatusChanged"].Raise(CurrentProject.Status);
+        //}
 
         private void HandleCurrentItemChanged(object sender, EventArgs e)
         {
@@ -130,18 +134,17 @@ namespace DustInTheWind.MedicX.Application
         public void UnloadProject()
         {
             CurrentProject = null;
-            connectionString = null;
         }
 
-        public void SaveCurrentProject()
-        {
-            if (CurrentProject == null)
-                return;
+        //public void SaveCurrentProject()
+        //{
+        //    if (CurrentProject == null)
+        //        return;
 
-            using (IUnitOfWork unitOfWork = unitOfWorkBuilder.Build(connectionString))
-            {
-                CurrentProject.Save(unitOfWork);
-            }
-        }
+        //    using (IUnitOfWork unitOfWork = unitOfWorkBuilder.Build(connectionString))
+        //    {
+        //        CurrentProject.Save(unitOfWork);
+        //    }
+        //}
     }
 }

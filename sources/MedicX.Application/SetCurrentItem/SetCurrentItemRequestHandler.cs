@@ -17,10 +17,11 @@
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using DustInTheWind.MedicX.Application.GetAllClinics;
+using DustInTheWind.MedicX.Application.GetAllMedics;
+using DustInTheWind.MedicX.Domain.DataAccess;
 using DustInTheWind.MedicX.Domain.Entities;
 using DustInTheWind.MedicX.RequestBusModel;
-using ClinicDto = DustInTheWind.MedicX.Application.GetAllClinics.Clinic;
-using MedicDto = DustInTheWind.MedicX.Application.GetAllMedics.Medic;
 
 namespace DustInTheWind.MedicX.Application.SetCurrentItem
 {
@@ -37,28 +38,38 @@ namespace DustInTheWind.MedicX.Application.SetCurrentItem
         {
             return Task.Run(() =>
             {
-                MedicXProject currentProject = medicXApplication.CurrentProject;
+                Project currentProject = medicXApplication.CurrentProject;
+
+                if (currentProject == null)
+                    throw new NoProjectException();
+
                 object newCurrentItem = CalculateNewCurrentItem(currentProject, request);
 
                 currentProject.CurrentItem = newCurrentItem;
             });
         }
 
-        private static object CalculateNewCurrentItem(MedicXProject currentProject, SetCurrentItemRequest request)
+        private static object CalculateNewCurrentItem(Project currentProject, SetCurrentItemRequest request)
         {
-            switch (request.NewCurrentItem)
+            using (IUnitOfWork unitOfWork = currentProject.CreateUnitOfWork())
             {
-                case MedicDto medic:
-                    return currentProject.Medics.FirstOrDefault(x => x.Id == medic.Id);
+                switch (request.NewCurrentItem)
+                {
+                    case MedicDto medic:
+                        return unitOfWork.MedicRepository.GetById(medic.Id);
 
-                case ClinicDto clinic:
-                    return currentProject.Clinics.FirstOrDefault(x => x.Id == clinic.Id);
+                    case ClinicDto clinic:
+                        return unitOfWork.ClinicRepository.GetById(clinic.Id);
 
-                case MedicalEvent medicalEvent:
-                    return currentProject.MedicalEvents.FirstOrDefault(x => x.Id == medicalEvent.Id);
+                    case Consultation consultation:
+                        return unitOfWork.ConsultationRepository.GetById(consultation.Id);
 
-                default:
-                    return null;
+                    case Investigation investigation:
+                        return unitOfWork.InvestigationRepository.GetById(investigation.Id);
+
+                    default:
+                        return null;
+                }
             }
         }
     }

@@ -56,9 +56,17 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MedicX.Application\MedicX.Application.csproj">
+      <Project>{483072F7-D4D6-4CA9-8E3F-EB806AF2A7C3}</Project>
+      <Name>MedicX.Application</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MedicX.Domain\MedicX.Domain.csproj">
       <Project>{854C77F6-22F9-48A9-AE73-43E19AB9B258}</Project>
       <Name>MedicX.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MedicX.RequestBusModel\MedicX.RequestBusModel.csproj">
+      <Project>{791F8A5F-0520-4748-BC64-53D04B7DA669}</Project>
+      <Name>MedicX.RequestBusModel</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

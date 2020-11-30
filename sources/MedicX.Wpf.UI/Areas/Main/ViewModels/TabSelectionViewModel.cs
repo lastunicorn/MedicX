@@ -78,7 +78,7 @@ namespace DustInTheWind.MedicX.Wpf.UI.Areas.Main.ViewModels
         {
             switch (newCurrentItem)
             {
-                case Medic _:
+                case MedicDto _:
                     SelectedTab = Tabs[0];
                     break;
             }
@@ -95,7 +95,7 @@ namespace DustInTheWind.MedicX.Wpf.UI.Areas.Main.ViewModels
                 {
                     switch (t.Result)
                     {
-                        case Medic _:
+                        case MedicDto _:
                             SelectedTab = Tabs[0];
                             break;
 

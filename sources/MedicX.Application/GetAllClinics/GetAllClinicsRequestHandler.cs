@@ -18,11 +18,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DustInTheWind.MedicX.Domain.DataAccess;
+using DustInTheWind.MedicX.Domain.Entities;
 using DustInTheWind.MedicX.RequestBusModel;
 
 namespace DustInTheWind.MedicX.Application.GetAllClinics
 {
-    internal class GetAllClinicsRequestHandler : IRequestHandler<GetAllClinicsRequest, List<Clinic>>
+    internal class GetAllClinicsRequestHandler : IRequestHandler<GetAllClinicsRequest, List<ClinicDto>>
     {
         private readonly MedicXApplication medicXApplication;
 
@@ -31,20 +33,28 @@ namespace DustInTheWind.MedicX.Application.GetAllClinics
             this.medicXApplication = medicXApplication ?? throw new ArgumentNullException(nameof(medicXApplication));
         }
 
-        public Task<List<Clinic>> Handle(GetAllClinicsRequest request)
+        public Task<List<ClinicDto>> Handle(GetAllClinicsRequest request)
         {
-            List<Clinic> clinics = medicXApplication.CurrentProject?.Clinics
-                .Select(x => new Clinic
-                {
-                    Id = x.Id,
-                    Name = x.Name,
-                    Address = new Address(x.Address),
-                    Program = x.Program,
-                    Comments = x.Comments
-                })
-                .ToList();
+            Project currentProject = medicXApplication.CurrentProject;
 
-            return Task.FromResult(clinics ?? new List<Clinic>());
+            if (currentProject == null)
+                throw new NoProjectException();
+
+            using (IUnitOfWork unitOfWork = currentProject.CreateUnitOfWork())
+            {
+                List<ClinicDto> clinics = unitOfWork.ClinicRepository.GetAll()
+                    .Select(x => new ClinicDto
+                    {
+                        Id = x.Id,
+                        Name = x.Name,
+                        Address = new Address(x.Address),
+                        Program = x.Program,
+                        Comments = x.Comments
+                    })
+                    .ToList();
+
+                return Task.FromResult(clinics);
+            }
         }
     }
 }

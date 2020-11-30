@@ -15,24 +15,25 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace DustInTheWind.MedicX.Persistence.JsonStorage.Entities
 {
     public class MedicXData
     {
         [JsonProperty("medics")]
-        public List<Medic> Medics { get; set; }
+        public List<JsonMedic> Medics { get; set; }
 
         [JsonProperty("clinics")]
-        public List<Clinic> Clinics { get; set; }
+        public List<JsonClinic> Clinics { get; set; }
 
         [JsonProperty("consultations")]
-        public List<Consultation> Consultations { get; set; }
+        public List<JsonConsultation> Consultations { get; set; }
 
         [JsonProperty("investigations")]
-        public List<Investigation> Investigations { get; set; }
+        public List<JsonInvestigation> Investigations { get; set; }
 
-        [JsonProperty("investigationDescriptions")]
-        public List<InvestigationDescription> InvestigationDescriptions { get; set; }
+        [JsonProperty("tests")]
+        public List<JsonTest> InvestigationDescriptions { get; set; }
     }
 }

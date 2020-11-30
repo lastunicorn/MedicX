@@ -42,7 +42,6 @@ namespace DustInTheWind.MedicX.Wpf.UI.Areas.Main.ViewModels
 
         public DetailsViewModel DetailsViewModel { get; }
 
-        public SaveCommand SaveCommand { get; }
         public ExitCommand ExitCommand { get; }
 
         public MainViewModel(RequestBus requestBus, EventAggregator eventAggregator)
@@ -53,7 +52,6 @@ namespace DustInTheWind.MedicX.Wpf.UI.Areas.Main.ViewModels
             TabSelectionViewModel = new TabSelectionViewModel(requestBus, eventAggregator);
             DetailsViewModel = new DetailsViewModel(requestBus, eventAggregator);
 
-            SaveCommand = new SaveCommand(requestBus);
             ExitCommand = new ExitCommand(requestBus);
 
             eventAggregator["StatusChanged"].Subscribe(new Action<ProjectStatus>(HandleProjectStatusChanged));
@@ -68,18 +66,18 @@ namespace DustInTheWind.MedicX.Wpf.UI.Areas.Main.ViewModels
 
         private void UpdateWindowTitle()
         {
-            GetCurrentProjectRequest request = new GetCurrentProjectRequest();
+            //GetCurrentProjectRequest request = new GetCurrentProjectRequest();
 
-            requestBus.ProcessRequest<GetCurrentProjectRequest, MedicXProject>(request)
-                .ContinueWith(t =>
-                {
-                    if (t.Exception == null)
-                        Title = new MainWindowTitle(t.Result.Status);
-                    else
-                    {
-                        // todo: Display an error message
-                    }
-                });
+            //requestBus.ProcessRequest<GetCurrentProjectRequest, Project>(request)
+            //    .ContinueWith(t =>
+            //    {
+            //        if (t.Exception == null)
+            //            Title = new MainWindowTitle(t.Result.Status);
+            //        else
+            //        {
+            //            // todo: Display an error message
+            //        }
+            //    });
         }
     }
 }

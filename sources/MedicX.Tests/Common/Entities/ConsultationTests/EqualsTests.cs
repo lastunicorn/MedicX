@@ -15,6 +15,7 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using DustInTheWind.MedicX.Domain.Entities;
 using NUnit.Framework;
@@ -64,8 +65,8 @@ namespace DustInTheWind.MedicX.Tests.Common.Entities.ConsultationTests
                 Labels = new ObservableCollection<string> { "label1", "label2" },
                 Prescriptions = new ObservableCollection<Prescription>
                 {
-                    new Prescription { Description = "prescription1", Result = new object() },
-                    new Prescription { Description = "prescription2", Result = new object() }
+                    new Prescription { Description = "prescription1", Files = new List<string>() },
+                    new Prescription { Description = "prescription2", Files = new List<string>() }
                 },
                 Comments = "some comments"
             };
@@ -84,8 +85,8 @@ namespace DustInTheWind.MedicX.Tests.Common.Entities.ConsultationTests
                 Labels = new ObservableCollection<string> { "label1", "label2" },
                 Prescriptions = new ObservableCollection<Prescription>
                 {
-                    new Prescription { Description = "prescription1", Result = new object() },
-                    new Prescription { Description = "prescription2", Result = new object() }
+                    new Prescription { Description = "prescription1", Files = new List<string>() },
+                    new Prescription { Description = "prescription2", Files = new List<string>() }
                 },
                 Comments = "some comments"
             };
@@ -113,8 +114,8 @@ namespace DustInTheWind.MedicX.Tests.Common.Entities.ConsultationTests
                 Labels = new ObservableCollection<string> { "label1", "label2" },
                 Prescriptions = new ObservableCollection<Prescription>
                 {
-                    new Prescription { Description = "prescription1", Result = new object() },
-                    new Prescription { Description = "prescription2", Result = new object() }
+                    new Prescription { Description = "prescription1", Files = new List<string>() },
+                    new Prescription { Description = "prescription2", Files = new List<string>() }
                 },
                 Comments = "some comments"
             };
@@ -133,8 +134,8 @@ namespace DustInTheWind.MedicX.Tests.Common.Entities.ConsultationTests
                 Labels = new ObservableCollection<string> { "label1", "label2" },
                 Prescriptions = new ObservableCollection<Prescription>
                 {
-                    new Prescription { Description = "prescription3", Result = new object() },
-                    new Prescription { Description = "prescription4", Result = new object() }
+                    new Prescription { Description = "prescription3", Files = new List<string>() },
+                    new Prescription { Description = "prescription4", Files = new List<string>() }
                 },
                 Comments = "some comments"
             };

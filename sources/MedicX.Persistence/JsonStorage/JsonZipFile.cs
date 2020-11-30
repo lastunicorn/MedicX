@@ -17,7 +17,9 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.IO.Compression;
 using DustInTheWind.MedicX.Persistence.JsonStorage.Entities;
+using Newtonsoft.Json;
 
 namespace DustInTheWind.MedicX.Persistence.JsonStorage
 {
@@ -59,23 +61,23 @@ namespace DustInTheWind.MedicX.Persistence.JsonStorage
                     switch (entry.Name)
                     {
                         case MedicsFileName:
-                            Data.Medics = ReadFile<List<Medic>>(entry);
+                            Data.Medics = ReadFile<List<JsonMedic>>(entry);
                             break;
 
                         case ClinicsFileName:
-                            Data.Clinics = ReadFile<List<Clinic>>(entry);
+                            Data.Clinics = ReadFile<List<JsonClinic>>(entry);
                             break;
 
                         case ConsultationsFileName:
-                            Data.Consultations = ReadFile<List<Consultation>>(entry);
+                            Data.Consultations = ReadFile<List<JsonConsultation>>(entry);
                             break;
 
                         case InvestigationsFileName:
-                            Data.Investigations = ReadFile<List<Investigation>>(entry);
+                            Data.Investigations = ReadFile<List<JsonInvestigation>>(entry);
                             break;
 
                         case InvestigationDescriptionsFileName:
-                            Data.InvestigationDescriptions = ReadFile<List<InvestigationDescription>>(entry);
+                            Data.InvestigationDescriptions = ReadFile<List<JsonTest>>(entry);
                             break;
 
                         default:

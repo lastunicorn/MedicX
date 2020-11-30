@@ -46,6 +46,9 @@
     </Compile>
     <Compile Include="AddNewClinic\AddNewClinicRequest.cs" />
     <Compile Include="AddNewClinic\AddNewClinicRequestHandler.cs" />
+    <Compile Include="NoProjectException.cs" />
+    <Compile Include="AddNewEmptyClinic\AddNewEmptyClinicRequest.cs" />
+    <Compile Include="AddNewEmptyClinic\AddNewEmptyClinicRequestHandler.cs" />
     <Compile Include="AddNewInvestigation\AddNewInvestigationRequest.cs" />
     <Compile Include="AddNewInvestigation\AddNewInvestigationRequestHandler.cs" />
     <Compile Include="AddNewConsultation\AddNewConsultationRequest.cs" />
@@ -53,7 +56,7 @@
     <Compile Include="AddNewMedic\AddNewMedicRequest.cs" />
     <Compile Include="AddNewMedic\AddNewMedicRequestHandler.cs" />
     <Compile Include="GetAllClinics\Address.cs" />
-    <Compile Include="GetAllClinics\Clinic.cs" />
+    <Compile Include="GetAllClinics\ClinicDto.cs" />
     <Compile Include="GetAllClinics\GetAllClinicsRequest.cs" />
     <Compile Include="GetAllMedics\GetAllMedicsRequest.cs" />
     <Compile Include="ExitApplication\ConfirmationResponse.cs" />
@@ -62,23 +65,16 @@
     <Compile Include="ExitApplication\ISaveConfirmationQuestion.cs" />
     <Compile Include="GetAllClinics\GetAllClinicsRequestHandler.cs" />
     <Compile Include="GetAllMedics\GetAllMedicsRequestHandler.cs" />
-    <Compile Include="InitializeMedicsTab\InitializeMedicsTabRequest.cs" />
-    <Compile Include="InitializeMedicsTab\InitializeMedicsTabRequestHandler.cs" />
-    <Compile Include="GetAllMedics\Medic.cs" />
+    <Compile Include="GetAllMedics\MedicDto.cs" />
     <Compile Include="GetCurrentItem\GetCurrentItemRequest.cs" />
     <Compile Include="GetCurrentItem\GetCurrentItemRequestHandler.cs" />
     <Compile Include="GetCurrentProject\GetCurrentProjectRequest.cs" />
-    <Compile Include="GetCurrentProjectStatus\GetCurrentProjectStatusRequest.cs" />
-    <Compile Include="GetCurrentProjectStatus\GetCurrentProjectStatusRequestHandler.cs" />
-    <Compile Include="GetCurrentProjectStatus\ProjectStatusInfo.cs" />
     <Compile Include="GetCurrentProject\GetCurrentProjectRequestHandler.cs" />
     <Compile Include="LoadProject\LoadProjectRequest.cs" />
     <Compile Include="LoadProject\LoadProjectRequestHandler.cs" />
     <Compile Include="MedicXApplication.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RequestBusConfig.cs" />
-    <Compile Include="SaveProject\SaveProjectRequest.cs" />
-    <Compile Include="SaveProject\SaveProjectRequestHandler.cs" />
     <Compile Include="SetCurrentItem\SetCurrentItemRequest.cs" />
     <Compile Include="SetCurrentItem\SetCurrentItemRequestHandler.cs" />
     <Compile Include="SetMedicAsCurrent\SetMedicAsCurrentRequest.cs" />

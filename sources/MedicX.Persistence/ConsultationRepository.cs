@@ -32,6 +32,12 @@ namespace DustInTheWind.MedicX.Persistence
             this.storage = storage ?? throw new ArgumentNullException(nameof(storage));
         }
 
+        public Consultation GetById(Guid id)
+        {
+            return storage.Consultations
+                .FirstOrDefault(x => x.Id == id);
+        }
+
         public List<Consultation> GetAll()
         {
             return storage.Consultations

@@ -16,6 +16,7 @@
 
 using System;
 using System.Threading.Tasks;
+using DustInTheWind.MedicX.Domain.DataAccess;
 using DustInTheWind.MedicX.Domain.Entities;
 using DustInTheWind.MedicX.RequestBusModel;
 
@@ -32,12 +33,18 @@ namespace DustInTheWind.MedicX.Application.AddNewMedic
 
         public Task Handle(AddNewMedicRequest request)
         {
-            MedicXProject currentProject = medicXApplication.CurrentProject;
+            Project currentProject = medicXApplication.CurrentProject;
 
-            if (currentProject != null)
+            if (currentProject == null)
+                throw new NoProjectException();
+
+            using (IUnitOfWork unitOfWork = currentProject.CreateUnitOfWork())
             {
-                Medic medic = currentProject.Medics.AddNew();
+                Medic medic = new Medic();
+                unitOfWork.MedicRepository.Add(medic);
                 currentProject.CurrentItem = medic;
+
+                // todo: raise event "new-medic-added"
             }
 
             return Task.CompletedTask;

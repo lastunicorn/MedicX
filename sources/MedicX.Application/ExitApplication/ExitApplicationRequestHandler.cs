@@ -44,26 +44,28 @@ namespace DustInTheWind.MedicX.Application.ExitApplication
 
         private bool EnsureSave()
         {
-            if (medicXApplication.CurrentProject.Status == ProjectStatus.Saved)
-                return true;
+            return true;
 
-            ConfirmationResponse response = saveConfirmationQuestion.Ask();
+            //if (medicXApplication.CurrentProject.Status == ProjectStatus.Saved)
+            //    return true;
 
-            switch (response)
-            {
-                case ConfirmationResponse.Yes:
-                    medicXApplication.SaveCurrentProject();
-                    return true;
+            //ConfirmationResponse response = saveConfirmationQuestion.Ask();
 
-                case ConfirmationResponse.No:
-                    return true;
+            //switch (response)
+            //{
+            //    case ConfirmationResponse.Yes:
+            //        medicXApplication.SaveCurrentProject();
+            //        return true;
 
-                case ConfirmationResponse.Cancel:
-                    return false;
+            //    case ConfirmationResponse.No:
+            //        return true;
 
-                default:
-                    throw new Exception("Invalid answer received when asking for saving the project.");
-            }
+            //    case ConfirmationResponse.Cancel:
+            //        return false;
+
+            //    default:
+            //        throw new Exception("Invalid answer received when asking for saving the project.");
+            //}
         }
     }
 }

@@ -15,12 +15,13 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using DustInTheWind.MedicX.Domain.Entities;
+using DustInTheWind.MedicX.Persistence.JsonStorage.Entities;
 
 namespace DustInTheWind.MedicX.Persistence.JsonStorage.Translators
 {
     internal static class AddressExtensions
     {
-        public static Address Translate(this Entities.Address address)
+        public static Address Translate(this JsonAddress address)
         {
             if (address == null)
                 return null;
@@ -34,12 +35,12 @@ namespace DustInTheWind.MedicX.Persistence.JsonStorage.Translators
             };
         }
 
-        public static Entities.Address Translate(this Address address)
+        public static JsonAddress Translate(this Address address)
         {
             if (address == null)
                 return null;
 
-            return new Entities.Address
+            return new JsonAddress
             {
                 Street = address.Street,
                 City = address.City,

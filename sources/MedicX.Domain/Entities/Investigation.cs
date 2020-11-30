@@ -24,7 +24,7 @@ namespace DustInTheWind.MedicX.Domain.Entities
     public class Investigation : MedicalEvent, IEquatable<Investigation>
     {
         private Medic sentBy;
-        private ObservableCollection<InvestigationTest> result;
+        private ObservableCollection<Test> tests;
 
         public Medic SentBy
         {
@@ -38,18 +38,18 @@ namespace DustInTheWind.MedicX.Domain.Entities
             }
         }
 
-        public ObservableCollection<InvestigationResult> Result
+        public ObservableCollection<Test> Tests
         {
-            get => result;
+            get => tests;
             set
             {
-                if (result != null)
-                    result.CollectionChanged -= HandleResultCollectionChanged;
+                if (tests != null)
+                    tests.CollectionChanged -= HandleTestsCollectionChanged;
 
-                result = value;
+                tests = value;
 
-                if (result != null)
-                    result.CollectionChanged += HandleResultCollectionChanged;
+                if (tests != null)
+                    tests.CollectionChanged += HandleTestsCollectionChanged;
 
                 OnChanged();
             }
@@ -57,33 +57,33 @@ namespace DustInTheWind.MedicX.Domain.Entities
 
         public event EventHandler SentByChanged;
 
-        private void HandleResultCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        private void HandleTestsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             switch (e.Action)
             {
                 case NotifyCollectionChangedAction.Add:
-                    foreach (InvestigationResult investigationResult in e.NewItems)
-                        investigationResult.Changed += HandleInvestigationResultChanged;
+                    foreach (Test investigationTest in e.NewItems)
+                        investigationTest.Changed += HandleInvestigationResultChanged;
                     break;
 
                 case NotifyCollectionChangedAction.Remove:
-                    foreach (InvestigationResult investigationResult in e.OldItems)
-                        investigationResult.Changed -= HandleInvestigationResultChanged;
+                    foreach (Test investigationTest in e.OldItems)
+                        investigationTest.Changed -= HandleInvestigationResultChanged;
                     break;
 
                 case NotifyCollectionChangedAction.Replace:
-                    foreach (InvestigationResult investigationResult in e.OldItems)
-                        investigationResult.Changed -= HandleInvestigationResultChanged;
-                    foreach (InvestigationResult investigationResult in e.NewItems)
-                        investigationResult.Changed += HandleInvestigationResultChanged;
+                    foreach (Test investigationTest in e.OldItems)
+                        investigationTest.Changed -= HandleInvestigationResultChanged;
+                    foreach (Test investigationTest in e.NewItems)
+                        investigationTest.Changed += HandleInvestigationResultChanged;
                     break;
 
                 case NotifyCollectionChangedAction.Move:
                     break;
 
                 case NotifyCollectionChangedAction.Reset:
-                    foreach (InvestigationResult investigationResult in e.OldItems)
-                        investigationResult.Changed -= HandleInvestigationResultChanged;
+                    foreach (Test investigationTest in e.OldItems)
+                        investigationTest.Changed -= HandleInvestigationResultChanged;
                     break;
 
                 default:
@@ -103,9 +103,9 @@ namespace DustInTheWind.MedicX.Domain.Entities
             base.CopyFrom(investigation);
 
             SentBy = investigation.SentBy;
-            Result = investigation.Result == null
+            Tests = investigation.Tests == null
                 ? null
-                : new ObservableCollection<InvestigationResult>(investigation.Result);
+                : new ObservableCollection<Test>(investigation.Tests);
         }
 
         public override void CopyFrom(MedicalEvent medicalEvent)
@@ -120,7 +120,7 @@ namespace DustInTheWind.MedicX.Domain.Entities
         {
             return base.Contains(text) ||
                    (SentBy != null && SentBy.Contains(text)) ||
-                   (Result != null && Result.Any(x => x != null && x.Contains(text)));
+                   (Tests != null && Tests.Any(x => x != null && x.Contains(text)));
         }
 
         public bool Equals(Investigation other)
