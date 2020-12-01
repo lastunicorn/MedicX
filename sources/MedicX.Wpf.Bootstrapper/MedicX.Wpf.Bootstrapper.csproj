@@ -42,6 +42,7 @@
     </Reference>
     <Reference Include="PresentationFramework.Aero" />
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\System.Windows.Interactivity.dll</HintPath>
     </Reference>
@@ -58,7 +59,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Setup\NinjectBindings.cs" />
+    <Compile Include="ApplicationConfig.cs" />
+    <Compile Include="ServicesSetup.cs" />
     <Compile Include="..\AssemblyInfo.Shared.cs">
       <Link>Properties\AssemblyInfo.Shared.cs</Link>
     </Compile>
@@ -104,9 +106,9 @@
       <Project>{09FEED84-EFCF-4438-8A8F-5D195712779E}</Project>
       <Name>EventBusModel</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MedicX.Application\MedicX.Application.csproj">
+    <ProjectReference Include="..\MedicX.Application\MedicX.GuiApplication.csproj">
       <Project>{483072F7-D4D6-4CA9-8E3F-EB806AF2A7C3}</Project>
-      <Name>MedicX.Application</Name>
+      <Name>MedicX.GuiApplication</Name>
     </ProjectReference>
     <ProjectReference Include="..\MedicX.Domain\MedicX.Domain.csproj">
       <Project>{854c77f6-22f9-48a9-ae73-43e19ab9b258}</Project>

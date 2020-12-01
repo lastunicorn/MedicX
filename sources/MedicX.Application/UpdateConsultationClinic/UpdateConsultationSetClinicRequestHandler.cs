@@ -1,26 +1,26 @@
 ﻿using System;
-using System.Linq;
 using System.Threading.Tasks;
+using DustInTheWind.MedicX.Domain;
 using DustInTheWind.MedicX.Domain.DataAccess;
 using DustInTheWind.MedicX.Domain.Entities;
 using DustInTheWind.MedicX.RequestBusModel;
 
-namespace DustInTheWind.MedicX.Application.UpdateConsultationClinic
+namespace DustInTheWind.MedicX.GuiApplication.UpdateConsultationClinic
 {
     internal class UpdateConsultationSetClinicRequestHandler : IRequestHandler<UpdateConsultationSetClinicRequest>
     {
-        private readonly MedicXApplication application;
+        private readonly ProjectRepository projectRepository;
 
-        public UpdateConsultationSetClinicRequestHandler(MedicXApplication application)
+        public UpdateConsultationSetClinicRequestHandler(ProjectRepository projectRepository)
         {
-            this.application = application ?? throw new ArgumentNullException(nameof(application));
+            this.projectRepository = projectRepository ?? throw new ArgumentNullException(nameof(projectRepository));
         }
 
         public Task Handle(UpdateConsultationSetClinicRequest request)
         {
             return Task.Run(() =>
             {
-                Project currentProject = application.CurrentProject;
+                Project currentProject = projectRepository.ActiveProject;
 
                 if (currentProject == null)
                     throw new NoProjectException();

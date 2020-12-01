@@ -51,8 +51,8 @@
     <Compile Include="Entities\MedicalData.cs" />
     <Compile Include="Entities\MedicalEvent.cs" />
     <Compile Include="Entities\Investigation.cs" />
-    <Compile Include="Entities\InvestigationResult.cs" />
-    <Compile Include="Entities\ProjectRepository.cs" />
+    <Compile Include="IApplicationConfig.cs" />
+    <Compile Include="ProjectRepository.cs" />
     <Compile Include="Entities\Test.cs" />
     <Compile Include="Entities\TestItem.cs" />
     <Compile Include="Entities\Medic.cs" />

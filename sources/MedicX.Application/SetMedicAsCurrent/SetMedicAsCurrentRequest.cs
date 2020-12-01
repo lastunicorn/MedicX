@@ -14,9 +14,9 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using DustInTheWind.MedicX.Application.GetAllMedics;
+using DustInTheWind.MedicX.GuiApplication.GetAllMedics;
 
-namespace DustInTheWind.MedicX.Application.SetMedicAsCurrent
+namespace DustInTheWind.MedicX.GuiApplication.SetMedicAsCurrent
 {
     public class SetMedicAsCurrentRequest
     {

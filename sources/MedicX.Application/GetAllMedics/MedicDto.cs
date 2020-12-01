@@ -19,7 +19,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DustInTheWind.MedicX.Domain.Entities;
 
-namespace DustInTheWind.MedicX.Application.GetAllMedics
+namespace DustInTheWind.MedicX.GuiApplication.GetAllMedics
 {
     public class MedicDto : IEquatable<MedicDto>
     {

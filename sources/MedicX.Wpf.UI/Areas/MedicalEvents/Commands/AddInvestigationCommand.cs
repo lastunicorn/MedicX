@@ -16,7 +16,7 @@
 
 using System;
 using System.Windows.Input;
-using DustInTheWind.MedicX.Application.AddNewInvestigation;
+using DustInTheWind.MedicX.GuiApplication.AddNewInvestigation;
 using DustInTheWind.MedicX.RequestBusModel;
 
 namespace DustInTheWind.MedicX.Wpf.UI.Areas.MedicalEvents.Commands

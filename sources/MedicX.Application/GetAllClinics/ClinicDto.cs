@@ -16,7 +16,7 @@
 
 using System;
 
-namespace DustInTheWind.MedicX.Application.GetAllClinics
+namespace DustInTheWind.MedicX.GuiApplication.GetAllClinics
 {
     public struct ClinicDto
     {

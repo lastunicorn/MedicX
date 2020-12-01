@@ -17,9 +17,9 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using DustInTheWind.MedicX.Application.GetAllMedics;
-using DustInTheWind.MedicX.Application.GetCurrentItem;
-using DustInTheWind.MedicX.Application.SetCurrentItem;
+using DustInTheWind.MedicX.GuiApplication.GetAllMedics;
+using DustInTheWind.MedicX.GuiApplication.GetCurrentItem;
+using DustInTheWind.MedicX.GuiApplication.SetCurrentItem;
 using DustInTheWind.MedicX.RequestBusModel;
 using DustInTheWind.MedicX.Wpf.UI.Areas.Clinics.ViewModels;
 using DustInTheWind.MedicX.Wpf.UI.Areas.MedicalEvents.ViewModels;
@@ -118,11 +118,11 @@ namespace DustInTheWind.MedicX.Wpf.UI.Areas.Main.ViewModels
                     Header = "Medics",
                     Content = new MedicsTabViewModel(requestBus, eventAggregator)
                 },
-                new TabItemViewModel
-                {
-                    Header = "Clinics",
-                    Content = new ClinicsTabViewModel(requestBus, eventAggregator)
-                },
+                //new TabItemViewModel
+                //{
+                //    Header = "Clinics",
+                //    Content = new ClinicsTabViewModel(requestBus, eventAggregator)
+                //},
                 //new TabItemViewModel
                 //{
                 //    Header = "Medical Events",

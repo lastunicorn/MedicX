@@ -38,18 +38,23 @@
       <HintPath>..\ExternalLibraries\ConsoleTools\DustInTheWind.ConsoleTools.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\AssemblyInfo.Shared.cs">
       <Link>Properties\AssemblyInfo.Shared.cs</Link>
     </Compile>
+    <Compile Include="ApplicationConfig.cs" />
     <Compile Include="Bootstrapper.cs" />
-    <Compile Include="NinjectCommandFactory.cs" />
+    <Compile Include="CommandFactory.cs" />
+    <Compile Include="RequestHandlerFactory.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServicesSetup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="medicx.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -59,6 +64,10 @@
       <Project>{184307c2-fbe0-4553-9b5a-4c8c6eb2abb2}</Project>
       <Name>MedicX.Cli.Presentation</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MedicX.CommandApplication\MedicX.CommandApplication.csproj">
+      <Project>{23BDD9CE-49C3-4457-80CC-32AD955242E1}</Project>
+      <Name>MedicX.CommandApplication</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MedicX.Domain\MedicX.Domain.csproj">
       <Project>{854c77f6-22f9-48a9-ae73-43e19ab9b258}</Project>
       <Name>MedicX.Domain</Name>
@@ -66,6 +75,10 @@
     <ProjectReference Include="..\MedicX.Persistence\MedicX.Persistence.csproj">
       <Project>{6104e0cd-5f5a-4c47-bd41-6d4c58822928}</Project>
       <Name>MedicX.Persistence</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MedicX.RequestBusModel\MedicX.RequestBusModel.csproj">
+      <Project>{791F8A5F-0520-4748-BC64-53D04B7DA669}</Project>
+      <Name>MedicX.RequestBusModel</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -15,9 +15,8 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System.Reflection;
-using DustInTheWind.MedicX.Application;
-using DustInTheWind.MedicX.Application.LoadProject;
-using DustInTheWind.MedicX.Domain.Entities;
+using DustInTheWind.MedicX.GuiApplication;
+using DustInTheWind.MedicX.GuiApplication.ApplicationInitialization;
 using DustInTheWind.MedicX.RequestBusModel;
 using DustInTheWind.MedicX.Wpf.UI;
 using DustInTheWind.MedicX.Wpf.UI.Areas.Main.ViewModels;
@@ -32,15 +31,16 @@ namespace DustInTheWind.MedicX.Wpf.Bootstrapper
 
         public void Run()
         {
-            ConfigureContainer();
+            kernel = new StandardKernel();
+
+            ConfigureServices();
             ConfigureRequestBus();
             LoadProject();
-            DisplayGui();
+            RunUiApplication();
         }
 
-        private void ConfigureContainer()
+        private void ConfigureServices()
         {
-            kernel = new StandardKernel();
             kernel.Load(Assembly.GetExecutingAssembly());
         }
 
@@ -55,16 +55,13 @@ namespace DustInTheWind.MedicX.Wpf.Bootstrapper
             AsyncUtil.RunSync(() =>
             {
                 RequestBus requestBus = kernel.Get<RequestBus>();
-                LoadProjectRequest request = new LoadProjectRequest
-                {
-                    FileName = "medicx.zmdx"
-                };
+                ApplicationInitializationRequest request = new ApplicationInitializationRequest();
 
-                return requestBus.ProcessRequest<LoadProjectRequest, Project>(request);
+                return requestBus.ProcessRequest(request);
             });
         }
 
-        private void DisplayGui()
+        private void RunUiApplication()
         {
             MainWindow mainWindow = kernel.Get<MainWindow>();
             MainViewModel mainViewModel = kernel.Get<MainViewModel>();

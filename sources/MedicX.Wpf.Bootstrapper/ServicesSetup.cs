@@ -14,27 +14,29 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using DustInTheWind.MedicX.Application;
-using DustInTheWind.MedicX.Application.ExitApplication;
+using DustInTheWind.MedicX.Domain;
 using DustInTheWind.MedicX.Domain.DataAccess;
+using DustInTheWind.MedicX.GuiApplication.ExitApplication;
 using DustInTheWind.MedicX.Persistence;
 using DustInTheWind.MedicX.RequestBusModel;
 using DustInTheWind.MedicX.Wpf.UI.Areas.Main.Commands;
 using EventBusModel;
 using Ninject.Modules;
 
-namespace DustInTheWind.MedicX.Wpf.Bootstrapper.Setup
+namespace DustInTheWind.MedicX.Wpf.Bootstrapper
 {
-    public class NinjectBindings : NinjectModule
+    public class ServicesSetup : NinjectModule
     {
         public override void Load()
         {
             Bind<RequestBus>().ToSelf().InSingletonScope();
             Bind<EventAggregator>().ToSelf().InSingletonScope();
             Bind<IRequestHandlerFactory>().To<NinjectRequestHandlerFactory>();
-            Bind<MedicXApplication>().ToSelf().InSingletonScope();
+            Bind<ProjectRepository>().ToSelf().InSingletonScope();
             Bind<ISaveConfirmationQuestion>().To<SaveConfirmationQuestion>();
             Bind<IUnitOfWorkBuilder>().To<UnitOfWorkBuilder>();
+            Bind<ApplicationConfig>().ToSelf().InSingletonScope();
+            Bind<IApplicationConfig>().To<ApplicationConfig>();
         }
     }
 }

@@ -21,11 +21,6 @@ namespace DustInTheWind.MedicX.Application
                 if (currentProject != null)
                 {
                     currentProject.CurrentItemChanged -= HandleCurrentItemChanged;
-                    //currentProject.StatusChanged -= HandleStatusChanged;
-
-                    //currentProject.Medics.Added -= HandleNewMedicAdded;
-                    //currentProject.Clinics.Added -= HandleNewClinicAdded;
-                    //currentProject.MedicalEvents.Added -= HandleNewMedicalEventAdded;
                 }
 
                 currentProject = value;
@@ -33,30 +28,9 @@ namespace DustInTheWind.MedicX.Application
                 if (currentProject != null)
                 {
                     currentProject.CurrentItemChanged += HandleCurrentItemChanged;
-                    //currentProject.StatusChanged += HandleStatusChanged;
-
-                    //currentProject.Medics.Added += HandleNewMedicAdded;
-                    //currentProject.Clinics.Added += HandleNewClinicAdded;
-                    //currentProject.MedicalEvents.Added += HandleNewMedicalEventAdded;
                 }
             }
         }
-
-        //private void HandleNewMedicAdded(object sender, MedicAddedEventArgs e)
-        //{
-        //    MedicDto medic = new MedicDto(e.Medic);
-        //    eventAggregator["NewMedicAdded"].Raise(medic);
-        //}
-
-        //private void HandleNewClinicAdded(object sender, ClinicAddedEventArgs e)
-        //{
-        //    eventAggregator["NewClinicAdded"].Raise(e.Clinic);
-        //}
-
-        //private void HandleNewMedicalEventAdded(object sender, MedicalEventAddedEventArgs e)
-        //{
-        //    eventAggregator["NewMedicalEventAdded"].Raise(e.MedicalEvent);
-        //}
 
         public MedicXApplication(IUnitOfWorkBuilder unitOfWorkBuilder, EventAggregator eventAggregator)
         {
@@ -68,53 +42,6 @@ namespace DustInTheWind.MedicX.Application
         {
             CurrentProject = new Project(unitOfWorkBuilder, connectionString);
         }
-
-        //public void LoadProject(string connectionString)
-        //{
-        //    using (IUnitOfWork unitOfWork = unitOfWorkBuilder.Build(connectionString))
-        //    {
-        //        Project project = new Project(unitOfWork);
-        //        this.connectionString = connectionString;
-
-        //        CurrentProject = project;
-        //        foreach (Medic medic in project.Medics)
-        //        {
-        //            medic.NameChanged += HandleMedicNameChanged;
-        //            medic.SpecializationsChanged += HandleMedicSpecializationsChanged;
-        //        }
-
-        //        project.Medics.Added += HandleMedicAdded;
-        //    }
-        //}
-
-        //private void HandleMedicAdded(object sender, MedicAddedEventArgs e)
-        //{
-        //    e.Medic.NameChanged += HandleMedicNameChanged;
-        //    e.Medic.SpecializationsChanged += HandleMedicSpecializationsChanged;
-        //}
-
-        //private void HandleMedicNameChanged(object sender, EventArgs e)
-        //{
-        //    if (sender is Medic medic)
-        //    {
-        //        MedicDto medicDto = new MedicDto(medic);
-        //        eventAggregator["MedicNameChanged"].Raise(medicDto);
-        //    }
-        //}
-
-        //private void HandleMedicSpecializationsChanged(object sender, EventArgs e)
-        //{
-        //    if (sender is Medic medic)
-        //    {
-        //        MedicDto medicDto = new MedicDto(medic);
-        //        eventAggregator["MedicSpecializationsChanged"].Raise(medicDto);
-        //    }
-        //}
-
-        //private void HandleStatusChanged(object sender, EventArgs e)
-        //{
-        //    eventAggregator["StatusChanged"].Raise(CurrentProject.Status);
-        //}
 
         private void HandleCurrentItemChanged(object sender, EventArgs e)
         {
@@ -135,16 +62,5 @@ namespace DustInTheWind.MedicX.Application
         {
             CurrentProject = null;
         }
-
-        //public void SaveCurrentProject()
-        //{
-        //    if (CurrentProject == null)
-        //        return;
-
-        //    using (IUnitOfWork unitOfWork = unitOfWorkBuilder.Build(connectionString))
-        //    {
-        //        CurrentProject.Save(unitOfWork);
-        //    }
-        //}
     }
 }

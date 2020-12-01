@@ -16,7 +16,7 @@
 
 using System;
 using System.Windows.Input;
-using DustInTheWind.MedicX.Application.AddNewEmptyClinic;
+using DustInTheWind.MedicX.GuiApplication.AddNewEmptyClinic;
 using DustInTheWind.MedicX.RequestBusModel;
 
 namespace DustInTheWind.MedicX.Wpf.UI.Areas.Clinics.Commands

@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 using DustInTheWind.ConsoleTools;
 using DustInTheWind.ConsoleTools.InputControls;
 using DustInTheWind.ConsoleTools.TabularData;
-using DustInTheWind.MedicX.Application.AddNewClinic;
 using DustInTheWind.MedicX.Domain.DataAccess;
 using DustInTheWind.MedicX.Domain.Entities;
+using DustInTheWind.MedicX.GuiApplication.AddNewClinic;
 using DustInTheWind.MedicX.RequestBusModel;
 
 namespace MedicX.Cli.Presentation.Commands

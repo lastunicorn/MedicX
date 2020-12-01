@@ -16,7 +16,7 @@
 
 using System;
 using System.Windows;
-using DustInTheWind.MedicX.Application.ExitApplication;
+using DustInTheWind.MedicX.GuiApplication.ExitApplication;
 
 namespace DustInTheWind.MedicX.Wpf.UI.Areas.Main.Commands
 {

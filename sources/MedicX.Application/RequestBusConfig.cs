@@ -14,28 +14,28 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using DustInTheWind.MedicX.Application.AddNewConsultation;
-using DustInTheWind.MedicX.Application.AddNewEmptyClinic;
-using DustInTheWind.MedicX.Application.AddNewInvestigation;
-using DustInTheWind.MedicX.Application.AddNewMedic;
-using DustInTheWind.MedicX.Application.ExitApplication;
-using DustInTheWind.MedicX.Application.GetAllClinics;
-using DustInTheWind.MedicX.Application.GetAllMedics;
-using DustInTheWind.MedicX.Application.GetCurrentItem;
-using DustInTheWind.MedicX.Application.GetCurrentProject;
-using DustInTheWind.MedicX.Application.LoadProject;
-using DustInTheWind.MedicX.Application.SetCurrentItem;
-using DustInTheWind.MedicX.Application.SetMedicAsCurrent;
-using DustInTheWind.MedicX.Application.UpdateConsultationClinic;
+using DustInTheWind.MedicX.GuiApplication.AddNewConsultation;
+using DustInTheWind.MedicX.GuiApplication.AddNewEmptyClinic;
+using DustInTheWind.MedicX.GuiApplication.AddNewInvestigation;
+using DustInTheWind.MedicX.GuiApplication.AddNewMedic;
+using DustInTheWind.MedicX.GuiApplication.ApplicationInitialization;
+using DustInTheWind.MedicX.GuiApplication.ExitApplication;
+using DustInTheWind.MedicX.GuiApplication.GetAllClinics;
+using DustInTheWind.MedicX.GuiApplication.GetAllMedics;
+using DustInTheWind.MedicX.GuiApplication.GetCurrentItem;
+using DustInTheWind.MedicX.GuiApplication.GetCurrentProject;
+using DustInTheWind.MedicX.GuiApplication.SetCurrentItem;
+using DustInTheWind.MedicX.GuiApplication.SetMedicAsCurrent;
+using DustInTheWind.MedicX.GuiApplication.UpdateConsultationClinic;
 using DustInTheWind.MedicX.RequestBusModel;
 
-namespace DustInTheWind.MedicX.Application
+namespace DustInTheWind.MedicX.GuiApplication
 {
     public class RequestBusConfig
     {
         public static void Configure(RequestBus requestBus)
         {
-            requestBus.Register<LoadProjectRequest, LoadProjectRequestHandler>();
+            requestBus.Register<ApplicationInitializationRequest, ApplicationInitializationRequestHandler>();
             requestBus.Register<GetCurrentProjectRequest, GetCurrentProjectRequestHandler>();
             requestBus.Register<ExitApplicationRequest, ExitApplicationRequestHandler>();
             requestBus.Register<SetCurrentItemRequest, SetCurrentItemRequestHandler>();

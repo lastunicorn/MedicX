@@ -16,7 +16,7 @@
 
 using System;
 using System.Windows.Input;
-using DustInTheWind.MedicX.Application.ExitApplication;
+using DustInTheWind.MedicX.GuiApplication.ExitApplication;
 using DustInTheWind.MedicX.RequestBusModel;
 
 namespace DustInTheWind.MedicX.Wpf.UI.Areas.Main.Commands

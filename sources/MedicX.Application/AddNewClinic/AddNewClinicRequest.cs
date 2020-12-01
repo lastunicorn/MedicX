@@ -17,7 +17,7 @@
 using System.Collections.Generic;
 using DustInTheWind.MedicX.Domain.Entities;
 
-namespace DustInTheWind.MedicX.Application.AddNewClinic
+namespace DustInTheWind.MedicX.GuiApplication.AddNewClinic
 {
     public class AddNewClinicRequest
     {

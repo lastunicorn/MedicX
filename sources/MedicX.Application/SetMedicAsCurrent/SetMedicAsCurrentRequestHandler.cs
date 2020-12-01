@@ -15,28 +15,28 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using System.Linq;
 using System.Threading.Tasks;
+using DustInTheWind.MedicX.Domain;
 using DustInTheWind.MedicX.Domain.DataAccess;
 using DustInTheWind.MedicX.Domain.Entities;
 using DustInTheWind.MedicX.RequestBusModel;
 
-namespace DustInTheWind.MedicX.Application.SetMedicAsCurrent
+namespace DustInTheWind.MedicX.GuiApplication.SetMedicAsCurrent
 {
     public class SetMedicAsCurrentRequestHandler : IRequestHandler<SetMedicAsCurrentRequest>
     {
-        private readonly MedicXApplication medicXApplication;
+        private readonly ProjectRepository projectRepository;
 
-        public SetMedicAsCurrentRequestHandler(MedicXApplication medicXApplication)
+        public SetMedicAsCurrentRequestHandler(ProjectRepository projectRepository)
         {
-            this.medicXApplication = medicXApplication ?? throw new ArgumentNullException(nameof(medicXApplication));
+            this.projectRepository = projectRepository ?? throw new ArgumentNullException(nameof(projectRepository));
         }
 
         public Task Handle(SetMedicAsCurrentRequest request)
         {
             return Task.Run(() =>
             {
-                Project currentProject = medicXApplication.CurrentProject;
+                Project currentProject = projectRepository.ActiveProject;
 
                 if (currentProject == null)
                     throw new NoProjectException();

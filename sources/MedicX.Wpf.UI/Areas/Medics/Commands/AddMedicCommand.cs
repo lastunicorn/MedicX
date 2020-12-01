@@ -17,7 +17,7 @@
 using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using DustInTheWind.MedicX.Application.AddNewMedic;
+using DustInTheWind.MedicX.GuiApplication.AddNewMedic;
 using DustInTheWind.MedicX.RequestBusModel;
 
 namespace DustInTheWind.MedicX.Wpf.UI.Areas.Medics.Commands

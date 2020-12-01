@@ -20,6 +20,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using DustInTheWind.ConsoleTools;
 using DustInTheWind.ConsoleTools.InputControls;
+using DustInTheWind.MedicX.Domain;
 using DustInTheWind.MedicX.Domain.DataAccess;
 using DustInTheWind.MedicX.Domain.Entities;
 using MedicX.Cli.Presentation.Views;
@@ -29,12 +30,12 @@ namespace MedicX.Cli.Presentation.Commands
     [Command(Names = "medic, medics")]
     internal class MedicsCommand : ICommand
     {
-        private readonly IUnitOfWork unitOfWork;
+        private readonly ProjectRepository projectRepository;
         private readonly DisplayMedicsView view;
 
-        public MedicsCommand(IUnitOfWork unitOfWork, DisplayMedicsView view)
+        public MedicsCommand(ProjectRepository projectRepository, DisplayMedicsView view)
         {
-            this.unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
+            this.projectRepository = projectRepository ?? throw new ArgumentNullException(nameof(projectRepository));
             this.view = view ?? throw new ArgumentNullException(nameof(view));
         }
 
@@ -60,6 +61,16 @@ namespace MedicX.Cli.Presentation.Commands
 
         private void AddMedic()
         {
+            projectRepository.RunWithUnitOfWork(unitOfWork =>
+            {
+                Medic medic = ReadMedic();
+                unitOfWork.MedicRepository.Add(medic);
+                unitOfWork.Save();
+            });
+        }
+
+        private static Medic ReadMedic()
+        {
             TextInputControl textInputControl = new TextInputControl();
             ListInputControl listInputControl = new ListInputControl();
 
@@ -71,7 +82,7 @@ namespace MedicX.Cli.Presentation.Commands
 
             string comments = textInputControl.Read("Comments");
 
-            Medic medic = new Medic
+            return new Medic
             {
                 Id = Guid.NewGuid(),
                 Name = new PersonName
@@ -83,24 +94,28 @@ namespace MedicX.Cli.Presentation.Commands
                 Specializations = new ObservableCollection<string>(specializations),
                 Comments = comments
             };
-
-            unitOfWork.MedicRepository.Add(medic);
         }
 
         private void DisplayAllMedics()
         {
-            IMedicRepository medicRepository = unitOfWork.MedicRepository;
+            projectRepository.RunWithUnitOfWork(unitOfWork =>
+            {
+                IMedicRepository medicRepository = unitOfWork.MedicRepository;
 
-            List<Medic> medics = medicRepository.GetAll();
-            view.DisplayMedics(medics);
+                List<Medic> medics = medicRepository.GetAll();
+                view.DisplayMedics(medics);
+            });
         }
 
         private void SearchMedic(string searchText)
         {
-            IMedicRepository medicRepository = unitOfWork.MedicRepository;
+            projectRepository.RunWithUnitOfWork(unitOfWork =>
+            {
+                IMedicRepository medicRepository = unitOfWork.MedicRepository;
 
-            List<Medic> medics = medicRepository.Search(searchText);
-            view.DisplayMedics(medics);
+                List<Medic> medics = medicRepository.Search(searchText);
+                view.DisplayMedics(medics);
+            });
         }
     }
 }

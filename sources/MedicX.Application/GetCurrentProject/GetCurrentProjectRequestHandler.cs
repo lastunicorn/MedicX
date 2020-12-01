@@ -16,23 +16,24 @@
 
 using System;
 using System.Threading.Tasks;
+using DustInTheWind.MedicX.Domain;
 using DustInTheWind.MedicX.Domain.Entities;
 using DustInTheWind.MedicX.RequestBusModel;
 
-namespace DustInTheWind.MedicX.Application.GetCurrentProject
+namespace DustInTheWind.MedicX.GuiApplication.GetCurrentProject
 {
     internal class GetCurrentProjectRequestHandler : IRequestHandler<GetCurrentProjectRequest, Project>
     {
-        private readonly MedicXApplication medicXApplication;
+        private readonly ProjectRepository projectRepository;
 
-        public GetCurrentProjectRequestHandler(MedicXApplication medicXApplication)
+        public GetCurrentProjectRequestHandler(ProjectRepository projectRepository)
         {
-            this.medicXApplication = medicXApplication ?? throw new ArgumentNullException(nameof(medicXApplication));
+            this.projectRepository = projectRepository ?? throw new ArgumentNullException(nameof(projectRepository));
         }
 
         public Task<Project> Handle(GetCurrentProjectRequest request)
         {
-            return Task.FromResult(medicXApplication.CurrentProject);
+            return Task.FromResult(projectRepository.ActiveProject);
         }
     }
 }

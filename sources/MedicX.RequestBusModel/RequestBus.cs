@@ -40,6 +40,11 @@ namespace DustInTheWind.MedicX.RequestBusModel
             Type requestType = typeof(TRequest);
             Type requestHandlerType = typeof(THandler);
 
+            Register(requestType, requestHandlerType);
+        }
+
+        public void Register(Type requestType, Type requestHandlerType)
+        {
             if (handlers.ContainsKey(requestType))
                 throw new Exception("The type " + requestType.FullName + " is already registered.");
 
@@ -66,7 +71,7 @@ namespace DustInTheWind.MedicX.RequestBusModel
             if (requestHandlerFactory.Create(requestHandlerType) is IRequestHandler<TRequest> requestHandlerWithoutResponse)
             {
                 await requestHandlerWithoutResponse.Handle(request);
-                return default(TResponse);
+                return default;
             }
 
             throw new UnusableRequestHandlerException(requestType);

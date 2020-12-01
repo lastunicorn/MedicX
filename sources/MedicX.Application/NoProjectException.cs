@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DustInTheWind.MedicX.Application
+namespace DustInTheWind.MedicX.GuiApplication
 {
     internal class NoProjectException : Exception
     {

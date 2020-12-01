@@ -17,24 +17,25 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using DustInTheWind.MedicX.Domain;
 using DustInTheWind.MedicX.Domain.DataAccess;
 using DustInTheWind.MedicX.Domain.Entities;
 using DustInTheWind.MedicX.RequestBusModel;
 
-namespace DustInTheWind.MedicX.Application.AddNewInvestigation
+namespace DustInTheWind.MedicX.GuiApplication.AddNewInvestigation
 {
     internal class AddNewInvestigationRequestHandler : IRequestHandler<AddNewInvestigationRequest>
     {
-        private readonly MedicXApplication medicXApplication;
+        private readonly ProjectRepository projectRepository;
 
-        public AddNewInvestigationRequestHandler(MedicXApplication medicXApplication)
+        public AddNewInvestigationRequestHandler(ProjectRepository projectRepository)
         {
-            this.medicXApplication = medicXApplication ?? throw new ArgumentNullException(nameof(medicXApplication));
+            this.projectRepository = projectRepository ?? throw new ArgumentNullException(nameof(projectRepository));
         }
 
         public Task Handle(AddNewInvestigationRequest request)
         {
-            Project currentProject = medicXApplication.CurrentProject;
+            Project currentProject = projectRepository.ActiveProject;
 
             if (currentProject == null)
                 throw new NoProjectException();

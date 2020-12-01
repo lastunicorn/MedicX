@@ -18,24 +18,25 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DustInTheWind.MedicX.Domain;
 using DustInTheWind.MedicX.Domain.DataAccess;
 using DustInTheWind.MedicX.Domain.Entities;
 using DustInTheWind.MedicX.RequestBusModel;
 
-namespace DustInTheWind.MedicX.Application.GetAllMedics
+namespace DustInTheWind.MedicX.GuiApplication.GetAllMedics
 {
     internal class GetAllMedicsRequestHandler : IRequestHandler<GetAllMedicsRequest, List<MedicDto>>
     {
-        private readonly MedicXApplication medicXApplication;
+        private readonly ProjectRepository projectRepository;
 
-        public GetAllMedicsRequestHandler(MedicXApplication medicXApplication)
+        public GetAllMedicsRequestHandler(ProjectRepository projectRepository)
         {
-            this.medicXApplication = medicXApplication ?? throw new ArgumentNullException(nameof(medicXApplication));
+            this.projectRepository = projectRepository ?? throw new ArgumentNullException(nameof(projectRepository));
         }
 
         public Task<List<MedicDto>> Handle(GetAllMedicsRequest request)
         {
-            Project currentProject = medicXApplication.CurrentProject;
+            Project currentProject = projectRepository.ActiveProject;
 
             if (currentProject == null)
                 throw new NoProjectException();

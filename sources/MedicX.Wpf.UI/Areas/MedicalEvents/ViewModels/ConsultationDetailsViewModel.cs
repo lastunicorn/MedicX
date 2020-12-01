@@ -17,10 +17,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using DustInTheWind.MedicX.Application.GetAllClinics;
-using DustInTheWind.MedicX.Application.GetAllMedics;
-using DustInTheWind.MedicX.Application.UpdateConsultationClinic;
 using DustInTheWind.MedicX.Domain.Entities;
+using DustInTheWind.MedicX.GuiApplication.GetAllClinics;
+using DustInTheWind.MedicX.GuiApplication.GetAllMedics;
+using DustInTheWind.MedicX.GuiApplication.UpdateConsultationClinic;
 using DustInTheWind.MedicX.RequestBusModel;
 using Medic = DustInTheWind.MedicX.Domain.Entities.Medic;
 

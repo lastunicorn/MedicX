@@ -15,28 +15,28 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using System.Threading.Tasks;
-using DustInTheWind.MedicX.Domain.Entities;
 using DustInTheWind.MedicX.RequestBusModel;
+using Ninject;
 
-namespace DustInTheWind.MedicX.Application.LoadProject
+namespace DustInTheWind.MedicX.Cli.Bootstrapper
 {
-    internal class LoadProjectRequestHandler : IRequestHandler<LoadProjectRequest, Project>
+    public class RequestHandlerFactory : IRequestHandlerFactory
     {
-        private readonly MedicXApplication medicXApplication;
+        private readonly IKernel kernel;
 
-        public LoadProjectRequestHandler(MedicXApplication medicXApplication)
+        public RequestHandlerFactory(IKernel serviceProvider)
         {
-            this.medicXApplication = medicXApplication ?? throw new ArgumentNullException(nameof(medicXApplication));
+            this.kernel = serviceProvider ?? throw new ArgumentNullException(nameof(serviceProvider));
         }
 
-        public Task<Project> Handle(LoadProjectRequest request)
+        public T Create<T>()
         {
-            return Task.Run(() =>
-            {
-                medicXApplication.LoadProject(request.FileName);
-                return medicXApplication.CurrentProject;
-            });
+            return kernel.Get<T>();
+        }
+
+        public object Create(Type type)
+        {
+            return kernel.Get(type);
         }
     }
 }

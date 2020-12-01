@@ -17,8 +17,8 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
-using DustInTheWind.MedicX.Application.GetAllMedics;
 using DustInTheWind.MedicX.Domain.Entities;
+using DustInTheWind.MedicX.GuiApplication.GetAllMedics;
 
 namespace DustInTheWind.MedicX.Wpf.UI.Areas.Medics.ViewModels
 {

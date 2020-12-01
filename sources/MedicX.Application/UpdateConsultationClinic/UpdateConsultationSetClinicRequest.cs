@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DustInTheWind.MedicX.Application.UpdateConsultationClinic
+namespace DustInTheWind.MedicX.GuiApplication.UpdateConsultationClinic
 {
     public class UpdateConsultationSetClinicRequest
     {

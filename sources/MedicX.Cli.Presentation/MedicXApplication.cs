@@ -16,7 +16,6 @@
 
 using System;
 using DustInTheWind.ConsoleTools;
-using DustInTheWind.MedicX.Domain.DataAccess;
 using MedicX.Cli.Presentation.UserControls;
 
 namespace MedicX.Cli.Presentation
@@ -26,9 +25,8 @@ namespace MedicX.Cli.Presentation
         private readonly ControllerPool controllerPool;
         private readonly Prompter prompter;
 
-        public MedicXApplication(IUnitOfWork unitOfWork, ControllerPool controllerPool)
+        public MedicXApplication(ControllerPool controllerPool)
         {
-            if (unitOfWork == null) throw new ArgumentNullException(nameof(unitOfWork));
             this.controllerPool = controllerPool ?? throw new ArgumentNullException(nameof(controllerPool));
 
             prompter = new Prompter();
@@ -56,9 +54,20 @@ namespace MedicX.Cli.Presentation
             ICommand command = controllerPool.Get(e.Command);
 
             if (command == null)
+            {
                 CustomConsole.WriteLineError("Unknown command");
+            }
             else
-                command.Execute(e.Command);
+            {
+                try
+                {
+                    command.Execute(e.Command);
+                }
+                catch (Exception ex)
+                {
+                    CustomConsole.WriteError(ex.Message);
+                }
+            }
 
             CustomConsole.WriteLine();
         }

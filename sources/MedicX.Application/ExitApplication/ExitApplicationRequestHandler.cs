@@ -16,19 +16,19 @@
 
 using System;
 using System.Threading.Tasks;
-using DustInTheWind.MedicX.Domain.Entities;
+using DustInTheWind.MedicX.Domain;
 using DustInTheWind.MedicX.RequestBusModel;
 
-namespace DustInTheWind.MedicX.Application.ExitApplication
+namespace DustInTheWind.MedicX.GuiApplication.ExitApplication
 {
     internal class ExitApplicationRequestHandler : IRequestHandler<ExitApplicationRequest, bool>
     {
-        private readonly MedicXApplication medicXApplication;
+        private readonly ProjectRepository projectRepository;
         private readonly ISaveConfirmationQuestion saveConfirmationQuestion;
 
-        public ExitApplicationRequestHandler(MedicXApplication medicXApplication, ISaveConfirmationQuestion saveConfirmationQuestion)
+        public ExitApplicationRequestHandler(ProjectRepository projectRepository, ISaveConfirmationQuestion saveConfirmationQuestion)
         {
-            this.medicXApplication = medicXApplication ?? throw new ArgumentNullException(nameof(medicXApplication));
+            this.projectRepository = projectRepository ?? throw new ArgumentNullException(nameof(projectRepository));
             this.saveConfirmationQuestion = saveConfirmationQuestion ?? throw new ArgumentNullException(nameof(saveConfirmationQuestion));
         }
 
@@ -37,7 +37,7 @@ namespace DustInTheWind.MedicX.Application.ExitApplication
             bool allowToContinue = EnsureSave();
 
             if (allowToContinue)
-                medicXApplication.UnloadProject();
+                projectRepository.RemoveActive();
 
             return Task.FromResult(allowToContinue);
         }

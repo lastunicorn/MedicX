@@ -56,9 +56,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MedicX.Application\MedicX.Application.csproj">
+    <ProjectReference Include="..\MedicX.Application\MedicX.GuiApplication.csproj">
       <Project>{483072F7-D4D6-4CA9-8E3F-EB806AF2A7C3}</Project>
-      <Name>MedicX.Application</Name>
+      <Name>MedicX.GuiApplication</Name>
     </ProjectReference>
     <ProjectReference Include="..\MedicX.Domain\MedicX.Domain.csproj">
       <Project>{854C77F6-22F9-48A9-AE73-43E19AB9B258}</Project>

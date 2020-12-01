@@ -20,7 +20,7 @@ using DustInTheWind.MedicX.Domain.DataAccess;
 using DustInTheWind.MedicX.Domain.Entities;
 using DustInTheWind.MedicX.RequestBusModel;
 
-namespace DustInTheWind.MedicX.Application.AddNewEmptyClinic
+namespace DustInTheWind.MedicX.GuiApplication.AddNewEmptyClinic
 {
     internal class AddNewEmptyClinicRequestHandler : IRequestHandler<AddNewEmptyClinicRequest>
     {
