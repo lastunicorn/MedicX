@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using DustInTheWind.ConsoleTools;
 
 namespace MedicX.Cli.Presentation
 {
@@ -16,6 +17,8 @@ namespace MedicX.Cli.Presentation
                 : ParseNames(value);
         }
 
+        public string Verb { get; set; }
+
         private static string[] ParseNames(string names)
         {
             return names.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
@@ -23,9 +26,17 @@ namespace MedicX.Cli.Presentation
                 .ToArray();
         }
 
-        public bool IsMatch(string name)
+        public bool IsMatch(UserCommand userCommand)
         {
-            return names.Contains(name);
+            bool matchName = names.Contains(userCommand.Name);
+
+            if (!matchName)
+                return false;
+
+            string actualVerb = userCommand.Parameters.FirstOrDefault()?.Name;
+            bool matchVerb = actualVerb == Verb;
+
+            return matchVerb;
         }
     }
 }

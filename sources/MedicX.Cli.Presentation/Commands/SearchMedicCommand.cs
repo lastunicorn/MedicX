@@ -14,20 +14,37 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using DustInTheWind.MedicX.CommandApplication.AddMedic;
-using DustInTheWind.MedicX.CommandApplication.ApplicationInitialization;
+using System;
+using System.Linq;
+using DustInTheWind.ConsoleTools;
 using DustInTheWind.MedicX.CommandApplication.SearchMedic;
 using DustInTheWind.MedicX.RequestBusModel;
 
-namespace DustInTheWind.MedicX.CommandApplication
+namespace MedicX.Cli.Presentation.Commands
 {
-    public class RequestBusConfig
+    [Command(Names = "medic", Verb = "search")]
+    internal class SearchMedicCommand : ICommand
     {
-        public static void Configure(RequestBus requestBus)
+        private readonly RequestBus requestBus;
+
+        public SearchMedicCommand(RequestBus requestBus)
         {
-            requestBus.Register<ApplicationInitializationRequest, ApplicationInitializationRequestHandler>();
-            requestBus.Register<AddMedicRequest, AddMedicRequestHandler>();
-            requestBus.Register<SearchMedicRequest, SearchMedicRequestHandler>();
+            this.requestBus = requestBus ?? throw new ArgumentNullException(nameof(requestBus));
+        }
+
+        public void Execute(UserCommand command)
+        {
+            SearchMedicRequest request = new SearchMedicRequest
+            {
+                Text = ExtractText(command)
+            };
+
+            requestBus.ProcessRequest(request).Wait();
+        }
+
+        private static string ExtractText(UserCommand command)
+        {
+            return command.Parameters.FirstOrDefault(x => x.Name == "text")?.Value;
         }
     }
 }

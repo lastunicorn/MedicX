@@ -39,12 +39,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommandAttribute.cs" />
+    <Compile Include="Commands\AddMedicCommand.cs" />
+    <Compile Include="CommandPropertyAttribute.cs" />
+    <Compile Include="Commands\SearchMedicCommand.cs" />
     <Compile Include="ICommandFactory.cs" />
     <Compile Include="Views\DisplayMedicsView.cs" />
     <Compile Include="UserControls\MedicDetailsControl.cs" />
     <Compile Include="UserControls\MedicsTableControl.cs" />
     <Compile Include="UserControls\ApplicationHeader.cs" />
-    <Compile Include="ControllerPool.cs" />
+    <Compile Include="CommandPool.cs" />
     <Compile Include="Commands\ConsultationsCommand.cs" />
     <Compile Include="Commands\ClinicsCommand.cs" />
     <Compile Include="Commands\MedicsCommand.cs" />
@@ -54,11 +57,16 @@
     <Compile Include="ICommand.cs" />
     <Compile Include="MedicXApplication.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\MedicView.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MedicX.Application\MedicX.GuiApplication.csproj">
       <Project>{483072F7-D4D6-4CA9-8E3F-EB806AF2A7C3}</Project>
       <Name>MedicX.GuiApplication</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MedicX.CommandApplication\MedicX.CommandApplication.csproj">
+      <Project>{23BDD9CE-49C3-4457-80CC-32AD955242E1}</Project>
+      <Name>MedicX.CommandApplication</Name>
     </ProjectReference>
     <ProjectReference Include="..\MedicX.Domain\MedicX.Domain.csproj">
       <Project>{854C77F6-22F9-48A9-AE73-43E19AB9B258}</Project>

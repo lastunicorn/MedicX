@@ -78,14 +78,16 @@ namespace DustInTheWind.MedicX.Persistence
                 .ToList();
         }
 
-        public List<Medic> Search(string text)
+        public IEnumerable<Medic> Search(string text)
         {
+            if (text == null)
+                return Enumerable.Empty<Medic>();
+
             return storage.Medics
                 .Where(x => x != null)
                 .Where(x => (x.Name != null && x.Name.Contains(text)) ||
                             (x.Specializations.Any(z => z != null && z.IndexOf(text, StringComparison.OrdinalIgnoreCase) >= 0)) ||
-                            (x.Comments != null && x.Comments.IndexOf(text, StringComparison.InvariantCultureIgnoreCase) >= 0))
-                .ToList();
+                            (x.Comments != null && x.Comments.IndexOf(text, StringComparison.InvariantCultureIgnoreCase) >= 0));
         }
     }
 }

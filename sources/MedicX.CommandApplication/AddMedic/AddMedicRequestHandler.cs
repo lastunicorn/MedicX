@@ -15,43 +15,41 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using System.Collections.Generic;
-using DustInTheWind.ConsoleTools;
+using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using DustInTheWind.MedicX.Domain;
-using DustInTheWind.MedicX.Domain.DataAccess;
 using DustInTheWind.MedicX.Domain.Entities;
 using DustInTheWind.MedicX.RequestBusModel;
-using MedicX.Cli.Presentation.Views;
 
-namespace MedicX.Cli.Presentation.Commands
+namespace DustInTheWind.MedicX.CommandApplication.AddMedic
 {
-    [Command(Names = "medic")]
-    internal class MedicsCommand : ICommand
+    public class AddMedicRequestHandler : IRequestHandler<AddMedicRequest>
     {
         private readonly ProjectRepository projectRepository;
-        private readonly DisplayMedicsView view;
-        private readonly RequestBus requestBus;
+        private readonly IMedicView medicView;
 
-        public MedicsCommand(ProjectRepository projectRepository, DisplayMedicsView view, RequestBus requestBus)
+        public AddMedicRequestHandler(ProjectRepository projectRepository, IMedicView medicView)
         {
             this.projectRepository = projectRepository ?? throw new ArgumentNullException(nameof(projectRepository));
-            this.view = view ?? throw new ArgumentNullException(nameof(view));
-            this.requestBus = requestBus ?? throw new ArgumentNullException(nameof(requestBus));
+            this.medicView = medicView ?? throw new ArgumentNullException(nameof(medicView));
         }
 
-        public void Execute(UserCommand command)
+        public Task Handle(AddMedicRequest request)
         {
-            DisplayAllMedics();
-        }
-
-        private void DisplayAllMedics()
-        {
-            projectRepository.RunWithUnitOfWork(unitOfWork =>
+            return Task.Run(() =>
             {
-                IMedicRepository medicRepository = unitOfWork.MedicRepository;
+                projectRepository.RunWithUnitOfWork(unitOfWork =>
+                {
+                    Medic medic = new Medic
+                    {
+                        Name = request.Name ?? medicView.ReadName(),
+                        Specializations = new ObservableCollection<string>(request.Specializations ?? medicView.ReadSpecializations()),
+                        Comments = request.Comments ?? medicView.ReadComments()
+                    };
 
-                List<Medic> medics = medicRepository.GetAll();
-                view.DisplayMedics(medics);
+                    unitOfWork.MedicRepository.Add(medic);
+                    unitOfWork.Save();
+                });
             });
         }
     }

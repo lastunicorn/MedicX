@@ -16,42 +16,37 @@
 
 using System;
 using System.Collections.Generic;
-using DustInTheWind.ConsoleTools;
+using System.Linq;
+using System.Threading.Tasks;
 using DustInTheWind.MedicX.Domain;
 using DustInTheWind.MedicX.Domain.DataAccess;
 using DustInTheWind.MedicX.Domain.Entities;
 using DustInTheWind.MedicX.RequestBusModel;
-using MedicX.Cli.Presentation.Views;
 
-namespace MedicX.Cli.Presentation.Commands
+namespace DustInTheWind.MedicX.CommandApplication.SearchMedic
 {
-    [Command(Names = "medic")]
-    internal class MedicsCommand : ICommand
+    public class SearchMedicRequestHandler : IRequestHandler<SearchMedicRequest>
     {
         private readonly ProjectRepository projectRepository;
-        private readonly DisplayMedicsView view;
-        private readonly RequestBus requestBus;
+        private readonly IDisplayMedicsView displayMedicsView;
 
-        public MedicsCommand(ProjectRepository projectRepository, DisplayMedicsView view, RequestBus requestBus)
+        public SearchMedicRequestHandler(ProjectRepository projectRepository, IDisplayMedicsView displayMedicsView)
         {
             this.projectRepository = projectRepository ?? throw new ArgumentNullException(nameof(projectRepository));
-            this.view = view ?? throw new ArgumentNullException(nameof(view));
-            this.requestBus = requestBus ?? throw new ArgumentNullException(nameof(requestBus));
+            this.displayMedicsView = displayMedicsView ?? throw new ArgumentNullException(nameof(displayMedicsView));
         }
 
-        public void Execute(UserCommand command)
+        public Task Handle(SearchMedicRequest request)
         {
-            DisplayAllMedics();
-        }
-
-        private void DisplayAllMedics()
-        {
-            projectRepository.RunWithUnitOfWork(unitOfWork =>
+            return Task.Run(() =>
             {
-                IMedicRepository medicRepository = unitOfWork.MedicRepository;
+                projectRepository.RunWithUnitOfWork(unitOfWork =>
+                {
+                    IMedicRepository medicRepository = unitOfWork.MedicRepository;
 
-                List<Medic> medics = medicRepository.GetAll();
-                view.DisplayMedics(medics);
+                    List<Medic> medics = medicRepository.Search(request.Text).ToList();
+                    displayMedicsView.DisplayMedics(medics);
+                });
             });
         }
     }

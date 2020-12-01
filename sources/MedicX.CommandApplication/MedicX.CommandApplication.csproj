@@ -42,10 +42,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddMedic\AddMedicRequest.cs" />
+    <Compile Include="AddMedic\AddMedicRequestHandler.cs" />
+    <Compile Include="AddMedic\IMedicView.cs" />
     <Compile Include="ApplicationInitialization\ApplicationInitializationRequest.cs" />
     <Compile Include="ApplicationInitialization\ApplicationInitializationRequestHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RequestBusConfig.cs" />
+    <Compile Include="SearchMedic\IDisplayMedicsView.cs" />
+    <Compile Include="SearchMedic\SearchMedicRequest.cs" />
+    <Compile Include="SearchMedic\SearchMedicRequestHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MedicX.Domain\MedicX.Domain.csproj">
@@ -57,5 +63,6 @@
       <Name>MedicX.RequestBusModel</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

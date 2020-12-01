@@ -14,20 +14,13 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using DustInTheWind.MedicX.CommandApplication.AddMedic;
-using DustInTheWind.MedicX.CommandApplication.ApplicationInitialization;
-using DustInTheWind.MedicX.CommandApplication.SearchMedic;
-using DustInTheWind.MedicX.RequestBusModel;
+using System.Collections.Generic;
+using DustInTheWind.MedicX.Domain.Entities;
 
-namespace DustInTheWind.MedicX.CommandApplication
+namespace DustInTheWind.MedicX.CommandApplication.SearchMedic
 {
-    public class RequestBusConfig
+    public interface IDisplayMedicsView
     {
-        public static void Configure(RequestBus requestBus)
-        {
-            requestBus.Register<ApplicationInitializationRequest, ApplicationInitializationRequestHandler>();
-            requestBus.Register<AddMedicRequest, AddMedicRequestHandler>();
-            requestBus.Register<SearchMedicRequest, SearchMedicRequestHandler>();
-        }
+        void DisplayMedics(List<Medic> medics);
     }
 }

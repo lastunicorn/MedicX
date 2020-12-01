@@ -14,11 +14,14 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+using DustInTheWind.MedicX.CommandApplication.AddMedic;
+using DustInTheWind.MedicX.CommandApplication.SearchMedic;
 using DustInTheWind.MedicX.Domain;
 using DustInTheWind.MedicX.Domain.DataAccess;
 using DustInTheWind.MedicX.Persistence;
 using DustInTheWind.MedicX.RequestBusModel;
 using MedicX.Cli.Presentation;
+using MedicX.Cli.Presentation.Views;
 using Ninject.Modules;
 
 namespace DustInTheWind.MedicX.Cli.Bootstrapper
@@ -34,6 +37,9 @@ namespace DustInTheWind.MedicX.Cli.Bootstrapper
             Bind<ICommandFactory>().To<CommandFactory>();
             Bind<ProjectRepository>().ToSelf().InSingletonScope();
             Bind<IApplicationConfig>().To<ApplicationConfig>();
+
+            Bind<IMedicView>().To<MedicView>();
+            Bind<IDisplayMedicsView>().To<DisplayMedicsView>();
         }
     }
 }

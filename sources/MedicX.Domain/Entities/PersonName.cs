@@ -95,6 +95,9 @@ namespace DustInTheWind.MedicX.Domain.Entities
 
         public bool Contains(string text)
         {
+            if (text == null)
+                return false;
+
             bool contains = ContainsChunk(text);
 
             if (contains)

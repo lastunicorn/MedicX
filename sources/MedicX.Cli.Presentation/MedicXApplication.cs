@@ -22,12 +22,12 @@ namespace MedicX.Cli.Presentation
 {
     public class MedicXApplication
     {
-        private readonly ControllerPool controllerPool;
+        private readonly CommandPool commandPool;
         private readonly Prompter prompter;
 
-        public MedicXApplication(ControllerPool controllerPool)
+        public MedicXApplication(CommandPool commandPool)
         {
-            this.controllerPool = controllerPool ?? throw new ArgumentNullException(nameof(controllerPool));
+            this.commandPool = commandPool ?? throw new ArgumentNullException(nameof(commandPool));
 
             prompter = new Prompter();
         }
@@ -51,7 +51,7 @@ namespace MedicX.Cli.Presentation
 
         private void HandleNewCommand(object sender, NewCommandEventArgs e)
         {
-            ICommand command = controllerPool.Get(e.Command);
+            ICommand command = commandPool.Get(e.Command);
 
             if (command == null)
             {
@@ -65,7 +65,11 @@ namespace MedicX.Cli.Presentation
                 }
                 catch (Exception ex)
                 {
+#if DEBUG
+                    CustomConsole.WriteError(ex);
+#else
                     CustomConsole.WriteError(ex.Message);
+#endif
                 }
             }
 

@@ -32,6 +32,6 @@ namespace DustInTheWind.MedicX.Domain.DataAccess
         
         List<Medic> GetByName(string medicName);
         
-        List<Medic> Search(string text);
+        IEnumerable<Medic> Search(string text);
     }
 }
